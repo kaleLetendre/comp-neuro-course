@@ -8,7 +8,8 @@ Pre-dissertation groundwork for an MSc Computer Science (University of London / 
 
 ## Files
 
-- `learning_plan.md` — the map: three tracks, the ordering rule, progress checkboxes, open questions carried forward
+- `foundations.md` — the foundation track (F1-F11), Dayan & Abbott end to end, assuming no prior neuroscience. Runs before everything else.
+- `learning_plan.md` — the map: all four tracks, the ordering rule, progress checkboxes, open questions carried forward
 - `lessons.md` — the detail: one spec per lesson (goal, scope, size, source material, five acceptance criteria)
 - `fetch_papers.py` — the reading list as code: 28 citations with verified DOIs; downloads the 10 that are openly available
 - `papers/` — downloaded sources, gitignored. The bibliography is the artifact and lives in the script; the PDFs are reproducible.
@@ -17,7 +18,9 @@ Pre-dissertation groundwork for an MSc Computer Science (University of London / 
 
 ## The ordering rule (set 2026-06-19, still in force)
 
-Raw SNN (track A) → raw predictive coding (track C). Biology (track B) runs alongside and gates nothing. No fusion design, and no PC≈backprop, until both halves stand on their own. Track A is strictly sequential; so is track C.
+**Foundations (F1-F11) come first** — the textbook end to end, assuming no prior neuroscience. Then raw SNN (track A) → raw predictive coding (track C), with biology (track B) alongside. No fusion design, and no PC≈backprop, until both halves stand on their own. F, A and C are each strictly sequential.
+
+Do not assume the learner already knows a topic because an earlier note says it was covered. An earlier version of this course did that and skipped material as a result.
 
 ## Teaching contract
 

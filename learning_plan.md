@@ -1,6 +1,10 @@
 # Learning Plan — SNN, PC, and Computational Neuroscience
 
-The single place the study plan lives. Merges two tracks that had been running separately:
+The single place the study plan lives.
+
+**The course is in two halves.** The [**foundation track**](foundations.md) (F1-F11) works through Dayan & Abbott's *Theoretical Neuroscience* end to end — computational neuroscience as a field, assuming no prior neuroscience. The **advanced tracks** below (A, B, C) come after it and go past the textbook. An earlier version of this plan had only the advanced half, assembled from prior tutoring notes and the open design questions of a research project; it assumed foundations the learner had not been formally taught and skipped chapters 1-4 of the book entirely. The foundation track is the correction, and the research project is now an application of the course rather than its spine.
+
+The advanced half merges three tracks that had been running separately:
 
 - **Track A — SNN fundamentals**, taught conversationally (previously only recorded in Claude's memory files, session `0aada431-69b8-4802-8ce3-eb8efc926fe1`, 2026-06-19).
 - **Track B — comp neuro / biology**, whose write-ups stay with the project they inform — [`comp_neuro_notes.md` (Adaptive-Web-PC-SNN repo)](https://github.com/kaleLetendre/Adaptive-Web-PC-SNN/blob/main/docs/comp_neuro_notes.md) with a "relevance to this project" block per topic.
@@ -12,7 +16,11 @@ Last updated: 2026-09-15.
 
 ---
 
-## The ordering rule (set 2026-06-19, still in force)
+## The ordering rule
+
+**Foundations first.** F1-F11 before any advanced lesson. A0 is the checkpoint between them.
+
+Then, within the advanced half (set 2026-06-19, still in force):
 
 **Finish raw SNN → then raw PC → only then decide how to fuse them.**
 
@@ -26,9 +34,12 @@ Track B runs alongside on its own cadence — biology reading feeds design flags
 
 | Track | Position | Next item |
 |---|---|---|
-| A — SNN fundamentals | ~70% through the raw-SNN list | A0 (consolidation), then A1 (synaptic delays) |
-| B — comp neuro | 4 topics written up, dormant since ~June 2026 | Any of B1-B5 |
-| C — PC theory | Not started (blocked by A, intentionally) | — |
+| **F — foundations** | Not started. 11 lessons, ~24 sittings, ~60 hours | **F1 — spike trains and firing rates** |
+| A — advanced SNN dynamics | Coursework written, gated behind F | A0 is now the bridge check between F and A |
+| B — biology for design | Coursework written, runs alongside A | Any of B1-B5 once F is done |
+| C — PC theory | Coursework written, blocked by A, intentionally | — |
+
+Whole course: roughly 135 hours. Foundations ~60, advanced ~75.
 
 Nothing happened on any track between 2026-07-20 and 2026-09-15 — that gap was step 2b (persistent state / online CartPole) work.
 
