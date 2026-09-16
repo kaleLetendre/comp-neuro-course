@@ -35,4 +35,5 @@ Dayan & Abbott, *Theoretical Neuroscience* (MIT Press, 2001) — physical copy o
 
 - Markdown only so far; `fetch_papers.py` is stdlib Python 3, no dependencies, safe to re-run (it skips what is on disk).
 - 18 of the 28 sources need institutional access and are marked as such on the lesson that uses them. Do not present them as available.
-- Flat structure. No subdirectories beyond `papers/`.
+- Flat structure. Subdirectories only for `papers/` (downloaded sources) and `coursework/` (one file per lesson: assignments, rubrics, grader keys).
+- `coursework/` grading material is written for a future constrained "teacher" agent: banded rubric, private grader key, hint ladder, and explicit prohibitions. It marks and hints; it never does the work.
