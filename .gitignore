@@ -1,0 +1,6 @@
+# Downloaded papers: publisher PDFs, large and re-fetchable.
+# The bibliography itself is versioned in fetch_papers.py.
+papers/
+
+__pycache__/
+*.pyc
