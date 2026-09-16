@@ -10,7 +10,7 @@ A lesson that starts with fifty pages of Dayan & Abbott cold is a lesson that do
 
 1. Open NotebookLM and create a notebook for the lesson.
 2. Add sources from Google Drive: `comp-neuro-course/<lesson folder>` (the same files are mirrored there).
-3. Generate an Audio Overview, and paste the customisation prompt from that lesson's `PROMPTS.md` verbatim.
+3. Generate an Audio Overview. Click **Customize** and paste the prompt from that lesson's `PROMPTS.md` into the box labelled *"What should the AI hosts focus on in this episode?"* — that box is the only steering NotebookLM takes. If it truncates, use the compact variant, which front-loads the constraints that matter most.
 4. Listen. Then do the lesson's guided reading, derivation, simulation and written defence in that order — see `coursework/`.
 5. The chat starters in `PROMPTS.md` are for afterwards, when something did not land.
 

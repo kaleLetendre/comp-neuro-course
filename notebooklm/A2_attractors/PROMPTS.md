@@ -8,7 +8,22 @@ All three documents in this folder (`01_concept_brief`, `02_learning_outcomes`, 
 
 ---
 
-## Audio Overview — customisation prompt
+## Where each prompt goes
+
+| Prompt | Where it goes in NotebookLM |
+|---|---|
+| Audio Overview | Audio Overview card → **Customize** → the box labelled *"What should the AI hosts focus on in this episode?"* |
+| Video Overview | Video Overview card → **Customize** → same kind of focus box |
+| Mind map | No prompt box — it generates from the sources. The structure below is what to check it against. |
+| Chat starters | The main **chat box** in the notebook, one at a time, after listening |
+
+If the customisation box truncates your text, use the **compact version** below instead — it front-loads the constraints that matter most, so a cut tail costs least.
+
+## Audio Overview — compact version (use if the box is length-limited)
+
+> Listener knows LIF dynamics, STDP, encoding schemes, E-I balance, homeostasis, eligibility traces and synaptic delays — skip all of it. Do not answer the questions in the learning-outcomes source; teach toward them. Treat the listener's CartPole experiment as unresolved; do not say which interpretation is right. Focus, longest section first: how to distinguish genuine multi-basin structure from unconverged slow modes — convergence-rate signature, perturbation-and-return test, curvature at the fixed point. Then why symmetric weights guarantee energy never increases and what breaks when asymmetric. Then state vs weights as fast and slow memory. Then briefly bump attractors and persistent activity. Keep the numbers: 0.138N capacity, 2.1 to 1.7 over a hundredfold iteration increase, action range −0.69 to +0.67. Go to the mathematics; no marbles-in-bowls.
+
+## Audio Overview — full customisation prompt
 
 > The listener is a strong programmer with no neuroscience background, studying before an MSc, and is building a predictive-coding spiking network. They already understand: LIF neuron dynamics, STDP, encoding schemes, excitation/inhibition balance, homeostasis, eligibility traces, and synaptic delays. Do not re-explain any of that.
 >
