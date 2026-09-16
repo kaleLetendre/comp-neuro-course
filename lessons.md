@@ -17,7 +17,7 @@ Coverage, honestly:
 | | Lessons | Notes |
 |---|---|---|
 | **Carries the lesson** | A2, A3, A4, B1, B3 | ch. 7 (recurrent, stochastic and E-I networks), ch. 5 (integrate-and-fire, synaptic conductances, short-term plasticity), ch. 6 (cable equation, compartments), ch. 9 (conditioning and the dopamine prediction-error account) |
-| **Grounds part of it** | A0, B4, C1, C2, C5, C6 | ch. 8 (plasticity rules, unsupervised development, supervised learning), ch. 10 (density estimation, causal/generative models, EM) — useful scaffolding that the PC literature then builds on |
+| **Grounds part of it** | B4, C1, C2, C5, C6 | ch. 8 (plasticity rules, unsupervised development, supervised learning), ch. 10 (density estimation, causal/generative models, EM) — useful scaffolding that the PC literature then builds on |
 | **Absent** | A1, A5, B2, B5, C3, C4 | polychronization, neuromorphic hardware, canonical microcircuits, replay/consolidation, precision weighting, PC on graphs — all postdate the book or sit outside its scope |
 
 Two things the book is worth reading for beyond its chapters: **ch. 10's EM split** is structurally the inference/learning two-loop pattern of C2, and **ch. 7's Boltzmann clamped/free phases** are the same boundary-condition idea as C5's clamping, one formalism over. Both parallels are flagged in the relevant Source material lines.
@@ -29,13 +29,14 @@ Its blind spot for this project is predictive coding itself — Rao & Ballard ca
 ## Order and gating
 
 ```
-Track A (raw SNN)      A0 → A1 → A2 → A3 → A4 → A5 ──┐
+Track A (SNN dynamics) A1 → A2 → A3 → A4 → A5 ────────┐
                                                       ├──► Track C opens
 Track B (biology)      B1 · B3 · B2 → B4 · B5 (needs A2)   — any order, anytime
                                                       │
 Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 → fusion design (Steps 3-5)
 ```
 
+- The **foundation track (F1-F11) comes first** — see [`foundations.md`](foundations.md) — and the **Bridge** checkpoint at its end gates entry here.
 - Track A is strictly sequential and must finish before track C starts. That rule was set 2026-06-19 and still holds.
 - Track B runs alongside on its own cadence and gates nothing, with three dependencies: B4 assumes B2, B2 assumes the E/I and PV/SST/VIP material already written up in `comp_neuro_notes.md` (Adaptive-Web-PC-SNN repo), and B5 assumes A2 (attractors and state).
 - Track C is sequential. C1 additionally needs A2 (energy landscapes), which is automatic given the A-before-C rule.
@@ -43,43 +44,11 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 ---
 
-## Track A — raw SNN
-
-### A0. Consolidation: what you already know
-
-**Prerequisites:** none — this re-tests everything covered before A1 (STDP, LIF, encoding schemes, E-I balance, homeostasis, credit assignment, eligibility traces + three-factor rule)
-
-**Size:** one sitting — diagnostic only, no new material
-
-**Source material:** **D&A ch. 5** *Integrate-and-Fire Models* (LIF); **ch. 1** *Spike Trains and Firing Rates* and *The Neural Code*, **ch. 3** *Population Decoding* (encoding/decoding); **ch. 8** *Synaptic Plasticity Rules* (Hebb, STDP, normalization); **ch. 7** *Excitatory-Inhibitory Networks*. Eligibility traces and three-factor rules are **not** in D&A — nearest is **ch. 9** on temporal-difference learning. Plus your own `comp_neuro_notes.md`.
-
-**Local copies:** none needed — this lesson is D&A plus your own notes.
-
-**Goal:** Confirm the pre-A1 foundation still holds after the ~3-month gap, or find exactly where it has decayed, before A1 onward builds on it. No new concepts — a diagnostic pass that either clears the learner to proceed or names specific topics to re-teach.
-
-**Scope:**
-- STDP: sign of the weight change vs spike-timing order, and how magnitude falls off with |Δt| across the ~20 ms window
-- LIF: reproducing a membrane trajectory, threshold crossing and refractory behaviour with concrete numbers, not just the shape of the equation
-- Encoding schemes (rate, latency, population): the specific trade-off each makes
-- E-I balance and homeostasis: why synaptic scaling runs on a slow cadence distinct from STDP's tens-of-ms, and what it corrects that STDP cannot
-- Not covered: any new mechanism — delays, attractors, oscillations are A1–A3
-
-**You should be able to answer:**
-1. A pre-synaptic spike fires 8 ms before the post-synaptic spike, under a standard ~20 ms exponential STDP window. Does the synapse potentiate or depress, and is the change closer to the window's peak or its tail compared to a Δt of 2 ms?
-2. A LIF neuron with τ_m = 10 ms sits at −65 mV (threshold −55 mV); a constant input drives the steady state toward −50 mV. Roughly how many time constants until it crosses threshold, and why does it never actually reach −50 mV in a real run?
-3. Latency coding can convey a value in a single spike's timing, faster than rate coding's ~50–100 ms averaging window. Name one concrete weakness of latency coding that gives rate coding back the advantage in a specific task.
-4. Synaptic scaling operates on hours-to-days, STDP on tens of milliseconds. What specific runaway failure mode does synaptic scaling correct that STDP, left alone, cannot?
-5. Your "misted chemical" model broadcasts one scalar over the whole network, and each synapse scales its own change by how recently it was active. Name one thing backprop's chain rule can do — assigning credit differently across neurons — that a single global broadcast scalar structurally cannot.
-
-**Project tie-in:** The three-factor rule under test here is what the purely-local constraint depends on for Steps 3–5; a shaky grasp of STDP or eligibility traces now surfaces as a bug in Step 3 rather than as a gap in understanding.
-
-**Done when:** Each question can be reasoned through unaided — or the miss is logged as a named gap to close before A1.
-
----
+## Track A — SNN dynamics
 
 ### A1. Synaptic delays and temporal structure
 
-**Prerequisites:** A0; LIF dynamics, the STDP timing window, rate/latency/population encoding
+**Prerequisites:** the Bridge checkpoint; F1 (spike trains), F6 (integrate-and-fire), F9 (STDP)
 
 **Size:** one to two sittings
 
@@ -210,7 +179,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 ### A5. State of the field: why SNNs, where they stand vs ANNs
 
-**Prerequisites:** A0–A4. Closing lesson of track A; passing it opens track C.
+**Prerequisites:** A1–A4. Closing lesson of track A; passing it opens track C.
 
 **Size:** one to two sittings
 
@@ -242,7 +211,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 ---
 
-## Track B — biology, running alongside
+## Track B — biology for design
 
 ### B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
 
@@ -406,7 +375,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 ---
 
-## Track C — predictive coding theory
+## Track C — predictive coding
 
 ### C1. Predictive coding as energy minimization
 

@@ -10,7 +10,7 @@ The grading material is written for a constrained **teacher agent**: it marks, i
 
 | Lesson | Time | Simulation | Written defence produces |
 |---|---|---|---|
-| A0 | 1h25 | Synaptic scaling vs unconstrained Hebbian drift | Limits of the "misted chemical" model |
+| Bridge | 1h25 | Synaptic scaling vs unconstrained Hebbian drift | Synthesis across F1-F11 |
 | A1 | 3h30 | Delay-only coincidence detector | Delay as plastic vs structural |
 | A2 | 7-8h | Hopfield capacity, then the real CartPole diagnostic | — (the diagnostic is the deliverable) |
 | A3 | 3h30-4h30 | E-I rate-model rhythm and its onset | Functional vs epiphenomenal oscillations |
@@ -47,4 +47,4 @@ These are recalled, not read. Check them against the sources when institutional 
 
 ## What was verified
 
-Where a piece rests on computed numbers, most agents ran the code before writing the key rather than inventing values: A0's runaway weights, A1's fire/no-fire split on delay alone (V=1.062 vs 0.937), A2's Hopfield capacity knee and a genuine spurious attractor, A3's rhythm vanishing at tau_I=70ms, A4's eight knob combinations, C5's over-constrained energy plateau (2.38 vs ~0.001). C1's algebra and C3's closed form were checked by hand afterwards and hold.
+Where a piece rests on computed numbers, most agents ran the code before writing the key rather than inventing values: the Bridge set's runaway weights, A1's fire/no-fire split on delay alone (V=1.062 vs 0.937), A2's Hopfield capacity knee and a genuine spurious attractor, A3's rhythm vanishing at tau_I=70ms, A4's eight knob combinations, C5's over-constrained energy plateau (2.38 vs ~0.001). C1's algebra and C3's closed form were checked by hand afterwards and hold.

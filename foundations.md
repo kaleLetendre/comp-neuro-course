@@ -30,7 +30,7 @@ F1 ──┬── F2 ── F3 ── F4
 
 Strictly: F1 first. F2 needs F1; F3 needs F1 and F2; F4 needs F1 and F3. F5 needs F1; F6 and F7 both need F5; F8 needs F6; F9 needs F6 and F8; F10 needs F9; F11 needs F3 and F9.
 
-Track A's **A0** changes job. It was the entry diagnostic for a course that assumed prior knowledge; it is now the **bridge checkpoint** between this track and the advanced ones — a check that the foundations hold before A1 builds on them.
+The track ends with the **Bridge** — a synthesis checkpoint, specified at the bottom of this file. It was previously lesson A0, an entry diagnostic for a course that assumed prior knowledge; with F1-F11 in front of it, re-testing single topics would be thin, so it now asks the learner to connect material *across* foundation lessons. Passing it opens track A.
 
 ## Size
 
@@ -316,7 +316,7 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 4. For Oja's rule, what vector does the weight converge to, expressed in terms of the input covariance matrix?
 5. Write the delta-rule update for a linear unit with target d and output y, and name the one input it needs that Hebbian, covariance and BCM rules do not.
 
-**Feeds:** A0 (the bridge checkpoint), A4 (short-term plasticity and eligibility traces), B4 (developmental pruning builds on the competition material), F10 (reward-based learning as the third regime).
+**Feeds:** the Bridge checkpoint, A4 (short-term plasticity and eligibility traces), B4 (developmental pruning builds on the competition material), F10 (reward-based learning as the third regime).
 
 **Done when:** For any rule in this lesson the learner states its update equation, what it converges to or diverges toward, and whether it needs a teacher signal — without consulting the chapter.
 
@@ -380,3 +380,34 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 **Feeds:** C1 (the generative model's prediction error becomes the energy function), C2 (the E-step/M-step split is the template for the two nested loops), and C4 to C6 generally.
 
 **Done when:** The learner works an EM step by hand on a toy causal model and states, without notes, why sparse coding on natural images yields V1-like filters.
+
+---
+
+### Bridge. Synthesis checkpoint
+
+**Prerequisites:** F1-F11, all of them
+
+**Size:** one sitting — no new material; the work is connecting what is already there
+
+**Source material:** none new. The foundation lessons themselves, and your own notes from them.
+
+**Goal:** Establish that the foundation track is a connected body of ideas rather than eleven separate ones, by forcing connections the individual lessons never made. Each question deliberately spans lessons that were taught apart. A miss here is not a gap in one lesson — it is a seam that never closed, and it is cheaper to find now than inside track A.
+
+**Scope:**
+- Tracing one signal end to end across the encoding, decoding and information lessons
+- Reconciling the several distinct things the word "rate" means across F1, F6 and F8
+- Working out which claims survive an abstraction and which need the layer underneath it
+- The convergence argument: three lessons arriving independently at oriented filters
+- Comparing two error-driven learning rules that look alike and are not
+- Not covered: anything new. If a question cannot be answered, the fix is to return to the named lesson.
+
+**You should be able to answer:**
+1. Trace one signal from a light stimulus to a decoded estimate: which lesson's machinery governs each stage, and where is information irreversibly lost along the way?
+2. "Firing rate" appears in F1 as a quantity estimated from spikes, in F6 as the output of an f-I curve, and in F8 as the state variable of a population model. Are these the same quantity? Name the assumption that has to hold for the identification to be legitimate, and one regime where it fails.
+3. F5 derives the all-or-none spike from channel kinetics; F6 replaces that with threshold-and-reset; F9's STDP depends on precise spike timing. Which of F9's claims survive the F6 abstraction, and which quietly need F5's biophysics?
+4. F2 *measured* oriented, localised filters in V1. F9's Oja rule extracts principal components. F11's sparse coding, fit to natural images, *produces* oriented localised filters. State the argument that connects these three results, and name its weakest link.
+5. F9's delta rule and F10's TD error both multiply an error signal by an activity term. Where does each get its error from, and why does one require a teacher while the other does not?
+
+**Feeds:** track A, which begins immediately after and assumes every foundation lesson is in place.
+
+**Done when:** All five can be reasoned through unaided — or each miss is logged against the specific foundation lesson it exposes, and that lesson is revisited before A1.

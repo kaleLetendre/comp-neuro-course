@@ -6,11 +6,11 @@ The single place the study plan lives.
 
 The advanced half merges three tracks that had been running separately:
 
-- **Track A — SNN fundamentals**, taught conversationally (previously only recorded in Claude's memory files, session `0aada431-69b8-4802-8ce3-eb8efc926fe1`, 2026-06-19).
-- **Track B — comp neuro / biology**, whose write-ups stay with the project they inform — [`comp_neuro_notes.md` (Adaptive-Web-PC-SNN repo)](https://github.com/kaleLetendre/Adaptive-Web-PC-SNN/blob/main/docs/comp_neuro_notes.md) with a "relevance to this project" block per topic.
+- **Track A — SNN dynamics**, originally taught conversationally (previously only recorded in Claude's memory files, session `0aada431-69b8-4802-8ce3-eb8efc926fe1`, 2026-06-19).
+- **Track B — biology for design**, whose write-ups stay with the project they inform — [`comp_neuro_notes.md` (Adaptive-Web-PC-SNN repo)](https://github.com/kaleLetendre/Adaptive-Web-PC-SNN/blob/main/docs/comp_neuro_notes.md) with a "relevance to this project" block per topic.
 - **Track C — predictive coding theory**, deliberately deferred until Track A is finished.
 
-Per-lesson specs live in [`lessons.md`](lessons.md) — 17 lessons (A0-A5, B1-B5, C1-C6), each with a goal, scope, starting reading, a rough size, and five acceptance criteria describing what the lesson must leave you able to reason through. Those are criteria for the lesson, not a test; coursework comes later. Roughly 28-30 sittings end to end: ~9 for track A, ~8 for track B, ~11 for track C. The core text is **Dayan & Abbott, *Theoretical Neuroscience*** (2001), mapped chapter-by-chapter in `lessons.md`; it carries A2/A3/A4/B1/B3 outright, grounds six more, and is silent on six (including predictive coding itself). This file stays the map; that one is the detail.
+Per-lesson specs live in [`lessons.md`](lessons.md) — 17 lessons (A1-A5, B1-B5, C1-C6) plus the Bridge checkpoint, each with a goal, scope, starting reading, a rough size, and five acceptance criteria describing what the lesson must leave you able to reason through. Those are criteria for the lesson, not a test; coursework comes later. Roughly 28-30 sittings end to end: ~9 for track A, ~8 for track B, ~11 for track C. The core text is **Dayan & Abbott, *Theoretical Neuroscience*** (2001), mapped chapter-by-chapter in `lessons.md`; it carries A2/A3/A4/B1/B3 outright, grounds six more, and is silent on six (including predictive coding itself). This file stays the map; that one is the detail.
 
 Last updated: 2026-09-15.
 
@@ -18,7 +18,7 @@ Last updated: 2026-09-15.
 
 ## The ordering rule
 
-**Foundations first.** F1-F11 before any advanced lesson. A0 is the checkpoint between them.
+**Foundations first.** F1-F11 before any advanced lesson, then the **Bridge** synthesis checkpoint at the end of `foundations.md` gates entry to track A.
 
 Then, within the advanced half (set 2026-06-19, still in force):
 
@@ -35,7 +35,7 @@ Track B runs alongside on its own cadence — biology reading feeds design flags
 | Track | Position | Next item |
 |---|---|---|
 | **F — foundations** | Not started. 11 lessons, ~24 sittings, ~60 hours | **F1 — spike trains and firing rates** |
-| A — advanced SNN dynamics | Coursework written, gated behind F | A0 is now the bridge check between F and A |
+| A — SNN dynamics | Coursework written, gated behind F | the Bridge checkpoint, then A1 |
 | B — biology for design | Coursework written, runs alongside A | Any of B1-B5 once F is done |
 | C — PC theory | Coursework written, blocked by A, intentionally | — |
 
@@ -45,7 +45,7 @@ Nothing happened on any track between 2026-07-20 and 2026-09-15 — that gap was
 
 ---
 
-## Track A — SNN fundamentals
+## Track A — SNN dynamics
 
 ### Covered
 
@@ -67,7 +67,7 @@ Glow = eligibility trace (per-synapse, recency). Chemical = the third factor (br
 
 ### Remaining queue
 
-- [ ] **A0** — consolidation of everything above, after the 3-month gap. Diagnostic only, no new material.
+- [ ] **Bridge** — synthesis checkpoint across F1-F11. Specified in `foundations.md`. No new material; closes the seams between foundation lessons before A1.
 - [ ] **A1** — synaptic delays and temporal structure
 - [ ] **A2** — attractors and network state. Connects directly to the attractor test in `comp_neuro_notes.md` §2.
 - [ ] **A3** — oscillations and synchrony
@@ -78,7 +78,7 @@ When these three are done, Track A is closed and Track C opens.
 
 ---
 
-## Track B — comp neuro / biology
+## Track B — biology for design
 
 Full write-ups live in [`comp_neuro_notes.md`](https://github.com/kaleLetendre/Adaptive-Web-PC-SNN/blob/main/docs/comp_neuro_notes.md). One-line takeaway and the design flag each one left behind:
 
