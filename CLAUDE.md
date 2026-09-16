@@ -12,6 +12,8 @@ Pre-dissertation groundwork for an MSc Computer Science (University of London / 
 - `lessons.md` — the detail: one spec per lesson (goal, scope, size, source material, five acceptance criteria)
 - `fetch_papers.py` — the reading list as code: 28 citations with verified DOIs; downloads the 10 that are openly available
 - `papers/` — downloaded sources, gitignored. The bibliography is the artifact and lives in the script; the PDFs are reproducible.
+- `coursework/` — one file per lesson: four pieces each (derivation, simulation, guided reading, written defence) with rubrics, private grader keys and teacher constraints
+- `notebooklm/` — per-lesson source packs for generating audio/video overviews, mirrored to Google Drive under `comp-neuro-course/`. The audio is the consume step and comes first in a lesson.
 
 ## The ordering rule (set 2026-06-19, still in force)
 
@@ -35,5 +37,5 @@ Dayan & Abbott, *Theoretical Neuroscience* (MIT Press, 2001) — physical copy o
 
 - Markdown only so far; `fetch_papers.py` is stdlib Python 3, no dependencies, safe to re-run (it skips what is on disk).
 - 18 of the 28 sources need institutional access and are marked as such on the lesson that uses them. Do not present them as available.
-- Flat structure. Subdirectories only for `papers/` (downloaded sources) and `coursework/` (one file per lesson: assignments, rubrics, grader keys).
+- Flat structure. Subdirectories only for `papers/`, `coursework/` and `notebooklm/` (one folder per lesson).
 - `coursework/` grading material is written for a future constrained "teacher" agent: banded rubric, private grader key, hint ladder, and explicit prohibitions. It marks and hints; it never does the work.

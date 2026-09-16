@@ -2,7 +2,7 @@
 
 One file per lesson. Each holds four pieces — a derivation, a simulation, a guided reading and a written defence — with learning goals, a banded rubric, a private grader key and teacher constraints (a three-step hint ladder plus explicit prohibitions).
 
-**Running order within a lesson:** audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4). Pieces are numbered by type, not sequence. Concepts are consumed first, made exact by the derivation, then applied and refined by building.
+**Running order within a lesson:** audio overview (generate it from the lesson's pack in `../notebooklm/`) → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4). Pieces are numbered by type, not sequence. Concepts are consumed first, made exact by the derivation, then applied and refined by building.
 
 The grading material is written for a constrained **teacher agent**: it marks, it hints, it never does the work. The grader keys are not for the learner to read before attempting a piece.
 
