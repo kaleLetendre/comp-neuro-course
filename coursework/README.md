@@ -4,9 +4,28 @@ One file per lesson. Each holds four pieces — a derivation, a simulation, a gu
 
 **Running order within a lesson:** audio overview (generate it from the lesson's pack in `../notebooklm/`) → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4). Pieces are numbered by type, not sequence. Concepts are consumed first, made exact by the derivation, then applied and refined by building.
 
+**Simulation numbers are targets, not thresholds.** Every grader key that quotes a figure from a run quotes it from an actual execution at a stated seed. Reruns drift: RNG call order, library version and step size all move the digits. Several files say so in their own keys; the rule holds for all of them. The teacher agent marks the *qualitative pattern and its direction* — the Fano factor falling below 1, the biased decoder pulling toward the dense region, the recovered filter matching the planted one — and treats an exact-digit mismatch as a prompt to check the learner's method, never as a wrong answer on its own.
+
 The grading material is written for a constrained **teacher agent**: it marks, it hints, it never does the work. The grader keys are not for the learner to read before attempting a piece.
 
-## The set
+## The set — foundations
+
+| Lesson | Simulation | What it demonstrates |
+|---|---|---|
+| F1 | Poisson trains, three rate estimates, a refractory condition | Estimates disagree; Fano 0.99 → 0.82 as regularity rises |
+| F2 | Planted Gabor recovered by spike-triggered averaging | Similarity 0.998 under white noise, 0.728 under correlated input |
+| F3 | Population vector vs ML vs MAP, uniform and clustered | The population vector's bias appears when tiling fails |
+| F4 | Direct-method entropy rate at shrinking recording lengths | Downward bias, and CDF-matching flattening output to log2(20) |
+| F5 | Full Hodgkin-Huxley | Threshold by bisection, gating through a spike, refractory period measured |
+| F6 | LIF against HH on one current sweep; shunting inhibition | Depolarisation block HH shows and LIF cannot; current-based inhibition injecting exactly 0 nA |
+| F7 | Multi-compartment passive cable | Attenuation matches exp(-x/lambda); violating the compartment rule breaks it |
+| F8 | Linear recurrent network by eigenmode | Amplification 1/(1-lambda) and tau/(1-lambda), then instability, then saturation |
+| F9 | Oja's rule against a hand-computed eigenvector | Convergence to PC1; Hebb diverging; the two normalisations compared |
+| F10 | TD learning, then a blocking experiment | The error moving backward to the cue; the omission dip at exactly -1 |
+| F11 | Sparse coding on synthetic patches from a planted dictionary | Oriented filters recovered at 0.999 similarity |
+| Bridge | Hebbian drift on a spiking LIF fed by Poisson input | Needs F1, F6 and F9 together — a gap in any one stops the code |
+
+## The set — advanced
 
 | Lesson | Time | Simulation | Written defence produces |
 |---|---|---|---|
