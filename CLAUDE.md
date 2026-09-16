@@ -1,0 +1,38 @@
+# Comp Neuro Course
+
+## What this is
+
+A self-study curriculum in spiking neural networks, computational neuroscience and predictive coding — 17 lessons across three tracks. This repo holds the *plan and the specs*, not lesson content: the coursework itself is written later, lesson by lesson, as each one is taught.
+
+Pre-dissertation groundwork for an MSc Computer Science (University of London / Birkbeck, starts April 2026). It feeds a sibling research project at `~/personal/Adaptive-Web-PC-SNN` — a spiking network using predictive coding on a graph topology. Lessons carry "project tie-in" lines pointing at that project's steps; the biology track's long-form write-ups live there, in `docs/comp_neuro_notes.md`, because each ends in a design decision for it.
+
+## Files
+
+- `learning_plan.md` — the map: three tracks, the ordering rule, progress checkboxes, open questions carried forward
+- `lessons.md` — the detail: one spec per lesson (goal, scope, size, source material, five acceptance criteria)
+- `fetch_papers.py` — the reading list as code: 28 citations with verified DOIs; downloads the 10 that are openly available
+- `papers/` — downloaded sources, gitignored. The bibliography is the artifact and lives in the script; the PDFs are reproducible.
+
+## The ordering rule (set 2026-06-19, still in force)
+
+Raw SNN (track A) → raw predictive coding (track C). Biology (track B) runs alongside and gates nothing. No fusion design, and no PC≈backprop, until both halves stand on their own. Track A is strictly sequential; so is track C.
+
+## Teaching contract
+
+The formats that land: **concrete worked examples with actual numbers**, tick-by-tick walkthroughs, small ASCII diagrams, comparison tables, and a running "what you know / what's left" checklist. Default to examples-with-numbers over prose.
+
+- The learner reasons out loud and checks their mental model against you. When they say "I don't get X", correct the *specific* misconception — do not re-explain the whole topic.
+- Tie concepts back to the sibling project where they map: stress variable ≈ homeostasis, error neuron ≈ third factor, clamping ≈ encode/decode.
+- End a teaching turn by offering the natural next topic rather than dumping it.
+- The five acceptance criteria per lesson are **criteria for the lesson, not a test**. Where one names a figure, the number is the vehicle — the reasoning it forces is the point. A lesson that produces recall without reasoning has missed.
+- After teaching: tick the boxes in `learning_plan.md`, and append any biology write-up to `docs/comp_neuro_notes.md` in the Adaptive-Web-PC-SNN repo with its "relevance to this project" block.
+
+## Core text
+
+Dayan & Abbott, *Theoretical Neuroscience* (MIT Press, 2001) — physical copy on hand. It carries A2, A3, A4, B1 and B3 outright, grounds six more lessons, and is silent on six (including predictive coding itself, which postdates it). Chapter-by-chapter mapping is in each lesson's **Source material** line.
+
+## Working here
+
+- Markdown only so far; `fetch_papers.py` is stdlib Python 3, no dependencies, safe to re-run (it skips what is on disk).
+- 18 of the 28 sources need institutional access and are marked as such on the lesson that uses them. Do not present them as available.
+- Flat structure. No subdirectories beyond `papers/`.
