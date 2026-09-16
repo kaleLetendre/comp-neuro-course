@@ -35,6 +35,14 @@ A lesson that starts with fifty pages of Dayan & Abbott cold is a lesson that do
 
 Each pack is also in Google Drive under `comp-neuro-course/`, one subfolder per lesson, because NotebookLM imports sources from Drive. The repo copy is the source of truth; if you edit a pack here, re-upload it.
 
+## Pack contents, and why the third document varies
+
+Foundation packs carry `03_what_you_will_build` — a preview of the derivation, simulation and written work the lesson leads to, so the overview can make those questions feel live without answering them. Advanced packs carry `03_project_context` instead, where the lesson connects to the Adaptive-Web-PC-SNN work. Both do the same job: give the generator something concrete to aim the material at.
+
 ## Status
 
-Only **A2 (attractors and network state)** exists so far — a pilot, to find out whether a targeted overview is genuinely better than a generic one before writing sixteen more.
+**F1 (spike trains and firing rates)** — the course's actual first lesson, and the pack to test.
+
+**A2 (attractors and network state)** — written earlier, when A2 was near the front of the course. It is now gated behind the whole foundation track, so it will not be used for months. Its prompts have been corrected for the assume-no-prior-knowledge rule, but it has not been regenerated or heard.
+
+The remaining lessons get packs once F1's format is confirmed in use.
