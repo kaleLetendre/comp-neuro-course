@@ -37,7 +37,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 ```
 
 - Track A is strictly sequential and must finish before track C starts. That rule was set 2026-06-19 and still holds.
-- Track B runs alongside on its own cadence and gates nothing, with three dependencies: B4 assumes B2, B2 assumes the E/I and PV/SST/VIP material already written up in `comp_neuro_notes.md`, and B5 assumes A2 (attractors and state).
+- Track B runs alongside on its own cadence and gates nothing, with three dependencies: B4 assumes B2, B2 assumes the E/I and PV/SST/VIP material already written up in `comp_neuro_notes.md` (Adaptive-Web-PC-SNN repo), and B5 assumes A2 (attractors and state).
 - Track C is sequential. C1 additionally needs A2 (energy landscapes), which is automatic given the A-before-C rule.
 - C6 is the last lesson. Passing it unlocks fusion design on Steps 3-5.
 

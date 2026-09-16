@@ -3,7 +3,7 @@
 The single place the study plan lives. Merges two tracks that had been running separately:
 
 - **Track A — SNN fundamentals**, taught conversationally (previously only recorded in Claude's memory files, session `0aada431-69b8-4802-8ce3-eb8efc926fe1`, 2026-06-19).
-- **Track B — comp neuro / biology**, written up in [`comp_neuro_notes.md`](comp_neuro_notes.md) with a "relevance to this project" block per topic.
+- **Track B — comp neuro / biology**, whose write-ups stay with the project they inform — [`comp_neuro_notes.md` (Adaptive-Web-PC-SNN repo)](https://github.com/kaleLetendre/Adaptive-Web-PC-SNN/blob/main/docs/comp_neuro_notes.md) with a "relevance to this project" block per topic.
 - **Track C — predictive coding theory**, deliberately deferred until Track A is finished.
 
 Per-lesson specs live in [`lessons.md`](lessons.md) — 17 lessons (A0-A5, B1-B5, C1-C6), each with a goal, scope, starting reading, a rough size, and five acceptance criteria describing what the lesson must leave you able to reason through. Those are criteria for the lesson, not a test; coursework comes later. Roughly 28-30 sittings end to end: ~9 for track A, ~8 for track B, ~11 for track C. The core text is **Dayan & Abbott, *Theoretical Neuroscience*** (2001), mapped chapter-by-chapter in `lessons.md`; it carries A2/A3/A4/B1/B3 outright, grounds six more, and is silent on six (including predictive coding itself). This file stays the map; that one is the detail.
@@ -69,7 +69,7 @@ When these three are done, Track A is closed and Track C opens.
 
 ## Track B — comp neuro / biology
 
-Full write-ups live in [`comp_neuro_notes.md`](comp_neuro_notes.md). One-line takeaway and the design flag each one left behind:
+Full write-ups live in [`comp_neuro_notes.md`](https://github.com/kaleLetendre/Adaptive-Web-PC-SNN/blob/main/docs/comp_neuro_notes.md). One-line takeaway and the design flag each one left behind:
 
 | Topic | Takeaway | Design flag |
 |---|---|---|
