@@ -25,6 +25,8 @@ A lesson that starts with fifty pages of Dayan & Abbott cold is a lesson that do
 
 ## Two rules learned the hard way
 
+**Replacing a pack in Drive means trashing the old file, not just uploading a new one.** The Drive connector can only change a file's metadata, never its contents, so an update is an upload plus a delete. Miss the delete and the folder holds two versions with similar names, and whichever one gets selected as a source is a coin toss. After editing a pack, list the Drive folder and confirm the file count matches the repo folder.
+
 **Source hygiene: the documents must be audio-safe prose.** NotebookLM reads its sources literally, so markdown emphasis, headers, LaTeX and variable names get vocalised — a source containing `$\tau_m$` produces a podcast saying "dollar tau sub m". Write pack documents as plain spoken prose: no markup, no symbols, no formulas, no references to figures. State every relationship in words with a worked number. Never add a coursework file as a source; those contain formulas, code and grader keys, and NotebookLM will read out the symbols and give away the answers.
 
 **One prompt per capability.** A podcast has no eyes; a video does; a flashcard has no room to argue. Using one prompt everywhere produces an episode that reads equations aloud and says "as you can see" to someone out walking. Each `PROMPTS.md` therefore carries a separate prompt for the audio overview, the video overview, the study guide, the quiz, the flashcards and the briefing document, plus a structure to check the mind map against. The audio prompt bans symbols and visual references outright; the video prompt requires exactly the figures the audio had to describe in words.
