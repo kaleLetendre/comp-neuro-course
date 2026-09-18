@@ -10,7 +10,7 @@ A lesson that starts with fifty pages of Dayan & Abbott cold is a lesson that do
 
 1. Open NotebookLM and create a notebook for the lesson.
 2. Add sources from Google Drive: `comp-neuro-course/<lesson folder>` (the same files are mirrored there).
-3. Generate an Audio Overview. Click **Customize** and paste the prompt from that lesson's `PROMPTS.md` into the box labelled *"What should the AI hosts focus on in this episode?"* — that box is the only steering NotebookLM takes. If it truncates, use the compact variant, which front-loads the constraints that matter most.
+3. Pick the capability you want and paste *its* prompt from that lesson's `PROMPTS.md` — they differ by format and are not interchangeable. For the podcast that is the Audio Overview card → **Customize** → the box labelled *"What should the AI hosts focus on in this episode?"*.
 4. Listen. Then do the lesson's guided reading, derivation, simulation and written defence in that order — see `coursework/`.
 5. The chat starters in `PROMPTS.md` are for afterwards, when something did not land.
 
@@ -21,7 +21,13 @@ A lesson that starts with fifty pages of Dayan & Abbott cold is a lesson that do
 | `01_concept_brief.md` | The teaching substance — what the overview is generated from |
 | `02_learning_outcomes.md` | What the listener must be able to do afterwards, plus an instruction not to answer the assessment questions outright |
 | `03_project_context.md` | The learner's own open problem, so the overview uses it as the running example |
-| `PROMPTS.md` | Customisation prompts for audio, video and mind map, plus chat starters |
+| `PROMPTS.md` | One prompt per capability — audio, video, mind map, study guide, quiz, flashcards, briefing — plus chat starters |
+
+## Two rules learned the hard way
+
+**Source hygiene: the documents must be audio-safe prose.** NotebookLM reads its sources literally, so markdown emphasis, headers, LaTeX and variable names get vocalised — a source containing `$\tau_m$` produces a podcast saying "dollar tau sub m". Write pack documents as plain spoken prose: no markup, no symbols, no formulas, no references to figures. State every relationship in words with a worked number. Never add a coursework file as a source; those contain formulas, code and grader keys, and NotebookLM will read out the symbols and give away the answers.
+
+**One prompt per capability.** A podcast has no eyes; a video does; a flashcard has no room to argue. Using one prompt everywhere produces an episode that reads equations aloud and says "as you can see" to someone out walking. Each `PROMPTS.md` therefore carries a separate prompt for the audio overview, the video overview, the study guide, the quiz, the flashcards and the briefing document, plus a structure to check the mind map against. The audio prompt bans symbols and visual references outright; the video prompt requires exactly the figures the audio had to describe in words.
 
 ## Rules that keep the output targeted
 

@@ -1,55 +1,68 @@
-# F1 — NotebookLM prompts
+# F1 — NotebookLM prompts, one per capability
+
+Each NotebookLM output has different physics. A podcast has no eyes, a video does, a flashcard has no room to argue. The same prompt across all of them produces an episode that reads out equations nobody can see. So there is one prompt per capability below, and they differ deliberately.
 
 ## Sources to select
 
-The three numbered documents in this folder. Nothing else — extra sources dilute a targeted overview.
+The three numbered documents in this folder. **Do not add the coursework file** from `coursework/F1.md` — it contains formulas, code and the grader keys, and NotebookLM will both read the symbols aloud and give away the answers.
 
-## Where each prompt goes
+---
 
-| Prompt | Where in NotebookLM |
-|---|---|
-| Audio Overview | Audio Overview card → **Customize** → *"What should the AI hosts focus on in this episode?"* |
-| Video Overview | Video Overview card → **Customize** → the same focus box |
-| Mind map | No prompt box — generated from the sources |
-| Chat starters | The main chat box, after listening |
+## 1. Audio Overview (podcast)
 
-If the box truncates, use the compact version — it front-loads the constraints that matter most.
+Card → **Customize** → *"What should the AI hosts focus on in this episode?"*
 
-## Audio Overview — COMPACT version
-
-> Assume no neuroscience background; explain every concept rather than referring to it. The listener is a strong programmer, comfortable with probability and calculus, so do not soften the mathematics — the gap is biological, not technical. Do not answer the questions in the learning-outcomes source; teach toward them. Spend the most time on why a firing rate has to be *estimated* and on the window trade-off: wide windows are stable but smear fast changes, narrow ones track change but are dominated by counting noise at realistic rates. Then spike-train statistics — the Poisson reference, interspike intervals, the Fano factor, and how a refractory period makes a train more regular than Poisson. Then tuning curves, briefly. Close on the rate-versus-timing question as genuinely unresolved, with evidence on both sides. Keep concrete numbers throughout. No "the brain is like a computer" framing.
-
-## Audio Overview — FULL customisation prompt
-
-> The listener is a strong programmer with no formal neuroscience background, starting an MSc. Assume no prior neuroscience whatsoever — whenever a concept is needed, explain it rather than referring to it. They are comfortable with probability, calculus and code, so do not soften the mathematics; the gap to cover is biological, not technical. This is the first lesson of the whole course, so nothing can be assumed as "covered earlier".
+> The listener is a strong programmer with no neuroscience background, starting an MSc, and is listening while walking. Assume no prior neuroscience: explain each concept rather than referring to it. They are comfortable with mathematics, so do not condescend — but this is audio, so obey these rules absolutely.
 >
-> Structure the episode in four parts. First, what is actually recorded — the voltage trace, the stereotyped spike, and the decision to discard the waveform and keep only timing. Make clear this is a modelling choice rather than a fact about neurons, and say what it buys.
+> Never speak a formula, an equation, a symbol or a variable name. Not "r of t", not "tau sub m", not "lambda". Say "the firing rate at a given moment" and "the membrane time constant". If a relationship matters, describe how one quantity behaves as another changes, in words, with a worked number: not the formula for the noise in a rate estimate, but "a neuron firing at twenty hertz puts on average one fifth of a spike into a ten millisecond window, so most windows are empty and the occasional one reports a hundred hertz".
 >
-> Second, and at the greatest length: firing rate as a construct rather than a measurement. Cover the three non-equivalent definitions — spike-count rate, time-dependent r(t), trial-averaged rate — and what data each one requires. Then the estimation methods (binning, sliding window, kernel smoothing) and the trade-off none of them escape: a wide window gives a stable estimate that smears fast changes, a narrow one tracks change but at realistic firing rates contains almost no spikes and so is dominated by counting noise. Use a concrete case — at 20 Hz a 10 ms window holds 0.2 spikes on average — so the problem is arithmetic rather than atmosphere.
+> Never refer to a figure, a plot, a graph, an axis, a table or anything visual, and never say "as you can see". Nothing is visible. If a shape matters, describe the shape: "the gap distribution falls away steeply, so short gaps are the most common even though the average gap is fifty milliseconds".
 >
-> Third, spike-train statistics: the Poisson process as the reference model, exponentially distributed intervals, and the Fano factor as variance over mean. Explain what the refractory period does to a spike train and therefore to its statistics. Mention that for a renewal process the Fano factor approaches the squared coefficient of variation of the intervals, so the effect is predictable in advance rather than only measurable after the fact.
+> Spend the episode in four parts, longest first. One: firing rate as a construct rather than a measurement — the three non-equivalent definitions, the estimation methods, and the trade-off none of them escape. Two: spike train statistics — the completely random reference process, the shape of the gap distribution, the Fano factor as a diagnostic, and what a refractory period does to it. Three: what is actually recorded and why the spike waveform is discarded. Four, briefly: tuning curves, then close on the rate versus timing question as open, with evidence on both sides.
 >
-> Fourth, briefly, tuning curves — peak as preferred stimulus, width as sharpness of discrimination — and then close on rate versus temporal coding as an open question, giving the strongest evidence on each side. Sound localisation resolving delays of tens of microseconds is the sharpest case for timing; the pervasiveness of rate-based models that work is the case for rate. Do not resolve it.
+> Do not answer the questions in the learning outcomes document. Teach the mechanisms so the listener can answer them.
 >
-> The learning-outcomes document lists the questions the listener will be assessed on. Do not answer them directly and do not read them out as a quiz — teach the mechanisms so they can construct the answers themselves.
->
-> Keep the numbers: spikes about a millisecond wide, refractory periods of one to two milliseconds, a Fano factor of exactly 1 for Poisson, 20 Hz and 10 ms in the window example. Avoid "the brain is like a computer" and avoid calling anything beautiful. Precision is what makes this useful.
+> Keep the numbers, spoken as words: one millisecond, twenty hertz, a refractory period of one to two milliseconds, a Fano factor of one for the random reference case. No "the brain is like a computer". Do not call anything beautiful or fascinating.
 
-## Video Overview — customisation prompt
+## 2. Video Overview
 
-> Same audience and the same four parts, same instruction to assume no prior neuroscience. Prioritise what benefits from being seen: a raster plot of repeated trials with the trial-averaged rate beneath it; the same spike train smoothed with a wide and a narrow window side by side, so the trade-off is visible rather than described; an interspike-interval histogram with and without a refractory period; and a tuning curve with its peak and width annotated. Keep the mathematics on screen where it helps.
+Card → **Customize** → the focus box.
 
-## Mind map — structure to check against
+> Same audience and same four parts as the audio prompt, same instruction to assume no prior neuroscience — but this format has a screen, so use it. Here the symbols and figures the audio must avoid are the point.
+>
+> Show, on screen: a raster plot of repeated trials with the trial-averaged rate beneath it; the same spike train smoothed with a wide window and a narrow window side by side, so the trade-off is seen rather than described; a gap-distribution histogram with and without a refractory period; and a tuning curve with its peak and width annotated. Put the definition of the Fano factor on screen as variance over mean, and keep it on screen while it is discussed.
+>
+> Narration should point at what is displayed rather than duplicating it. Do not answer the learning-outcome questions.
 
-Spike train as the observable, then rate as a construct with its three definitions, then estimation methods and the window trade-off, then statistics (Poisson, intervals, Fano factor, departures), then tuning curves, then the open coding question. The three rate definitions should be distinct branches, not one.
+## 3. Mind map
+
+No prompt box; it generates from the sources. Check it against this structure: the spike train as the observable, then rate as a construct with its three definitions as separate branches, then estimation methods with the trade-off attached, then statistics (random reference process, gap distribution, Fano factor, departures in both directions), then tuning curves, then the open coding question.
+
+## 4. Study guide
+
+> Produce a study guide for someone who has listened to the overview and is about to read Dayan and Abbott chapter one. Organise it by the three definitions of firing rate, the three estimation methods, and the statistics. For each, give the one sentence that would let a reader reconstruct the idea, and the one question that would expose whether they actually have it. Do not include answers.
+
+## 5. Quiz
+
+> Write questions that require reasoning, not recall of a phrase. Each should demand a specific answer: a computed number, a direction of change, a comparison, or a named mechanism. Never ask to "explain" or "discuss" something. Include at least one question that gives a spike train and asks for a rate, and at least one that gives a Fano factor value and asks what it rules out. Avoid questions answerable by pattern-matching the wording of the source. Answers may be provided separately from the questions, not inline.
+
+## 6. Flashcards
+
+> One fact or relationship per card, phrased so the back is a specific answer rather than a paragraph. Favour cards that pair a quantity with its meaning — a Fano factor value with what it implies, a window width with what it costs. No card should contain a formula or a symbol; state relationships in words. Do not make cards from the learning outcomes document; those are assessment questions, not material.
+
+## 7. Briefing document
+
+> Summarise what a reader needs before the chapter, in under one page: what is recorded, why rate is constructed rather than measured, and what the open question is. Prose only, no bullet fragments.
+
+---
 
 ## Chat starters
 
-Ask these after listening:
+Ask these in the chat box after listening.
 
-1. Walk me through why a 10 ms window at 20 Hz gives a noisy rate estimate, using actual expected spike counts.
-2. If a neuron's Fano factor is 0.4, what does that rule out about its spiking, and what could produce it?
-3. Why is the exponential interval distribution the "most common interval is very short" one, when the mean interval is 50 ms?
+1. Walk me through why a ten millisecond window at twenty hertz gives a noisy rate estimate, using actual expected spike counts.
+2. If a neuron's Fano factor is zero point four, what does that rule out about its spiking, and what could produce it?
+3. Why is the most common gap between spikes a very short one, when the average gap is fifty milliseconds?
 4. Give me a worked case where the trial-averaged rate is misleading about what the neuron did on any single trial.
-5. What would a neuron have to do for a rate code to be impossible in principle, not merely inefficient?
-6. Is the choice of smoothing kernel ever a claim about biology rather than about data analysis?
+5. What would a neuron have to do for a rate code to be impossible in principle, rather than merely inefficient?
+6. Is choosing a smoothing kernel ever a claim about biology, or only ever about data analysis?
