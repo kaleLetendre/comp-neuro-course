@@ -11,6 +11,8 @@ Built as pre-dissertation groundwork for an MSc Computer Science (University of 
 | [`learning_plan.md`](learning_plan.md) | The map — three tracks, the ordering rule, progress checkboxes, open questions |
 | [`lessons.md`](lessons.md) | The detail — one spec per lesson: goal, scope, size, source material, acceptance criteria |
 | [`fetch_papers.py`](fetch_papers.py) | The reading list as code — 28 verified citations; downloads what is openly available |
+| [`fetch_exercises.sh`](fetch_exercises.sh) | Pulls Dayan & Abbott's own exercise sets, code and data |
+| [`MATERIALS.md`](MATERIALS.md) | What you need and where to get it — one purchase, everything else free |
 
 ## The ordering rule
 

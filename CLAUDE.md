@@ -42,3 +42,9 @@ Dayan & Abbott, *Theoretical Neuroscience* (MIT Press, 2001) — physical copy o
 - 18 of the 28 sources need institutional access and are marked as such on the lesson that uses them. Do not present them as available.
 - Flat structure. Subdirectories only for `papers/`, `coursework/` and `notebooklm/` (one folder per lesson).
 - `coursework/` grading material is written for a future constrained "teacher" agent: banded rubric, private grader key, hint ladder, and explicit prohibitions. It marks and hints; it never does the work.
+
+## Materials
+
+`MATERIALS.md` lists everything the course needs and where to get it. The textbook is a purchase; the authors' exercise sets, the open papers and NotebookLM are free. No copy of the textbook is distributed with this repo.
+
+## Getting the papers
