@@ -58,7 +58,7 @@ Roughly 75 hours of work across the 17 lessons.
 **Facts supplied in place of unavailable sources.** Where the natural reading is paywalled, agents stated the needed facts inside the assignment text and graded the reasoning from them. That affects:
 
 - **B1** — volume-transmission distances and timescales, ACh vs NE roles, the D1/D2 sign flip
-- **B2** — the laminar/frequency-band mapping, flagged in-file as a bridging inference rather than something the assigned reading supports
+- **B2** — ~~the laminar/frequency-band mapping~~ **resolved**: Bastos et al. 2012 is open access at PubMed Central and its text confirms the mapping (superficial pyramidal cells broadcasting prediction errors, deep cells elaborating feedback that terminates outside L4, superficial gamma over beta and deep beta over gamma). B2 no longer rests on inference.
 - **B3** — a self-written primer on NMDA spikes and apical gating
 - **B4** — complement tagging, microglia, critical-period closure, adult neurogenesis, and the synaptogenesis rates (~5,000 vs ~484 synapses/neuron/year) that the growth-policy arithmetic is built on
 

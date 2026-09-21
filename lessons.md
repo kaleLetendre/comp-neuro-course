@@ -253,7 +253,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Source material:** **Largely absent from D&A** — closest is **ch. 2** *Introduction to the Early Visual System* and *Constructing V1 Receptive Fields* for the feedforward story, which is the part this lesson complicates. Primary: Bastos et al. 2012 (Neuron), *Canonical microcircuits for predictive coding*; Hertäg & Sprekeler 2020 (eLife), the read already flagged in `comp_neuro_notes.md`.
 
-**Local copies:** `papers/B2_hertag_sprekeler_2020_prediction_error_neurons.pdf`. Bastos et al. 2012 (doi:10.1016/j.neuron.2012.10.038) needs institutional access.
+**Local copies:** `papers/B2_hertag_sprekeler_2020_prediction_error_neurons.pdf`. Bastos et al. 2012 is open access and readable at <https://pmc.ncbi.nlm.nih.gov/articles/PMC3777738/> — PubMed Central blocks scripted downloads but not browsers. Its laminar and frequency-band claims have been checked against the text and hold.
 
 **Goal:** Name which cortical layer does what, and map Bastos et al. (2012)'s canonical microcircuit onto predictive coding: superficial layers carrying error, deep layers carrying predictions, with a feedforward/feedback asymmetry in both wiring and frequency band. Closes the gap between "PV/SST/VIP compute PC quantities" (functional, no wiring) and "those quantities live in a specific six-layer scaffold" (structural), and forces a decision on whether the column is real enough to justify a Step 5 cluster unit.
 
