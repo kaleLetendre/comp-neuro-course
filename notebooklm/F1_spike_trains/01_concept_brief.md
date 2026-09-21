@@ -1,63 +1,69 @@
-F1 concept brief. Spike trains and firing rates.
+# F1 concept brief — spike trains and firing rates
 
-Teaching substance for the first lesson of a computational neuroscience course, following Dayan and Abbott, Theoretical Neuroscience, chapter one. This document is written to be read aloud, so it carries no symbols, formulas or figures. Every relationship is stated in words.
+Teaching substance for the first lesson of a computational neuroscience course, generated into an audio overview. It follows **Dayan & Abbott, *Theoretical Neuroscience*, chapter 1** section by section, in the book's own order, so a listener can follow along with the physical copy open.
 
-What is actually measured.
+**A caveat on authority.** This brief was written without the book open. It is standard material aligned to the chapter's actual section headings, but where it and the book disagree, **the book is right**. Terminology and notation in particular may differ in detail.
 
-Put an electrode near a neuron and what you record is a voltage trace with sharp events in it, each about one millisecond wide and around one hundred millivolts tall. Those are action potentials, or spikes. The first decision computational neuroscience makes, and it is a decision rather than a discovery, is to throw the waveform away. A spike is treated as a point in time. An event, not a shape.
+## How this maps to the chapter
 
-The justification is that spikes from a given neuron are stereotyped. They all look much the same, so the shape carries little that varies with the stimulus. What varies is when they happen and how many there are. So the raw data of the field is a list of times, and everything else is built on top of it.
+| D&A ch. 1 section | Covered below as |
+|---|---|
+| Introduction | What computational neuroscience is doing |
+| Spike Trains and Firing Rates | The neural response function, and three rates |
+| What Makes a Neuron Fire? | Working backwards from spikes to the stimulus |
+| Spike-Train Statistics | Poisson, intervals, variability |
+| The Neural Code | The unresolved question |
 
-This matters more than it sounds. It means the quantities people talk about, firing rates and tuning curves and population codes, are all constructions laid over a list of timestamps. None of them are measured directly.
+---
 
-Firing rate is not one thing.
+## Introduction: what the field is doing
 
-Ask what a neuron's firing rate is and there are at least three different answers, and they are not equal to one another.
+Computational neuroscience builds quantitative models at a chosen level of description, and the choice of level is itself a modelling decision. The book distinguishes descriptive models (what does the system do), mechanistic models (how does it do it) and interpretive models (why does it do it that way). Chapter 1 is descriptive: it is about characterising what neurons do in response to stimuli, without yet asking how.
 
-The spike count rate is the crudest. Count the spikes in a window and divide by the length of the window. Twelve spikes in two seconds is six hertz. It is a single number for the whole window, it says nothing about when within that window the spikes fell, and it needs only one trial.
+The raw material is extracellular recording — an electrode near a neuron, producing a voltage trace with sharp events about a millisecond wide.
 
-The time dependent firing rate is what you want when the stimulus changes over time. It is a rate defined at every instant. But a single spike train does not really contain an instantaneous rate, because at any given instant there is either a spike or there is not. Getting a time dependent rate means estimating one, which means smoothing the spikes somehow.
+## Spike trains and firing rates
 
-The trial averaged rate takes many repeats of the same stimulus, lines them up, and averages across them. That is what a peristimulus time histogram shows. It gives a clean time dependent rate, at the cost of assuming the neuron does the same thing on every repeat and that averaging across repeats is meaningful. A brain, in the middle of behaving, only ever gets one trial.
+**The neural response function.** The first move is to discard the spike waveform and keep only the times. Spikes from a given neuron are stereotyped, so the shape carries little stimulus-dependent information; what varies is when they occur and how many. The book formalises the train as a sum of delta functions at the spike times — the neural response function. This is a sequence of events, nothing more, and every quantity that follows is constructed on top of it.
 
-So when a paper says the firing rate, the honest question is always: which one, estimated how, over what window.
+**Three rates, which are not the same quantity.**
 
-Estimation, and the trade off you cannot escape.
+The *spike-count rate* counts spikes over a window and divides by its length. Twelve spikes in two seconds is 6 Hz. One number, one trial, no information about when within the window the spikes fell.
 
-There are three standard ways to turn spikes into a time dependent rate.
+The *time-dependent firing rate r(t)* is a rate defined at each moment. A single train does not contain one — at any instant there is a spike or there is not — so r(t) must be estimated by smoothing.
 
-Binning. Divide time into bins, count the spikes in each bin, divide by the bin width. Simple, and it produces a blocky estimate whose appearance depends on where you happened to put the bin edges.
+The *trial-averaged rate* repeats the same stimulus many times, aligns the trials and averages. This is what a peristimulus time histogram shows. It buys a clean r(t) by assuming the neuron does the same thing each time; an animal behaving in the world gets one trial.
 
-Sliding window. Move a window of fixed width along the train and count within it as it goes. Smoother, and no edge artefacts, but the estimate at any moment is contaminated by spikes up to half a window away on either side.
+**Estimating r(t).** The book treats the estimate as a linear filter applied to the spike train — each spike replaced by a kernel, the kernels summed. Rectangular kernels give binning or a sliding window; Gaussian kernels give smooth estimates; an alpha function or exponential gives a causal kernel, one that looks only backwards, which matters if you want the estimate to be something a downstream neuron could actually compute.
 
-Kernel smoothing. Replace each spike with a smooth bump, and add the bumps together. The width of the bump sets the smoothness. Whether the bump is symmetric or only looks backward in time matters if you care whether a downstream neuron could actually compute this estimate as it goes.
+Every choice faces the same trade-off. A **wide** kernel averages many spikes, so the estimate is stable, but it smears fast changes — a 20 ms transient disappears inside a 100 ms window. A **narrow** kernel follows fast changes but contains almost no spikes: at 20 Hz, a 10 ms window holds 0.2 spikes on average, so the estimate is mostly zeros punctuated by spikes. Bias against variance, in neural clothing. The width you choose is a hypothesis about what timescale matters, entering the analysis as a preprocessing step.
 
-All three face the same trade off, and this is the central practical point of the lesson. A wide window averages over many spikes, so the estimate is stable, but it smears out fast changes. A stimulus transient lasting twenty milliseconds disappears inside a hundred millisecond window. A narrow window tracks fast changes, but it contains very few spikes, so the estimate is dominated by counting noise. Take a neuron firing at twenty hertz. In a ten millisecond window it fires, on average, one fifth of a spike. Most windows are empty, and the occasional window with a single spike reports a rate of one hundred hertz. The estimate is mostly zeros punctuated by wild overshoots.
+## What makes a neuron fire?
 
-You cannot have both. This is the bias variance trade off arriving in neuroscience wearing different clothes. Choosing a window width is a hypothesis about which timescale matters, smuggled in as a preprocessing step.
+Having described the response, the chapter turns it around: rather than asking what the neuron does given a stimulus, ask what the stimulus was doing when the neuron fired.
 
-Spike train statistics.
+The tool is the **spike-triggered average** — take the stimulus in the window preceding each spike, and average those segments over all spikes. What emerges is the stimulus feature that reliably precedes firing. Related to it is the correlation between firing and the stimulus, which measures how the two covary at different time lags.
 
-If a neuron fired completely at random at a constant average rate, its spikes would follow what is called a Poisson process. Each spike is independent of the last. The process has no memory of when it last fired. Two consequences follow. The gaps between spikes are exponentially distributed, which means the most common gap is a very short one, even when the average gap is long. And the Fano factor, which is the variance of the spike count divided by the mean spike count measured over many repeated windows, comes out at exactly one, whatever window length you choose.
+Two things to hold onto. First, this is a *reverse* correlation: it runs backwards in time from each spike. Second, the average is only interpretable if the stimulus itself has no structure to impose on the result — which is why white noise is the standard choice. This is introduced here and developed properly in the receptive-fields lesson that follows.
 
-Poisson is the reference against which real data gets compared. Real cortical neurons are roughly Poisson like, which is itself surprising and a little embarrassing, because it means much of their variability looks like noise. But they depart from it in structured ways.
+## Spike-train statistics
 
-The clearest departure comes from the refractory period. After firing, a neuron cannot fire again for a millisecond or two. That forbids the very short gaps a Poisson process produces freely, which makes the spike train more regular than Poisson. Regularity shows up as a reduced Fano factor. There is a neat consequence worth holding on to: for a process where each gap is drawn independently, the Fano factor measured over long windows approaches the squared coefficient of variation of the gaps. The coefficient of variation is just the standard deviation of the gaps divided by their mean. So the effect of a refractory period on the Fano factor can be predicted with pencil and paper before any simulation is run. Other neurons go the other way. Bursting makes spikes clump together, variance rises, and the Fano factor climbs above one.
+Real spike trains are variable: repeat a stimulus and the spikes land differently each time. The chapter characterises that variability.
 
-So the Fano factor is a compact diagnostic. At one, the neuron looks Poisson. Below one, something is imposing regularity. Above one, something is imposing clumping.
+The reference model is the **Poisson process** — spikes independent of one another, no memory of the last one. Two consequences. The intervals between spikes are exponentially distributed, so short intervals are the most common ones even when the mean interval is long. And the **Fano factor**, the variance of the spike count divided by its mean over repeated windows, is exactly 1 at any window length.
 
-Tuning curves.
+Cortical neurons are roughly Poisson-like, which is a genuinely awkward result: it means much of their variability looks like noise rather than signal. But they depart from Poisson in structured ways, and the departures are informative.
 
-A tuning curve plots a neuron's firing rate against some property of the stimulus. Orientation, direction of motion, sound frequency, position in space. It is the simplest statement of what a neuron is about. The peak of the curve names the stimulus the neuron prefers. The width of the curve says how sharply it discriminates. A narrow curve means the neuron says a great deal when it fires but stays silent for most stimuli. A broad curve means it responds to a great deal but distinguishes little. That trade off comes back, much sharpened, when decoding is covered later in the course.
+The clearest comes from the **refractory period**. Having fired, a neuron cannot fire again for a millisecond or two, which forbids exactly the very short intervals a Poisson process generates freely. Suppressing short intervals makes the train more regular. The **coefficient of variation** of the interval distribution measures that regularity directly — 1 for Poisson, lower for a more regular train — and for a renewal process the Fano factor over long windows approaches the squared coefficient of variation, so the effect can be predicted before it is measured. Bursting pushes the other way: spikes clump, variance rises, the Fano factor exceeds 1.
 
-Notice what a tuning curve has already assumed. That a rate is the right summary of the response, and that the neuron's response is stable enough across repeats to be worth plotting at all.
+The **autocorrelation** of the spike train shows the same structure in the time domain, with a dip at short lags where the refractory period suppresses spikes.
 
-The open question.
+## The neural code
 
-Does the brain use spike rates, or spike timing? This is not settled, and a course that presents it as settled is lying.
+The chapter closes on what all of this is in service of: how does a spike train carry information?
 
-The case for rate. Cortical spiking is highly variable from trial to trial, rates vary systematically with stimuli, and rate based models predict a great deal of behaviour successfully.
+An **independent-spike code** assumes each spike contributes separately, so the train's information is the sum over spikes and the rate is a sufficient description. A **correlation code** holds that the relationships between spikes — their relative timing — carry information beyond what the rate contains. Beyond single neurons, a **population code** distributes the message across many cells, and the question becomes whether their correlations matter or whether the cells can be treated independently.
 
-The case for timing. Some systems demonstrably use it. Sound localisation in the barn owl and in mammals resolves differences between the two ears of tens of microseconds, which is far finer than any rate code could carry. And some behavioural decisions are made faster than a downstream neuron could plausibly have averaged a rate at all.
+Underneath sits the rate-versus-timing question, and it is open. For rate: cortical firing is highly variable, rates track stimuli systematically, and rate-based models explain a great deal. For timing: some systems clearly depend on it — sound localisation resolves interaural delays in the tens of microseconds, far finer than any rate could encode — and some behavioural decisions happen faster than a downstream neuron could average a rate.
 
-The honest position is that it is likely both, differently in different systems, and that the answer depends on the timescale of the computation being performed. Hold the question open. It comes back in every later lesson.
+The likely answer is both, in different systems and at different timescales. Do not resolve it; the question recurs in every lesson that follows.

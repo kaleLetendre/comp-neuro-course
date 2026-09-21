@@ -31,6 +31,14 @@ A lesson that starts with fifty pages of Dayan & Abbott cold is a lesson that do
 
 **One prompt per capability.** A podcast has no eyes; a video does; a flashcard has no room to argue. Using one prompt everywhere produces an episode that reads equations aloud and says "as you can see" to someone out walking. Each `PROMPTS.md` therefore carries a separate prompt for the audio overview, the video overview, the study guide, the quiz, the flashcards and the briefing document, plus a structure to check the mind map against. The audio prompt bans symbols and visual references outright; the video prompt requires exactly the figures the audio had to describe in words.
 
+## Follow the book
+
+Each concept brief mirrors its Dayan & Abbott chapter **section by section, in the book's order**, and opens with a table mapping the two. This is deliberate: the listener has the physical book and works through the chapter straight after the audio, so an overview organised differently makes them reconcile two structures instead of one.
+
+It also catches drift. F1's first draft was organised the way I would have taught it and silently omitted the chapter's *What Makes a Neuron Fire?* section — the spike-triggered average — because that material felt like it belonged to a later lesson. Checking the brief against the real section list found it.
+
+Every brief carries a caveat saying it was written without the book open, that it is standard material aligned to verified section headings, and that **where brief and book disagree, the book is right**. The prompts repeat the instruction: follow the chapter's order and terminology, name each section on reaching it.
+
 ## Rules that keep the output targeted
 
 - **State the substance, do not reference it.** NotebookLM cannot read the textbook. Anything that should appear in the audio has to be in the brief.

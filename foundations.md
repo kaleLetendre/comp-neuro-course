@@ -57,7 +57,8 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 - Three notions of rate — spike-count, time-dependent r(t), trial-averaged — and when each is the only one the data supports
 - Rate estimation mechanics: binning, sliding windows, kernel smoothing, and the bias/variance trade-off each introduces
 - Poisson spike generation, the interspike-interval distribution, the Fano factor, and concrete ways real cortical trains depart from Poisson
-- Tuning curves as stimulus-to-rate maps; rate versus temporal coding stated as unresolved, not adjudicated
+- The spike-triggered average introduced as the chapter introduces it (*What Makes a Neuron Fire?*), with the development left to F2
+- Independent-spike, correlation and population codes; rate versus temporal coding stated as unresolved, not adjudicated
 - Not covered: decoding a stimulus from spikes (F3), information-theoretic treatment (F4), the biophysics that produces a spike (F5)
 
 **You should be able to answer:**
