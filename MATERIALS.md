@@ -46,11 +46,29 @@ python3 fetch_papers.py
 
 That script doubles as the bibliography — every entry carries a DOI resolved against Europe PMC. It lands files in `papers/` (gitignored).
 
-**Openly available (10):** Izhikevich 2006 on polychronization · Hertäg & Sprekeler 2020 (eLife) · Ólafsdóttir, Bush & Barry 2018 · Bogacz 2017's free-energy tutorial · Millidge, Seth & Buckley 2021 · Feldman & Friston 2010 · Salvatori et al. 2022 · Friston, Daunizeau & Kiebel 2009 · Song et al. 2020 (NeurIPS) · Whittington & Bogacz 2017
+Of the twenty-eight, **twenty-one can be had for nothing** and seven need a library. The split is not the one a publisher page suggests, so it is worth stating precisely.
 
-**Needs institutional access (18):** Hopfield 1982 · Fries 2005 · Wang 2010 · Tsodyks & Markram 1997 · Attwell & Laughlin 2001 · Roy, Jaiswal & Panda 2019 · Schultz, Dayan & Montague 1997 · Yu & Dayan 2005 · Bastos et al. 2012 · Poirazi, Brannon & Mel 2003 · Larkum 2013 · London & Häusser 2005 · Schafer et al. 2012 · Hensch 2005 · Huttenlocher & Dabholkar 1997 · McClelland, McNaughton & O'Reilly 1995 · Foster & Wilson 2006 · Rao & Ballard 1999
+**Downloaded by script (12).** `fetch_papers.py` gets these: Izhikevich 2006 · Hertäg & Sprekeler 2020 · Ólafsdóttir, Bush & Barry 2018 · Bogacz 2017 · Millidge, Seth & Buckley 2021 · Feldman & Friston 2010 · Salvatori et al. 2022 · Friston, Daunizeau & Kiebel 2009 · Song et al. 2020 · Whittington & Bogacz 2017. Then `fetch_closed_papers.py` adds two more from author-hosted copies: McClelland, McNaughton & O'Reilly 1995 (Stanford) and Rao & Ballard 1999 (UT Austin) — both of which the open-access indexes wrongly list as closed.
 
-DOIs for all of them are in `fetch_papers.py`. The lessons that depend on a closed paper say so and name a substitute where one exists.
+**Free, but you have to click (9).** These are genuinely open access — OpenAlex confirms it — but PubMed Central, SAGE and Cell all refuse automated downloads, so no script will get them. Open each in a browser and save it:
+
+| Paper | Lesson | Link |
+|---|---|---|
+| Hopfield 1982 | A2 | <https://www.ncbi.nlm.nih.gov/pmc/articles/346238> |
+| Tsodyks & Markram 1997 | A4 | <https://www.ncbi.nlm.nih.gov/pmc/articles/19580> |
+| Wang 2010 | A3 | <https://www.ncbi.nlm.nih.gov/pmc/articles/2923921> |
+| Attwell & Laughlin 2001 | A5 | <https://journals.sagepub.com/doi/pdf/10.1097/00004647-200110000-00001> |
+| Yu & Dayan 2005 | B1 | <http://www.cell.com/article/S0896627305003624/pdf> |
+| Bastos et al. 2012 | B2 | <https://doi.org/10.1016/j.neuron.2012.10.038> |
+| Poirazi, Brannon & Mel 2003 | B3 | <http://www.cell.com/article/S0896627303001491/pdf> |
+| Schafer et al. 2012 | B4 | <http://www.cell.com/article/S0896627312003340/pdf> |
+| Hensch 2005 | B4 | via OpenAlex: `https://api.openalex.org/works/doi:10.1038/nrn1787` → `best_oa_location` |
+
+Save them into `papers/` using the filenames in `fetch_closed_papers.py` and the scripts will stop asking for them. That closes B2, which was the lesson most damaged by a missing source — Bastos is the canonical-microcircuit paper the Step 5 layout depends on.
+
+**Genuinely needs institutional access (7).** Fries 2005 · Roy, Jaiswal & Panda 2019 · Schultz, Dayan & Montague 1997 · Larkum 2013 · London & Häusser 2005 · Huttenlocher & Dabholkar 1997 · Foster & Wilson 2006. Birkbeck will cover these from April; until then the lessons that use them name a substitute.
+
+DOIs for all twenty-eight are in `fetch_papers.py`, each resolved against Europe PMC.
 
 ## Optional
 
