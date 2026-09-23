@@ -36,6 +36,37 @@ One script fetches all of it into `exercises/` (gitignored):
 | **Complete reference list**, as PDF and LaTeX | The book's bibliography, ready to cite |
 | **Chapter 7 in full**, free | *Network Models* — the authors' own sample chapter, and the text behind F8. Anyone can read that one without buying the book |
 
+### Direct links
+
+Everything below is free, from the authors. `fetch_book_materials.sh` downloads it all, but the links are here so you can browse without cloning.
+
+| | |
+|---|---|
+| Companion site | <https://www.gatsby.ucl.ac.uk/~dayan/book/> |
+| Table of contents | <https://www.gatsby.ucl.ac.uk/~dayan/book/toc.html> |
+| **Exercises index** | <https://www.gatsby.ucl.ac.uk/~dayan/book/exercises.html> |
+| Teaching support (figures, references) | <https://www.gatsby.ucl.ac.uk/~dayan/book/teaching.html> |
+| Errata | <https://www.gatsby.ucl.ac.uk/~dayan/book/errata.html> · [PDF](https://www.gatsby.ucl.ac.uk/~dayan/book/errata.pdf) |
+| Chapter 7 in full, free | <https://www.gatsby.ucl.ac.uk/~dayan/book/ch7.pdf> |
+| All exercise code and data (one archive) | <https://www.gatsby.ucl.ac.uk/~dayan/book/exall.tar.gz> |
+| All figures (one archive) | <https://www.gatsby.ucl.ac.uk/~dayan/book/figures/complete.tar.gz> |
+
+### Exercise set per lesson
+
+| Lesson | Chapter | Exercises | Figures |
+|---|---|---|---|
+| F1 Spike trains and firing rates | 1 | [c1.pdf](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c1/c1.pdf) · [fly H1 data](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c1/data/c1p8.mat) | [ppt](https://www.gatsby.ucl.ac.uk/~dayan/book/figures/ch1fig.ppt) |
+| F2 Receptive fields and reverse correlation | 2 | [c2.pdf](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c2/c2.pdf) | [ppt](https://www.gatsby.ucl.ac.uk/~dayan/book/figures/ch2fig.ppt) |
+| F3 Neural decoding | 3 | [c3.pdf](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c3/c3.pdf) | [ppt](https://www.gatsby.ucl.ac.uk/~dayan/book/figures/ch3fig.ppt) |
+| F4 Information theory | 4 | [c4.pdf](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c4/c4.pdf) | [ppt](https://www.gatsby.ucl.ac.uk/~dayan/book/figures/ch4fig.ppt) |
+| F5 Membrane biophysics | 5 | [c5.pdf](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c5/c5.pdf) | [ppt](https://www.gatsby.ucl.ac.uk/~dayan/book/figures/ch5fig.ppt) |
+| F6 Integrate-and-fire and synapses | 5 | [c5.pdf](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c5/c5.pdf) (shared with F5) | [ppt](https://www.gatsby.ucl.ac.uk/~dayan/book/figures/ch5fig.ppt) |
+| F7 Cable theory and morphology | 6 | [c6.pdf](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c6/c6.pdf) | [ppt](https://www.gatsby.ucl.ac.uk/~dayan/book/figures/ch6fig.ppt) |
+| F8 Network models | 7 | [c7.pdf](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c7/c7.pdf) | [ppt](https://www.gatsby.ucl.ac.uk/~dayan/book/figures/ch7fig.ppt) |
+| F9 Plasticity and learning | 8 | [c8.pdf](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c8/c8.pdf) | [ppt](https://www.gatsby.ucl.ac.uk/~dayan/book/figures/ch8fig.ppt) |
+| F10 Conditioning and reinforcement learning | 9 | [c9.pdf](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c9/c9.pdf) | [ppt](https://www.gatsby.ucl.ac.uk/~dayan/book/figures/ch9fig.ppt) |
+| F11 Representational learning | 10 | [c10.pdf](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c10/c10.pdf) · [data](https://www.gatsby.ucl.ac.uk/~dayan/book/exercises/c10/data/c10p1.mat) | [ppt](https://www.gatsby.ucl.ac.uk/~dayan/book/figures/ch10fig.ppt) |
+
 ### The exercise sets
 
 <https://www.gatsby.ucl.ac.uk/~dayan/book/exercises.html>
