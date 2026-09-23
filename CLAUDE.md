@@ -45,6 +45,10 @@ Dayan & Abbott, *Theoretical Neuroscience* (MIT Press, 2001) — physical copy o
 
 ## Materials
 
+Before teaching a chapter, check `exercises/errata.pdf` — the book has two printings and the first carries errors the second fixed. A learner working from the first printing will hit them.
+
+The authors' figures (`exercises/figures/`) are the book's own diagrams; use them rather than describing figures from memory.
+
 `MATERIALS.md` lists everything the course needs and where to get it. The textbook is a purchase; the authors' exercise sets, the open papers and NotebookLM are free. No copy of the textbook is distributed with this repo.
 
 ## Getting the papers

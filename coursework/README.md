@@ -8,6 +8,8 @@ One file per lesson. Each holds four pieces — a derivation, a simulation, a gu
 
 The grading material is written for a constrained **teacher agent**: it marks, it hints, it never does the work. The grader keys are not for the learner to read before attempting a piece.
 
+Each foundation lesson also assigns the authors' own exercises for its chapter (`exercises/cN.pdf`), which take precedence over this course's where they overlap.
+
 ## The set — foundations
 
 | Lesson | Simulation | What it demonstrates |

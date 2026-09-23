@@ -16,7 +16,27 @@ The whole foundation track (F1–F11) is this book, chapter by chapter, and it c
 
 Check your university library before buying: most institutions with a neuroscience or ML programme hold it, often with electronic access.
 
-### The authors' exercise sets — free
+### Everything else the authors publish — free
+
+The address printed in the book, `mitpress.mit.edu/dayan-abbott`, is **dead**. The material moved to the authors' own site and is more extensive than the book suggests:
+
+<https://www.gatsby.ucl.ac.uk/~dayan/book/>
+
+One script fetches all of it into `exercises/` (gitignored):
+
+```sh
+./fetch_book_materials.sh
+```
+
+| What | Why it matters |
+|---|---|
+| **Exercise sets** for all ten chapters, with MATLAB code and data | Assigned in every foundation lesson; see below |
+| **Figures**, per chapter, as PowerPoint and PNG collections | Every figure in the book. The PowerPoint files upload to Google Drive as Slides, which NotebookLM accepts as a source — so a video overview can work from the book's own diagrams |
+| **Errata**, by printing | Two printings exist; the second (identified by "10 9 8 7 6 5 4 3 2" on page iv) already carries the first printing's corrections. Check yours, and check the errata before teaching a chapter |
+| **Complete reference list**, as PDF and LaTeX | The book's bibliography, ready to cite |
+| **Chapter 7 in full**, free | *Network Models* — the authors' own sample chapter, and the text behind F8. Anyone can read that one without buying the book |
+
+### The exercise sets
 
 <https://www.gatsby.ucl.ac.uk/~dayan/book/exercises.html>
 
@@ -24,13 +44,7 @@ Dayan & Abbott publish problem sets for all ten chapters, with MATLAB code and d
 
 Chapter 1's set includes `c1p8.mat`: twenty minutes of real recordings from a fly H1 neuron responding to white-noise visual motion, collected by Rob de Ruyter van Steveninck, sampled at 500 Hz. Several problems build on it.
 
-From the repo root:
-
-```sh
-./fetch_exercises.sh
-```
-
-That pulls all ten sets plus code and data into `exercises/` (gitignored — the files are the authors', we do not redistribute them).
+`fetch_book_materials.sh` pulls these along with everything else. The files are the authors', so they are gitignored rather than committed.
 
 ### Python
 
