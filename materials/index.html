@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
       
@@ -195,13 +197,121 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../plan/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Plan
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Materials
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../foundations/F1/" class="md-tabs__link">
+          
+  
+  
+  Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../advanced/A1/" class="md-tabs__link">
+          
+  
+  
+  Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +325,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
       
@@ -358,78 +470,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Required">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-textbook" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The textbook
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#everything-else-the-authors-publish-free" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Everything else the authors publish — free
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#direct-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Direct links
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exercise-set-per-lesson" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exercise set per lesson
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-exercise-sets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The exercise sets
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -451,34 +491,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Optional">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notebooklm-free" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        NotebookLM — free
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#further-reading-where-the-book-stops" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Further reading, where the book stops
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -512,20 +524,22 @@
     
     
       
+      
+    
+    
+      
         
         
       
     
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
-            
+  
+  
+  
+    <a href="../foundations/F1/" class="md-nav__link">
+      
   
   
   <span class="md-ellipsis">
@@ -539,358 +553,12 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Foundations
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F1. Spike trains and firing rates
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F2. Receptive fields and reverse correlation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F3. Neural decoding
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F4. Information theory for neurons
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F5. Membrane biophysics and the action potential
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F6/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F6. Integrate-and-fire neurons and synaptic input
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F7/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F7. Cable theory and neuronal morphology
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F8/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F8. Network models: feedforward and recurrent
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F9/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F9. Synaptic plasticity and learning rules
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F10/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F10. Classical conditioning and reinforcement learning
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F11/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F11. Representational learning and generative models
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/Bridge/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bridge. Synthesis checkpoint
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
     </li>
   
@@ -907,20 +575,22 @@
     
     
       
+      
+    
+    
+      
         
         
       
     
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
-            
+  
+  
+  
+    <a href="../advanced/A1/" class="md-nav__link">
+      
   
   
   <span class="md-ellipsis">
@@ -934,470 +604,12 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Advanced
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/A1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A1. Synaptic delays and temporal structure
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/A2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A2. Attractors and network state
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/A3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A3. Oscillations and synchrony
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/A4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A4. Short-term plasticity, refractory period, reset modes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/A5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A5. State of the field: why SNNs, where they stand vs ANNs
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/B1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/B2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B2. Cortical microcircuits and laminar structure
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/B3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B3. Dendritic computation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/B4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B4. Developmental pruning: how brains choose their own size
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/B5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B5. Hippocampal replay and consolidation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/C1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C1. Predictive coding as energy minimization
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/C2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C2. Inference vs learning: two nested loops and their schedules
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/C3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C3. Precision weighting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/C4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/C5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C5. Clamping and frozen priors
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/C6/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C6. PC ≈ backprop: what the equivalence does and does not claim
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
     </li>
   
@@ -1438,78 +650,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Required">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-textbook" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The textbook
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#everything-else-the-authors-publish-free" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Everything else the authors publish — free
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#direct-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Direct links
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exercise-set-per-lesson" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exercise set per lesson
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-exercise-sets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The exercise sets
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1531,34 +671,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Optional">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notebooklm-free" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        NotebookLM — free
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#further-reading-where-the-book-stops" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Further reading, where the book stops
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1590,10 +702,10 @@
 
 
 
-<h1 id="materials">Materials</h1>
+<h1 id="materials">Materials<a class="headerlink" href="#materials" title="Permanent link">&para;</a></h1>
 <p>Everything this course needs, and where to get it. One required purchase; everything else is free.</p>
-<h2 id="required">Required</h2>
-<h3 id="the-textbook">The textbook</h3>
+<h2 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h2>
+<h3 id="the-textbook">The textbook<a class="headerlink" href="#the-textbook" title="Permanent link">&para;</a></h3>
 <p><strong>Dayan, P. &amp; Abbott, L.F. — <em>Theoretical Neuroscience: Computational and Mathematical Modeling of Neural Systems</em>. MIT Press, 2001.</strong></p>
 <ul>
 <li>Publisher: <a href="https://mitpress.mit.edu/9780262041997/theoretical-neuroscience/">https://mitpress.mit.edu/9780262041997/theoretical-neuroscience/</a></li>
@@ -1602,7 +714,7 @@
 </ul>
 <p>The whole foundation track (F1–F11) is this book, chapter by chapter, and it carries five of the advanced lessons outright. There is no substitute in the course as written.</p>
 <p>Check your university library before buying: most institutions with a neuroscience or ML programme hold it, often with electronic access.</p>
-<h3 id="everything-else-the-authors-publish-free">Everything else the authors publish — free</h3>
+<h3 id="everything-else-the-authors-publish-free">Everything else the authors publish — free<a class="headerlink" href="#everything-else-the-authors-publish-free" title="Permanent link">&para;</a></h3>
 <p>The address printed in the book, <code>mitpress.mit.edu/dayan-abbott</code>, is <strong>dead</strong>. The material moved to the authors' own site and is more extensive than the book suggests:</p>
 <p><a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">https://www.gatsby.ucl.ac.uk/~dayan/book/</a></p>
 <p>One script fetches all of it into <code>exercises/</code> (gitignored):</p>
@@ -1638,7 +750,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="direct-links">Direct links</h3>
+<h3 id="direct-links">Direct links<a class="headerlink" href="#direct-links" title="Permanent link">&para;</a></h3>
 <p>Everything below is free, from the authors. <code>fetch_book_materials.sh</code> downloads it all, but the links are here so you can browse without cloning.</p>
 <table>
 <thead>
@@ -1682,7 +794,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="exercise-set-per-lesson">Exercise set per lesson</h3>
+<h3 id="exercise-set-per-lesson">Exercise set per lesson<a class="headerlink" href="#exercise-set-per-lesson" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1761,14 +873,14 @@
 </tr>
 </tbody>
 </table>
-<h3 id="the-exercise-sets">The exercise sets</h3>
+<h3 id="the-exercise-sets">The exercise sets<a class="headerlink" href="#the-exercise-sets" title="Permanent link">&para;</a></h3>
 <p><a href="https://www.gatsby.ucl.ac.uk/~dayan/book/exercises.html">https://www.gatsby.ucl.ac.uk/~dayan/book/exercises.html</a></p>
 <p>Dayan &amp; Abbott publish problem sets for all ten chapters, with MATLAB code and data files. These are assigned in every foundation lesson and <strong>take precedence over this course's own exercises</strong> where the two overlap — they are the authors' problems.</p>
 <p>Chapter 1's set includes <code>c1p8.mat</code>: twenty minutes of real recordings from a fly H1 neuron responding to white-noise visual motion, collected by Rob de Ruyter van Steveninck, sampled at 500 Hz. Several problems build on it.</p>
 <p><code>fetch_book_materials.sh</code> pulls these along with everything else. The files are the authors', so they are gitignored rather than committed.</p>
-<h3 id="python">Python</h3>
+<h3 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h3>
 <p>Python 3 with <code>numpy</code>. <code>matplotlib</code> for the plotting exercises, <code>scipy</code> for a few, <code>torch</code> only if you prefer it — every simulation in the course runs on numpy alone. The exercise sets are written for MATLAB; translating them is part of the work.</p>
-<h2 id="supporting-papers">Supporting papers</h2>
+<h2 id="supporting-papers">Supporting papers<a class="headerlink" href="#supporting-papers" title="Permanent link">&para;</a></h2>
 <p>Twenty-eight papers are cited across the advanced tracks. Ten are openly available and fetch automatically:</p>
 <div class="highlight"><pre><span></span><code>python3<span class="w"> </span>fetch_papers.py
 </code></pre></div>
@@ -1835,16 +947,16 @@
 <p>Save them into <code>papers/</code> using the filenames in <code>fetch_closed_papers.py</code> and the scripts will stop asking for them. That closes B2, which was the lesson most damaged by a missing source — Bastos is the canonical-microcircuit paper the Step 5 layout depends on.</p>
 <p><strong>Genuinely needs institutional access (7).</strong> Fries 2005 · Roy, Jaiswal &amp; Panda 2019 · Schultz, Dayan &amp; Montague 1997 · Larkum 2013 · London &amp; Häusser 2005 · Huttenlocher &amp; Dabholkar 1997 · Foster &amp; Wilson 2006. Birkbeck will cover these from April; until then the lessons that use them name a substitute.</p>
 <p>DOIs for all twenty-eight are in <code>fetch_papers.py</code>, each resolved against Europe PMC.</p>
-<h2 id="optional">Optional</h2>
-<h3 id="notebooklm-free">NotebookLM — free</h3>
+<h2 id="optional">Optional<a class="headerlink" href="#optional" title="Permanent link">&para;</a></h2>
+<h3 id="notebooklm-free">NotebookLM — free<a class="headerlink" href="#notebooklm-free" title="Permanent link">&para;</a></h3>
 <p><a href="https://notebooklm.google.com">https://notebooklm.google.com</a></p>
 <p>The packs in <code>notebooklm/</code> generate an audio overview for a lesson, which is the first step of the running order. A free Google account is enough. Each pack folder holds the sources to upload and the prompts to paste; the Drive mirror is convenient on a phone.</p>
-<h3 id="further-reading-where-the-book-stops">Further reading, where the book stops</h3>
+<h3 id="further-reading-where-the-book-stops">Further reading, where the book stops<a class="headerlink" href="#further-reading-where-the-book-stops" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Gerstner, Kistler, Naud &amp; Paninski — <em>Neuronal Dynamics</em>.</strong> Free online at <a href="https://neuronaldynamics.epfl.ch/">https://neuronaldynamics.epfl.ch/</a>. Modern, spiking-focused, good where Dayan &amp; Abbott is thin (synaptic delays, adaptive exponential models).</li>
 <li><strong>Buzsáki — <em>Rhythms of the Brain</em>.</strong> Breadth on oscillations for A3.</li>
 </ul>
-<h2 id="what-is-not-here">What is not here</h2>
+<h2 id="what-is-not-here">What is not here<a class="headerlink" href="#what-is-not-here" title="Permanent link">&para;</a></h2>
 <p>No copy of the textbook is distributed with this repo, and none will be. Buy it, borrow it, or use a library copy.</p>
 
 
@@ -1901,7 +1013,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>

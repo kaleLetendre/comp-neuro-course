@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
       
@@ -195,13 +197,121 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Plan
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../materials/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Materials
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../foundations/F1/" class="md-tabs__link">
+          
+  
+  
+  Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../advanced/A1/" class="md-tabs__link">
+          
+  
+  
+  Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +325,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
       
@@ -353,34 +465,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Track A — SNN dynamics">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#covered" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Covered
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#remaining-queue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Remaining queue
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -391,23 +475,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Track B — biology for design">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#remaining-queue_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Remaining queue
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -490,20 +557,22 @@
     
     
       
+      
+    
+    
+      
         
         
       
     
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
-            
+  
+  
+  
+    <a href="../foundations/F1/" class="md-nav__link">
+      
   
   
   <span class="md-ellipsis">
@@ -517,358 +586,12 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Foundations
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F1. Spike trains and firing rates
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F2. Receptive fields and reverse correlation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F3. Neural decoding
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F4. Information theory for neurons
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F5. Membrane biophysics and the action potential
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F6/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F6. Integrate-and-fire neurons and synaptic input
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F7/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F7. Cable theory and neuronal morphology
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F8/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F8. Network models: feedforward and recurrent
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F9/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F9. Synaptic plasticity and learning rules
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F10/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F10. Classical conditioning and reinforcement learning
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/F11/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    F11. Representational learning and generative models
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foundations/Bridge/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bridge. Synthesis checkpoint
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
     </li>
   
@@ -885,20 +608,22 @@
     
     
       
+      
+    
+    
+      
         
         
       
     
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
-            
+  
+  
+  
+    <a href="../advanced/A1/" class="md-nav__link">
+      
   
   
   <span class="md-ellipsis">
@@ -912,470 +637,12 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Advanced
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/A1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A1. Synaptic delays and temporal structure
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/A2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A2. Attractors and network state
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/A3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A3. Oscillations and synchrony
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/A4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A4. Short-term plasticity, refractory period, reset modes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/A5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A5. State of the field: why SNNs, where they stand vs ANNs
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/B1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/B2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B2. Cortical microcircuits and laminar structure
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/B3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B3. Dendritic computation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/B4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B4. Developmental pruning: how brains choose their own size
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/B5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B5. Hippocampal replay and consolidation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/C1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C1. Predictive coding as energy minimization
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/C2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C2. Inference vs learning: two nested loops and their schedules
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/C3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C3. Precision weighting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/C4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/C5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C5. Clamping and frozen priors
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../advanced/C6/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C6. PC ≈ backprop: what the equivalence does and does not claim
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
     </li>
   
@@ -1438,34 +705,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Track A — SNN dynamics">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#covered" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Covered
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#remaining-queue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Remaining queue
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1476,23 +715,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Track B — biology for design">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#remaining-queue_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Remaining queue
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1546,7 +768,7 @@
 
 
 
-<h1 id="learning-plan-snn-pc-and-computational-neuroscience">Learning Plan — SNN, PC, and Computational Neuroscience</h1>
+<h1 id="learning-plan-snn-pc-and-computational-neuroscience">Learning Plan — SNN, PC, and Computational Neuroscience<a class="headerlink" href="#learning-plan-snn-pc-and-computational-neuroscience" title="Permanent link">&para;</a></h1>
 <p>The single place the study plan lives.</p>
 <p><strong>The course is in two halves.</strong> The <a href="../foundations/F1/"><strong>foundation track</strong></a> (F1-F11) works through Dayan &amp; Abbott's <em>Theoretical Neuroscience</em> end to end — computational neuroscience as a field, assuming no prior neuroscience. The <strong>advanced tracks</strong> below (A, B, C) come after it and go past the textbook. An earlier version of this plan had only the advanced half, assembled from prior tutoring notes and the open design questions of a research project; it assumed foundations the learner had not been formally taught and skipped chapters 1-4 of the book entirely. The foundation track is the correction, and the research project is now an application of the course rather than its spine.</p>
 <p>The advanced half merges three tracks that had been running separately:</p>
@@ -1558,14 +780,14 @@
 <p>Per-lesson specs live in <a href="../advanced/A1/"><code>lessons.md</code></a> — 17 lessons (A1-A5, B1-B5, C1-C6) plus the Bridge checkpoint, each with a goal, scope, starting reading, a rough size, and five acceptance criteria describing what the lesson must leave you able to reason through. Those are criteria for the lesson, not a test; coursework comes later. Roughly 28-30 sittings end to end: ~9 for track A, ~8 for track B, ~11 for track C. The core text is <strong>Dayan &amp; Abbott, <em>Theoretical Neuroscience</em></strong> (2001), mapped chapter-by-chapter in <code>lessons.md</code>; it carries A2/A3/A4/B1/B3 outright, grounds six more, and is silent on six (including predictive coding itself). This file stays the map; that one is the detail.</p>
 <p>Last updated: 2026-09-15.</p>
 <hr />
-<h2 id="the-ordering-rule">The ordering rule</h2>
+<h2 id="the-ordering-rule">The ordering rule<a class="headerlink" href="#the-ordering-rule" title="Permanent link">&para;</a></h2>
 <p><strong>Foundations first.</strong> F1-F11 before any advanced lesson, then the <strong>Bridge</strong> synthesis checkpoint at the end of <code>foundations.md</code> gates entry to track A.</p>
 <p>Then, within the advanced half (set 2026-06-19, still in force):</p>
 <p><strong>Finish raw SNN → then raw PC → only then decide how to fuse them.</strong></p>
 <p>No PC≈backprop, no fusion design, no "how would this work in the graph" detours until Track A's queue is empty. The rule exists because the fusion is the novel contribution (Steps 3–5) and it needs both halves understood independently first.</p>
 <p>Track B runs alongside on its own cadence — biology reading feeds design flags, it doesn't gate anything.</p>
 <hr />
-<h2 id="status-at-a-glance">Status at a glance</h2>
+<h2 id="status-at-a-glance">Status at a glance<a class="headerlink" href="#status-at-a-glance" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1600,8 +822,8 @@
 <p>Whole course: roughly 135 hours. Foundations ~60, advanced ~75.</p>
 <p>Nothing happened on any track between 2026-07-20 and 2026-09-15 — that gap was step 2b (persistent state / online CartPole) work.</p>
 <hr />
-<h2 id="track-a-snn-dynamics">Track A — SNN dynamics</h2>
-<h3 id="covered">Covered</h3>
+<h2 id="track-a-snn-dynamics">Track A — SNN dynamics<a class="headerlink" href="#track-a-snn-dynamics" title="Permanent link">&para;</a></h2>
+<h3 id="covered">Covered<a class="headerlink" href="#covered" title="Permanent link">&para;</a></h3>
 <ul>
 <li>[x] Hebbian → STDP → three-factor learning rules</li>
 <li>[x] Pre/post directionality (who-fired-before, not who-caused-whom)</li>
@@ -1618,7 +840,7 @@
 <p>A success/error chemical is misted over the whole network at once; each synapse changes in proportion to how brightly it's still glowing from recent activity, in the direction the chemical dictates.</p>
 </blockquote>
 <p>Glow = eligibility trace (per-synapse, recency). Chemical = the third factor (broadcast neuromodulator — dopamine-like — sets sign and magnitude). Key point held onto: this is <strong>not</strong> backprop. No backward layer-by-layer wave; it's one broadcast plus local parallel updates.</p>
-<h3 id="remaining-queue">Remaining queue</h3>
+<h3 id="remaining-queue">Remaining queue<a class="headerlink" href="#remaining-queue" title="Permanent link">&para;</a></h3>
 <ul>
 <li>[ ] <strong>Bridge</strong> — synthesis checkpoint across F1-F11. Specified in <code>foundations.md</code>. No new material; closes the seams between foundation lessons before A1.</li>
 <li>[ ] <strong>A1</strong> — synaptic delays and temporal structure</li>
@@ -1629,7 +851,7 @@
 </ul>
 <p>When these three are done, Track A is closed and Track C opens.</p>
 <hr />
-<h2 id="track-b-biology-for-design">Track B — biology for design</h2>
+<h2 id="track-b-biology-for-design">Track B — biology for design<a class="headerlink" href="#track-b-biology-for-design" title="Permanent link">&para;</a></h2>
 <p>Full write-ups live in <a href="https://github.com/kaleLetendre/Adaptive-Web-PC-SNN/blob/main/docs/comp_neuro_notes.md"><code>comp_neuro_notes.md</code></a>. One-line takeaway and the design flag each one left behind:</p>
 <table>
 <thead>
@@ -1662,7 +884,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="remaining-queue_1">Remaining queue</h3>
+<h3 id="remaining-queue_1">Remaining queue<a class="headerlink" href="#remaining-queue_1" title="Permanent link">&para;</a></h3>
 <p>Any order, alongside track A. B4 assumes B2; B5 assumes A2.</p>
 <ul>
 <li>[ ] <strong>B1</strong> — neuromodulation proper (dopamine, ACh, noradrenaline) vs the "third factor" abstraction</li>
@@ -1673,7 +895,7 @@
 </ul>
 <p>(The brain's energy budget, listed here earlier as its own topic, is folded into A5.)</p>
 <hr />
-<h2 id="track-c-predictive-coding-theory-blocked-until-track-a-closes">Track C — predictive coding theory (blocked until Track A closes)</h2>
+<h2 id="track-c-predictive-coding-theory-blocked-until-track-a-closes">Track C — predictive coding theory (blocked until Track A closes)<a class="headerlink" href="#track-c-predictive-coding-theory-blocked-until-track-a-closes" title="Permanent link">&para;</a></h2>
 <p>Not started. Expected shape when it opens, to be refined then:</p>
 <ul>
 <li>[ ] <strong>C1</strong> — PC as energy minimization: the energy function, and what settling actually does</li>
@@ -1685,7 +907,7 @@
 </ul>
 <p>Only after this: fusion design (Step 3 onward).</p>
 <hr />
-<h2 id="open-flags-carried-forward">Open flags carried forward</h2>
+<h2 id="open-flags-carried-forward">Open flags carried forward<a class="headerlink" href="#open-flags-carried-forward" title="Permanent link">&para;</a></h2>
 <p>Questions raised but not resolved. Each needs closing before the step it's tied to.</p>
 <ul>
 <li>[ ] Has any PC-on-graph or SNN work explicitly modelled <strong>astrocyte-like modulation</strong>? If not, that's a candidate contribution angle for Step 4/5.</li>
@@ -1695,7 +917,7 @@
 <li>[ ] Does the <strong>structural vs learnable edge</strong> distinction pay off across Steps 3–5, or collapse back into one edge type?</li>
 </ul>
 <hr />
-<h2 id="how-these-sessions-run">How these sessions run</h2>
+<h2 id="how-these-sessions-run">How these sessions run<a class="headerlink" href="#how-these-sessions-run" title="Permanent link">&para;</a></h2>
 <p>Formats that work: concrete worked examples with real numbers, tick-by-tick walkthroughs, small ASCII diagrams, comparison tables, and a running "what you know / what's left" checklist. Push back when something is asserted without grounding — the answer should correct the specific misconception, not re-explain the whole topic. Concepts get tied back to the project where they map (stress ≈ homeostasis, error neuron ≈ third factor, clamping ≈ encode/decode).</p>
 <p>End of a teaching session: tick the boxes above, and append any biology write-up to <code>comp_neuro_notes.md</code> with its "relevance to this project" block.</p>
 
@@ -1753,7 +975,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
