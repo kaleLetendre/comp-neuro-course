@@ -1208,17 +1208,11 @@
 <hr />
 <h3 id="what-is-recorded">What is recorded<a class="headerlink" href="#what-is-recorded" title="Permanent link">&para;</a></h3>
 <p>A neuron at rest sits about 70 millivolts below the surrounding fluid. Depolarise it far enough and a positive feedback process fires: sodium rushes in, the membrane potential swings roughly 100 millivolts, and about a millisecond later it is over. That is an action potential, and for the next few milliseconds the cell is nearly impossible to fire again — the absolute refractory period — followed by a longer stretch, up to tens of milliseconds, where firing is merely harder. That second window is the relative refractory period, and the distinction matters later when we ask what makes a spike train regular.</p>
-<div class="admonition quote">
-<p class="admonition-title">Figure 1.2</p>
-<p>An action potential recorded intracellularly from a cultured rat neocortical pyramidal cell, with a diagram of a synapse.</p>
-<p>In the book at figure 1.2, and in the authors' figure archive that <code>fetch_book_materials.sh</code> downloads.</p>
-</div>
+<p><img alt="Figure 1.2" src="../../figures/ch1fig2.png" /></p>
+<p><em>Figure 1.2 — An action potential recorded intracellularly from a cultured rat neocortical pyramidal cell, with a diagram of a synapse. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
 <p>How you record determines what you see. An intracellular electrode sits inside the cell and shows you the membrane potential itself, spikes and all the subthreshold wandering between them. An extracellular electrode sits nearby and picks up only the sharp events, as deflections in a noisy trace.</p>
-<div class="admonition quote">
-<p class="admonition-title">Figure 1.3</p>
-<p>Intracellular and extracellular recording.</p>
-<p>In the book at figure 1.3, and in the authors' figure archive that <code>fetch_book_materials.sh</code> downloads.</p>
-</div>
+<p><img alt="Figure 1.3" src="../../figures/ch1fig3.png" /></p>
+<p><em>Figure 1.3 — Intracellular and extracellular recording. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
 <p>Here is the first modelling decision of the field, and it is a decision rather than a discovery: <strong>throw the waveform away</strong>. Spikes from one neuron are stereotyped — they all look much the same — so their shape carries little that varies with the stimulus. What varies is when they happen and how many. So the data becomes a list of times, and every quantity built from here sits on top of that list.</p>
 <h3 id="three-rates-and-estimating-them">Three rates, and estimating them<a class="headerlink" href="#three-rates-and-estimating-them" title="Permanent link">&para;</a></h3>
 <p>Ask what a neuron's firing rate is and you get at least three answers that are not equal to each other.</p>
@@ -1226,67 +1220,40 @@
 <p>The <strong>time-dependent rate</strong> is a rate defined at each moment. But a single spike train does not contain one — at any instant there is a spike or there is not — so it has to be estimated by smoothing. That estimate is a choice, not a measurement.</p>
 <p>The <strong>trial-averaged rate</strong> repeats the same stimulus many times, lines the trials up and averages across them. Clean, and standard in experiments. It also assumes the neuron does the same thing each time, and an animal behaving in the world only ever gets one trial.</p>
 <p>Now the part worth sitting with. To estimate a time-dependent rate you slide something along the spike train: a rectangular window that simply counts, or a smooth bump centred on each spike that you then add up — a Gaussian, or a one-sided decaying kernel if you care that a downstream neuron could only ever look backwards in time.</p>
-<div class="admonition quote">
-<p class="admonition-title">Figure 1.4</p>
-<p>Four ways of approximating the firing rate from the same spike train: binned, sliding rectangular window, Gaussian kernel, and a causal alpha-function kernel.</p>
-<p>In the book at figure 1.4, and in the authors' figure archive that <code>fetch_book_materials.sh</code> downloads.</p>
-</div>
+<p><img alt="Figure 1.4" src="../../figures/ch1fig4.png" /></p>
+<p><em>Figure 1.4 — Four ways of approximating the firing rate from the same spike train: binned, sliding rectangular window, Gaussian kernel, and a causal alpha-function kernel. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
 <p>Look at what the same spike train becomes under four different treatments. They are all correct. They disagree. And the disagreement is not noise — it is the trade-off you cannot escape.</p>
 <p>A <strong>wide</strong> window averages over many spikes, so the estimate is steady, but it smears anything fast: a transient lasting twenty milliseconds vanishes inside a window of a hundred. A <strong>narrow</strong> window follows fast changes, but at realistic firing rates it contains almost nothing. Take a neuron firing at twenty hertz and a ten-millisecond window: on average that window holds one fifth of a spike. Most windows are empty, giving a rate of zero, and the occasional one holds a spike and reports a hundred hertz. The estimate becomes a spray of zeros and spikes around a true value it rarely takes.</p>
 <p>So the width you choose is a hypothesis about which timescale carries the signal, and it enters the analysis disguised as a preprocessing step.</p>
 <p><strong>Tuning curves</strong> come from this. Measure the rate across many stimulus values and plot rate against stimulus. The peak names what the neuron prefers; the width says how sharply it distinguishes. A visual cortex neuron tuned for orientation gives a bump centred on its preferred angle; a motor cortex neuron tuned for reach direction gives a broad cosine.</p>
-<div class="admonition quote">
-<p class="admonition-title">Figure 1.5</p>
-<p>Orientation tuning of a neuron in monkey primary visual cortex.</p>
-<p>In the book at figure 1.5, and in the authors' figure archive that <code>fetch_book_materials.sh</code> downloads.</p>
-</div>
-<div class="admonition quote">
-<p class="admonition-title">Figure 1.6</p>
-<p>Direction tuning in monkey primary motor cortex during an arm-reaching task.</p>
-<p>In the book at figure 1.6, and in the authors' figure archive that <code>fetch_book_materials.sh</code> downloads.</p>
-</div>
+<p><img alt="Figure 1.5" src="../../figures/ch1fig5.png" /></p>
+<p><em>Figure 1.5 — Orientation tuning of a neuron in monkey primary visual cortex. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p><img alt="Figure 1.6" src="../../figures/ch1fig6.png" /></p>
+<p><em>Figure 1.6 — Direction tuning in monkey primary motor cortex during an arm-reaching task. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
 <p>Notice how broad the motor tuning is. A single such neuron barely constrains the reach direction at all — which is a problem that only resolves when we get to populations, in F3.</p>
 <h3 id="working-backwards-from-the-spikes">Working backwards from the spikes<a class="headerlink" href="#working-backwards-from-the-spikes" title="Permanent link">&para;</a></h3>
 <p>Everything so far asks: given a stimulus, what does the neuron do? Turn it around. Given that the neuron just fired, what was the stimulus doing?</p>
 <p>Take the stretch of stimulus immediately before each spike, and average those stretches over every spike in the train. What survives the averaging is whatever reliably precedes firing; what was incidental averages away.</p>
-<div class="admonition quote">
-<p class="admonition-title">Figure 1.8</p>
-<p>Computing the spike-triggered average: stimulus segments preceding each spike are extracted and averaged.</p>
-<p>In the book at figure 1.8, and in the authors' figure archive that <code>fetch_book_materials.sh</code> downloads.</p>
-</div>
+<p><img alt="Figure 1.8" src="../../figures/ch1fig8.png" /></p>
+<p><em>Figure 1.8 — Computing the spike-triggered average: stimulus segments preceding each spike are extracted and averaged. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
 <p>That is the <strong>spike-triggered average</strong>, and it is the workhorse of sensory neuroscience. Two things to hold onto. It runs <em>backwards</em> from each spike, which is why it is also called reverse correlation. And it only means anything if the stimulus itself has no structure to impose on the answer — which is why the stimulus of choice is white noise, random and uncorrelated across time.</p>
-<div class="admonition quote">
-<p class="admonition-title">Figure 1.9</p>
-<p>The spike-triggered average stimulus for a neuron of the electrosensory lateral-line lobe.</p>
-<p>In the book at figure 1.9, and in the authors' figure archive that <code>fetch_book_materials.sh</code> downloads.</p>
-</div>
-<div class="admonition quote">
-<p class="admonition-title">Figure 1.10</p>
-<p>Single- and multiple-spike-triggered average stimuli for a blowfly H1 neuron.</p>
-<p>In the book at figure 1.10, and in the authors' figure archive that <code>fetch_book_materials.sh</code> downloads.</p>
-</div>
+<p><img alt="Figure 1.9" src="../../figures/ch1fig9.png" /></p>
+<p><em>Figure 1.9 — The spike-triggered average stimulus for a neuron of the electrosensory lateral-line lobe. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p><img alt="Figure 1.10" src="../../figures/ch1fig10.png" /></p>
+<p><em>Figure 1.10 — Single- and multiple-spike-triggered average stimuli for a blowfly H1 neuron. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
 <p>That blowfly H1 neuron is not an illustration you will only read about. Twenty minutes of recording from exactly this preparation ships with the book's exercises, and chapter 1's problems 8 through 10 have you compute these averages yourself from the raw data.</p>
 <h3 id="poisson-and-departures-from-it">Poisson, and departures from it<a class="headerlink" href="#poisson-and-departures-from-it" title="Permanent link">&para;</a></h3>
 <p>Repeat a stimulus and the spikes land differently each time. How differently?</p>
 <p>The reference model is the <strong>Poisson process</strong>: spikes independent of one another, no memory of what came before. Two consequences follow. Intervals between spikes are exponentially distributed, so the most common interval is a very short one even when the average interval is long. And the <strong>Fano factor</strong> — the variance of the spike count divided by its mean, across repeated windows — is exactly one, whatever the window length.</p>
-<div class="admonition quote">
-<p class="admonition-title">Figure 1.11</p>
-<p>The probability that a homogeneous Poisson process generates a given number of spikes, and the resulting interval distribution.</p>
-<p>In the book at figure 1.11, and in the authors' figure archive that <code>fetch_book_materials.sh</code> downloads.</p>
-</div>
+<p><img alt="Figure 1.11" src="../../figures/ch1fig11.png" /></p>
+<p><em>Figure 1.11 — The probability that a homogeneous Poisson process generates a given number of spikes, and the resulting interval distribution. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
 <p>Cortical neurons are roughly Poisson-like, which is an awkward result rather than a satisfying one: it means much of their variability looks like noise.</p>
-<div class="admonition quote">
-<p class="admonition-title">Figure 1.14</p>
-<p>Variability of MT neurons in alert macaque, with variance plotted against mean spike count.</p>
-<p>In the book at figure 1.14, and in the authors' figure archive that <code>fetch_book_materials.sh</code> downloads.</p>
-</div>
+<p><img alt="Figure 1.14" src="../../figures/ch1fig14.png" /></p>
+<p><em>Figure 1.14 — Variability of MT neurons in alert macaque, with variance plotted against mean spike count. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
 <p>But they depart from Poisson in structured ways, and the departures carry information. The refractory period is the clearest case. Having fired, the cell cannot fire again for a millisecond or two, which forbids precisely the very short intervals Poisson produces freely. Suppressing short intervals makes the train <strong>more regular</strong> — and regularity shows up as a Fano factor below one. For a renewal process the Fano factor over long windows approaches the squared coefficient of variation of the intervals, so you can predict the size of the effect before measuring it. Bursting pushes the other way: spikes clump, variance rises, the factor exceeds one.</p>
 <p>The same structure appears in the time domain as an <strong>autocorrelation</strong> — count how often two spikes occur at a given separation — where the refractory period carves a dip at short lags.</p>
-<div class="admonition quote">
-<p class="admonition-title">Figure 1.12</p>
-<p>Autocorrelation and cross-correlation histograms for cortical neurons.</p>
-<p>In the book at figure 1.12, and in the authors' figure archive that <code>fetch_book_materials.sh</code> downloads.</p>
-</div>
+<p><img alt="Figure 1.12" src="../../figures/ch1fig12.png" /></p>
+<p><em>Figure 1.12 — Autocorrelation and cross-correlation histograms for cortical neurons. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
 <p>So the Fano factor is a compact diagnostic. One means Poisson-like. Below one, something imposes regularity. Above one, something imposes clumping.</p>
 <h3 id="the-open-question">The open question<a class="headerlink" href="#the-open-question" title="Permanent link">&para;</a></h3>
 <p>All of this serves one question: how does a spike train carry information?</p>
