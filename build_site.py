@@ -89,6 +89,67 @@ def expand_figures(text, outdir):
                 f"archive that `fetch_book_materials.sh` downloads.")
     return FIG_RE.sub(repl, text)
 
+# ---------------------------------------------------------------- files
+
+GATSBY = "https://www.gatsby.ucl.ac.uk/~dayan/book"
+# lesson -> textbook chapter, for the exercise sets and figure decks
+CHAPTER = {"F1": 1, "F2": 2, "F3": 3, "F4": 4, "F5": 5, "F6": 5,
+           "F7": 6, "F8": 7, "F9": 8, "F10": 9, "F11": 10}
+# chapters whose exercise sets ship data files
+CHAPTER_DATA = {1: ["c1p8.mat"], 2: ["c1p8.mat", "c2p3.mat"], 10: ["c10p1.mat"]}
+
+def _papers_by_lesson():
+    """Read the bibliography out of fetch_papers.py so links stay in one place."""
+    try:
+        sys.path.insert(0, ROOT)
+        import fetch_papers
+        out = {}
+        for entry in fetch_papers.PAPERS:
+            name, lesson, citation, doi = entry[0], entry[1], entry[2], entry[3]
+            out.setdefault(lesson, []).append((citation, doi))
+        return out
+    except Exception:
+        return {}
+
+PAPERS_BY_LESSON = _papers_by_lesson()
+# openly readable in a browser, even where a script cannot fetch them
+OPEN_IN_BROWSER = {
+    "10.1073/pnas.79.8.2554": "https://www.ncbi.nlm.nih.gov/pmc/articles/346238",
+    "10.1073/pnas.94.2.719": "https://www.ncbi.nlm.nih.gov/pmc/articles/19580",
+    "10.1152/physrev.00035.2008": "https://www.ncbi.nlm.nih.gov/pmc/articles/2923921",
+    "10.1016/j.neuron.2012.10.038": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3777738/",
+    "10.1016/j.neuron.2012.03.026": "http://www.cell.com/article/S0896627312003340/pdf",
+    "10.1016/S0896-6273(03)00149-1": "http://www.cell.com/article/S0896627303001491/pdf",
+    "10.1016/j.neuron.2005.04.026": "http://www.cell.com/article/S0896627305003624/pdf",
+    "10.1097/00004647-200110000-00001": "https://journals.sagepub.com/doi/pdf/10.1097/00004647-200110000-00001",
+}
+
+def files_block(lid):
+    """Per-lesson download links: the authors' materials, and the papers."""
+    rows = []
+    ch = CHAPTER.get(lid)
+    if ch:
+        rows.append(f"[Exercises, chapter {ch} (PDF)]({GATSBY}/exercises/c{ch}/c{ch}.pdf)")
+        rows.append(f"[Figures, chapter {ch} (PowerPoint)]({GATSBY}/figures/ch{ch}fig.ppt)")
+        for d in CHAPTER_DATA.get(ch, []):
+            rows.append(f"[Data: `{d}`]({GATSBY}/exercises/c{ch}/data/{d})")
+        if ch == 7:
+            rows.append(f"[Chapter 7 in full, free (PDF)]({GATSBY}/ch7.pdf)")
+    for citation, doi in PAPERS_BY_LESSON.get(lid, []):
+        short = citation.split(",")[0]
+        url = OPEN_IN_BROWSER.get(doi, f"https://doi.org/{doi}")
+        tag = "" if doi in OPEN_IN_BROWSER else " *(may need library access)*"
+        rows.append(f"[{short}]({url}){tag}")
+    if not rows:
+        return ""
+    body = "\n".join("    - " + r for r in rows)
+    return ('??? abstract "Files for this lesson"\n\n'
+            "    Open on any device; nothing here needs a login.\n\n"
+            + body + "\n\n"
+            f"    Also: [errata]({GATSBY}/errata.pdf) · "
+            f"[all exercise code and data]({GATSBY}/exall.tar.gz) · "
+            f"[all figures]({GATSBY}/figures/complete.tar.gz)\n")
+
 # ---------------------------------------------------------------- sources
 
 def lecture_for(lid, outdir):
@@ -192,7 +253,11 @@ def build_page(lid, title, spec_chunk, outdir):
         glance.append(f"    **Before this** — {fields['Prerequisites']}")
     if fields.get("Source material"):
         glance.append(f"    **Reading** — {fields['Source material']}")
-    page = f"# {title}\n\n" + "\n".join(glance) + "\n\n[TOC]\n\n"
+    page = f"# {title}\n\n" + "\n".join(glance) + "\n\n"
+    fb = files_block(lid)
+    if fb:
+        page += fb + "\n"
+    page += "[TOC]\n\n"
 
     if lec:
         page += "## Lecture\n\n" + lec + "\n\n"
@@ -266,9 +331,10 @@ LINK_FIXES = [("(foundations.md)", "(foundations/index.md)"),
               ("(coursework/README.md)", f"({REPO}coursework/README.md)")]
 
 home = os.path.join(ROOT, "design", "homepage.md")
+dl = os.path.join(ROOT, "design", "downloads.md")
 for src, dest in [(home if os.path.exists(home) else "README.md", "index.md"),
                   ("learning_plan.md", "plan.md"),
-                  ("MATERIALS.md", "materials.md")]:
+                  ("MATERIALS.md", "materials.md")] + ([(dl, "downloads.md")] if os.path.exists(dl) else []):
     body = open(src if os.path.isabs(src) else os.path.join(ROOT, src)).read()
     for a, b in LINK_FIXES:
         body = body.replace(a, b)
@@ -281,7 +347,7 @@ def nav_lines():
         out.append(f"      - Overview: {key}/index.md")
         for title, path in nav_tracks[key]:
             out.append(f'      - "{title}": {path}')
-    out += ["  - Materials: materials.md", "  - Plan: plan.md"]
+    out += ["  - Materials: materials.md", "  - Downloads: downloads.md", "  - Plan: plan.md"]
     return "\n".join(out)
 
 site_name = "Computational Neuroscience" + (" (teacher)" if TEACHER else "")

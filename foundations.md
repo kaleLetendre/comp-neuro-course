@@ -89,7 +89,7 @@ Roughly 24 sittings, about 60 hours. Nine of the eleven came out as "two to thre
 - Spike-triggered average and reverse correlation as a method, including the white-noise assumption and why it is needed for an unbiased estimate
 - Centre-surround receptive fields as a spatial difference-of-Gaussians operation, not an intensity detector
 - Orientation-selective, phase-sensitive simple cells as oriented spatiotemporal filters
-- Complex cells as phase-invariant, the static nonlinearity mapping filter output to rate, and the linear-nonlinear cascade as the general model with its known failure modes
+- Complex cells as phase-invariant, the static nonlinearity mapping filter output to rate, and the full linear-nonlinear-Poisson chain as the general model — including the chapter's own statement that reverse correlation and this model generally fail beyond V1
 - Not covered: decoding a stimulus from spikes (F3), the laminar and microcircuit structure of V1 (B2)
 
 **You should be able to answer:**
@@ -97,7 +97,7 @@ Roughly 24 sittings, about 60 hours. Nine of the eleven came out as "two to thre
 2. Why must the stimulus be white noise rather than, say, natural images, for the STA to estimate the linear filter without bias?
 3. A centre-surround cell has a positive centre and negative surround. Compute the sign and rough magnitude of its response to a spot covering only the centre, versus one covering centre and surround equally.
 4. What distinguishes a complex cell's response from a simple cell's when an oriented grating is shifted 90 degrees in phase, and how is that implemented in terms of combining filter outputs?
-5. Name the two stages of the LN cascade in order, and give one concrete stimulus manipulation the linear stage alone would get wrong and the full cascade gets right.
+5. The chapter's model chain has three stages, not two — name them in order, say which two are deterministic, and give one concrete stimulus manipulation the linear stage alone would get wrong that the full chain gets right.
 
 **Feeds:** F3 (decoding inverts the encoding model built here), B2 (which assumes this feedforward story before complicating it).
 
