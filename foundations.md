@@ -159,7 +159,7 @@ Roughly 24 sittings, about 60 hours. Nine of the eleven came out as "two to thre
 2. Why is I(R;S) = I(S;R), and what does that symmetry rule out that a "goodness of decoding" metric would allow?
 3. Under infomax with a fixed number of output levels, what response distribution maximises entropy, and what does that imply about the input/output curve relative to the stimulus's cumulative distribution?
 4. In the direct method, which two entropy rates are subtracted to get the information rate, and which one needs the stimulus-repeat protocol?
-5. Why does the direct method's entropy estimate fall as recording length falls, and what does that imply for comparing estimates across recordings?
+5. The direct method extrapolates in word length rather than reading an entropy off directly. Why is that extrapolation necessary, what goes wrong once words get long relative to the data available, and what does that imply for comparing information rates reported from recordings of different lengths?
 
 **Feeds:** A5 (the sparsity and energy argument depends on bits per spike being high while rates are low).
 
