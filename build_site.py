@@ -19,9 +19,9 @@ import os, re, shutil, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TEACHER = "--teacher" in sys.argv
-FIGURES = "--figures" in sys.argv
+FIGURES = "--no-figures" not in sys.argv
 OUT = os.path.join(ROOT, ("site_src_teacher" if TEACHER else "site_src")
-                   + ("_figs" if FIGURES else ""))
+                   + ("" if FIGURES else "_nofigs"))
 DOCS = os.path.join(OUT, "docs")
 
 TRACKS = [
@@ -67,9 +67,9 @@ def figure_source(chapter, number):
 def expand_figures(text, outdir):
     """Embed the figure locally; cite it by number when publishing.
 
-    The figures are the textbook authors', offered for teaching support.
-    Publishing them would be redistribution, so the public build references
-    them and the offline build — for someone who owns the book — shows them."""
+    Figures are reproduced from the authors' own teaching materials, with
+    attribution, for a free non-commercial study guide. --no-figures builds a
+    version that cites them by number instead."""
     def repl(m):
         ch, num, cap = m.group(1), m.group(2), m.group(3).strip()
         if FIGURES:
@@ -79,7 +79,10 @@ def expand_figures(text, outdir):
                 os.makedirs(dest, exist_ok=True)
                 shutil.copy(src, os.path.join(dest, f"ch{ch}fig{num}.png"))
                 return (f"![Figure {ch}.{num}](../figures/ch{ch}fig{num}.png)\n\n"
-                        f"*Figure {ch}.{num} — {cap}.*")
+                        f"*Figure {ch}.{num} — {cap}. From Dayan & Abbott, "
+                        f"[Theoretical Neuroscience]"
+                        f"(https://www.gatsby.ucl.ac.uk/~dayan/book/), "
+                        f"reproduced from the authors' teaching materials.*")
         return (f'!!! quote "Figure {ch}.{num}"\n'
                 f"    {cap}.\n\n"
                 f"    In the book at figure {ch}.{num}, and in the authors' figure "
@@ -285,7 +288,7 @@ site_name = "Computational Neuroscience" + (" (teacher)" if TEACHER else "")
 open(os.path.join(OUT, "mkdocs.yml"), "w").write(f"""site_name: {site_name}
 site_description: A self-study course in computational neuroscience built on Dayan & Abbott
 docs_dir: docs
-site_dir: ../site{'_teacher' if TEACHER else '_offline' if FIGURES else ''}
+site_dir: ../site{'_teacher' if TEACHER else '' if FIGURES else '_nofigs'}
 theme:
   name: material
   palette:

@@ -13,16 +13,11 @@ Reading a lesson with its answers three paragraphs below defeats the point, so t
 
 ## Figures
 
-Lectures place the book's own figures by number, written as `{{fig:1.4|caption}}`. The builder expands them two ways:
+Lectures place the book's own figures by number, written as `{{fig:1.4|caption}}`. The builder embeds them by default, each captioned with its source and a link to the authors' site.
 
-| Build | What a figure becomes |
-|---|---|
-| `--figures` | The authors' PNG, embedded, with its caption |
-| default | A quoted reference — figure number plus caption, pointing at the book |
+`--no-figures` builds a version that cites figures by number instead.
 
-The figures are Dayan & Abbott's, published for teaching support. Embedding them on a public website is redistribution, so **the published site cites them and the offline build shows them**. The offline build is for the person who owns the book; keep it off the web.
-
-`fetch_book_materials.sh` downloads the figure archives; the builder extracts whatever chapter it needs.
+The figures are Dayan & Abbott's, from the sets they publish for teaching. They are used here with attribution, in a free non-commercial guide that points readers at the book. The homepage says so, every caption says so, and anything a rights holder asks to have removed comes down.
 
 ## Building
 

@@ -43,3 +43,13 @@ Needs linear algebra, calculus, probability, and the ability to write a simulati
     [:octicons-arrow-right-24: Read the plan](plan.md)
 
 </div>
+
+---
+
+## Figures and attribution
+
+The diagrams throughout these lessons are reproduced from **Dayan & Abbott, *Theoretical Neuroscience*** (MIT Press, 2001), from the figure sets the authors publish for teaching at [gatsby.ucl.ac.uk/~dayan/book](https://www.gatsby.ucl.ac.uk/~dayan/book/). They are the authors' work, not this course's, and are used here with attribution in a free non-commercial guide intended to send readers to the book rather than replace it.
+
+The same site offers the exercise sets, data, errata and chapter 7 in full, all free. If you are reading this course, buy or borrow the textbook — the lessons are a guide through it, not a substitute for it.
+
+Rights holders who would prefer a figure removed need only ask, and it will be.
