@@ -1024,7 +1024,7 @@
 4. Sparse-coding filters fit to natural images come out oriented and localised rather than Fourier-like — which statistical property of natural images forces that?
 5. In the E-step/M-step split, which step corresponds to inference and which to learning, and what goes wrong if you run one repeatedly without the other?</p>
 <p><strong>Feeds:</strong> C1 (the generative model's prediction error becomes the energy function), C2 (the E-step/M-step split is the template for the two nested loops), and C4 to C6 generally.</p>
-<p><strong>Done when:</strong> The learner works an EM step by hand on a toy causal model and states, without notes, why sparse coding on natural images yields V1-like filters.</p>
+<p><strong>Done when:</strong> You works an EM step by hand on a toy causal model and states, without notes, why sparse coding on natural images yields V1-like filters.</p>
 <hr />
 <hr />
 <p><strong>Lesson spec:</strong> <code>foundations.md</code> → F11. <strong>Total time:</strong> ~4.5-6 hours across 2-3 sittings. <strong>Prerequisites:</strong> F3, F9 (F2 helps the sparse-coding result land).</p>
@@ -1191,7 +1191,7 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
 <tbody>
 <tr>
 <td>Strong</td>
-<td>All seven answered correctly in the learner's own words, each attributed to the right named section, Q4 and Q5 mechanically precise (not just restating the question).</td>
+<td>All seven answered correctly in your own words, each attributed to the right named section, Q4 and Q5 mechanically precise (not just restating the question).</td>
 </tr>
 <tr>
 <td>Adequate</td>
@@ -1228,7 +1228,7 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
 <tbody>
 <tr>
 <td>Strong</td>
-<td>All four points covered accurately and connected to each other (not four disconnected paragraphs); references the learner's own Piece 2 numbers/observations concretely; closing sentence present and appropriately brief; within word count.</td>
+<td>All four points covered accurately and connected to each other (not four disconnected paragraphs); references your own Piece 2 numbers/observations concretely; closing sentence present and appropriately brief; within word count.</td>
 </tr>
 <tr>
 <td>Adequate</td>
@@ -1248,9 +1248,9 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
 <ul>
 <li>[ ] Piece 1: all four E-step responsibilities, both posterior expectations, and both updated weights match the grader key within tolerance; E/M roles correctly identified.</li>
 <li>[ ] Piece 2: script implements ISTA inference alternated with a dictionary gradient step (no sparsity term ⇒ not yet); reported mean best-match cosine similarity ≥0.9 (or ≥0.7 with a diagnosed reason for the gap); <span class="arithmatex">\(\lambda=0\)</span> reasoning and the synthetic-vs-real caveat both stated correctly.</li>
-<li>[ ] Piece 3: all seven guided-reading questions answered in the learner's own words, each correctly attributed to its named section, verified against the physical text by the teacher.</li>
+<li>[ ] Piece 3: all seven guided-reading questions answered in your own words, each correctly attributed to its named section, verified against the physical text by the teacher.</li>
 <li>[ ] Piece 4: 300-600 word explanation, written without notes, correctly covering the density-estimation framing, the sparse-coding/ICA distinction, the Piece 2-grounded account of why filters localize, and the E/M-alternation failure mode, plus the one-sentence forward pointer.</li>
-<li>[ ] Learner can, unprompted and without notes, state why sparse coding on (real or synthetic) natural-image-like data yields V1-like filters — this is F11's own "done when" bar, checked verbally or in a follow-up prompt before moving to track C.</li>
+<li>[ ] Reader can, unprompted and without notes, state why sparse coding on (real or synthetic) natural-image-like data yields V1-like filters — this is F11's own "done when" bar, checked verbally or in a follow-up prompt before moving to track C.</li>
 </ul>
 
 

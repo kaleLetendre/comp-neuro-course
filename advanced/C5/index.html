@@ -1137,7 +1137,7 @@
 4. In a frozen-prior setup with desired future state clamped and current state clamped to the real sensor reading, name the one node type left free and explain why that choice forces the network to act rather than change its belief about the goal.
 5. Give one concrete over-constrained clamp scenario and say what the network does instead of settling; then one scenario where a clamp is satisfied by hallucination rather than a correct answer.</p>
 <p><strong>Project tie-in:</strong> Describes the CartPole clamp pattern in <code>online_rollout.py</code> and <code>train_cartpole.py</code> — observations hard-clamped, desired next state soft-clamped, ACTION free and read off after settling — the mechanism the project plan calls "a running mind that you steer", not an inference API.</p>
-<p><strong>Done when:</strong> The learner reconstructs the four-task clamp table and the CartPole clamp diagram unaided, and can say <em>why</em> each node is fixed or free rather than reciting which.</p>
+<p><strong>Done when:</strong> You reconstructs the four-task clamp table and the CartPole clamp diagram unaided, and can say <em>why</em> each node is fixed or free rather than reciting which.</p>
 <hr />
 <hr />
 <p><strong>Lesson spec:</strong> <code>lessons.md</code> → C5. <strong>Total time:</strong> ~3.5–4.5 hours (one long sitting or two shorter ones). <strong>Prerequisites:</strong> C3 (hard clamp as the infinite-precision limit of a precision-weighted error term), C4 (per-task clamping patterns on a single trained graph).</p>
@@ -1146,7 +1146,7 @@
 <p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
 <p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
 <h2 id="verified-against-the-source">Verified against the source<a class="headerlink" href="#verified-against-the-source" title="Permanent link">&para;</a></h2>
-<p>Checked against <code>papers/C5_friston_2009_active_inference.pdf</code>. The mechanism the lesson turns on is the paper's own: predictions "may be proprioceptive and elicit behavioural responses through active inference" — that is, a prediction about body state is resolved by moving the body rather than by revising the belief. The paper also connects this to dopamine, proposing that dopaminergic responses "may signal that predictions are precise", which is a bridge to C3 worth drawing if the learner raises it.</p>
+<p>Checked against <code>papers/C5_friston_2009_active_inference.pdf</code>. The mechanism the lesson turns on is the paper's own: predictions "may be proprioceptive and elicit behavioural responses through active inference" — that is, a prediction about body state is resolved by moving the body rather than by revising the belief. The paper also connects this to dopamine, proposing that dopaminergic responses "may signal that predictions are precise", which is a bridge to C3 worth drawing if you raises it.</p>
 <h2 id="coverage-map">Coverage map<a class="headerlink" href="#coverage-map" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1293,7 +1293,7 @@
 <tbody>
 <tr>
 <td>Strong</td>
-<td>One settle function reused across all configs (not five copy-pasted loops); all three L/Z/X configs converge to near-zero energy with correct qualitative results (classification recovers the clamped class, generation reproduces the class pattern, reconstruction fills in the missing half reasonably); goal-directed config correctly frees only <code>A</code> and <code>S'</code> while <code>S</code> never changes; over-constrained config's energy visibly plateaus above the satisfiable configs' floor and the learner states why (two hard clamps making incompatible demands on the same latent path).</td>
+<td>One settle function reused across all configs (not five copy-pasted loops); all three L/Z/X configs converge to near-zero energy with correct qualitative results (classification recovers the clamped class, generation reproduces the class pattern, reconstruction fills in the missing half reasonably); goal-directed config correctly frees only <code>A</code> and <code>S'</code> while <code>S</code> never changes; over-constrained config's energy visibly plateaus above the satisfiable configs' floor and you states why (two hard clamps making incompatible demands on the same latent path).</td>
 </tr>
 <tr>
 <td>Adequate</td>
@@ -1394,7 +1394,7 @@
 <p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
 </div>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
-<p>The learner is done with C5 when, unaided (no notes, no re-reading Piece 1/2 solutions):
+<p>You is done with C5 when, unaided (no notes, no re-reading Piece 1/2 solutions):
 - They can redraw the four-task clamp table (classification / generation / reconstruction / goal-directed) from the fixed-vs-free principle alone, including the reconstruction-vs-generation contrast.
 - They can redraw the CartPole clamp diagram (observation hard-clamped, desired next state soft-clamped, ACTION free and read out) and explain <em>why</em> each role is assigned that way, not just recite it.
 - They can state the soft-clamp energy term, solve for <code>x*</code>, and explain in one sentence why π→∞ gives the hard clamp as a special case rather than a separate rule.

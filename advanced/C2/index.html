@@ -1137,7 +1137,7 @@
 4. Why does SGD tolerate a live rollout's shifting distribution better than Adam's carried-over moment estimates?
 5. In a deployed network that never stops receiving input, what replaces the epoch boundary as the trigger to update weights?</p>
 <p><strong>Project tie-in:</strong> Explains the Step 2b finding that SGD works but carried-over Adam state blows up in <code>online_rollout.py</code>, and why the 100-iteration inference settle in <code>train_cartpole.py</code> is not an arbitrary constant.</p>
-<p><strong>Done when:</strong> The learner states the fixed-prediction assumption the outer loop relies on, without notes, and names the specific Step 2b consequence of violating it.</p>
+<p><strong>Done when:</strong> You states the fixed-prediction assumption the outer loop relies on, without notes, and names the specific Step 2b consequence of violating it.</p>
 <hr />
 <hr />
 <p><strong>Lesson spec:</strong> <code>lessons.md</code> → C2. <strong>Total time:</strong> 4.5–6 hours (one to two sittings). <strong>Prerequisites:</strong> C1.</p>
@@ -1369,7 +1369,7 @@
 <p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
 </div>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
-<p>Coursework is complete when: Piece 1's derivation and numeric table are correct (or corrected via the hint ladder) and the learner can state, without notes, that the outer-loop weight gradient is only valid once the inner loop has reached its fixed point; Piece 2's simulation runs standalone and shows the expected inner_steps pattern; Piece 3's correspondence table correctly pairs E-step/M-step with inner/outer loop; and Piece 4's written defence proposes a concrete, falsifiable weight-update trigger and correctly explains the SGD/Adam mechanism. The learner should be able to say, unprompted, what specifically goes wrong with the Step 2b gradient/optimizer if either the inner-loop settling budget or the weight-update schedule is treated as an arbitrary hyperparameter rather than a consequence of the fixed-point assumption.</p>
+<p>Coursework is complete when: Piece 1's derivation and numeric table are correct (or corrected via the hint ladder) and you can state, without notes, that the outer-loop weight gradient is only valid once the inner loop has reached its fixed point; Piece 2's simulation runs standalone and shows the expected inner_steps pattern; Piece 3's correspondence table correctly pairs E-step/M-step with inner/outer loop; and Piece 4's written defence proposes a concrete, falsifiable weight-update trigger and correctly explains the SGD/Adam mechanism. You should be able to say, unprompted, what specifically goes wrong with the Step 2b gradient/optimizer if either the inner-loop settling budget or the weight-update schedule is treated as an arbitrary hyperparameter rather than a consequence of the fixed-point assumption.</p>
 
 
 

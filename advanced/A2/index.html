@@ -1122,7 +1122,7 @@
 <p><strong>Size:</strong> two to three sittings — includes running the diagnostic against the saved model</p>
 <p><strong>Source material:</strong> <strong>D&amp;A ch. 7</strong> <em>Recurrent Networks</em> (selective amplification, continuous line attractors, bump/ring attractors) and <em>Stochastic Networks</em> (energy functions, Hopfield/Boltzmann) — the core text for this lesson. Supporting: Hopfield 1982 (PNAS) for the original.</p>
 <p><strong>Local copies:</strong> none — Hopfield 1982 (doi:10.1073/pnas.79.8.2554) needs institutional access. D&amp;A ch. 7 carries the lesson without it.</p>
-<p><strong>Goal:</strong> Describe network state as a point moving on an energy landscape, explain why a trained recurrent network settles to discrete fixed points instead of drifting, and separate state (fast, per-trial) from weights (slow, cross-trial) as two memory timescales. Closes the gap exposed by the learner's own CartPole attractor test: they can observe distinct settled states but have no principled way to decide whether those are real basins or an artifact of stopping too early.</p>
+<p><strong>Goal:</strong> Describe network state as a point moving on an energy landscape, explain why a trained recurrent network settles to discrete fixed points instead of drifting, and separate state (fast, per-trial) from weights (slow, cross-trial) as two memory timescales. Closes the gap exposed by your own CartPole attractor test: they can observe distinct settled states but have no principled way to decide whether those are real basins or an artifact of stopping too early.</p>
 <p><strong>Scope:</strong>
 - Energy/Lyapunov framing: fixed points as local minima, basins of attraction, why symmetric recurrent weights guarantee convergence
 - Hopfield network as the worked example: patterns as attractors, capacity limits, spurious attractors
@@ -1137,7 +1137,7 @@
 4. What stays fixed and what changes when you compare "the network learns" to "the network settles to an answer for one input"?
 5. What is a bump attractor, and how does persistent spiking activity implement a fixed point when individual neurons cannot hold a static real-valued output?</p>
 <p><strong>Project tie-in:</strong> Resolves the open interpretation question left by the 2026-04-15 attractor test in <code>comp_neuro_notes.md</code>, and explains why state persists across CartPole timesteps in <code>network.py</code> / <code>online_rollout.py</code> independently of weight updates.</p>
-<p><strong>Done when:</strong> The learner designs and describes, unprompted, the diagnostic in question 2 and runs it against the saved model — evidence, not intuition.</p>
+<p><strong>Done when:</strong> You designs and describes, unprompted, the diagnostic in question 2 and runs it against the saved model — evidence, not intuition.</p>
 <hr />
 <hr />
 <p><strong>Lesson spec:</strong> <code>lessons.md</code> → A2. <strong>Total time:</strong> ~7-8 hours across 2-3 sittings. <strong>Prerequisites:</strong> A1; LIF dynamics, graph topology with reciprocal connections, homeostasis.</p>
@@ -1325,7 +1325,7 @@ i=4 [  1   -1    1    0 ]
 <p><strong>Type:</strong> written defence · <strong>Time:</strong> 1-1.5 hours</p>
 <p><strong>Learning goals</strong>
 - Articulate, precisely, the state/weight timescale separation and its exception in this project's own online-learning setting.
-- Take a defensible, falsifiable position on the multi-basin vs slow-mode question grounded in the learner's own Piece 2(b) data, not intuition.
+- Take a defensible, falsifiable position on the multi-basin vs slow-mode question grounded in your own Piece 2(b) data, not intuition.
 - Reason about whether a specific observed fact (the action sign crossing zero) is actually evidence for either hypothesis, or a red herring.</p>
 <p><strong>Task.</strong> Write 300-600 words addressing all three:</p>
 <p>(a) What stays fixed and what changes between "the network learns" and "the network settles to an answer for one input"? Ground this in both the Hopfield formalism (Piece 1: which symbol is w_ij, which is s_i, in the update rule vs the storage rule) and the CartPole network. Explicitly address the wrinkle in this project's own online-learning setting (campaign 02), where weights <em>do</em> update during a rollout — does the clean state/weight separation still hold there, and if not, what replaces it?</p>
@@ -1363,9 +1363,9 @@ i=4 [  1   -1    1    0 ]
 <ul>
 <li>Piece 1: all three parts (A derivation, B numeric energies, C asymmetric counterexample) submitted with numbers matching or explained where they differ.</li>
 <li>Piece 2(a): capacity table + spurious-attractor demonstration run and reported, not just described.</li>
-<li>Piece 2(b): a perturbation-test protocol with all parameters fixed <em>before</em> running, actually executed against <code>run_01/best.pkl</code>, with raw data reported — this is the lesson's "done when": the learner designs and runs this diagnostic unprompted, evidence over intuition.</li>
+<li>Piece 2(b): a perturbation-test protocol with all parameters fixed <em>before</em> running, actually executed against <code>run_01/best.pkl</code>, with raw data reported — this is the lesson's "done when": you designs and runs this diagnostic unprompted, evidence over intuition.</li>
 <li>Piece 3: five answers, each naming a specific mechanism from the text, not paraphrase-only.</li>
-<li>Piece 4: 300-600 words covering (a), (b), (c), with (b) traceable to the learner's own Piece 2(b) numbers.</li>
+<li>Piece 4: 300-600 words covering (a), (b), (c), with (b) traceable to your own Piece 2(b) numbers.</li>
 <li>No piece may be marked Strong if it asserts a conclusion about the basins-vs-slow-mode question as settled fact — this is explicitly open, and the rubric rewards calibrated uncertainty over false confidence.</li>
 </ul>
 

@@ -1137,7 +1137,7 @@
 4. Name the three quantities ∂E/∂x₁ depends on, and say why none of them require information from outside x₁'s immediate neighbours.
 5. If settling is gradient descent on E, what does it mean for a node's activity to be at a fixed point, in terms of ∂E/∂x?</p>
 <p><strong>Project tie-in:</strong> The formal justification for the purely-local constraint — the settling loops in <code>steps/02_pc_graphs/</code> and <code>steps/02b_persistent_state/network.py</code> are running exactly this gradient descent, and the error-neuron-as-energy-term view is what makes the neuron-pair abstraction principled rather than merely convenient.</p>
-<p><strong>Done when:</strong> The learner derives ∂E/∂x₁ for the 3-node example from scratch without being shown the formula, and identifies it as depending only on local pre/post activity and local error.</p>
+<p><strong>Done when:</strong> You derives ∂E/∂x₁ for the 3-node example from scratch without being shown the formula, and identifies it as depending only on local pre/post activity and local error.</p>
 <hr />
 <hr />
 <p><strong>Lesson spec:</strong> <code>lessons.md</code> → C1. <strong>Total time:</strong> two to three sittings (~4-6 hours total: ~75 min derivation, ~75 min simulation, ~50 min guided reading, ~50 min written defence). <strong>Prerequisites:</strong> A2 (attractors, energy landscapes, fixed points); working familiarity with the Step 1/2 settling loop.</p>
@@ -1259,7 +1259,7 @@
 <tbody>
 <tr>
 <td>Strong</td>
-<td>Script runs standalone; energy trace is strictly non-increasing (or non-increasing within float tolerance) at every step; final x1 within 1e-3 of 1.96; autograd cross-check passes; <code>local_update</code> signature genuinely excludes x0/x2/w, and the learner's summary explicitly connects this to Piece 1's locality argument.</td>
+<td>Script runs standalone; energy trace is strictly non-increasing (or non-increasing within float tolerance) at every step; final x1 within 1e-3 of 1.96; autograd cross-check passes; <code>local_update</code> signature genuinely excludes x0/x2/w, and you's summary explicitly connects this to Piece 1's locality argument.</td>
 </tr>
 <tr>
 <td>Adequate</td>
@@ -1307,7 +1307,7 @@
 </tr>
 <tr>
 <td>Adequate</td>
-<td>Most answers correct; Q4's term-by-term correspondence is present but loose (e.g. correctly identifies "own error minus something" without pinning down that the "something" is v-scaled e2); Q5 correctly identifies the two-timescale claim but doesn't connect it to the learner's own settling-loop code.</td>
+<td>Most answers correct; Q4's term-by-term correspondence is present but loose (e.g. correctly identifies "own error minus something" without pinning down that the "something" is v-scaled e2); Q5 correctly identifies the two-timescale claim but doesn't connect it to your own settling-loop code.</td>
 </tr>
 <tr>
 <td>Not yet</td>
@@ -1362,7 +1362,7 @@
 <p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
 </div>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
-<p>C1 is complete when: (1) Piece 1's derivation is produced from scratch — the learner is not shown ∂E/∂x1 = e1 − v·e2 before deriving it — with correct e1 = −0.5, correct ∂E/∂x1 = −0.575 at x1=1.5, and a locality argument stated in terms of e1/v/e2 as physical quantities rather than "nearby variables"; (2) Piece 2's simulation empirically confirms monotonic energy decrease and convergence to x1* = 1.96 (±1e-3), with an update function whose signature architecturally excludes non-local inputs; (3) Piece 3's reading answers are structurally correct and don't rely on transcribing garbled equations; (4) Piece 4's defence contains all five required claims from its grader key and explicitly scopes the argument to activity settling, not weight updates. A learner who can do all four without being shown the ∂E/∂x1 formula in advance has closed the gap between "I run a settling loop" and "I know settling is gradient descent on a specific energy" — the stated goal of this lesson.</p>
+<p>C1 is complete when: (1) Piece 1's derivation is produced from scratch — you is not shown ∂E/∂x1 = e1 − v·e2 before deriving it — with correct e1 = −0.5, correct ∂E/∂x1 = −0.575 at x1=1.5, and a locality argument stated in terms of e1/v/e2 as physical quantities rather than "nearby variables"; (2) Piece 2's simulation empirically confirms monotonic energy decrease and convergence to x1* = 1.96 (±1e-3), with an update function whose signature architecturally excludes non-local inputs; (3) Piece 3's reading answers are structurally correct and don't rely on transcribing garbled equations; (4) Piece 4's defence contains all five required claims from its grader key and explicitly scopes the argument to activity settling, not weight updates. A learner who can do all four without being shown the ∂E/∂x1 formula in advance has closed the gap between "I run a settling loop" and "I know settling is gradient descent on a specific energy" — the stated goal of this lesson.</p>
 
 
 

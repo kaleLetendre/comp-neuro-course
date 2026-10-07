@@ -1138,7 +1138,7 @@
 4. Given Δw = η·π·e·(pre-synaptic activity) and a naive online rule π ← π + η_π(π·e² − 1), describe the runaway when e stays near zero, and why that makes joint precision-and-weight learning unstable.
 5. Which error channel's precision does PV scale, which does VIP scale, and what does high VIP-driven precision imply about confidence in that channel's prediction?</p>
 <p><strong>Project tie-in:</strong> The soft desired-next-state clamp in Step 2b is mechanically a precision choice relative to the sensory clamp's precision. Step 4's stress variable currently tracks unweighted persistent error and will eventually need a precision-aware version.</p>
-<p><strong>Done when:</strong> The learner writes the precision-weighted energy unaided and gets v = 5, then v ≈ 5.67, for questions 2 and 3.</p>
+<p><strong>Done when:</strong> You writes the precision-weighted energy unaided and gets v = 5, then v ≈ 5.67, for questions 2 and 3.</p>
 <hr />
 <hr />
 <p><strong>Lesson spec:</strong> <code>lessons.md</code> → C3. <strong>Total time:</strong> 4–5.5 hours (one to two sittings). <strong>Prerequisites:</strong> C1, C2, the PV/SST/VIP roles.</p>
@@ -1147,7 +1147,7 @@
 <p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
 <p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
 <h2 id="verified-against-the-source">Verified against the source<a class="headerlink" href="#verified-against-the-source" title="Permanent link">&para;</a></h2>
-<p>Question 4's expected answer was checked against the PDF: the paper contains <strong>zero</strong> occurrences of "VIP", "parvalbumin" or "somatostatin". It predates interneuron-subtype accounts of precision, exactly as the key anticipates. Its own framing, quotable: attention "is more concerned with optimizing the uncertainty or precision of probabilistic representations, rather than what is being represented". Question 5 remains the learner's synthesis and must not be graded as though the paper supplied it.</p>
+<p>Question 4's expected answer was checked against the PDF: the paper contains <strong>zero</strong> occurrences of "VIP", "parvalbumin" or "somatostatin". It predates interneuron-subtype accounts of precision, exactly as the key anticipates. Its own framing, quotable: attention "is more concerned with optimizing the uncertainty or precision of probabilistic representations, rather than what is being represented". Question 5 remains you's synthesis and must not be graded as though the paper supplied it.</p>
 <h2 id="coverage-map">Coverage map<a class="headerlink" href="#coverage-map" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1245,7 +1245,7 @@
 <tbody>
 <tr>
 <td>Strong</td>
-<td>Part A settles <code>v</code> via iteration (matches closed form within a small tolerance) and correctly reports that <code>v</code> climbs toward 6 while <code>|Δw2|</code> grows but <strong>saturates</strong> rather than tracking <code>v</code>'s shift — i.e. explicitly notes these are not the same curve. Part B shows <code>π(t)</code> crossing zero and continuing to fall (or the mirror-image growth, if the learner's sign convention differs but is applied consistently) with no fixed point reached at this <code>e</code>, and correctly explains that because <code>π·e²</code> stays far below 1 for any precision value reached in a normal run, the rule keeps pushing <code>π</code> in the same direction indefinitely — a small, stable error does not brake the update. Correctly notes <code>|Δw(t)|</code> grows over the run despite <code>e</code> never changing.</td>
+<td>Part A settles <code>v</code> via iteration (matches closed form within a small tolerance) and correctly reports that <code>v</code> climbs toward 6 while <code>|Δw2|</code> grows but <strong>saturates</strong> rather than tracking <code>v</code>'s shift — i.e. explicitly notes these are not the same curve. Part B shows <code>π(t)</code> crossing zero and continuing to fall (or the mirror-image growth, if you's sign convention differs but is applied consistently) with no fixed point reached at this <code>e</code>, and correctly explains that because <code>π·e²</code> stays far below 1 for any precision value reached in a normal run, the rule keeps pushing <code>π</code> in the same direction indefinitely — a small, stable error does not brake the update. Correctly notes <code>|Δw(t)|</code> grows over the run despite <code>e</code> never changing.</td>
 </tr>
 <tr>
 <td>Adequate</td>
@@ -1267,7 +1267,7 @@
 <p><strong>Learning goals</strong>
 - Locate Feldman &amp; Friston's formal treatment of precision within the free-energy framework and confirm it matches <code>π = 1/σ²</code>.
 - Identify the specific empirical phenomenon they use to argue attention <em>is</em> precision-optimization, and the mechanism they propose implements it.
-- Synthesize their abstract claim with the already-known PV/SST/VIP circuit roles — a step the paper itself does not make, so this is the learner's own reasoning, not something to extract from the text.</p>
+- Synthesize their abstract claim with the already-known PV/SST/VIP circuit roles — a step the paper itself does not make, so this is your own reasoning, not something to extract from the text.</p>
 <p><strong>Task</strong></p>
 <p>Read Feldman &amp; Friston (2010) with these questions in hand. For questions 1–4, answer by quoting or closely paraphrasing the specific passage, not by reconstructing from memory of PC theory in general — the point is to verify the paper says what you think it says.</p>
 <ol>
@@ -1348,7 +1348,7 @@
 <p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
 </div>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
-<p>C3 is complete when: Piece 1's derivation is produced unaided (no formula supplied by the teacher) and lands on <code>v=5</code> then <code>v≈5.667</code> with the direction of the shift correctly explained; Piece 2's script settles <code>v</code> by iteration (not the closed form) and Part B visibly shows <code>π(t)</code> running away with no fixed point reached, correctly explained via the update rule rather than described only as "it blows up"; Piece 3's five answers include verifiable quotes/paraphrases for Q1–4 and correctly map VIP to attention in Q5 with justification; Piece 4's written defence takes a real position on precision-weighting the stress variable, names the specific growth/pruning failure mode for a distrusted channel, and correctly flags that naively learning the weighting precision reintroduces Piece 2's instability. The learner should be able to say, unprompted, that "precision 1 everywhere" is not a simplification but a claim about the world (every channel equally trustworthy), and that this claim is currently implicit — unexamined — in both Step 2b's clamp-strength ratio and Step 4's unweighted stress accumulator.</p>
+<p>C3 is complete when: Piece 1's derivation is produced unaided (no formula supplied by the teacher) and lands on <code>v=5</code> then <code>v≈5.667</code> with the direction of the shift correctly explained; Piece 2's script settles <code>v</code> by iteration (not the closed form) and Part B visibly shows <code>π(t)</code> running away with no fixed point reached, correctly explained via the update rule rather than described only as "it blows up"; Piece 3's five answers include verifiable quotes/paraphrases for Q1–4 and correctly map VIP to attention in Q5 with justification; Piece 4's written defence takes a real position on precision-weighting the stress variable, names the specific growth/pruning failure mode for a distrusted channel, and correctly flags that naively learning the weighting precision reintroduces Piece 2's instability. You should be able to say, unprompted, that "precision 1 everywhere" is not a simplification but a claim about the world (every channel equally trustworthy), and that this claim is currently implicit — unexamined — in both Step 2b's clamp-strength ratio and Step 4's unweighted stress accumulator.</p>
 
 
 

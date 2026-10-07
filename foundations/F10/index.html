@@ -1025,7 +1025,7 @@
 4. In actor-critic, which equation does the critic use to update its value estimate, and what quantity from that update is handed to the actor?
 5. How does the indirect actor's action-value update differ mechanically from a direct policy update?</p>
 <p><strong>Feeds:</strong> B1, which takes the TD error defined here as the candidate account of dopamine firing and tests it against recorded data, including where the single-scalar abstraction fails.</p>
-<p><strong>Done when:</strong> The learner derives Rescorla-Wagner and TD updates from raw trial data by hand, and attributes blocking, overshadowing and actor-critic bootstrapping to specific terms in those equations.</p>
+<p><strong>Done when:</strong> You derives Rescorla-Wagner and TD updates from raw trial data by hand, and attributes blocking, overshadowing and actor-critic bootstrapping to specific terms in those equations.</p>
 <hr />
 <hr />
 <p><strong>Lesson spec:</strong> <code>foundations.md</code> → F10. <strong>Total time:</strong> 4-5.5 hours across two to three sittings. <strong>Prerequisites:</strong> F9.</p>
@@ -1216,7 +1216,7 @@ By hand, compute δ₀...δ₅ and the resulting weights after trial 1, then aft
 - Articulate reinforcement learning as a paradigm distinct from supervised and unsupervised learning, in terms of the information the scalar reward signal carries and lacks.
 - Connect the specific mathematical terms derived in Pieces 1-2 (the summed error in RW, the bootstrapped error in TD) to the specific phenomena they explain (blocking, backward-shifting prediction, actor-critic bootstrapping).</p>
 <p><strong>Task</strong></p>
-<p>In 300-600 words, explain: (a) why reinforcement learning is a third paradigm alongside supervised and unsupervised learning — what the reward signal gives the learner and what it withholds; (b) how one equation, the Rescorla-Wagner update with its <em>summed</em> prediction error, is enough to produce both ordinary acquisition and blocking, and why the same equation without the sum (independent per-stimulus errors) would fail to produce blocking; (c) how TD extends this to <em>within-trial</em> timing by bootstrapping V(t) from V(t+1), and why this bootstrapping is exactly what makes the prediction error's peak shift backward across trials; (d) how the actor-critic architecture reuses the same TD error as the signal for policy improvement, not just value learning.</p>
+<p>In 300-600 words, explain: (a) why reinforcement learning is a third paradigm alongside supervised and unsupervised learning — what the reward signal gives you and what it withholds; (b) how one equation, the Rescorla-Wagner update with its <em>summed</em> prediction error, is enough to produce both ordinary acquisition and blocking, and why the same equation without the sum (independent per-stimulus errors) would fail to produce blocking; (c) how TD extends this to <em>within-trial</em> timing by bootstrapping V(t) from V(t+1), and why this bootstrapping is exactly what makes the prediction error's peak shift backward across trials; (d) how the actor-critic architecture reuses the same TD error as the signal for policy improvement, not just value learning.</p>
 <p><strong>Deliverable</strong></p>
 <p>300-600 words of prose (no code, equations allowed inline where they clarify a point but the piece should read as explanation, not as a repeat of Piece 1's derivations).</p>
 <p><strong>Rubric</strong></p>

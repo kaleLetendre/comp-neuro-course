@@ -1162,7 +1162,7 @@
 <tr>
 <td>2. Dopamine signatures from a TD agent</td>
 <td>simulation</td>
-<td>AC1 (same three signatures, seen emerging from a rule the learner wrote)</td>
+<td>AC1 (same three signatures, seen emerging from a rule you wrote)</td>
 </tr>
 <tr>
 <td>3. Guided reading — D&amp;A ch. 9</td>
@@ -1176,7 +1176,7 @@
 </tr>
 </tbody>
 </table>
-<p>Note on sourcing: AC2 (diffusion/timescale numbers), AC3 (ACh vs NE under unpredictable uncertainty) and AC4 (D1/D2 opposite sign) are not covered by D&amp;A ch. 9, which is a TD/dopamine chapter, not a neuromodulator-anatomy chapter. The paper that would normally carry AC3 (Yu &amp; Dayan 2005, expected vs. unexpected uncertainty) is explicitly unavailable. Piece 4 therefore hands the learner the minimum factual scaffolding for AC2-AC4 directly in the task text and grades their <em>reasoning</em> from it, rather than pretending a citation exists. This is called out again in Piece 4.</p>
+<p>Note on sourcing: AC2 (diffusion/timescale numbers), AC3 (ACh vs NE under unpredictable uncertainty) and AC4 (D1/D2 opposite sign) are not covered by D&amp;A ch. 9, which is a TD/dopamine chapter, not a neuromodulator-anatomy chapter. The paper that would normally carry AC3 (Yu &amp; Dayan 2005, expected vs. unexpected uncertainty) is explicitly unavailable. Piece 4 therefore hands you the minimum factual scaffolding for AC2-AC4 directly in the task text and grades their <em>reasoning</em> from it, rather than pretending a citation exists. This is called out again in Piece 4.</p>
 <hr />
 <h2 id="piece-1-td-prediction-error-by-hand">Piece 1 — TD prediction error by hand<a class="headerlink" href="#piece-1-td-prediction-error-by-hand" title="Permanent link">&para;</a></h2>
 <p><strong>Type:</strong> derivation · <strong>Time:</strong> 60 min</p>
@@ -1229,7 +1229,7 @@ A table with columns [Trial, V(C) before, V(R) before, δ(C), δ(R), V(C) after,
 <p><strong>Type:</strong> simulation · <strong>Time:</strong> 105 min · <strong>This is the centrepiece of the lesson.</strong></p>
 <p><strong>Learning goals</strong>
 - Implement TD(0) over a within-trial timeline (not just two lumped states) and watch the value function reshape itself with training
-- Reproduce, from a rule the learner wrote and trained themselves, the three canonical dopamine signatures: burst at reward (naive), burst at cue / no response at reward (trained), dip at the omission time (trained, reward withheld)
+- Reproduce, from a rule you wrote and trained themselves, the three canonical dopamine signatures: burst at reward (naive), burst at cue / no response at reward (trained), dip at the omission time (trained, reward withheld)
 - Build the intuition that "the response migrates backward in time" is not a story bolted onto TD — it falls out of the Bellman recursion for free</p>
 <p><strong>Task</strong></p>
 <p>Represent one trial as a fixed timeline of <span class="arithmatex">\(T=20\)</span> discrete steps, cue (CS) always at <span class="arithmatex">\(t=0\)</span>, reward (US) always at <span class="arithmatex">\(t=T_{US}=10\)</span>. Keep a tabular value function <span class="arithmatex">\(V[0..T-1]\)</span> (initialized to zero) plus one fixed, <strong>never-updated</strong> baseline value <span class="arithmatex">\(V_{\text{ITI}} = 0\)</span> representing the inter-trial interval (it doesn't predict anything, so nothing should ever push it away from 0 — this is what makes the response appear to originate at the cue rather than drift backward forever).</p>
@@ -1274,7 +1274,7 @@ A runnable script (numpy or plain PyTorch tensors, no autograd needed, under ~10
 <p><strong>Learning goals</strong>
 - Read the Rescorla-Wagner rule and TD model as D&amp;A actually present them, not as reconstructed from memory of three-factor rules
 - Identify the specific textual claim linking <span class="arithmatex">\(\delta(t)\)</span> to Schultz's dopamine recordings
-- Distinguish "the chapter's model" from "the learner's prior mental model" at the two points where they diverge</p>
+- Distinguish "the chapter's model" from "you's prior mental model" at the two points where they diverge</p>
 <p><strong>Task</strong>
 Read D&amp;A ch. 9, the sections covering the Rescorla-Wagner rule, the temporal difference (TD) model of classical conditioning, and the section relating the TD model to dopamine neuron recordings. Answer:</p>
 <ol>
@@ -1296,15 +1296,15 @@ Four short answers (2-4 sentences each), each naming which subsection of ch. 9 i
 <tbody>
 <tr>
 <td>Strong</td>
-<td>All four answers accurately reflect the chapter's content in the learner's own words (not copied verbatim); Q2 correctly identifies the bootstrapped/successive-prediction mechanism as the specific fix, not a vague "TD is better"; Q4's answer matches (in direction and reasoning) what the learner independently derived in Piece 1, and the learner explicitly notices and states that match.</td>
+<td>All four answers accurately reflect the chapter's content in your own words (not copied verbatim); Q2 correctly identifies the bootstrapped/successive-prediction mechanism as the specific fix, not a vague "TD is better"; Q4's answer matches (in direction and reasoning) what you independently derived in Piece 1, and you explicitly notices and states that match.</td>
 </tr>
 <tr>
 <td>Adequate</td>
-<td>Three of four answers correct; Q4 correct but the learner doesn't connect it back to Piece 1 even when prompted.</td>
+<td>Three of four answers correct; Q4 correct but you doesn't connect it back to Piece 1 even when prompted.</td>
 </tr>
 <tr>
 <td>Not yet</td>
-<td>Answers describe three-factor/eligibility-trace framing instead of what the chapter actually says (i.e., the learner is still describing their prior mental model rather than reading the new material); Q3 or Q4 answered from general knowledge without locating it in the chapter.</td>
+<td>Answers describe three-factor/eligibility-trace framing instead of what the chapter actually says (i.e., you is still describing their prior mental model rather than reading the new material); Q3 or Q4 answered from general knowledge without locating it in the chapter.</td>
 </tr>
 </tbody>
 </table>
@@ -1317,7 +1317,7 @@ Four short answers (2-4 sentences each), each naming which subsection of ch. 9 i
 <p><strong>Learning goals</strong>
 - Articulate, without a textbook open, the specific ways real neuromodulation breaks the "one chemical, one direction, instant broadcast" model
 - Make a scoped, falsifiable design decision for the project rather than a general essay</p>
-<p><strong>Background the learner needs but that isn't in the available sources</strong> (given here directly, not as an assigned reading, because the papers that would normally carry this — Yu &amp; Dayan 2005 on expected/unexpected uncertainty, and standard pharmacology on D1/D2 signalling — aren't in the source list):
+<p><strong>Background you needs but that isn't in the available sources</strong> (given here directly, not as an assigned reading, because the papers that would normally carry this — Yu &amp; Dayan 2005 on expected/unexpected uncertainty, and standard pharmacology on D1/D2 signalling — aren't in the source list):
 - Volume transmission (how dopamine, ACh, and NE actually reach targets outside direct synapses) diffuses over roughly tens to low hundreds of microns and acts over hundreds of milliseconds to seconds — orders of magnitude slower and more spatially constrained than a fast synaptic release event (sub-micron cleft, sub-millisecond), and very far from an instantaneous, uniform, whole-network mist.
 - The standard division of labour: noradrenaline (locus coeruleus) tracks <em>unexpected</em> uncertainty — a sudden, unsignalled change in the rules (a cue that used to mean X now unpredictably means Y) — and tends to trigger a global interrupt/gain-reset. Acetylcholine (basal forebrain) tracks <em>expected</em> uncertainty — known, stable ambiguity or stochasticity within a model you already trust (a cue you know is only 70% reliable) — and tunes how strongly you weight new evidence against your existing belief, without necessarily discarding that belief.
 - Dopamine's effect on plasticity is receptor-dependent in sign: neurons/synapses expressing D1-type receptors are typically pushed one way (associated with the direct pathway, generally facilitating potentiation) by rising dopamine, while D2-expressing neurons/synapses are typically pushed the other way — so the same concentration of the same molecule, at the same time, produces opposite plasticity effects depending on what's listening, not what's broadcasting.</p>

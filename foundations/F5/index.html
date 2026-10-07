@@ -1025,7 +1025,7 @@
 4. Why does the delayed onset of the potassium conductance produce a refractory period, rather than the neuron simply repolarising and firing again immediately?
 5. When channels are modelled stochastically, what does the deterministic conductance represent — what is being averaged over what?</p>
 <p><strong>Feeds:</strong> F6 (integrate-and-fire is the abstraction that discards these dynamics), F7 (compartments extend this circuit spatially), A4 (reset modes and refractoriness stand in for the mechanisms fixed here).</p>
-<p><strong>Done when:</strong> The learner can derive why a spike is all-or-none and why a refractory period follows, from sodium and potassium kinetics alone, without invoking threshold-and-reset.</p>
+<p><strong>Done when:</strong> You can derive why a spike is all-or-none and why a refractory period follows, from sodium and potassium kinetics alone, without invoking threshold-and-reset.</p>
 <hr />
 <hr />
 <p><strong>Lesson spec:</strong> <code>foundations.md</code> → F5. <strong>Total time:</strong> two to three sittings (the Hodgkin-Huxley gating kinetics and the stochastic-channel material each take real time to work through numerically). <strong>Prerequisites:</strong> F1.</p>
@@ -1159,7 +1159,7 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 </tr>
 <tr>
 <td>Adequate</td>
-<td>Model spikes and threshold is in a plausible range, but the refractory analysis conflates the short-delay artifact with a real second spike, or reports only one of absolute/relative refractoriness. Gate identification correct but not tied to the learner's own trace values.</td>
+<td>Model spikes and threshold is in a plausible range, but the refractory analysis conflates the short-delay artifact with a real second spike, or reports only one of absolute/relative refractoriness. Gate identification correct but not tied to your own trace values.</td>
 </tr>
 <tr>
 <td>Not yet</td>
@@ -1200,7 +1200,7 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 <tbody>
 <tr>
 <td>Strong</td>
-<td>All six answers match the expected content below, in the learner's own words, correctly tagged to subsection.</td>
+<td>All six answers match the expected content below, in your own words, correctly tagged to subsection.</td>
 </tr>
 <tr>
 <td>Adequate</td>
@@ -1221,7 +1221,7 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 <p><strong>Learning goals</strong>
 - Give a causal (kinetics-based) account of why an HH spike is all-or-none, without invoking "threshold" as an assumed model feature.
 - Give a causal account of why a refractory period necessarily follows a spike.
-- Ground both explanations in the learner's own numbers from Piece 2.</p>
+- Ground both explanations in your own numbers from Piece 2.</p>
 <p><strong>Task</strong></p>
 <p>In 300–600 words, explain why a Hodgkin–Huxley spike is all-or-none and why a refractory period follows it, using only the kinetics of m (Na+ activation), h (Na+ inactivation), and n (K+ activation) — do not describe the neuron as having a hardcoded "threshold" that gets "reset". Cite at least two concrete numbers from your own Piece 2 run (e.g. your bisected threshold current, your spike-peak timing, or your measured refractory delays).</p>
 <p><strong>Deliverable</strong></p>
@@ -1237,7 +1237,7 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 <tbody>
 <tr>
 <td>Strong</td>
-<td>Explains all-or-none as the outcome of a positive feedback loop (depolarization → more m open → more Na+ current → more depolarization) racing against h's slower inactivation, so the response is binary rather than graded; explains the refractory period as the joint effect of h being slow to recover and n/K+ conductance still being elevated after the spike; cites ≥2 of the learner's own Piece 2 numbers correctly; never falls back to "because it crosses threshold" as an unexplained primitive.</td>
+<td>Explains all-or-none as the outcome of a positive feedback loop (depolarization → more m open → more Na+ current → more depolarization) racing against h's slower inactivation, so the response is binary rather than graded; explains the refractory period as the joint effect of h being slow to recover and n/K+ conductance still being elevated after the spike; cites ≥2 of your own Piece 2 numbers correctly; never falls back to "because it crosses threshold" as an unexplained primitive.</td>
 </tr>
 <tr>
 <td>Adequate</td>
@@ -1245,7 +1245,7 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 </tr>
 <tr>
 <td>Not yet</td>
-<td>Explanation is circular (spikes because it crosses threshold; refractory because it's refractory) or doesn't reference the learner's own simulation numbers at all.</td>
+<td>Explanation is circular (spikes because it crosses threshold; refractory because it's refractory) or doesn't reference your own simulation numbers at all.</td>
 </tr>
 </tbody>
 </table>
@@ -1254,7 +1254,7 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 <p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
 </div>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
-<p>Done when the learner can state, unprompted and without reaching for "threshold-and-reset" as a primitive: (1) why a spike is all-or-none — as the outcome of Na+ activation (m) racing its own slower inactivation (h), evidenced by their own bisected threshold and the sharp sub-/supra-threshold voltage gap in Piece 2; (2) why a refractory period follows — as the joint effect of h not yet recovered and K+ activation (n) still elevated, evidenced by their own absolute (~7–8 ms) and relative (~12–13 ms) refractory measurements; and can back both claims with the derived numbers from Piece 1 (τ_m, E_K) and the guided-reading answers from Piece 3 (which gate is which, and what the deterministic conductance is an average over).</p>
+<p>Done when you can state, unprompted and without reaching for "threshold-and-reset" as a primitive: (1) why a spike is all-or-none — as the outcome of Na+ activation (m) racing its own slower inactivation (h), evidenced by their own bisected threshold and the sharp sub-/supra-threshold voltage gap in Piece 2; (2) why a refractory period follows — as the joint effect of h not yet recovered and K+ activation (n) still elevated, evidenced by their own absolute (~7–8 ms) and relative (~12–13 ms) refractory measurements; and can back both claims with the derived numbers from Piece 1 (τ_m, E_K) and the guided-reading answers from Piece 3 (which gate is which, and what the deterministic conductance is an average over).</p>
 
 
 

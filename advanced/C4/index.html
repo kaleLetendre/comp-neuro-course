@@ -1137,7 +1137,7 @@
 4. Does energy minimization on a graph with cycles still converge to a fixed point? What property guarantees it, or under what condition can it fail to settle?
 5. Why does "any node can be input, output, both or neither" matter for a network that later adds and removes nodes at runtime? Name the mechanism it removes the need for.</p>
 <p><strong>Project tie-in:</strong> The theory behind <code>steps/02_pc_graphs/</code>, already built and working, and the direct prerequisite for Steps 3–4 where node roles and topology are not fixed in advance.</p>
-<p><strong>Done when:</strong> The learner writes the generalized energy equation unaided and can say what guarantees or threatens convergence on a cyclic graph.</p>
+<p><strong>Done when:</strong> You writes the generalized energy equation unaided and can say what guarantees or threatens convergence on a cyclic graph.</p>
 <hr />
 <hr />
 <p><strong>Lesson spec:</strong> <code>lessons.md</code> → C4. <strong>Total time:</strong> 5–7 hours across 2–3 sittings. <strong>Prerequisites:</strong> C1–C3; A2 and graph topology with reciprocal connections.</p>
@@ -1146,7 +1146,7 @@
 <p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
 <p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
 <h2 id="verified-against-the-source">Verified against the source<a class="headerlink" href="#verified-against-the-source" title="Permanent link">&para;</a></h2>
-<p>Checked against <code>papers/C4_salvatori_2022_arbitrary_graph_topologies.pdf</code>. One implementation detail worth putting directly to the learner, because a reimplementation almost never matches it by accident: the paper reports that "we have tested different activation functions; the most promising seems to be <strong>HardTanh</strong>", and that value-node learning used a rate of 1.0 with SGD. If the learner's step 02 code uses tanh, ReLU or a different optimiser, that is a real divergence from the published method — which is precisely what the implementation-check questions are for. Neither choice is necessarily wrong; the point is knowing it was a choice.</p>
+<p>Checked against <code>papers/C4_salvatori_2022_arbitrary_graph_topologies.pdf</code>. One implementation detail worth putting directly to you, because a reimplementation almost never matches it by accident: the paper reports that "we have tested different activation functions; the most promising seems to be <strong>HardTanh</strong>", and that value-node learning used a rate of 1.0 with SGD. If you's step 02 code uses tanh, ReLU or a different optimiser, that is a real divergence from the published method — which is precisely what the implementation-check questions are for. Neither choice is necessarily wrong; the point is knowing it was a choice.</p>
 <h2 id="coverage-map">Coverage map<a class="headerlink" href="#coverage-map" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1288,7 +1288,7 @@ The script, plus a short (under one page) results note: final settled vectors an
 <h2 id="piece-3-reading-salvatori-et-al-2022">Piece 3 — Reading Salvatori et al. 2022<a class="headerlink" href="#piece-3-reading-salvatori-et-al-2022" title="Permanent link">&para;</a></h2>
 <p><strong>Type:</strong> guided reading · <strong>Time:</strong> 90–120 min</p>
 <p><strong>Learning goals</strong>
-- Read the paper this project's Step 02 already implements, closely enough to check the implementation against the published method rather than against the learner's own prior assumptions.
+- Read the paper this project's Step 02 already implements, closely enough to check the implementation against the published method rather than against your own prior assumptions.
 - Locate the paper's own statement of the generalized energy, its inference/learning schedule, and its convergence discussion for cyclic topologies.
 - Identify the paper's task types run from a single trained model, and what specifically differs between them (clamping, not weights).</p>
 <p><strong>Task</strong></p>
@@ -1316,11 +1316,11 @@ Written answers to Q1–Q8, each with a specific citation (section number, page,
 <tbody>
 <tr>
 <td>Strong</td>
-<td>All 8 answered with correct citations; Q3/Q4 (implementation checks) identify a real, specific divergence (or correctly confirm a real match) between the learner's own implementation and the paper, not a vague "seems similar"; Q7 correctly identifies the energy-decrease/Lyapunov-style argument (or whatever the paper actually argues) and states the failure condition named by the paper if one exists.</td>
+<td>All 8 answered with correct citations; Q3/Q4 (implementation checks) identify a real, specific divergence (or correctly confirm a real match) between your own implementation and the paper, not a vague "seems similar"; Q7 correctly identifies the energy-decrease/Lyapunov-style argument (or whatever the paper actually argues) and states the failure condition named by the paper if one exists.</td>
 </tr>
 <tr>
 <td>Adequate</td>
-<td>6–7 of 8 answered with citations; Q3/Q4 attempted but the comparison to the learner's own code is generic rather than specific (e.g. "probably similar" without naming what was checked); Q7 identifies convergence is claimed but not what it rests on.</td>
+<td>6–7 of 8 answered with citations; Q3/Q4 attempted but the comparison to your own code is generic rather than specific (e.g. "probably similar" without naming what was checked); Q7 identifies convergence is claimed but not what it rests on.</td>
 </tr>
 <tr>
 <td>Not yet</td>
@@ -1349,7 +1349,7 @@ Written answers to Q1–Q8, each with a specific citation (section number, page,
 - Give one concrete reason "any node clampable" matters for Step 04 (stress-triggered growth/pruning): name the specific bookkeeping or mechanism (e.g. a fixed input/output layer index, or a role map that must be updated when topology changes) that this flexibility removes the need for.
 - Take a position on whether the claim as stated is fully correct, or whether it understates/overstates something (e.g., is convergence really the <em>only</em> thing the layer split bought, or does it also simplify weight-update timing, credit assignment, or the C6 backprop-equivalence proof?).</p>
 <p><strong>Deliverable</strong>
-300–600 words, prose (not bullet points), in the learner's own words.</p>
+300–600 words, prose (not bullet points), in your own words.</p>
 <p><strong>Rubric</strong></p>
 <table>
 <thead>
@@ -1361,11 +1361,11 @@ Written answers to Q1–Q8, each with a specific citation (section number, page,
 <tbody>
 <tr>
 <td>Strong</td>
-<td>Re-indexing stated precisely and correctly (names the actual index-set change, not just "layers become nodes"); the "what layer order buys for free" example is concrete and drawn from the learner's own derivation/simulation/reading rather than asserted; the Step 04 tie-in names a specific mechanism (e.g. no fixed input/output role map to maintain when pairs are added/pruned) rather than a generic "it's more flexible"; takes and defends a real position on the claim rather than agreeing with it wholesale.</td>
+<td>Re-indexing stated precisely and correctly (names the actual index-set change, not just "layers become nodes"); the "what layer order buys for free" example is concrete and drawn from your own derivation/simulation/reading rather than asserted; the Step 04 tie-in names a specific mechanism (e.g. no fixed input/output role map to maintain when pairs are added/pruned) rather than a generic "it's more flexible"; takes and defends a real position on the claim rather than agreeing with it wholesale.</td>
 </tr>
 <tr>
 <td>Adequate</td>
-<td>Re-indexing stated correctly but generically; the "buys for free" example is plausible but abstract/textbook rather than tied to the learner's own worked numbers or code; Step 04 tie-in is present but vague (e.g. "flexible networks are good for pruning" without naming what bookkeeping is avoided).</td>
+<td>Re-indexing stated correctly but generically; the "buys for free" example is plausible but abstract/textbook rather than tied to your own worked numbers or code; Step 04 tie-in is present but vague (e.g. "flexible networks are good for pruning" without naming what bookkeeping is avoided).</td>
 </tr>
 <tr>
 <td>Not yet</td>
@@ -1379,10 +1379,10 @@ Written answers to Q1–Q8, each with a specific citation (section number, page,
 </div>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
 <p>The lesson is done when, without looking anything up:
-1. The learner writes the generalized per-node energy F = (1/2) sum_i (x_i − sum_{j in N_in(i)} w_ij f(x_j))^2 unaided, and states it replaces the layer-indexed error term by replacing the fixed neighbour set with a per-node one (Piece 1).
-2. The learner can state, from memory, what guarantees convergence of settling on a cyclic graph (energy bounded below and non-increasing under small-step gradient descent — a stationary-point guarantee, not a global-optimum one) and under what condition it can fail (step size/weight scale too large relative to the graph's effective loop gain), citing their own Piece 2 divergence run or Piece 3 Q7 finding as evidence (AC4).
+1. You writes the generalized per-node energy F = (1/2) sum_i (x_i − sum_{j in N_in(i)} w_ij f(x_j))^2 unaided, and states it replaces the layer-indexed error term by replacing the fixed neighbour set with a per-node one (Piece 1).
+2. You can state, from memory, what guarantees convergence of settling on a cyclic graph (energy bounded below and non-increasing under small-step gradient descent — a stationary-point guarantee, not a global-optimum one) and under what condition it can fail (step size/weight scale too large relative to the graph's effective loop gain), citing their own Piece 2 divergence run or Piece 3 Q7 finding as evidence (AC4).
 3. All four pieces are submitted and each has scored at least Adequate; any piece scoring Not Yet is redone (with hints, not answers) before the lesson is marked complete.
-4. The learner can state in one or two sentences, unprompted, what a fixed input/output layer split bought and what it cost this project specifically at Step 04 (AC5) — this is the tie-in that makes the lesson "theory behind code already built," not abstract theory.</p>
+4. You can state in one or two sentences, unprompted, what a fixed input/output layer split bought and what it cost this project specifically at Step 04 (AC5) — this is the tie-in that makes the lesson "theory behind code already built," not abstract theory.</p>
 
 
 
