@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+        <meta name="description" content="A self-study course in computational neuroscience built on Dayan & Abbott">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>F4. Information theory for neurons - Comp Neuro Course</title>
+        <title>F4 · Information theory for neurons - Computational Neuroscience</title>
       
     
     
@@ -51,7 +51,7 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/theme.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -69,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-header__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,13 +108,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Comp Neuro Course
+            Computational Neuroscience
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              F4. Information theory for neurons
+              F4 · Information theory for neurons
             
           </span>
         </div>
@@ -127,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -137,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -226,18 +226,45 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../../plan/" class="md-tabs__link">
-        
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
   
   
     
   
-  Plan
+  Foundations
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../advanced/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Advanced
+
+        </a>
+      </li>
+    
   
 
       
@@ -264,41 +291,18 @@
   
   
   
-    
   
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../F1/" class="md-tabs__link">
-          
-  
-  
-  Foundations
-
-        </a>
-      </li>
-    
-  
-
-      
+    <li class="md-tabs__item">
+      <a href="../../plan/" class="md-tabs__link">
         
   
   
-  
-  
     
-    
-      <li class="md-tabs__item">
-        <a href="../../advanced/A1/" class="md-tabs__link">
-          
   
-  
-  Advanced
+  Plan
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -330,13 +334,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-nav__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Comp Neuro Course
+    Computational Neuroscience
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -372,65 +376,41 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../plan/" class="md-nav__link">
+  
+    
+    
+      
         
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Plan
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../materials/" class="md-nav__link">
+          
         
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Materials
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
       
+        
       
-  
-  
-    
-  
-  
-  
-    
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -447,11 +427,12 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -465,11 +446,17 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -478,6 +465,8 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -493,7 +482,7 @@
   <span class="md-ellipsis">
     
   
-    F1. Spike trains and firing rates
+    F1 · Spike trains and firing rates
   
 
     
@@ -521,7 +510,7 @@
   <span class="md-ellipsis">
     
   
-    F2. Receptive fields and reverse correlation
+    F2 · Receptive fields and reverse correlation
   
 
     
@@ -549,7 +538,7 @@
   <span class="md-ellipsis">
     
   
-    F3. Neural decoding
+    F3 · Neural decoding
   
 
     
@@ -586,7 +575,7 @@
   <span class="md-ellipsis">
     
   
-    F4. Information theory for neurons
+    F4 · Information theory for neurons
   
 
     
@@ -604,7 +593,7 @@
   <span class="md-ellipsis">
     
   
-    F4. Information theory for neurons
+    F4 · Information theory for neurons
   
 
     
@@ -640,6 +629,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#authors-exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authors' exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -663,7 +685,7 @@
   <span class="md-ellipsis">
     
   
-    F5. Membrane biophysics and the action potential
+    F5 · Membrane biophysics and the action potential
   
 
     
@@ -691,7 +713,7 @@
   <span class="md-ellipsis">
     
   
-    F6. Integrate-and-fire neurons and synaptic input
+    F6 · Integrate-and-fire neurons and synaptic input
   
 
     
@@ -719,7 +741,7 @@
   <span class="md-ellipsis">
     
   
-    F7. Cable theory and neuronal morphology
+    F7 · Cable theory and neuronal morphology
   
 
     
@@ -747,7 +769,7 @@
   <span class="md-ellipsis">
     
   
-    F8. Network models: feedforward and recurrent
+    F8 · Network models: feedforward and recurrent
   
 
     
@@ -775,7 +797,7 @@
   <span class="md-ellipsis">
     
   
-    F9. Synaptic plasticity and learning rules
+    F9 · Synaptic plasticity and learning rules
   
 
     
@@ -803,7 +825,7 @@
   <span class="md-ellipsis">
     
   
-    F10. Classical conditioning and reinforcement learning
+    F10 · Classical conditioning and reinforcement learning
   
 
     
@@ -831,7 +853,7 @@
   <span class="md-ellipsis">
     
   
-    F11. Representational learning and generative models
+    F11 · Representational learning and generative models
   
 
     
@@ -859,7 +881,7 @@
   <span class="md-ellipsis">
     
   
-    Bridge. Synthesis checkpoint
+    Bridge · Synthesis checkpoint
   
 
     
@@ -888,6 +910,44 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -905,7 +965,7 @@
   
   
   
-    <a href="../../advanced/A1/" class="md-nav__link">
+    <a href="../../advanced/" class="md-nav__link">
       
   
   
@@ -927,6 +987,60 @@
   
 
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -968,6 +1082,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#authors-exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authors' exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -985,39 +1132,37 @@
 
 
 
-<h1 id="f4-information-theory-for-neurons">F4. Information theory for neurons<a class="headerlink" href="#f4-information-theory-for-neurons" title="Permanent link">&para;</a></h1>
+<h1 id="f4-information-theory-for-neurons">F4 · Information theory for neurons<a class="headerlink" href="#f4-information-theory-for-neurons" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>Length</strong> — one to two sittings — the entropy and mutual-information worked example plus the infomax predictions make one sitting; spike-train entropy rates and estimator bias warrant a second · about one to two sittings (~3.5-4.5 hours total: ~45 min guided reading, ~60 min derivation, ~75-90 min simulation including running code, ~40 min written explanation)
+<strong>Before this</strong> — F1, F3 (F2 useful for the efficient-coding account of receptive fields)
+<strong>Reading</strong> — D&amp;A ch. 4 — <em>Entropy and Mutual Information</em> · <em>Information and Entropy Maximization</em> · <em>Entropy and Information for Spike Trains</em></p>
+</div>
 <div class="toc">
 <ul>
-<li><a href="#f4-information-theory-for-neurons">F4. Information theory for neurons</a><ul>
+<li><a href="#f4-information-theory-for-neurons">F4 · Information theory for neurons</a><ul>
 <li><a href="#lesson-spec">Lesson spec</a></li>
-</ul>
-</li>
-<li><a href="#f4-information-theory-for-neurons_1">F4. Information theory for neurons</a><ul>
-<li><a href="#running-order">Running order</a></li>
-<li><a href="#assigned-exercises-the-books-own">Assigned exercises — the book's own</a></li>
-<li><a href="#coverage-map">Coverage map</a></li>
-<li><a href="#piece-3-guided-reading">Piece 3 — Guided reading</a></li>
-<li><a href="#piece-1-entropy-and-mutual-information-on-a-worked-table">Piece 1 — Entropy and mutual information on a worked table</a></li>
-<li><a href="#piece-2-simulation-estimator-bias-and-infomax-in-code">Piece 2 — Simulation: estimator bias and infomax in code</a></li>
-<li><a href="#piece-4-written-explanation">Piece 4 — Written explanation</a></li>
+<li><a href="#authors-exercises">Authors' exercises</a></li>
+<li><a href="#coursework">Coursework</a></li>
 <li><a href="#completion-bar">Completion bar</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
-<h1 id="f4-information-theory-for-neurons_1">F4. Information theory for neurons<a class="headerlink" href="#f4-information-theory-for-neurons_1" title="Permanent link">&para;</a></h1>
-<p><strong>Prerequisites:</strong> F1, F3 (F2 useful for the efficient-coding account of receptive fields)</p>
-<p><strong>Size:</strong> one to two sittings — the entropy and mutual-information worked example plus the infomax predictions make one sitting; spike-train entropy rates and estimator bias warrant a second</p>
-<p><strong>Source material:</strong> D&amp;A ch. 4 — <em>Entropy and Mutual Information</em> · <em>Information and Entropy Maximization</em> · <em>Entropy and Information for Spike Trains</em></p>
 <p><strong>Goal:</strong> Turn "this neuron carries information about the stimulus" into a computable quantity in bits. Derive entropy and mutual information on a small worked example, connect mutual information to decoder-independent bounds, and use the infomax hypothesis to predict concrete receptive-field properties.</p>
-<p><strong>Scope:</strong>
-- Entropy H(R) and mutual information I(R;S) computed by hand on a small discrete table, in bits
-- Why mutual information is the right currency: symmetric, assumption-free about the decoder, and an upper bound on any decoder's performance
-- Infomax and efficient coding: maximising entropy under a fixed output range predicts histogram equalisation; decorrelating natural-image statistics predicts centre-surround receptive fields
-- Entropy and information rates for spike trains via the direct method, binning trains into words
-- Why finite data biases entropy estimates downward, and what that means for reported values
-- Not covered: population codes and correlation-based information, spike-timing decoding beyond entropy rates</p>
+<details class="note">
+<summary>Scope — what the lesson covers</summary>
+<ul>
+<li>Entropy H(R) and mutual information I(R;S) computed by hand on a small discrete table, in bits</li>
+<li>Why mutual information is the right currency: symmetric, assumption-free about the decoder, and an upper bound on any decoder's performance</li>
+<li>Infomax and efficient coding: maximising entropy under a fixed output range predicts histogram equalisation; decorrelating natural-image statistics predicts centre-surround receptive fields</li>
+<li>Entropy and information rates for spike trains via the direct method, binning trains into words</li>
+<li>Why finite data biases entropy estimates downward, and what that means for reported values</li>
+<li>Not covered: population codes and correlation-based information, spike-timing decoding beyond entropy rates</li>
+</ul>
+</details>
 <p><strong>You should be able to answer:</strong>
 1. Given a two-stimulus, two-response table with specified joint probabilities, compute H(R), H(R|S) and I(R;S) in bits.
 2. Why is I(R;S) = I(S;R), and what does that symmetry rule out that a "goodness of decoding" metric would allow?
@@ -1027,14 +1172,13 @@
 <p><strong>Feeds:</strong> A5 (the sparsity and energy argument depends on bits per spike being high while rates are low).</p>
 <p><strong>Done when:</strong> Given a small joint distribution or a binned spike train, you computes entropy, mutual information and an information rate by hand, and says which receptive-field property a given infomax constraint predicts.</p>
 <hr />
-<hr />
-<p><strong>Lesson spec:</strong> <code>foundations.md</code> → F4. <strong>Total time:</strong> one to two sittings (~3.5-4.5 hours total: ~45 min guided reading, ~60 min derivation, ~75-90 min simulation including running code, ~40 min written explanation). <strong>Prerequisites:</strong> F1, F3 (F2 useful for the efficient-coding account of receptive fields).</p>
-<h2 id="running-order">Running order<a class="headerlink" href="#running-order" title="Permanent link">&para;</a></h2>
-<p>Consume, then apply, then refine: <strong>guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written explanation (Piece 4)</strong>. Pieces are numbered by type, not sequence.</p>
-<h2 id="assigned-exercises-the-books-own">Assigned exercises — the book's own<a class="headerlink" href="#assigned-exercises-the-books-own" title="Permanent link">&para;</a></h2>
+<h2 id="authors-exercises">Authors' exercises<a class="headerlink" href="#authors-exercises" title="Permanent link">&para;</a></h2>
 <p>Dayan &amp; Abbott wrote exercise sets for every chapter and publish them free at gatsby.ucl.ac.uk/~dayan/book. This lesson's are in <code>exercises/c4.pdf</code> (chapter 4), with any code and data under <code>exercises/exercises/c4/</code>. <strong>Work all.</strong></p>
 <p>They are the authors' problems, not this course's, so they take precedence where the two overlap: if an exercise here duplicates one of theirs, do theirs. They are written for MATLAB; translating to numpy is part of the work and is not hard. The teacher agent has no answer key for these — it marks by reading your code and output, and says so rather than pretending to a key it does not have.</p>
-<h2 id="coverage-map">Coverage map<a class="headerlink" href="#coverage-map" title="Permanent link">&para;</a></h2>
+<h2 id="coursework">Coursework<a class="headerlink" href="#coursework" title="Permanent link">&para;</a></h2>
+<p>Consume, then apply, then refine: <strong>guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written explanation (Piece 4)</strong>. Pieces are numbered by type, not sequence.</p>
+<details class="note">
+<summary>Coverage map</summary>
 <table>
 <thead>
 <tr>
@@ -1066,7 +1210,10 @@
 </tr>
 </tbody>
 </table>
-<h2 id="piece-3-guided-reading">Piece 3 — Guided reading<a class="headerlink" href="#piece-3-guided-reading" title="Permanent link">&para;</a></h2>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Piece 3 — Guided reading</label><label for="__tabbed_1_2">Piece 1 — Entropy and mutual information on a worked table</label><label for="__tabbed_1_3">Piece 2 — Simulation: estimator bias and infomax in code</label><label for="__tabbed_1_4">Piece 4 — Written explanation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><strong>Type:</strong> guided reading · <strong>Time:</strong> ~45 min</p>
 <p><strong>Learning goals</strong>
 - Locate and paraphrase the text's own definitions of entropy and mutual information before deriving anything by hand.
@@ -1088,7 +1235,8 @@
 </ol>
 <p><strong>Deliverable</strong></p>
 <p>A short document (one paragraph per question) with section citations, ready to hand to the teacher for a content check before you proceed to Piece 1.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1122,12 +1270,9 @@
 7. Direct method: bin spike train into small time bins, group L consecutive bins into a "word"; compute the total response entropy rate from the word distribution over the whole recording, and the noise entropy rate from the word distribution conditioned on (repeats of) the same stimulus; information rate = total entropy rate - noise entropy rate.
 8. The noise entropy rate needs repeated presentations of the identical stimulus, because it measures the residual (trial-to-trial) variability in the response given a fixed stimulus — that requires multiple trials with the same stimulus to observe the response's spread.
 9. Entropy estimates from finite data are downward biased — the plug-in/naive estimate computed from empirical word frequencies underestimates the true entropy, more severely as the recording (hence sample count) shrinks, because the empirical distribution under-samples rare words; the usual fix is extrapolating estimates from progressively larger data fractions to infinite data.</p>
-<p><strong>Teacher constraints</strong>
-- Hint 1: Point to which of the three named subsections the question's topic sentence appears under.
-- Hint 2: Ask you to first find the section's own formula, then re-derive the numeric example the section uses, before answering in prose.
-- Hint 3: If you conflates "total entropy" and "noise entropy," ask them to describe what changes about the recording protocol between the two.
-- Never: state the numeric value from D&amp;A's example yourself, or tell you which page it is on — you have not read the physical text; only confirm or flag inconsistency in your own report against the expected content above.</p>
-<h2 id="piece-1-entropy-and-mutual-information-on-a-worked-table">Piece 1 — Entropy and mutual information on a worked table<a class="headerlink" href="#piece-1-entropy-and-mutual-information-on-a-worked-table" title="Permanent link">&para;</a></h2>
+</details>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> derivation · <strong>Time:</strong> ~60 min</p>
 <p><strong>Learning goals</strong>
 - Build a full joint probability table from marginal and conditional probabilities and compute H(S), H(R), H(R|S), H(S|R) from it, in bits.
@@ -1150,7 +1295,8 @@ P(r1 | s2) = 0.3, P(r2 | s2) = 0.7</p>
 </ol>
 <p><strong>Deliverable</strong></p>
 <p>A worked sheet (handwritten or typed) with all four table cells, both entropy calculations, both routes to I(R;S) shown side by side, the H(S|R) check, and the written answer to step 7.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1185,12 +1331,9 @@ Direct sum check: terms are 0.4·log2(0.4/0.275)=+0.2162, 0.1·log2(0.1/0.225)=-
 H(S|R) = H(S) - I(S;R); since I(S;R)=I(R;S)=0.1912, H(S|R) = 1.000 - 0.1912 = 0.8088 bits.
 Accept anything in the range 0.190-0.192 bits for I(R;S) as correct (rounding path-dependence).
 Step 7 expected content: the sum in step 5 is symmetric under exchanging (s,r) labels because P(s,r)=P(r,s) and P(s)P(r)=P(r)P(s) — the formula does not privilege either variable, so I(R;S)=I(S;R) is forced by construction, not a coincidence of these numbers. Consequence: any "goodness of decoding" metric (e.g. percent of trials correctly classified by some specific decoding rule) is decoder-dependent — a poor decoder can make the same channel look uninformative, and a different decoder on the same data gives a different accuracy — so accuracy cannot be a stand-in for the channel's actual information content, which is a fixed property of the joint distribution and upper-bounds every decoder's performance including the best possible one.</p>
-<p><strong>Teacher constraints</strong>
-- Hint 1: If stuck on the joint table, ask "what is P(s1) times P(r1|s1)?" — do not compute the cell yourself.
-- Hint 2: If stuck on H(R|S), point to the binary entropy function shortcut and ask them to expand one term (e.g. H_b(0.2)) by hand to confirm they can derive it, not just plug into a formula.
-- Hint 3: If the two I(R;S) routes disagree by more than rounding, ask them to recheck the joint table cells sum to 1 and the marginals were computed by summing the right axis.
-- Never: give any of the numeric entropy, joint-table, or MI values before you has submitted their own attempt at that specific step.</p>
-<h2 id="piece-2-simulation-estimator-bias-and-infomax-in-code">Piece 2 — Simulation: estimator bias and infomax in code<a class="headerlink" href="#piece-2-simulation-estimator-bias-and-infomax-in-code" title="Permanent link">&para;</a></h2>
+</details>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> simulation · <strong>Time:</strong> ~75-90 min</p>
 <p><strong>Learning goals</strong>
 - Implement the direct method's word-binning entropy-rate estimator and observe it underestimate a known ground-truth rate.
@@ -1264,7 +1407,8 @@ Step 7 expected content: the sum in step 5 is symmetric under exchanging (s,r) l
 </ol>
 <p><strong>Deliverable</strong></p>
 <p>Your script's console output for both parts, plus written answers to the four questions above (total ~150-250 words for the prose parts).</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1298,12 +1442,9 @@ Step 7 expected content: the sum in step 5 is symmetric under exchanging (s,r) l
 <p>Q2 expected content: Jensen's inequality for a concave function f gives E[f(X)] &lt;= f(E[X]). Here f = H (concave in the probability vector) and X = the empirical distribution p_hat, whose expectation over resampling equals the true p (empirical frequencies are unbiased estimators of the true cell probabilities). So E[H(p_hat)] &lt;= H(p) always, for any sample size — the bias can never be positive in expectation. As the word count n_words shrinks, p_hat's sampling variance around p grows, and because H is strictly concave, larger deviations of p_hat from p pull H(p_hat) down more (the concavity "curves away" from the true value faster the further you are from it) — so the expected gap H(p) - E[H(p_hat)] grows as n_words shrinks.</p>
 <p>Q3 expected content: the transform maps each sample to its own rank/n, i.e. its empirical CDF value — by construction, the empirical CDF of any continuous sample is (up to discretization) uniformly distributed on [0,1], so binning it into equal-width bins on [0,1] gives equal counts per bin, i.e. maximum entropy for that bin count.</p>
 <p>Q4 expected content: H_max would become log2(40)=5.3219 bits; H(output hist) would still track close to that new H_max as long as n=200,000 remains large relative to 40 bins (average ~5000 samples/bin), since the CDF-transform argument in Q3 doesn't depend on bin count — but if bins were increased far enough relative to n, undersampling would reintroduce the Part-A-style downward bias.</p>
-<p><strong>Teacher constraints</strong>
-- Hint 1: If you's single run looks non-monotonic, ask whether they ran with the averaging loop (<code>n_repeats</code>) as given, or modified it to a single draw per T.
-- Hint 2: For Q2, ask them to state Jensen's inequality for a concave function first, then ask what "expectation of empirical frequency" equals.
-- Hint 3: For Q3, ask them what distribution the empirical CDF of a continuous variable always has, before pointing at the code line.
-- Never: run the code and hand you your own output before they report theirs; never write or fix code for them — describe the category of bug (e.g. "check what <code>n_repeats</code> controls") rather than the fix.</p>
-<h2 id="piece-4-written-explanation">Piece 4 — Written explanation<a class="headerlink" href="#piece-4-written-explanation" title="Permanent link">&para;</a></h2>
+</details>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> written explanation · <strong>Time:</strong> ~40 min · <strong>Length:</strong> 300-600 words</p>
 <p><strong>Learning goals</strong>
 - Synthesize entropy, mutual information, and infomax into a single coherent account of "what it means for a neuron to carry information."
@@ -1313,7 +1454,8 @@ Step 7 expected content: the sum in step 5 is symmetric under exchanging (s,r) l
 <p>Write 300-600 words, for an audience that knows information theory from an ML context but not its neural application, answering: What does it mean, quantitatively, for a neuron's response to "carry information" about a stimulus? Why is mutual information — not a decoder's accuracy, not correlation, not "response magnitude" — the right currency? And what does the infomax hypothesis concretely predict a real neuron's input/output curve or receptive field should look like, in the fixed-range case and in the natural-image case? Use your own numbers from Piece 1 and Piece 2 as illustration where they help (e.g. "in the two-stimulus example, the channel carried 0.191 of a possible 1 bit about which stimulus occurred"). Do not restate D&amp;A's or this coursework's sentences verbatim — write it as your own explanation.</p>
 <p><strong>Deliverable</strong></p>
 <p>A 300-600 word write-up, plain prose (a figure or short table is fine but not required).</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1338,11 +1480,10 @@ Step 7 expected content: the sum in step 5 is symmetric under exchanging (s,r) l
 </table>
 <p><strong>Grader key (teacher AI only)</strong></p>
 <p>Must-hit points: (1) information = bits of reduction in uncertainty about S from observing R, i.e. I(R;S)=H(R)-H(R|S), illustrated with a number you actually computed (0.191 bits in Piece 1's example, or a Part-A/B number from Piece 2 used analogously); (2) MI is the right currency because it is symmetric and decoder-independent — it upper-bounds any decoding scheme's extractable information, whereas accuracy is a property of a chosen decoder, not of the channel; (3) fixed-range infomax predicts the input/output curve equals the stimulus's CDF, producing histogram-equalized (uniform) output — directly the Piece 2 Part B result; (4) natural-image infomax (via redundancy reduction/decorrelation) predicts center-surround receptive fields that whiten spatially correlated input. Flag as "not yet" any write-up that treats "information" as a synonym for firing rate, response reliability, or SNR without an entropy/uncertainty framing.</p>
-<p><strong>Teacher constraints</strong>
-- Hint 1: If the definition of information is vague, ask "reduction in uncertainty about what, measured how?"
-- Hint 2: If the MI-vs-accuracy argument is missing, ask them to recall their answer to Piece 1 step 7.
-- Hint 3: If only one infomax prediction is given, ask what changes about the input statistics between the two cases (single scalar stimulus vs. spatially correlated image).
-- Never: draft or rewrite sentences of the explanation; never supply the "must-hit" list to you before grading.</p>
+</details>
+</div>
+</div>
+</div>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
 <p>F4 is complete when: Piece 3's nine reading answers pass at Adequate or better; Piece 1's joint table, both routes to I(R;S), and the symmetry argument pass at Adequate or better; Piece 2's script has been run (not just read) with output reported and the Jensen and CDF-transform questions pass at Adequate or better; and Piece 4's write-up hits all four required elements at Adequate or better. You should, unprompted, be able to compute H(R), H(R|S), and I(R;S) from a small joint table, state which of two entropy rates needs a stimulus-repeat protocol, and name the receptive-field consequence of a stated infomax constraint — matching the lesson's "Done when."</p>
 
@@ -1362,6 +1503,8 @@ Step 7 expected content: the sum in step 5 is symmetric under exchanging (s,r) l
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1400,7 +1543,7 @@ Step 7 expected content: the sum in step 5 is symmetric under exchanging (s,r) l
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

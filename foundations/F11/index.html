@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+        <meta name="description" content="A self-study course in computational neuroscience built on Dayan & Abbott">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>F11. Representational learning and generative models - Comp Neuro Course</title>
+        <title>F11 · Representational learning and generative models - Computational Neuroscience</title>
       
     
     
@@ -51,7 +51,7 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/theme.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -69,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-header__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,13 +108,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Comp Neuro Course
+            Computational Neuroscience
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              F11. Representational learning and generative models
+              F11 · Representational learning and generative models
             
           </span>
         </div>
@@ -127,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -137,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -226,18 +226,45 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../../plan/" class="md-tabs__link">
-        
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
   
   
     
   
-  Plan
+  Foundations
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../advanced/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Advanced
+
+        </a>
+      </li>
+    
   
 
       
@@ -264,41 +291,18 @@
   
   
   
-    
   
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../F1/" class="md-tabs__link">
-          
-  
-  
-  Foundations
-
-        </a>
-      </li>
-    
-  
-
-      
+    <li class="md-tabs__item">
+      <a href="../../plan/" class="md-tabs__link">
         
   
   
-  
-  
     
-    
-      <li class="md-tabs__item">
-        <a href="../../advanced/A1/" class="md-tabs__link">
-          
   
-  
-  Advanced
+  Plan
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -330,13 +334,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-nav__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Comp Neuro Course
+    Computational Neuroscience
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -372,65 +376,41 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../plan/" class="md-nav__link">
+  
+    
+    
+      
         
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Plan
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../materials/" class="md-nav__link">
+          
         
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Materials
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
       
+        
       
-  
-  
-    
-  
-  
-  
-    
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -447,11 +427,12 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -465,11 +446,17 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -478,6 +465,8 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -493,7 +482,7 @@
   <span class="md-ellipsis">
     
   
-    F1. Spike trains and firing rates
+    F1 · Spike trains and firing rates
   
 
     
@@ -521,7 +510,7 @@
   <span class="md-ellipsis">
     
   
-    F2. Receptive fields and reverse correlation
+    F2 · Receptive fields and reverse correlation
   
 
     
@@ -549,7 +538,7 @@
   <span class="md-ellipsis">
     
   
-    F3. Neural decoding
+    F3 · Neural decoding
   
 
     
@@ -577,7 +566,7 @@
   <span class="md-ellipsis">
     
   
-    F4. Information theory for neurons
+    F4 · Information theory for neurons
   
 
     
@@ -605,7 +594,7 @@
   <span class="md-ellipsis">
     
   
-    F5. Membrane biophysics and the action potential
+    F5 · Membrane biophysics and the action potential
   
 
     
@@ -633,7 +622,7 @@
   <span class="md-ellipsis">
     
   
-    F6. Integrate-and-fire neurons and synaptic input
+    F6 · Integrate-and-fire neurons and synaptic input
   
 
     
@@ -661,7 +650,7 @@
   <span class="md-ellipsis">
     
   
-    F7. Cable theory and neuronal morphology
+    F7 · Cable theory and neuronal morphology
   
 
     
@@ -689,7 +678,7 @@
   <span class="md-ellipsis">
     
   
-    F8. Network models: feedforward and recurrent
+    F8 · Network models: feedforward and recurrent
   
 
     
@@ -717,7 +706,7 @@
   <span class="md-ellipsis">
     
   
-    F9. Synaptic plasticity and learning rules
+    F9 · Synaptic plasticity and learning rules
   
 
     
@@ -745,7 +734,7 @@
   <span class="md-ellipsis">
     
   
-    F10. Classical conditioning and reinforcement learning
+    F10 · Classical conditioning and reinforcement learning
   
 
     
@@ -782,7 +771,7 @@
   <span class="md-ellipsis">
     
   
-    F11. Representational learning and generative models
+    F11 · Representational learning and generative models
   
 
     
@@ -800,7 +789,7 @@
   <span class="md-ellipsis">
     
   
-    F11. Representational learning and generative models
+    F11 · Representational learning and generative models
   
 
     
@@ -836,6 +825,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#authors-exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authors' exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -859,7 +881,7 @@
   <span class="md-ellipsis">
     
   
-    Bridge. Synthesis checkpoint
+    Bridge · Synthesis checkpoint
   
 
     
@@ -888,6 +910,44 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -905,7 +965,7 @@
   
   
   
-    <a href="../../advanced/A1/" class="md-nav__link">
+    <a href="../../advanced/" class="md-nav__link">
       
   
   
@@ -927,6 +987,60 @@
   
 
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -968,6 +1082,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#authors-exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authors' exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -985,38 +1132,36 @@
 
 
 
-<h1 id="f11-representational-learning-and-generative-models">F11. Representational learning and generative models<a class="headerlink" href="#f11-representational-learning-and-generative-models" title="Permanent link">&para;</a></h1>
+<h1 id="f11-representational-learning-and-generative-models">F11 · Representational learning and generative models<a class="headerlink" href="#f11-representational-learning-and-generative-models" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>Length</strong> — two to three sittings — the EM worked example and the sparse-coding derivation each need dedicated time; the framing and discussion are quick by comparison · about ~4.5-6 hours across 2-3 sittings
+<strong>Before this</strong> — F3, F9 (F2 helps the sparse-coding result land)
+<strong>Reading</strong> — D&amp;A ch. 10 — <em>Introduction</em> · <em>Density Estimation</em> · <em>Causal Models for Density Estimation</em> · <em>Discussion</em></p>
+</div>
 <div class="toc">
 <ul>
-<li><a href="#f11-representational-learning-and-generative-models">F11. Representational learning and generative models</a><ul>
+<li><a href="#f11-representational-learning-and-generative-models">F11 · Representational learning and generative models</a><ul>
 <li><a href="#lesson-spec">Lesson spec</a></li>
-</ul>
-</li>
-<li><a href="#f11-representational-learning-and-generative-models_1">F11. Representational learning and generative models</a><ul>
-<li><a href="#running-order">Running order</a></li>
-<li><a href="#assigned-exercises-the-books-own">Assigned exercises — the book's own</a></li>
-<li><a href="#coverage-map">Coverage map</a></li>
-<li><a href="#piece-1-em-on-a-two-cause-linear-generative-model">Piece 1 — EM on a two-cause linear generative model</a></li>
-<li><a href="#piece-2-recovering-a-planted-dictionary-with-sparse-coding">Piece 2 — Recovering a planted dictionary with sparse coding</a></li>
-<li><a href="#piece-3-guided-reading">Piece 3 — Guided reading</a></li>
-<li><a href="#piece-4-written-explanation">Piece 4 — Written explanation</a></li>
+<li><a href="#authors-exercises">Authors' exercises</a></li>
+<li><a href="#coursework">Coursework</a></li>
 <li><a href="#completion-bar">Completion bar</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
-<h1 id="f11-representational-learning-and-generative-models_1">F11. Representational learning and generative models<a class="headerlink" href="#f11-representational-learning-and-generative-models_1" title="Permanent link">&para;</a></h1>
-<p><strong>Prerequisites:</strong> F3, F9 (F2 helps the sparse-coding result land)</p>
-<p><strong>Size:</strong> two to three sittings — the EM worked example and the sparse-coding derivation each need dedicated time; the framing and discussion are quick by comparison</p>
-<p><strong>Source material:</strong> D&amp;A ch. 10 — <em>Introduction</em> · <em>Density Estimation</em> · <em>Causal Models for Density Estimation</em> · <em>Discussion</em></p>
 <p><strong>Goal:</strong> Show that representation learning can be posed as fitting p(input) rather than a stimulus-response map, via causal models with latent variables and a recognition model that inverts them. Establish EM as the fitting procedure and walk it on a concrete numeric case. Connect sparse coding and ICA to the empirical fact that fitting them to natural images reproduces V1 simple-cell receptive fields.</p>
-<p><strong>Scope:</strong>
-- Density estimation as the goal of unsupervised representation learning, contrasted with supervised stimulus-response mapping
-- Causal models: latent causes, a generative model of the input they would produce, and a recognition model inferring causes from input
-- EM as two alternating phases — the E-step inferring latents at fixed parameters, the M-step updating parameters at fixed latents — worked by hand on a small example
-- Sparse coding and independent components as specific causal models, and their fit to natural images producing oriented, localised, bandpass filters matching measured simple cells
-- Not covered: precision-weighted inference and the free-energy formulation of this same fitting problem (C1, C3)</p>
+<details class="note">
+<summary>Scope — what the lesson covers</summary>
+<ul>
+<li>Density estimation as the goal of unsupervised representation learning, contrasted with supervised stimulus-response mapping</li>
+<li>Causal models: latent causes, a generative model of the input they would produce, and a recognition model inferring causes from input</li>
+<li>EM as two alternating phases — the E-step inferring latents at fixed parameters, the M-step updating parameters at fixed latents — worked by hand on a small example</li>
+<li>Sparse coding and independent components as specific causal models, and their fit to natural images producing oriented, localised, bandpass filters matching measured simple cells</li>
+<li>Not covered: precision-weighted inference and the free-energy formulation of this same fitting problem (C1, C3)</li>
+</ul>
+</details>
 <p><strong>You should be able to answer:</strong>
 1. For a two-cause discrete generative model with given priors and likelihoods, compute the E-step posterior responsibilities for a specific input.
 2. Using those responsibilities, carry out the M-step update and state the new parameter value.
@@ -1026,14 +1171,13 @@
 <p><strong>Feeds:</strong> C1 (the generative model's prediction error becomes the energy function), C2 (the E-step/M-step split is the template for the two nested loops), and C4 to C6 generally.</p>
 <p><strong>Done when:</strong> You works an EM step by hand on a toy causal model and states, without notes, why sparse coding on natural images yields V1-like filters.</p>
 <hr />
-<hr />
-<p><strong>Lesson spec:</strong> <code>foundations.md</code> → F11. <strong>Total time:</strong> ~4.5-6 hours across 2-3 sittings. <strong>Prerequisites:</strong> F3, F9 (F2 helps the sparse-coding result land).</p>
-<h2 id="running-order">Running order<a class="headerlink" href="#running-order" title="Permanent link">&para;</a></h2>
-<p>Consume, then apply, then refine: <strong>guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written explanation (Piece 4)</strong>. Pieces are numbered by type, not sequence.</p>
-<h2 id="assigned-exercises-the-books-own">Assigned exercises — the book's own<a class="headerlink" href="#assigned-exercises-the-books-own" title="Permanent link">&para;</a></h2>
+<h2 id="authors-exercises">Authors' exercises<a class="headerlink" href="#authors-exercises" title="Permanent link">&para;</a></h2>
 <p>Dayan &amp; Abbott wrote exercise sets for every chapter and publish them free at gatsby.ucl.ac.uk/~dayan/book. This lesson's are in <code>exercises/c10.pdf</code> (chapter 10), with any code and data under <code>exercises/exercises/c10/</code>. <strong>Work all.</strong></p>
 <p>They are the authors' problems, not this course's, so they take precedence where the two overlap: if an exercise here duplicates one of theirs, do theirs. They are written for MATLAB; translating to numpy is part of the work and is not hard. The teacher agent has no answer key for these — it marks by reading your code and output, and says so rather than pretending to a key it does not have.</p>
-<h2 id="coverage-map">Coverage map<a class="headerlink" href="#coverage-map" title="Permanent link">&para;</a></h2>
+<h2 id="coursework">Coursework<a class="headerlink" href="#coursework" title="Permanent link">&para;</a></h2>
+<p>Consume, then apply, then refine: <strong>guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written explanation (Piece 4)</strong>. Pieces are numbered by type, not sequence.</p>
+<details class="note">
+<summary>Coverage map</summary>
 <table>
 <thead>
 <tr>
@@ -1065,7 +1209,10 @@
 </tr>
 </tbody>
 </table>
-<h2 id="piece-1-em-on-a-two-cause-linear-generative-model">Piece 1 — EM on a two-cause linear generative model<a class="headerlink" href="#piece-1-em-on-a-two-cause-linear-generative-model" title="Permanent link">&para;</a></h2>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Piece 1 — EM on a two-cause linear generative model</label><label for="__tabbed_1_2">Piece 2 — Recovering a planted dictionary with sparse coding</label><label for="__tabbed_1_3">Piece 3 — Guided reading</label><label for="__tabbed_1_4">Piece 4 — Written explanation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><strong>Type:</strong> derivation · <strong>Time:</strong> 75-100 min</p>
 <p><strong>Learning goals</strong>
 - Write down a causal model's generative distribution over an input given discrete latent causes, and invert it with Bayes' rule to get an E-step posterior.
@@ -1085,7 +1232,8 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
 <p>Do this by hand, showing every intermediate number (the four <span class="arithmatex">\(\mu\)</span>'s, the four exponents, the four unnormalized values, the normalizer, the four responsibilities, the two expectations, <span class="arithmatex">\(\hat y\)</span>, the error, and the two updated weights).</p>
 <p><strong>Deliverable</strong></p>
 <p>A pen-and-paper (or typed) worked solution showing all of the above numbers in order, plus one sentence identifying which of your two steps is "E" and which is "M" and why.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1108,11 +1256,13 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-2-recovering-a-planted-dictionary-with-sparse-coding">Piece 2 — Recovering a planted dictionary with sparse coding<a class="headerlink" href="#piece-2-recovering-a-planted-dictionary-with-sparse-coding" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> simulation · <strong>Time:</strong> 90-120 min</p>
 <p><strong>Learning goals</strong>
 - Implement the E-step/M-step structure of Piece 1 in its continuous, high-dimensional form: ISTA-style sparse inference of a code, alternated with a gradient update of a dictionary.
@@ -1134,7 +1284,8 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
 <p>Keep the whole script under ~100 lines (the data-generation half above is boilerplate; the alternating fit loop is the exercise).</p>
 <p><strong>Deliverable</strong></p>
 <p>Your script, its printed <code>best_match</code> array with mean and min, and 3-5 sentences: (a) what the mean/min tell you about recovery, (b) what would you expect if you set <span class="arithmatex">\(\lambda=0\)</span> (no sparsity term) instead — would you still expect oriented, localized recovered atoms? Why or why not? — and (c) one sentence on what this synthetic result does and does not demonstrate about real V1 receptive fields.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1157,11 +1308,13 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-3-guided-reading">Piece 3 — Guided reading<a class="headerlink" href="#piece-3-guided-reading" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> guided reading · <strong>Time:</strong> 45-60 min</p>
 <p><strong>Learning goals</strong>
 - Locate, in the chapter's own terms, the density-estimation framing of representation learning and the causal-model/recognition-model machinery.
@@ -1180,7 +1333,8 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
 </ol>
 <p><strong>Deliverable</strong></p>
 <p>Written answers to all seven, each 2-5 sentences, each labeled with its source section.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1203,11 +1357,13 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-4-written-explanation">Piece 4 — Written explanation<a class="headerlink" href="#piece-4-written-explanation" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> written explanation · <strong>Time:</strong> 45-60 min</p>
 <p><strong>Learning goals</strong>
 - Integrate the mechanical EM result (Piece 1), the empirical recovery result (Piece 2), and the textual account (Piece 3) into one coherent explanation.
@@ -1217,7 +1373,8 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
 <p>Write this without re-reading Pieces 1-3.</p>
 <p><strong>Deliverable</strong></p>
 <p>A 300-600 word written explanation covering points (1)-(4) plus the closing sentence.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1240,9 +1397,13 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
+</div>
+</div>
+</div>
 </div>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1269,6 +1430,8 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1307,7 +1470,7 @@ State the updated <span class="arithmatex">\(g_1, g_2\)</span>.</li>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
