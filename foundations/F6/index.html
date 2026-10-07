@@ -694,6 +694,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1129,6 +1140,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1219,6 +1241,7 @@
 <div class="toc">
 <ul>
 <li><a href="#f6-integrate-and-fire-neurons-and-synaptic-input">F6 · Integrate-and-fire neurons and synaptic input</a><ul>
+<li><a href="#lecture">Lecture</a></li>
 <li><a href="#lesson-spec">Lesson spec</a></li>
 <li><a href="#authors-exercises">Authors' exercises</a></li>
 <li><a href="#coursework">Coursework</a></li>
@@ -1228,6 +1251,81 @@
 </li>
 </ul>
 </div>
+<h2 id="lecture">Lecture<a class="headerlink" href="#lecture" title="Permanent link">&para;</a></h2>
+<p>Reading alongside <strong>Dayan &amp; Abbott chapter 5</strong>, the integrate-and-fire and synaptic sections. Figures are the book's own, by number.</p>
+<table>
+<thead>
+<tr>
+<th>Chapter section</th>
+<th>Here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.4 Integrate-and-Fire Models</td>
+<td>The passive IF reduction, the f-I curve, adaptation and refractoriness</td>
+</tr>
+<tr>
+<td>5.5–5.7 Voltage-dependent conductances, Hodgkin-Huxley, channel models</td>
+<td>Assumed known — see F5</td>
+</tr>
+<tr>
+<td>5.8 Synaptic Conductances</td>
+<td>Open probability, AMPA/NMDA/GABA kinetics, short-term plasticity</td>
+</tr>
+<tr>
+<td>5.9 Synapses on Integrate-and-Fire Neurons</td>
+<td>Conductance-based input, shunting, regular vs. irregular firing</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="a-change-of-preparation-not-an-error">A change of preparation, not an error<a class="headerlink" href="#a-change-of-preparation-not-an-error" title="Permanent link">&para;</a></h3>
+<p>The preceding lesson worked entirely in Hodgkin and Huxley's own numbers: squid giant axon, 6.3 °C, a membrane time constant around 3.3 ms. Everything below uses a different preparation — a mammalian cortical neuron at body temperature, with a membrane time constant around 10 ms and a membrane resistance around 10 MΩ. These are not typos relative to F5; squid axon and mammalian cortex are different tissues at different temperatures, and <span class="arithmatex">\(\tau_m = r_m c_m\)</span> varies accordingly. Keep the two number sets in separate mental boxes.</p>
+<h3 id="from-conductances-to-a-threshold-rule">From conductances to a threshold rule<a class="headerlink" href="#from-conductances-to-a-threshold-rule" title="Permanent link">&para;</a></h3>
+<p>Section 5.6 built the action potential out of three voltage-dependent conductances cycling through open and closed states. That machinery is expensive to simulate and, for many questions, beside the point — what matters is when the neuron fires, not the exact shape of the 1 ms upstroke. The integrate-and-fire model, going back to Lapicque in 1907, throws the upstroke away entirely and replaces it with bookkeeping: integrate the subthreshold membrane equation, and the moment <span class="arithmatex">\(V\)</span> reaches a threshold <span class="arithmatex">\(V_{th}\)</span>, declare a spike and reset <span class="arithmatex">\(V\)</span> to <span class="arithmatex">\(V_{reset} &lt; V_{th}\)</span>.</p>
+<p>The subthreshold part is just the single-compartment membrane equation from F5 with every active conductance stripped down to the one passive leak term, <span class="arithmatex">\(i_m = g_L(V - E_L)\)</span>. Dividing through by <span class="arithmatex">\(g_L\)</span> turns <span class="arithmatex">\(c_m g_L^{-1}\)</span> into the familiar <span class="arithmatex">\(\tau_m\)</span>, giving the model's one governing line:</p>
+<div class="arithmatex">\[\tau_m \frac{dV}{dt} = E_L - V + R_m I_e.\]</div>
+<p>With <span class="arithmatex">\(I_e\)</span> held constant, this is a linear first-order ODE with a textbook solution — exponential relaxation toward <span class="arithmatex">\(E_L + R_m I_e\)</span> starting from whatever <span class="arithmatex">\(V\)</span> the last reset left behind. The threshold-and-reset rule is layered on top of that solution, not inside it.</p>
+<p><img alt="Figure 5.4" src="../../figures/ch5fig4.png" /></p>
+<p><em>Figure 5.4 — The equivalent circuit reduction — a neuron as one resistor and one capacitor in parallel. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em>
+<img alt="Figure 5.5" src="../../figures/ch5fig5.png" /></p>
+<p><em>Figure 5.5 — A passive integrate-and-fire trace: injected current below, membrane potential with pasted-on spikes above. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<h3 id="the-interspike-interval-solved-by-hand">The interspike interval, solved by hand<a class="headerlink" href="#the-interspike-interval-solved-by-hand" title="Permanent link">&para;</a></h3>
+<p>Because the subthreshold trajectory between two spikes is just that one exponential, the time between spikes can be written in closed form. Starting at <span class="arithmatex">\(V(0) = V_{reset}\)</span> and asking when <span class="arithmatex">\(V\)</span> first reaches <span class="arithmatex">\(V_{th}\)</span> gives an equation with a single unknown, <span class="arithmatex">\(t_{isi}\)</span>, sitting inside a <span class="arithmatex">\(\exp(-t/\tau_m)\)</span>. Solving it is algebra, not simulation: isolate the exponential, take a log, and the interspike interval drops out as a closed-form function of <span class="arithmatex">\(E_L\)</span>, <span class="arithmatex">\(V_{th}\)</span>, <span class="arithmatex">\(V_{reset}\)</span>, <span class="arithmatex">\(R_m I_e\)</span>, and <span class="arithmatex">\(\tau_m\)</span>. Its reciprocal is the interspike-interval firing rate <span class="arithmatex">\(r_{isi}\)</span>.</p>
+<p>Two features of that formula are worth holding onto before doing the arithmetic. First, it only applies once <span class="arithmatex">\(R_m I_e\)</span> pushes the asymptotic potential past threshold — below that, the neuron never fires and <span class="arithmatex">\(r_{isi} = 0\)</span>. Second, for large <span class="arithmatex">\(I_e\)</span> the log can be linearized, and the firing rate becomes approximately linear in <span class="arithmatex">\(I_e\)</span> — slope set by <span class="arithmatex">\(\tau_m\)</span> and the threshold-to-reset gap, intercept set by how far <span class="arithmatex">\(E_L\)</span> sits below <span class="arithmatex">\(V_{th}\)</span>.</p>
+<p>Try this with the book's own figure-5.5 parameters first, where <span class="arithmatex">\(E_L = V_{reset} = -65\)</span> mV, <span class="arithmatex">\(V_{th} = -50\)</span> mV, <span class="arithmatex">\(\tau_m = 10\)</span> ms, <span class="arithmatex">\(R_m = 10\)</span> MΩ: compute <span class="arithmatex">\(R_m I_e\)</span>, plug the four voltages into the log formula, and get <span class="arithmatex">\(t_{isi}\)</span> in milliseconds. Then rework it for a case where reset and rest are not equal — that one extra asymmetry is where the exercises at the end of this lesson live.</p>
+<h3 id="where-the-reduction-breaks">Where the reduction breaks<a class="headerlink" href="#where-the-reduction-breaks" title="Permanent link">&para;</a></h3>
+<p>Figure 5.6 overlays this formula against current-clamp recordings from a real visual-cortex pyramidal cell, and the fit is good for the first couple of spikes after a current step. It degrades immediately after: real cortical neurons slow down over the following several hundred milliseconds, settling to a lower steady-state rate — spike-rate adaptation. The passive model, built from a single fixed leak conductance, has no mechanism that changes its own behavior after a spike, so it cannot adapt on its own.</p>
+<p><img alt="Figure 5.6" src="../../figures/ch5fig6.png" /></p>
+<p><em>Figure 5.6 — Interspike-interval firing rate vs. injected current for the model and for a real cortical neuron, including spike-rate adaptation. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The chapter's fix is to bolt on what the biophysics half would call a slow, spike-activated potassium conductance: a hyperpolarizing current that steps up by a fixed increment on every spike and decays back to zero with its own time constant. That is a discarded mechanism being reintroduced by hand, not something the leaky-integrator reduction produces for free. The same logic covers refractoriness — absent until added, either as an explicit no-firing window after reset or as a large, fast-decaying conductance that briefly clamps <span class="arithmatex">\(V\)</span> toward <span class="arithmatex">\(E_K\)</span>.</p>
+<h3 id="synaptic-conductances-three-transmitter-systems-three-time-courses">Synaptic conductances: three transmitter systems, three time courses<a class="headerlink" href="#synaptic-conductances-three-transmitter-systems-three-time-courses" title="Permanent link">&para;</a></h3>
+<p>Section 5.8 turns a synapse into the same kind of object as a voltage-dependent channel: a maximal conductance times an open probability, <span class="arithmatex">\(g_s = \bar g_s P\)</span>, with <span class="arithmatex">\(P\)</span> split into a presynaptic release factor <span class="arithmatex">\(P_{rel}\)</span> and a postsynaptic open-channel factor <span class="arithmatex">\(P_s\)</span>. <span class="arithmatex">\(P_s\)</span> obeys a binding-and-unbinding equation structurally identical to a gating variable's, driven by a brief pulse of transmitter concentration in the cleft rather than by voltage.</p>
+<p><img alt="Figure 5.14" src="../../figures/ch5fig14.png" /></p>
+<p><em>Figure 5.14 — A fitted postsynaptic current showing the rapid-rise, slower-decay shape that the binding model reproduces. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Different receptors give that pulse a different shape. AMPA is fast in and fast out — a single exponential decay around 5 ms is a typical fit. GABA-A decays on a similar scale (figure 5.15 uses a value near 6 ms) and sets <span class="arithmatex">\(E_s\)</span> near the chloride reversal potential, well below threshold. NMDA is the slow outlier, decaying over roughly 150 ms, and carries an additional voltage-dependent magnesium block that only lifts once the postsynaptic cell is already depolarized — a coincidence detector between pre- and postsynaptic activity rather than a plain fast relay.</p>
+<p><img alt="Figure 5.15" src="../../figures/ch5fig15.png" /></p>
+<p><em>Figure 5.15 — Open-probability time courses for AMPA, GABA-A, and NMDA side by side. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em>
+<img alt="Figure 5.16" src="../../figures/ch5fig16.png" /></p>
+<p><em>Figure 5.16 — The NMDA conductance's voltage- and magnesium-dependent gate. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Repeated presynaptic firing can also change <span class="arithmatex">\(P_{rel}\)</span> itself, independent of the postsynaptic kinetics above — depression and facilitation are both modeled as the release probability relaxing toward and away from a baseline with its own time constant.</p>
+<p><img alt="Figure 5.17" src="../../figures/ch5fig17.png" /></p>
+<p><em>Figure 5.17 — Depression at one cortical synapse and facilitation at another, recorded under identical stimulation. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<h3 id="conductance-based-input-and-the-centre-of-this-half-shunting">Conductance-based input and the centre of this half: shunting<a class="headerlink" href="#conductance-based-input-and-the-centre-of-this-half-shunting" title="Permanent link">&para;</a></h3>
+<p>Plugging a synaptic conductance into the integrate-and-fire equation gives</p>
+<div class="arithmatex">\[\tau_m \frac{dV}{dt} = E_L - V - r_m g_s P_s (V - E_s) + R_m I_e.\]</div>
+<p>This is a different object from a current-based synapse that simply adds a fixed <span class="arithmatex">\(I_{syn}(t)\)</span> to the right-hand side. Here the synaptic term is a conductance multiplied by a <em>driving force</em>, <span class="arithmatex">\((V - E_s)\)</span>, and that driving force is exactly zero whenever <span class="arithmatex">\(V\)</span> happens to sit at the synapse's own reversal potential. A GABA-A synapse with <span class="arithmatex">\(E_s\)</span> close to the resting potential can be wide open, passing essentially no net current at rest, and still be doing something to the neuron.</p>
+<p>What it is doing becomes visible by collecting every term proportional to <span class="arithmatex">\(V\)</span> on one side. Dividing the equation through by <span class="arithmatex">\((1 + r_m g_s P_s)\)</span> recovers the same exponential-relaxation form as before, but with <span class="arithmatex">\(\tau_m\)</span> and every other right-hand term — <span class="arithmatex">\(E_L\)</span>, the electrode current — divided by that same factor. An open channel that contributes no net current at <span class="arithmatex">\(V = E_s\)</span> still adds conductance, and added conductance means a shorter effective time constant, regardless of which direction <span class="arithmatex">\((V-E_s)\)</span> happens to be pushing. This conductance effect, distinct from whatever current the synapse carries, is what the chapter calls <em>shunting</em>.</p>
+<p>The divisive appearance is specific to voltage: it reduces how far the membrane potential deviates from its effective new resting level. Firing rate is a different question. Holding <span class="arithmatex">\(P_s\)</span> roughly constant, shunting is equivalent to replacing <span class="arithmatex">\(R_m\)</span> with <span class="arithmatex">\(R_m/(1+r_m g_s P_s)\)</span> inside the already-derived rate formula, where <span class="arithmatex">\(R_m\)</span> enters only through an additive constant — so a shunting synapse's effect on firing rate is subtractive, not divisive, even though its effect on membrane voltage is divisive. A conductance that would be invisible to a purely current-based model (no net current at rest) is doing real computational work in a conductance-based one. That is why the distinction is not cosmetic.</p>
+<p><img alt="Figure 5.20" src="../../figures/ch5fig20.png" /></p>
+<p><em>Figure 5.20 — Two coupled integrate-and-fire neurons: excitatory synapses drive alternation, inhibitory synapses drive synchrony. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<h3 id="two-firing-regimes-one-network">Two firing regimes, one network<a class="headerlink" href="#two-firing-regimes-one-network" title="Permanent link">&para;</a></h3>
+<p>Section 5.9 closes by driving a model neuron with a thousand excitatory and two hundred inhibitory Poisson input trains and looking at where the mean membrane potential sits relative to threshold. Average drive above threshold produces a regular, clock-like train, paced by the cell's own charging curve. Average drive below threshold, with spikes occurring only on upward fluctuations, produces an irregular train — closer, by the coefficient of variation, to real in-vivo cortical recordings than the regular mode is.</p>
+<p><img alt="Figure 5.21" src="../../figures/ch5fig21.png" /></p>
+<p><em>Figure 5.21 — Regular vs. irregular firing: mean membrane potential above threshold versus below it, with the corresponding spike trains. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<h3 id="working-through-it">Working through it<a class="headerlink" href="#working-through-it" title="Permanent link">&para;</a></h3>
+<p>After this reading, derive the closed-form interspike interval from the subthreshold solution rather than quoting it, then add a refractory period on top and check how the rate-vs-current curve bends at high input. Run the leaky integrate-and-fire model against a Hodgkin-Huxley simulation on the same current step and compare more than firing rate alone. Build one current-based and one conductance-based inhibitory synapse onto the same cell and watch what each does near the inhibitory reversal potential. The book's own end-of-chapter exercises for these two sections are good checks before moving on.</p>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
 <p><strong>Goal:</strong> Derive the leaky integrate-and-fire model as a reduction of the single-compartment model from F5 and work its f-I curve with real numbers. State explicitly, with one concrete cost each, what the reduction discards. Replace current-based synaptic input with conductance-based input and show why the difference is not cosmetic.</p>
 <details class="note">

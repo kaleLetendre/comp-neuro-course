@@ -638,6 +638,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1118,6 +1129,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1197,6 +1219,7 @@
 <div class="toc">
 <ul>
 <li><a href="#f4-information-theory-for-neurons">F4 · Information theory for neurons</a><ul>
+<li><a href="#lecture">Lecture</a></li>
 <li><a href="#lesson-spec">Lesson spec</a></li>
 <li><a href="#authors-exercises">Authors' exercises</a></li>
 <li><a href="#coursework">Coursework</a></li>
@@ -1205,6 +1228,68 @@
 </li>
 </ul>
 </div>
+<h2 id="lecture">Lecture<a class="headerlink" href="#lecture" title="Permanent link">&para;</a></h2>
+<p>Reading alongside <strong>Dayan &amp; Abbott chapter 4</strong>, section by section. Figures are the book's own, by number, so you can find them on the page in front of you.</p>
+<table>
+<thead>
+<tr>
+<th>Chapter section</th>
+<th>Here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.1 Entropy and Mutual Information</td>
+<td>Surprise, bits, and why mutual information doesn't care how you decode</td>
+</tr>
+<tr>
+<td>...Continuous Variables</td>
+<td>What survives when the bin width shrinks to zero</td>
+</tr>
+<tr>
+<td>4.2 Information and Entropy Maximization</td>
+<td>Infomax for one neuron, then for a population</td>
+</tr>
+<tr>
+<td>...Retina, LGN, Cortical Coding</td>
+<td>Whitening and noise filters meeting measured data</td>
+</tr>
+<tr>
+<td>4.3 Entropy and Information for Spike Trains</td>
+<td>The direct method, and why it needs so much data</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="surprise-bits-and-why-mutual-information-doesnt-care-how-you-decode">Surprise, bits, and why mutual information doesn't care how you decode<a class="headerlink" href="#surprise-bits-and-why-mutual-information-doesnt-care-how-you-decode" title="Permanent link">&para;</a></h3>
+<p>Chapter 3 asked what a response tells you about a stimulus — build a decoder, read off an estimate. This chapter asks how <em>much</em> it tells you, independent of any decoder, which is where the neural framing diverges from the ML habit of judging a code by how well a classifier scores on it.</p>
+<p>Shannon's surprise for a response of probability <span class="arithmatex">\(P[r]\)</span> is <span class="arithmatex">\(h(P[r]) = -\log_2 P[r]\)</span>; base-2 means results read out in bits, a dimensionless unit like a radian. Entropy is surprise averaged over all responses, <span class="arithmatex">\(H = -\sum_r P[r]\log_2 P[r]\)</span>. Two edge cases fix what it tracks: a neuron firing the same rate every time has <span class="arithmatex">\(H=0\)</span>, perfectly predictable however hard it fires, while a neuron with only two possible rates <span class="arithmatex">\(r_+\)</span>, <span class="arithmatex">\(r_-\)</span> reaches its maximum of exactly 1 bit when <span class="arithmatex">\(P[r_+]=P[r_-]=1/2\)</span> <img alt="Figure 4.1" src="../../figures/ch4fig1.png" /></p>
+<p><em>Figure 4.1 — The entropy of a binary code, maximal at 1 bit when the two responses are equally likely. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em>.</p>
+<p>Entropy alone measures variability, not whether it tracks the stimulus. The fix is to repeat the <em>same</em> stimulus and measure entropy left over from trial-to-trial noise alone — the conditional entropy <span class="arithmatex">\(H_s\)</span>, averaged over stimuli into the noise entropy <span class="arithmatex">\(H_{\text{noise}} = \sum_s P[s]H_s\)</span>. Mutual information is full response entropy minus that noise floor, <span class="arithmatex">\(I_m = H - H_{\text{noise}}\)</span>.</p>
+<p>Three limits are worth holding before an exercise hands you a table: a response independent of stimulus gives <span class="arithmatex">\(I_m=0\)</span>; a noiseless one-to-one map from stimulus to response gives <span class="arithmatex">\(I_m\)</span> equal to the full stimulus entropy; and a binary stimulus through a binary channel with error probability <span class="arithmatex">\(P_X\)</span> gives response entropy 1 bit and</p>
+<div class="arithmatex">\[I_m = 1 + (1-P_X)\log_2(1-P_X) + P_X\log_2 P_X,\]</div>
+<p>running from 1 bit at <span class="arithmatex">\(P_X=0\)</span> to 0 at <span class="arithmatex">\(P_X=1/2\)</span> <img alt="Figure 4.1" src="../../figures/ch4fig1.png" /></p>
+<p><em>Figure 4.1 — The mutual information for a binary encoding of a binary stimulus, falling from 1 bit to 0 as the error probability rises to one half. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em> — a Bayesian update in disguise: before any response, + and − are equally likely, and after observing <span class="arithmatex">\(r_+\)</span> the posterior on + becomes <span class="arithmatex">\(1-P_X\)</span> by Bayes' theorem, which is the tightening mutual information tracks.</p>
+<p>Rewriting <span class="arithmatex">\(I_m\)</span> over the joint probability <span class="arithmatex">\(P[r,s]\)</span> instead of the conditional makes a structural fact visible — it is symmetric in <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(s\)</span>, so <span class="arithmatex">\(I_m(R;S)=I_m(S;R)\)</span>. A decoding-accuracy score built around one decoder does not share that symmetry and can be inflated or deflated by swapping decoders; mutual information has none in the formula, only the joint distribution. It is, not coincidentally, the KL divergence between <span class="arithmatex">\(P[r,s]\)</span> and <span class="arithmatex">\(P[r]P[s]\)</span>, which is why <span class="arithmatex">\(I_m\ge0\)</span> and never exceeds either single entropy.</p>
+<p>A continuous firing rate adds one headache: perfect continuity gives infinite entropy, so a resolution <span class="arithmatex">\(\Delta r\)</span> must be fixed, producing a <span class="arithmatex">\(\log_2\Delta r\)</span> term diverging as <span class="arithmatex">\(\Delta r\to0\)</span>. Subtracting two entropies at the same resolution cancels it — exactly what <span class="arithmatex">\(I_m = H - H_{\text{noise}}\)</span> does — so mutual information stays well defined even though a continuous variable's entropy alone is fixed only up to an unknown constant.</p>
+<h3 id="infomax-for-one-neuron-then-for-a-population">Infomax for one neuron, then for a population<a class="headerlink" href="#infomax-for-one-neuron-then-for-a-population" title="Permanent link">&para;</a></h3>
+<p>With small noise entropy, maximizing mutual information is close to maximizing response entropy alone under a constraint on firing rate — say a ceiling <span class="arithmatex">\(r_{\max}\)</span>. The entropy-maximizing density under that constraint is flat, <span class="arithmatex">\(p[r] = 1/r_{\max}\)</span>: equal use of every level, the same operation as histogram equalization in image processing. A flat output distribution forces the input/output curve to track the stimulus's own cumulative distribution, scaled by <span class="arithmatex">\(r_{\max}\)</span> — steep where stimulus values are common, shallow where rare. Laughlin's (1981) measurements of the fly large monopolar cell match response curve against integrated contrast distribution closely <img alt="Figure 4.2" src="../../figures/ch4fig2.png" /></p>
+<p><em>Figure 4.2 — LMC contrast response matched against the integral of the natural contrast probability distribution. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em>. Two related constraints are left as exercises: a fixed mean rate gives an exponential optimum, mean and variance together give a Gaussian.</p>
+<p>A population raises a different problem: optimizing each neuron alone can leave them all encoding the same thing. Population entropy never exceeds the sum of individual entropies, with equality exactly when the joint distribution factorizes into independent single-neuron distributions — a factorial code. Maximum population entropy also requires every neuron's marginal distribution to match every other's, probability equalization, without demanding identical responses to any given stimulus. Exact factorization is generally unreachable for realistic response models, so the chapter falls back to a tractable stand-in: decorrelating responses and equalizing their variance, <span class="arithmatex">\(Q_{ab}=\sigma_r^2\delta_{ab}\)</span>. That only maximizes entropy for Gaussian statistics, but still cuts redundancy and spreads the load evenly.</p>
+<h3 id="whitening-and-noise-filters-meeting-measured-data">Whitening and noise filters meeting measured data<a class="headerlink" href="#whitening-and-noise-filters-meeting-measured-data" title="Permanent link">&para;</a></h3>
+<p>Applied to a continuous array of retinal ganglion cells, decorrelation becomes a condition on the Fourier transform of the spatial filter, <span class="arithmatex">\(|\tilde D_s(\vec\kappa)| \propto 1/\sqrt{\tilde Q_{ss}(\vec\kappa)}\)</span>. Natural-scene power falls roughly as <span class="arithmatex">\(1/|\vec\kappa|^2\)</span>, so this whitening filter boosts high spatial frequencies to flatten the output spectrum. Unboosted, that would amplify noise where signal is weakest, so the full filter splits into a noise-rejection stage (a least-squares match to the true signal) combined with whitening. At low noise the result is bandpass with a center-surround shape matching real ganglion-cell fields; at high noise the surround disappears and the filter turns low-pass, averaging over neighbors <img alt="Figure 4.3" src="../../figures/ch4fig3.png" /></p>
+<p><em>Figure 4.3 — Predicted receptive fields under low and high input noise, in spatial frequency and in space. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em> — the same shift seen physiologically as light drops and retinal surrounds disappear.</p>
+<p>The identical mathematics, time replacing space, predicts LGN temporal filters: Dong and Atick's (1995) one-parameter fit (<span class="arithmatex">\(\omega_0=5.5\)</span> Hz) reproduces measured LGN frequency tuning closely, and causality plus minimum phase pin down a time-domain filter that reverses sign, matching the space-time fields of chapter 2 <img alt="Figure 4.4" src="../../figures/ch4fig4.png" /></p>
+<p><em>Figure 4.4 — Predicted and measured temporal frequency tuning of an LGN cell, and the causal time-domain filter. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em>. A sharper test compares output power spectra for a natural movie against white noise in the same cells: natural input gives a flat spectrum above about 3 Hz, white noise one that rises with frequency — boosting whatever the filter expects to be rare <img alt="Figure 4.5" src="../../figures/ch4fig5.png" /></p>
+<p><em>Figure 4.5 — Power spectra of cat LGN spike trains in response to a natural movie versus white-noise stimuli. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em>.</p>
+<p>Pushed into primary visual cortex, the reasoning no longer explains receptive fields outright — cortical selectivity serves object recognition too — but it predicts how selectivities pair up. High-spatial-frequency cells sit in low signal-to-noise except at the lowest temporal frequencies, so their optimal filter is low-pass; low-spatial-frequency cells keep usable signal-to-noise further out, so theirs is bandpass <img alt="Figure 4.6" src="../../figures/ch4fig6.png" /></p>
+<p><em>Figure 4.6 — Temporal frequency tuning depending on preferred spatial frequency, low-pass at high spatial frequency and bandpass at low. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em>. The same logic predicts chrominance cells prefer low temporal frequencies, and ocular-dominance differences are sharpest at low spatial frequency.</p>
+<h3 id="the-direct-method-and-why-it-needs-so-much-data">The direct method, and why it needs so much data<a class="headerlink" href="#the-direct-method-and-why-it-needs-so-much-data" title="Permanent link">&para;</a></h3>
+<p>A spike-count rate is a lossy compression of a spike train, so entropy and information computed from rates only lower-bound the truth. Computing entropy directly from spike times uses Strong et al.'s (1998) scheme: bin time into windows <span class="arithmatex">\(\Delta t\)</span> small enough to hold at most one spike, so a stretch of duration <span class="arithmatex">\(T_s\)</span> becomes a bit string <span class="arithmatex">\(B\)</span>, and build <span class="arithmatex">\(P[B]\)</span> by counting how often each string occurs in a long recording. The rate <span class="arithmatex">\(\dot H = -\frac{1}{T_s}\sum_B P[B]\log_2 P[B]\)</span> equals the truth only if successive <span class="arithmatex">\(T_s\)</span>-blocks are independent; correlation between blocks makes it an overestimate at any finite <span class="arithmatex">\(T_s\)</span>, falling toward the true value as <span class="arithmatex">\(T_s\)</span> grows.</p>
+<p><span class="arithmatex">\(T_s\)</span> cannot grow freely in a finite recording: distinct strings grow exponentially with <span class="arithmatex">\(T_s\)</span>, while how often each can be observed does not, so past some point the counts stop reliably estimating anything. For the fly H1 neuron this breakdown appears as a sudden change near <span class="arithmatex">\(1/T_s\approx20\)</span> per second; extrapolating the reliable range linearly to <span class="arithmatex">\(1/T_s\to0\)</span> gives an entropy rate of 157 bits/s at <span class="arithmatex">\(\Delta t=3\)</span> ms <img alt="Figure 4.7" src="../../figures/ch4fig7.png" /></p>
+<p><em>Figure 4.7 — Entropy and noise entropy rates of the fly H1 neuron, extrapolated to infinite word length, with a sudden shift once data becomes insufficient. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em>. This is why recording length matters for comparing numbers across experiments: a shorter recording forces the extrapolation onto smaller, less-independent <span class="arithmatex">\(T_s\)</span> values and hits the insufficient-data wall sooner, so a raw, non-extrapolated figure from a short recording is not safely comparable to one from a long one — extrapolation exists to remove that dependence on how much data was available.</p>
+<p>The noise entropy rate needs an ingredient the full entropy rate does not: repeated trials of the <em>same</em> stimulus, so the distribution of the string starting at a fixed time <span class="arithmatex">\(t\)</span> can be estimated across repeats and averaged over <span class="arithmatex">\(t\)</span>. Subtracting the extrapolated noise entropy rate (79 bits/s for H1) from the extrapolated full rate (157 bits/s) gives the information rate — 78 bits/s, or 1.8 bits per spike, inside the 1-to-3-bits-per-spike range the chapter calls typical. A bullfrog auditory example makes the same point from the stimulus side: single neurons carried only 46 bits/s (1.4 bits/spike) for broadband noise despite its higher entropy, but 133 bits/s (7.8 bits/spike) for noise shaped like real bullfrog calls — transmitted rate depends on whether input matches what the code was shaped by, not on the input's own entropy.</p>
+<p>One loose end the chapter flags rather than closes: both entropy rates depend on <span class="arithmatex">\(\Delta t\)</span> through terms that don't cancel, only the leading <span class="arithmatex">\(\log_2\Delta t\)</span> term does. Information should rise as <span class="arithmatex">\(\Delta t\)</span> shrinks, since finer timing can only reveal more structure, until <span class="arithmatex">\(\Delta t\)</span> reaches whatever jitter is actually present in spike timing — a crossover the chapter treats as itself a measurement of a neuron's real temporal precision, without pinning it down in general.</p>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
 <p><strong>Goal:</strong> Turn "this neuron carries information about the stimulus" into a computable quantity in bits. Derive entropy and mutual information on a small worked example, connect mutual information to decoder-independent bounds, and use the infomax hypothesis to predict concrete receptive-field properties.</p>
 <details class="note">

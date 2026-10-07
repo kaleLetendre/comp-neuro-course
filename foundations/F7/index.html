@@ -722,6 +722,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1118,6 +1129,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1197,6 +1219,7 @@
 <div class="toc">
 <ul>
 <li><a href="#f7-cable-theory-and-neuronal-morphology">F7 · Cable theory and neuronal morphology</a><ul>
+<li><a href="#lecture">Lecture</a></li>
 <li><a href="#lesson-spec">Lesson spec</a></li>
 <li><a href="#authors-exercises">Authors' exercises</a></li>
 <li><a href="#coursework">Coursework</a></li>
@@ -1205,6 +1228,96 @@
 </li>
 </ul>
 </div>
+<h2 id="lecture">Lecture<a class="headerlink" href="#lecture" title="Permanent link">&para;</a></h2>
+<p>Reading alongside <strong>Dayan &amp; Abbott chapter 6</strong>, section by section. Figures are the book's own, by number.</p>
+<table>
+<thead>
+<tr>
+<th>Chapter section</th>
+<th>Here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6.1 Levels of Neuron Modeling</td>
+<td>Opening framing, revisited at the close with figure 6.15</td>
+</tr>
+<tr>
+<td>6.2 Conductance-Based Models</td>
+<td>Short section below, between the levels-of-modeling framing and the cable equation</td>
+</tr>
+<tr>
+<td>6.3 The Cable Equation</td>
+<td>Core of this lecture: derivation, linear cable theory, infinite cable, branching, Rall model, morphoelectrotonic transform</td>
+</tr>
+<tr>
+<td>6.4 Multi-Compartment Models</td>
+<td>Discretization rule, coupled-compartment equations, axon propagation (myelinated and not)</td>
+</tr>
+<tr>
+<td>6.5–6.7 Summary, Appendices</td>
+<td>Gating-function tables and the implicit integration scheme — reference material, not lecture content</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="61-a-decision-before-any-equation-how-much-neuron-to-model">6.1 A decision before any equation: how much neuron to model<a class="headerlink" href="#61-a-decision-before-any-equation-how-much-neuron-to-model" title="Permanent link">&para;</a></h3>
+<p>Chapter 5 treated the neuron as a point: one membrane potential, one capacitance, one set of gating variables. That is a modeling choice, not a fact about neurons. Membrane potential is not uniform across a cell. Figure 6.5 makes this concrete: simultaneous somatic and dendritic recordings show an action potential arriving at the dendrite delayed and attenuated — tens of millivolts at the soma down to a few millivolts out in the dendrite. A synaptic potential run the other direction shows the same thing in reverse: an EPSP that peaks earlier and larger where it is generated than where it is read out at the soma.</p>
+<p>Before building a model that captures this, hold the question of how much of it is needed. Models range from one compartment (chapter 5) to a handful (the Rall model, below) to thousands tracing every branch (figure 6.15). More detail is not automatically better: a model with more free parameters than the data can constrain gives results that look realistic but cannot be trusted. That tension returns once the multi-compartment machinery is on the table and becomes a concrete question: how many compartments does <em>this</em> dendrite actually need?</p>
+<h3 id="62-beyond-sodium-and-potassium">6.2 Beyond sodium and potassium<a class="headerlink" href="#62-beyond-sodium-and-potassium" title="Permanent link">&para;</a></h3>
+<p>The Hodgkin-Huxley pair of chapter 5 — fast Na+ and delayed-rectifier K+ — is the minimum needed for a spike, not the ceiling on what a conductance-based model can hold. Equation 6.2's gating formalism (τ(V) and z∞(V) for some generic gate z) is generic enough to describe any voltage- or calcium-dependent channel, so a model is better thought of as a menu: decide which currents the cell's behavior requires, then add their terms to iₘ one at a time.</p>
+<p>The Connor-Stevens model keeps the Hodgkin-Huxley Na+/K+ pair but adds a transient K+ current, the A-current, that deinactivates while the membrane is hyperpolarized and then activates-and-inactivates again on depolarization. Its effect is concentrated near threshold: it slows the climb back toward spiking after each action potential, which pulls the firing-rate-versus-current curve down at the low end and makes it rise continuously from zero rather than jumping — and it delays the first spike after a period of hyperpolarization, exactly the kind of timing effect a fixed Na+/K+ model cannot produce.</p>
+<p>A transient Ca2+ conductance behaves like a slower cousin of the spike-generating Na+ current — it produces a broad depolarization, the Ca2+ spike, that is itself slow enough to carry a burst of ordinary Na+ spikes riding on top of it, and release from hyperpolarization can trigger one (postinhibitory rebound). Thalamic relay cells switch between tonic firing and these bursts depending on current state, a mechanism tied to sleep versus wakeful signaling. Pairing that current with a Ca2+-dependent K+ conductance — one gated by intracellular Ca2+ concentration rather than voltage alone — closes the loop: the K+ current terminates each burst and, on a slower timescale, produces the after-hyperpolarization behind spike-rate adaptation and the periodic bursting seen in pattern-generator circuits like the crustacean stomatogastric ganglion.</p>
+<h3 id="63-the-cable-equation">6.3 The cable equation<a class="headerlink" href="#63-the-cable-equation" title="Permanent link">&para;</a></h3>
+<h3 id="setting-up-current-conservation">Setting up current conservation<a class="headerlink" href="#setting-up-current-conservation" title="Permanent link">&para;</a></h3>
+<p>A dendrite or axon is long and narrow enough that voltage differences across its diameter are negligible next to voltage differences along its length. So the membrane potential is written as a function of one spatial coordinate, V(x,t), and the problem is to find it.</p>
+<p>Figure 6.6 sets up the bookkeeping on a short cylindrical segment of radius a and length Δx. Three currents can change the charge on that segment's membrane: longitudinal current from the neighboring segment on either side, transmembrane current through channels (iₘ, per unit area), and injected electrode current (iₑ, per unit area). Ohm's law along the cylinder gives the longitudinal current IL = −(πa²/rL) ∂V/∂x, with rL the intracellular (axial) resistivity, in Ω·cm. Setting net current into the segment equal to the current needed to charge its capacitance, and taking Δx → 0, gives the <strong>cable equation</strong>:</p>
+<p>cₘ ∂V/∂t = (1/(2a rL)) ∂/∂x(a² ∂V/∂x) − iₘ + iₑ</p>
+<p>The left side and the −iₘ term are the same bookkeeping as the point-neuron membrane equation (chapter 5), applied locally at each x. The new term — the spatial second derivative on the right — is axial current flow: current running along the inside of the cable, redistributing charge between neighboring patches of membrane rather than crossing it. At a branch point (a node), the potential must agree on every branch meeting there, and the sum of a² ∂V/∂x over all branches entering the node must be zero — charge in equals charge out.</p>
+<h3 id="linearizing-the-length-constant">Linearizing: the length constant<a class="headerlink" href="#linearizing-the-length-constant" title="Permanent link">&para;</a></h3>
+<p>The cable equation is nonlinear once realistic channel kinetics go into iₘ. To get anywhere analytically, replace iₘ with its linear approximation near rest, iₘ = v/rₘ, where v = V − V_rest and rₘ is the specific membrane resistance (Ω·cm²) — the same passive-membrane approximation used for the point neuron. For a cable of constant radius, this turns the cable equation into</p>
+<p>τₘ ∂v/∂t = λ² ∂²v/∂x² − v + rₘ iₑ</p>
+<p>with τₘ = rₘcₘ the membrane time constant (as in chapter 5) and</p>
+<p>λ = √(a rₘ / (2 rL))</p>
+<p>the <strong>electrotonic length constant</strong>. For a cable of radius a = 2 μm with rₘ = 1 MΩ·mm² and rL = 1 kΩ·mm, λ works out to 1 mm — three orders of magnitude longer than the radius. λ is the natural ruler here: distances belong in units of λ, not micrometers, because the equation only knows about x/λ.</p>
+<h3 id="the-infinite-cable-exponential-decay-gaussian-spread">The infinite cable: exponential decay, Gaussian spread<a class="headerlink" href="#the-infinite-cable-exponential-decay-gaussian-spread" title="Permanent link">&para;</a></h3>
+<p>For constant current injected at a single point on an infinite cable, the static cable equation reduces to an ODE whose solution — after matching the discontinuity in slope at the injection site — is</p>
+<p>v(x) = (IeRλ/2) exp(−|x|/λ)</p>
+<p><img alt="Figure 6.7" src="../../figures/ch6fig7.png" /></p>
+<p><em>Figure 6.7 — Potential from point current injection on an infinite cable: static exponential decay (A) versus the spreading, decaying Gaussian response to a brief pulse (B). From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Rλ = rLλ/(πa²) is the characteristic resistance of one length constant of cable. Figure 6.7A is the central fact for everything that follows: steady voltage falls off <em>exponentially</em> with distance, scaled by λ, regardless of the morphology beyond the injection point. A synapse one λ from the soma delivers 1/e ≈ 37% of its local voltage; two λ away, the fraction is the square of that. Distance in physical micrometers means nothing on its own — a thick, high-rₘ cable and a thin, leaky one can put the same physical distance at very different fractions of λ, and so attenuate a synapse's contribution by very different amounts. This is the sense in which dendritic location is an implicit synaptic weight: two synapses with identical local conductance can contribute very different charge to the soma purely because of where they sit on the tree.</p>
+<p>For an instantaneous pulse, the solution (figure 6.8) is a Gaussian in x that broadens and decays in amplitude as t grows — the potential spreads, it does not propagate as a wave. A "velocity" can be defined from when the peak arrives at a given x; for large x it approaches 2λ/τₘ. But this is diffusion, not conduction — nothing here resembles the self-regenerating action potential of chapter 5.</p>
+<h3 id="branching-and-the-equivalent-cable">Branching and the equivalent cable<a class="headerlink" href="#branching-and-the-equivalent-cable" title="Permanent link">&para;</a></h3>
+<p><img alt="Figure 6.9" src="../../figures/ch6fig9.png" /></p>
+<p><em>Figure 6.9 — Attenuation along the three branches of an isolated junction, for current injected one length constant from the node, on the thick branch (A) versus a thin branch (B). From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>At a junction of cables with different radii, the boundary conditions above produce a general solution (eq. 6.21–6.22) weighted by each branch's a^(3/2). Figure 6.9 shows the asymmetry: current injected on a thin branch is attenuated severely crossing into the thick trunk, but current injected on the thick trunk barely notices the thin daughter branches. This generalizes: attenuation from periphery to soma is systematically worse than soma to periphery, because the soma represents a much larger current sink for a dendritic source than a thin dendrite represents for a somatic source.</p>
+<p>Rall's model (1959) replaces an entire dendritic tree with one equivalent cylinder, chosen so its electrotonic length matches the tree's average path length in units of λ, and its surface area matches the tree's total surface area (exactly, if every branch point obeys the 3/2 power law on radii). With that cylinder and a lumped soma compartment, static current injected at the soma or at the periphery gives attenuation that reduces to a single function of x/λ and L/λ:</p>
+<p>v(x)/v_soma = cosh((L−x)/λ) / cosh(L/λ)</p>
+<p><img alt="Figure 6.10" src="../../figures/ch6fig10.png" /></p>
+<p><em>Figure 6.10 — Equivalent circuit for the Rall model with current injected at the soma. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em>
+<img alt="Figure 6.11" src="../../figures/ch6fig11.png" /></p>
+<p><em>Figure 6.11 — Attenuation versus x/λ for several equivalent-cable lengths L/λ. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em>
+<img alt="Figure 6.12" src="../../figures/ch6fig12.png" /></p>
+<p><em>Figure 6.12 — Equivalent circuit for the Rall model with current injected along the dendrite, soma clamped at rest. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 6.11 shows attenuation grows severe once L exceeds about one λ — electrotonic length, not physical length, decides whether a dendrite is "long." Equality of outward voltage attenuation and inward current attenuation (eq. 6.25 vs. 6.28) is a general feature of this linear theory, not a coincidence of the Rall geometry.</p>
+<h3 id="seeing-it-on-the-morphology-itself">Seeing it on the morphology itself<a class="headerlink" href="#seeing-it-on-the-morphology-itself" title="Permanent link">&para;</a></h3>
+<p><img alt="Figure 6.13" src="../../figures/ch6fig13.png" /></p>
+<p><em>Figure 6.13 — Morphoelectrotonic transform of a cortical pyramidal neuron: anatomical shape, log-attenuation distance, and delay distance, for peripheral current injection. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Because attenuation multiplies along a path, log-attenuation adds — so it can be drawn as a distance. Zador et al.'s morphoelectrotonic transform redraws the neuron with distance from soma to any point proportional to −ln(attenuation) between them, rather than to physical micrometers. Figure 6.13's middle panel collapses an elaborate dendritic tree down to nearly a point when attenuation is measured inward from the periphery; the same tree for outward attenuation is far more compact still, confirming the asymmetry from figure 6.9. The transform also depends on frequency: attenuation for a sinusoidal current grows sharply as frequency rises, so a tree electrotonically compact for static input can be far from compact for something as fast as a spike.</p>
+<h3 id="64-multi-compartment-models-discretizing-the-cable">6.4 Multi-compartment models: discretizing the cable<a class="headerlink" href="#64-multi-compartment-models-discretizing-the-cable" title="Permanent link">&para;</a></h3>
+<p>Analytic solutions exist only for simple geometries and linear membrane current. Everything else — real channel kinetics, real branching trees — is solved by chopping the cable into compartments small enough that V is approximately uniform within each, and writing one ODE per compartment:</p>
+<p>cₘ dVμ/dt = −iₘ^μ + Ieμ/Aμ + g_{μ,μ+1}(V_{μ+1}−Vμ) + g_{μ,μ−1}(V_{μ−1}−Vμ)</p>
+<p><img alt="Figure 6.16" src="../../figures/ch6fig16.png" /></p>
+<p><em>Figure 6.16 — Multi-compartment circuit at a branch point: each compartment carries its own membrane and synaptic conductances, coupled to its neighbors by resistors g_{μ,μ'. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em>}</p>
+<p>The coupling conductance between same-sized neighboring compartments is g = a/(2rLL²); for compartments of different length or radius it is the more general eq. 6.30, built the same way — invert the summed axial resistance between compartment centers, divide by surface area.</p>
+<p>Compartment length Δx must be chosen relative to λ, not to the neuron's physical size, because the whole derivation of the cable equation assumed negligible potential variation <em>within</em> a segment. A compartment much longer than λ violates that outright: equation 6.29 is a finite-difference approximation to a second spatial derivative, and once Δx is not small against the scale over which V actually curves, the approximation's error blows up — the numerics can produce voltage swings that have nothing to do with the biology, however good the integrator. Figure 6.15 shows the range of discretizations of one neuron, from a single compartment to a dense tree; the right choice is the coarsest one whose compartments still stay well under a length constant each, matched to what the question at hand needs resolved — the 6.1 judgment, now with a concrete numerical stake.</p>
+<h3 id="propagation-unmyelinated-versus-myelinated-axons">Propagation: unmyelinated versus myelinated axons<a class="headerlink" href="#propagation-unmyelinated-versus-myelinated-axons" title="Permanent link">&para;</a></h3>
+<p><img alt="Figure 6.17" src="../../figures/ch6fig17.png" /></p>
+<p><em>Figure 6.17 — An action potential propagating along a 100-compartment model axon: snapshot along the cable and time traces at two fixed points. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Chaining Hodgkin-Huxley compartments along a cable (figure 6.17) reproduces a traveling action potential: a spike roughly a millimeter wide travels about 2 mm in 5 ms — 0.4 m/s — for a 1 μm-radius unmyelinated axon. Refractoriness in the trailing region (chapter 5's inactivation) keeps the spike moving one way instead of regenerating backward, and is why two spikes colliding head-on annihilate rather than pass through. Propagation speed for an unmyelinated axon scales as λ/τₘ ∝ √a — doubling radius buys only √2 in speed.</p>
+<p><img alt="Figure 6.18" src="../../figures/ch6fig18.png" /></p>
+<p><em>Figure 6.18 — Myelinated axon: equivalent circuit of myelin-wrapped internodes and nodes of Ranvier (A); cross-section defining the core radius a1 and outer radius a2 (B). From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Myelin changes the scaling. Treating the sheath as many thin concentric membrane layers in series (eq. 6.31) turns the myelinated internode into a diffusion equation with diffusion constant D ∝ a1² ln(a2/a1), maximized at a core-to-outer-radius ratio a1/a2 = exp(−1/2) ≈ 0.6 — close to what is observed. At that optimum D ∝ a2², so velocity scales with axon radius itself, not its square root: doubling radius doubles speed outright. That one exponent, √a versus a, is most of why myelinated axons reach conduction velocities unmyelinated axons of the same radius cannot, with spikes actively regenerated only at the nodes of Ranvier and carried passively in between.</p>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
 <p><strong>Goal:</strong> Move the neuron from a point to a spatially extended structure. Derive the cable equation from current conservation along a leaky cylinder, extract the electrotonic length constant, and use it to show that a synapse's dendritic location sets how much of its current survives to the soma — making location an implicit weight.</p>
 <details class="note">

@@ -582,6 +582,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1118,6 +1129,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1199,6 +1221,7 @@
 <div class="toc">
 <ul>
 <li><a href="#f2-receptive-fields-and-reverse-correlation">F2 · Receptive fields and reverse correlation</a><ul>
+<li><a href="#lecture">Lecture</a></li>
 <li><a href="#lesson-spec">Lesson spec</a></li>
 <li><a href="#authors-exercises">Authors' exercises</a></li>
 <li><a href="#coursework">Coursework</a></li>
@@ -1207,6 +1230,89 @@
 </li>
 </ul>
 </div>
+<h2 id="lecture">Lecture<a class="headerlink" href="#lecture" title="Permanent link">&para;</a></h2>
+<p>Reading alongside <strong>Dayan &amp; Abbott chapter 2</strong>, section by section. Figures are the book's own, by number, so you can find them on the page in front of you.</p>
+<table>
+<thead>
+<tr>
+<th>Chapter section</th>
+<th>Here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.1 Introduction</td>
+<td>Why a linear model, and its limits</td>
+</tr>
+<tr>
+<td>2.2 Estimating Firing Rates</td>
+<td>The optimal kernel, the best stimulus, and a nonlinearity bolted on</td>
+</tr>
+<tr>
+<td>2.3 Introduction to the Early Visual System</td>
+<td>Retina to cortex, the map, the stimuli, the sampling limit</td>
+</tr>
+<tr>
+<td>2.4 Reverse-Correlation Methods: Simple Cells</td>
+<td>Space, time, and space-time receptive fields</td>
+</tr>
+<tr>
+<td>2.5 Static Nonlinearities: Complex Cells</td>
+<td>Throwing away phase</td>
+</tr>
+<tr>
+<td>2.6 Receptive Fields in the Retina and LGN</td>
+<td>Center, surround, and their mismatched clocks</td>
+</tr>
+<tr>
+<td>2.7 Constructing V1 Receptive Fields</td>
+<td>A wiring sketch, not a mechanism</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="why-a-linear-model-and-its-limits">Why a linear model, and its limits<a class="headerlink" href="#why-a-linear-model-and-its-limits" title="Permanent link">&para;</a></h3>
+<p>Chapter 1 built the spike-triggered average as a way to characterize a neuron's stimulus preference. This chapter turns that average into a predictive model: given a stimulus, estimate a firing rate. The scope is explicit from the first page — the technique works well for retinal ganglion cells, LGN relay neurons, and V1 simple cells, works less well but still usably for V1 complex cells, and breaks down for V2, area 18, and MT, where nonlinear effects the chapter does not attempt to capture take over. Keep that boundary in view; everything that follows is a model of the <em>early</em> visual pathway, not a general theory of vision.</p>
+<h3 id="the-optimal-kernel-the-best-stimulus-and-a-nonlinearity-bolted-on">The optimal kernel, the best stimulus, and a nonlinearity bolted on<a class="headerlink" href="#the-optimal-kernel-the-best-stimulus-and-a-nonlinearity-bolted-on" title="Permanent link">&para;</a></h3>
+<p>The estimate is a linear filter: <span class="arithmatex">\(r_{\text{est}}(t) = r_0 + \int_0^\infty d\tau\, D(\tau) s(t-\tau)\)</span> — equation 2.1, the same form as chapter 1's <span class="arithmatex">\(r_{\text{approx}}\)</span>. <span class="arithmatex">\(D(\tau)\)</span> is formally the first term of a Volterra expansion (the functional analogue of a Taylor series, equation 2.2), rearranged by Wiener into a form where <span class="arithmatex">\(D\)</span> is called the linear kernel. Choosing <span class="arithmatex">\(D\)</span> to minimize the mean squared error between estimate and data (equation 2.3) gives a condition relating <span class="arithmatex">\(D\)</span> to the stimulus autocorrelation <span class="arithmatex">\(Q_{ss}\)</span> and the firing-rate-stimulus correlation <span class="arithmatex">\(Q_{rs}\)</span> (equation 2.4) — solvable in general by Fourier methods (appendix A), but solvable by inspection in one special case: white noise, where <span class="arithmatex">\(Q_{ss}(\tau) = \sigma_s^2 \delta(\tau)\)</span>. Equation 2.4 then collapses to <span class="arithmatex">\(D(\tau) = Q_{rs}(-\tau)/\sigma_s^2 = \langle r \rangle C(\tau)/\sigma_s^2\)</span>, where <span class="arithmatex">\(C(\tau)\)</span> is just the spike-triggered average. This is the whole justification for using white noise in these experiments: it is the one stimulus class for which "average the stimulus before each spike" <em>is</em> the optimal linear filter, with no further correction needed. Work through why the delta function is doing that work, and what survives of equation 2.4 when <span class="arithmatex">\(Q_{ss}\)</span> is not a delta function — appendix A's acausal solution (equation 2.59) is the general answer, and it needs a full deconvolution in frequency, not an average.</p>
+<p>A companion result (appendix B) answers a different question: not what the kernel is, but what stimulus, at fixed energy, drives the strongest response. The answer is the kernel itself, which licenses reading the spike-triggered average as "the stimulus this neuron likes" even without doing the regression in equation 2.4.</p>
+<p>The linear estimate has two obvious defects: it can go negative, and it never saturates. Section 2.2 patches both with a static nonlinearity <span class="arithmatex">\(F\)</span>, giving <span class="arithmatex">\(r_{\text{est}}(t) = r_0 + F(L(t))\)</span> (equation 2.8), with <span class="arithmatex">\(L\)</span> the linear filter output. <span class="arithmatex">\(F\)</span> is read off empirically by plotting <span class="arithmatex">\((L(t), r(t))\)</span> pairs and fitting a curve through the scatter (figure 2.2A); three standard choices — threshold-linear, sigmoid, rectified tanh — are compared in figure 2.2B with concrete parameters (<span class="arithmatex">\(G=25\)</span> Hz, <span class="arithmatex">\(L_{1/2}=3\)</span>, <span class="arithmatex">\(r_{\max}=100\)</span> Hz). Bussgang's theorem (appendix C) is the reassurance that bolting <span class="arithmatex">\(F\)</span> on afterward does not invalidate the kernel computed in section 2.2's linear step, provided the white noise used was Gaussian.</p>
+<p><img alt="Figure 2.3" src="../../figures/ch2fig3.png" /></p>
+<p><em>Figure 2.3 — Linear filter, then static nonlinearity, then a Poisson spike generator — the full model chain. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>That three-stage chain — linear filter, static nonlinearity, Poisson spike generation — is the complete recipe used for every neuron in the rest of the chapter, and it has a name worth fixing now: the linear-nonlinear (or LN) cascade.</p>
+<h3 id="retina-to-cortex-the-map-the-stimuli-the-sampling-limit">Retina to cortex, the map, the stimuli, the sampling limit<a class="headerlink" href="#retina-to-cortex-the-map-the-stimuli-the-sampling-limit" title="Permanent link">&para;</a></h3>
+<p>Section 2.3 is scene-setting. Light is transduced in rods and cones, passed through bipolar and horizontal cells (graded potentials, fine over retinal distances), and converted to spikes only at the retinal ganglion cell, the first stage that needs to send a signal any distance — down the optic nerve to the LGN, then on to V1 (figures 2.4, 2.5). Two response classes recur throughout the chapter: X/P/simple cells, where spatial contributions sum linearly, and Y/M/complex cells, where they do not.</p>
+<p><img alt="Figure 2.9" src="../../figures/ch2fig9.png" /></p>
+<p><em>Figure 2.9 — Two different spatial frequencies sampled by the same photoreceptor spacing produce identical sample points — aliasing. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The retinotopic map is logarithmic in eccentricity (<span class="arithmatex">\(X = \lambda \ln(1+\epsilon/\epsilon_0)\)</span>, with <span class="arithmatex">\(\lambda \approx 12\)</span> mm and <span class="arithmatex">\(\epsilon_0 \approx 1°\)</span> in the macaque), which is why cortical magnification is so much higher at the fovea. The chapter's standard stimulus, the counterphase sinusoidal grating of equation 2.18, is worth memorizing in full — spatial frequency <span class="arithmatex">\(K\)</span>, orientation <span class="arithmatex">\(\Theta\)</span>, phase <span class="arithmatex">\(\Phi\)</span>, temporal frequency <span class="arithmatex">\(\omega\)</span> — because every tuning curve in sections 2.4 and 2.5 is this neuron's response as one of those four parameters is swept with the others fixed at preference. Separately, the photoreceptor mosaic imposes a hard sampling limit, the Nyquist frequency <span class="arithmatex">\(K_{\text{nyq}} = \pi/\Delta x\)</span>: at 120 cones per degree in the foveal macaque, that works out to 60 cycles per degree, and frequencies above it alias onto frequencies below it rather than vanishing.</p>
+<h3 id="space-time-and-space-time-receptive-fields">Space, time, and space-time receptive fields<a class="headerlink" href="#space-time-and-space-time-receptive-fields" title="Permanent link">&para;</a></h3>
+<p>This is the chapter's technical core. The spike-triggered average is now a function of three variables, <span class="arithmatex">\(C(x,y,\tau)\)</span> (equation 2.21), and the optimal kernel <span class="arithmatex">\(D(x,y,\tau)\)</span> is the space-time receptive field. When it factors as <span class="arithmatex">\(D(x,y,\tau) = D_s(x,y)D_t(\tau)\)</span> the receptive field is separable — its spatial shape stays fixed while only its sign and amplitude evolve in time.</p>
+<p><img alt="Figure 2.10" src="../../figures/ch2fig10.png" /></p>
+<p><em>Figure 2.10 — A cat V1 simple cell's spatial receptive field, measured, next to a Gabor function fit to it. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The spatial part of a simple cell's receptive field is fit by a Gabor function (equation 2.27): a Gaussian envelope of width <span class="arithmatex">\(\sigma_x, \sigma_y\)</span> times a cosine grating of preferred spatial frequency <span class="arithmatex">\(k\)</span> and phase <span class="arithmatex">\(\phi\)</span>. Realistic values cluster around <span class="arithmatex">\(k\sigma_x\)</span> between 1.7 and 6.9, reported as a bandwidth in octaves (0.5 to 2.5) — low bandwidth means more subregions and sharper spatial-frequency tuning. The point of fitting a Gabor rather than just plotting the measured field is that it hands you the knobs: rotate <span class="arithmatex">\(\theta\)</span> for orientation preference, shift <span class="arithmatex">\(k\)</span> for spatial frequency preference, and the overlap between ON/OFF subregions and a grating's light/dark bands (figure 2.11) tells you, by eye, why mismatched orientation or phase produces a weak response.</p>
+<p><img alt="Figure 2.11" src="../../figures/ch2fig11.png" /></p>
+<p><em>Figure 2.11 — A grating aligned with a receptive field's ON/OFF subregions, versus one shifted out of phase or rotated off-orientation. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The temporal part, <span class="arithmatex">\(D_t(\tau)\)</span> (equation 2.29, figure 2.14), rises, crosses zero, and decays — so the spatial pattern a cell prefers at <span class="arithmatex">\(\tau=75\)</span> ms is sign-reversed from what it preferred at <span class="arithmatex">\(\tau=210\)</span> ms.</p>
+<p><img alt="Figure 2.13" src="../../figures/ch2fig13.png" /></p>
+<p><em>Figure 2.13 — The same spatial receptive field, shown at six different time lags, reversing sign between them. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p><img alt="Figure 2.17" src="../../figures/ch2fig17.png" /></p>
+<p><em>Figure 2.17 — A separable receptive field plotted as a single space-time (x-τ) image, with the sign reversal now visible as a diagonal structure. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>This reversal is exactly why a flashed static bar is a weak stimulus for these cells (it straddles both an ON and the later-reversed OFF phase, and the two nearly cancel) while a moving or flashed-then-removed bar is strong. A separable receptive field tuned this way responds well to motion at a preferred speed but equally to both directions — it cannot report <em>which</em> way the grating moved, because <span class="arithmatex">\(D_s\)</span> and <span class="arithmatex">\(D_t\)</span> never mix.</p>
+<p><img alt="Figure 2.21" src="../../figures/ch2fig21.png" /></p>
+<p><em>Figure 2.21 — A direction-selective V1 cell's space-time receptive field: a tilted structure, not separable into a space part times a time part. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Direction selectivity needs the nonseparable case, built (equation 2.35) by rotating the <span class="arithmatex">\(x\)</span>-<span class="arithmatex">\(\tau\)</span> axes against each other by an angle <span class="arithmatex">\(\psi\)</span> before applying the Gabor and temporal functions separately — the receptive field's spatial subregions now visibly drift sideways as <span class="arithmatex">\(\tau\)</span> changes, and the preferred velocity is <span class="arithmatex">\(c\tan(\psi)\)</span>.</p>
+<h3 id="throwing-away-phase">Throwing away phase<a class="headerlink" href="#throwing-away-phase" title="Permanent link">&para;</a></h3>
+<p>Complex cells cannot be fit this way at all — their ON and OFF regions overlap, so no linear spike-triggered average separates them cleanly. What <em>does</em> survive is orientation and spatial-frequency tuning; what disappears is spatial-phase tuning, and the firing rate to a counterphase grating acquires a response component at <span class="arithmatex">\(2\omega\)</span> instead of <span class="arithmatex">\(\omega\)</span> — frequency doubling.</p>
+<p><img alt="Figure 2.23" src="../../figures/ch2fig23.png" /></p>
+<p><em>Figure 2.23 — A model complex cell's tuning to orientation and spatial frequency, holding up, against its tuning to spatial phase, flattening out. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The repair is the "energy model": take two simple-cell-like linear filters with preferred phases <span class="arithmatex">\(\phi\)</span> and <span class="arithmatex">\(\phi - \pi/2\)</span> (a quadrature pair), compute <span class="arithmatex">\(L_1\)</span> and <span class="arithmatex">\(L_2\)</span> from each, and combine as <span class="arithmatex">\(L_1^2 + L_2^2\)</span> (equations 2.39–2.42). The trigonometric identity <span class="arithmatex">\(\cos^2(\phi-\Phi) + \sin^2(\phi-\Phi) = 1\)</span> is what cancels the phase dependence; work through equations 2.39 and 2.40 by hand to see exactly where <span class="arithmatex">\(\Phi\)</span> drops out, and what <span class="arithmatex">\(2\omega\)</span> in equation 2.43 has to do with the squaring. The chapter also gives a biologically fussier version, equation 2.44, built from four half-wave-rectified simple cells instead of two full-wave outputs — worth comparing against 2.41 to see that it is the same answer reached without ever squaring a negative number.</p>
+<h3 id="center-surround-and-their-mismatched-clocks">Center, surround, and their mismatched clocks<a class="headerlink" href="#center-surround-and-their-mismatched-clocks" title="Permanent link">&para;</a></h3>
+<p>Retinal ganglion cells and LGN relay neurons are fit by a difference of Gaussians (equation 2.45): a narrow, strong center Gaussian (<span class="arithmatex">\(\sigma_{\text{cen}}\)</span>) minus a broad, weaker surround (<span class="arithmatex">\(\sigma_{\text{sur}} &gt; \sigma_{\text{cen}}\)</span>, scaled by <span class="arithmatex">\(B\)</span>).</p>
+<p><img alt="Figure 2.25" src="../../figures/ch2fig25.png" /></p>
+<p><em>Figure 2.25 — An LGN cell's measured spatial receptive field, center and surround, fit by a difference of two Gaussians. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 2.25's fitted values — <span class="arithmatex">\(\sigma_{\text{cen}} = 0.3°\)</span>, <span class="arithmatex">\(\sigma_{\text{sur}} = 1.5°\)</span>, <span class="arithmatex">\(B = 5\)</span> — are real numbers to compute with, not just illustration: integrate <span class="arithmatex">\(D_s\)</span> over a disk the size of the center alone, then over a disk covering center and surround together, and compare. Center and surround also run on different clocks in time (<span class="arithmatex">\(\alpha_{\text{cen}} \ne \alpha_{\text{sur}}\)</span> in equation 2.47, with the surround's reversal lagging the center's), which is why this receptive field — unlike the V1 cells above — is nonseparable even though center and surround are each separable on their own.</p>
+<h3 id="a-wiring-sketch-not-a-mechanism">A wiring sketch, not a mechanism<a class="headerlink" href="#a-wiring-sketch-not-a-mechanism" title="Permanent link">&para;</a></h3>
+<p>Hubel and Wiesel's 1962 proposal closes the chapter: sum rows of ON-center and OFF-center LGN inputs to build an oriented simple-cell field (figure 2.27A), then sum several simple cells of matching orientation but staggered phase to build a complex cell (figure 2.27B) — an alternative to squaring that reaches the same phase-invariant result by addition instead. Both are explicitly flagged as "purely descriptive"; the chapter does not claim this is how V1 is actually wired, only that it is wiring that <em>would</em> produce the receptive fields already measured.</p>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
 <p><strong>Goal:</strong> Learn how a real sensory neuron's stimulus preference is measured and modelled, with the visual system as the running example. Build the spike-triggered average as an estimate of a linear filter, understand why white-noise stimuli make that estimate valid, and see where the linear model breaks and what repairs it.</p>
 <details class="note">
@@ -1216,7 +1322,7 @@
 <li>Spike-triggered average and reverse correlation as a method, including the white-noise assumption and why it is needed for an unbiased estimate</li>
 <li>Centre-surround receptive fields as a spatial difference-of-Gaussians operation, not an intensity detector</li>
 <li>Orientation-selective, phase-sensitive simple cells as oriented spatiotemporal filters</li>
-<li>Complex cells as phase-invariant, the static nonlinearity mapping filter output to rate, and the linear-nonlinear cascade as the general model with its known failure modes</li>
+<li>Complex cells as phase-invariant, the static nonlinearity mapping filter output to rate, and the full linear-nonlinear-Poisson chain as the general model — including the chapter's own statement that reverse correlation and this model generally fail beyond V1</li>
 <li>Not covered: decoding a stimulus from spikes (F3), the laminar and microcircuit structure of V1 (B2)</li>
 </ul>
 </details>
@@ -1225,7 +1331,7 @@
 2. Why must the stimulus be white noise rather than, say, natural images, for the STA to estimate the linear filter without bias?
 3. A centre-surround cell has a positive centre and negative surround. Compute the sign and rough magnitude of its response to a spot covering only the centre, versus one covering centre and surround equally.
 4. What distinguishes a complex cell's response from a simple cell's when an oriented grating is shifted 90 degrees in phase, and how is that implemented in terms of combining filter outputs?
-5. Name the two stages of the LN cascade in order, and give one concrete stimulus manipulation the linear stage alone would get wrong and the full cascade gets right.</p>
+5. The chapter's model chain has three stages, not two — name them in order, say which two are deterministic, and give one concrete stimulus manipulation the linear stage alone would get wrong that the full chain gets right.</p>
 <p><strong>Feeds:</strong> F3 (decoding inverts the encoding model built here), B2 (which assumes this feedforward story before complicating it).</p>
 <p><strong>Done when:</strong> You can derive a spike-triggered average by hand on a short synthetic example, and predict from a filter description whether a cell will behave as simple or complex.</p>
 <hr />
@@ -1377,7 +1483,7 @@ The script, plus a short results block (can be print output) reporting: (a) N sp
 <p><strong>Learning goals</strong>
 - State, in the text's own terms, what each stage of the retina→LGN→V1 pathway computes.
 - Extract the text's stated justification for why white noise (and not natural images) gives an unbiased STA.
-- Identify the two stages of the linear-nonlinear cascade and the manipulation the text uses to tell simple from complex cells.</p>
+- Identify the stages of the chapter's model chain — there are three, not the two this course originally claimed — and the manipulation the text uses to tell simple from complex cells.</p>
 <p><strong>Task</strong>
 Read D&amp;A ch. 2, sections: <em>Introduction</em>; <em>Estimating Firing Rates</em>; <em>Introduction to the Early Visual System</em>; <em>Reverse-Correlation Methods: Simple Cells</em>; <em>Static Nonlinearities: Complex Cells</em>; <em>Receptive Fields in the Retina and LGN</em>; <em>Constructing V1 Receptive Fields</em>. Answer in your own words, citing the section you drew each answer from:</p>
 <ol>
@@ -1385,7 +1491,7 @@ Read D&amp;A ch. 2, sections: <em>Introduction</em>; <em>Estimating Firing Rates
 <li>(<em>Reverse-Correlation Methods: Simple Cells</em>) What condition does the text place on the stimulus ensemble for the STA to be an unbiased estimate of the linear kernel, and what property of white noise (in terms of its autocorrelation or power spectrum) is doing the work?</li>
 <li>(<em>Receptive Fields in the Retina and LGN</em>) In the text's account, what does a retinal ganglion cell's centre-surround receptive field compute, and does the LGN relay stage substantially reshape that receptive field or largely preserve it?</li>
 <li>(<em>Introduction to the Early Visual System</em> / <em>Constructing V1 Receptive Fields</em>) How does the text describe a V1 simple cell's receptive field being assembled from LGN inputs, and what in that construction makes the cell orientation-selective and phase-sensitive?</li>
-<li>(<em>Static Nonlinearities: Complex Cells</em>) Name the two stages of the linear-nonlinear (LN) cascade in the order the text presents them, and describe the specific stimulus manipulation (e.g. a phase-shifted or drifting grating) the text uses to distinguish complex cells from simple cells.</li>
+<li>(<em>Static Nonlinearities: Complex Cells</em>) Name the stages of the model chain in the order the text presents them — count them carefully, the figure shows more than the usual two — say which are deterministic, and describe the specific stimulus manipulation (e.g. a phase-shifted or drifting grating) the text uses to distinguish complex cells from simple cells.</li>
 </ol>
 <p><strong>Deliverable</strong>
 Five short written answers (2-5 sentences each), each naming the section it came from, in your own words (not copied text).</p>
@@ -1425,7 +1531,7 @@ Five short written answers (2-5 sentences each), each naming the section it came
 - Synthesize the pathway, the estimation method, and the two receptive-field classes into one coherent account.
 - Explain, without leaning on formulas, why each modeling choice (white noise, centre-surround shape, LN cascade) exists to fix a specific problem.</p>
 <p><strong>Task</strong>
-Write 300-600 words explaining, to a reader who knows what a neuron and a Gaussian are but has never seen this material: (a) what the retina, LGN, and V1 each do to the visual signal in turn; (b) what the spike-triggered average estimates and why the stimulus must be white for that estimate to be unbiased; (c) why a centre-surround cell's response to a spot depends on the spot's size relative to the receptive field, not just its brightness; (d) the difference between a simple and a complex cell in terms of what happens when you shift a grating's phase, and how the energy-model construction (squaring and summing two phase-shifted filters) produces that difference; (e) the two stages of the linear-nonlinear cascade and one concrete case where the linear stage alone gets the wrong answer.</p>
+Write 300-600 words explaining, to a reader who knows what a neuron and a Gaussian are but has never seen this material: (a) what the retina, LGN, and V1 each do to the visual signal in turn; (b) what the spike-triggered average estimates and why the stimulus must be white for that estimate to be unbiased; (c) why a centre-surround cell's response to a spot depends on the spot's size relative to the receptive field, not just its brightness; (d) the difference between a simple and a complex cell in terms of what happens when you shift a grating's phase, and how the energy-model construction (squaring and summing two phase-shifted filters) produces that difference; (e) the stages of the model chain, which of them are deterministic, and one concrete case where the linear stage alone gets the wrong answer.</p>
 <p><strong>Deliverable</strong>
 300-600 word written explanation covering (a)-(e), continuous prose (not five separate disconnected answers).</p>
 <details class="info">

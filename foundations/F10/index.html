@@ -806,6 +806,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1118,6 +1129,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1197,6 +1219,7 @@
 <div class="toc">
 <ul>
 <li><a href="#f10-classical-conditioning-and-reinforcement-learning">F10 · Classical conditioning and reinforcement learning</a><ul>
+<li><a href="#lecture">Lecture</a></li>
 <li><a href="#lesson-spec">Lesson spec</a></li>
 <li><a href="#authors-exercises">Authors' exercises</a></li>
 <li><a href="#coursework">Coursework</a></li>
@@ -1205,6 +1228,126 @@
 </li>
 </ul>
 </div>
+<h2 id="lecture">Lecture<a class="headerlink" href="#lecture" title="Permanent link">&para;</a></h2>
+<p>Reading alongside <strong>Dayan &amp; Abbott chapter 9</strong>, section by section. Figures are the book's own, by number.</p>
+<table>
+<thead>
+<tr>
+<th>Chapter section</th>
+<th>Here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9.1 Introduction</td>
+<td>A third learning paradigm, defined by what supervises it</td>
+</tr>
+<tr>
+<td>9.2 Rescorla-Wagner</td>
+<td>Reward prediction as a delta rule</td>
+</tr>
+<tr>
+<td>9.2 Blocking, inhibition, overshadowing</td>
+<td>The experiment that forces a prediction-error account</td>
+</tr>
+<tr>
+<td>9.2 Secondary conditioning</td>
+<td>What the delta rule cannot explain</td>
+</tr>
+<tr>
+<td>9.2 Temporal difference learning</td>
+<td>Predicting <em>when</em>, not just <em>whether</em></td>
+</tr>
+<tr>
+<td>9.2 Dopamine and predictions of reward</td>
+<td>A cell that fires like δ</td>
+</tr>
+<tr>
+<td>9.3 Static action choice</td>
+<td>Bees, bandits, and the softmax policy</td>
+</tr>
+<tr>
+<td>9.3 Indirect and direct actors</td>
+<td>Learn values and choose, or climb the gradient directly</td>
+</tr>
+<tr>
+<td>9.4 The maze, policy evaluation and improvement</td>
+<td>Delayed reward, the critic, and the actor</td>
+</tr>
+<tr>
+<td>9.4 Generalizations, the water maze</td>
+<td>State vectors, discounting, traces</td>
+</tr>
+<tr>
+<td>9.6 Appendix</td>
+<td>Markov decision problems and the Bellman equation</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="a-third-learning-paradigm-defined-by-what-supervises-it">A third learning paradigm, defined by what supervises it<a class="headerlink" href="#a-third-learning-paradigm-defined-by-what-supervises-it" title="Permanent link">&para;</a></h3>
+<p>Chapters 7 and 8 covered unsupervised learning (statistics of the input alone) and supervised learning (a target output, provided from outside). This chapter adds a third case, defined by what is missing: reinforcement learning trains on a scalar evaluation — a reward or punishment — with no target output given. The animal is never told which action was correct, only how good the outcome was; Dayan and Abbott call this "minimally supervised."</p>
+<p>The chapter also separates two conditioning paradigms. In classical (Pavlovian) conditioning, reinforcement arrives independent of the animal's behavior. In instrumental (operant) conditioning, the animal's action determines what reinforcement follows. Section 9.2 builds a model of <em>prediction</em> for the classical case; 9.3 and 9.4 cover instrumental <em>action selection</em>. The error signal built for prediction turns out to be exactly what action selection needs. Note also: r denotes reward, not firing rate, for the rest of the chapter.</p>
+<h3 id="reward-prediction-as-a-delta-rule">Reward prediction as a delta rule<a class="headerlink" href="#reward-prediction-as-a-delta-rule" title="Permanent link">&para;</a></h3>
+<p>Table 9.1 lays out the phenomena to explain: a stimulus u (1 if present, 0 if absent) is paired with reward r, and expectation v develops. The model is linear, v = wu (equation 9.1), with w set by minimizing mean squared prediction error — the same stochastic gradient descent as chapter 8's delta rule, giving the Rescorla-Wagner rule (equation 9.2):</p>
+<p>w → w + εδu, with δ = r − v.</p>
+<p>δ is the prediction error, the object the whole chapter is built around. Take w₀ = 0, r = 1 every trial, ε = 0.5: trial 1 gives δ = 1, w → 0.5; trial 2 gives δ = 0.5, w → 0.75; trial 3 gives δ = 0.25, w → 0.875. Each error is half the last, and w creeps geometrically toward the asymptote w = ⟨r⟩.</p>
+<p><img alt="Figure 9.1" src="../../figures/ch9fig1.png" /></p>
+<p><em>Figure 9.1 — Acquisition and extinction curves for Pavlovian conditioning and partial reinforcement as predicted by the Rescorla-Wagner model. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 9.1 runs 200 trials at ε = 0.05: reward for the first 100, withheld for the next 100 (extinction is the same rule with r = 0). The open squares show partial reinforcement — reward on half the trials — settling near w = 0.5, weaker than full reinforcement, because the rule's fixed point is always ⟨r⟩. With several stimuli, u and w become vectors, v = w·u (equation 9.3), δ unchanged (equation 9.4) — the form that makes blocking analyzable.</p>
+<h3 id="the-experiment-that-forces-a-prediction-error-account">The experiment that forces a prediction-error account<a class="headerlink" href="#the-experiment-that-forces-a-prediction-error-account" title="Permanent link">&para;</a></h3>
+<p>Blocking motivated the whole rule. Pretrain stimulus 1 alone until w₁ = r. Then add stimulus 2 alongside it, both still paired with the same reward. Despite being perfectly contiguous with reward on every compound trial, stimulus 2 acquires no association. Trace it through the vector rule: before the compound phase w₁ = r, w₂ = 0. On the first compound trial v = w₁u₁ + w₂u₂ = r, so δ = r − v = 0, and the update to w₂ is εδu₂ = 0. Nothing changes, on that trial or any later one.</p>
+<p>This is the argument the rule is built to explain, not a demonstration of it. Contiguity alone predicts stimulus 2 should gain strength — it is paired with reward as reliably as stimulus 1 ever was. It does not. The only difference is that reward is already fully predicted when stimulus 2 appears, and only a rule keyed to <em>prediction error</em> explains that. The rest of table 9.1 follows the same logic: alternating s₁→r with s₁+s₂→(no reward) forces w₁+w₂ to settle at 0 on the unrewarded trials while w₁ alone is positive, driving w₂ negative — inhibitory conditioning, an active prediction of absent reward. Overshadowing, two stimuli sharing a reward unequally, follows from giving them different values of ε.</p>
+<h3 id="what-the-delta-rule-cannot-explain">What the delta rule cannot explain<a class="headerlink" href="#what-the-delta-rule-cannot-explain" title="Permanent link">&para;</a></h3>
+<p>Secondary conditioning breaks the pattern: train s₁→r, then pair a second stimulus with the first instead of with reward (s₂→s₁). The second stimulus goes on to evoke reward expectation it was never paired with. Under the delta rule this runs backwards — s₂ is never present with r, so δ pushes w₂ negative, predicting <em>absent</em> reward. The rule has no sense of a stimulus reliably preceding something that itself predicts reward; fixing that requires tracking time within the trial.</p>
+<h3 id="predicting-when-not-just-whether">Predicting when, not just whether<a class="headerlink" href="#predicting-when-not-just-whether" title="Permanent link">&para;</a></h3>
+<p>v(t) is reinterpreted as the total future reward expected from t to the end of the trial (equation 9.5), approximated as a linear filter over stimulus history, v(t) = Σ w(τ)u(t−τ) (equation 9.6). Computing an error for this directly would need the full future reward sum, unavailable at time t. The fix uses the recursive identity that the future-reward sum at t equals r(t) plus the sum at t+1 (equation 9.8), approximating the unknown second term with the model's own current estimate v(t+1) — bootstrapping. That gives the temporal difference rule (equation 9.10):</p>
+<p>w(τ) → w(τ) + εδ(t)u(t−τ), with δ(t) = r(t) + v(t+1) − v(t).</p>
+<p><img alt="Figure 9.2" src="../../figures/ch9fig2.png" /></p>
+<p><em>Figure 9.2 — Learning to predict a reward: the prediction error δ(t) across trials, moving backward from reward to stimulus. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 9.2 trains this with a stimulus at t = 100 and reward around t = 200, w(τ) initially zero. Early on, δ spikes only at t = 200, where the full surprise lands with no prediction yet in place. Across trials that spike walks backward as weights near τ = 100 grow, extending the plateau of v(t) earlier. Once learned, v(t) holds at a constant plateau (the total integrated reward) from stimulus to reward, dropping to 0 exactly when reward lands — at which point δ has shifted to a spike one step <em>before</em> the stimulus, and is zero everywhere else, because the actual reward now cancels the drop in v. This also repairs secondary conditioning: once s₁ predicts future reward, its own onset carries a δ spike that a preceding s₂ can inherit as its own training signal.</p>
+<h3 id="a-cell-that-fires-like">A cell that fires like δ<a class="headerlink" href="#a-cell-that-fires-like" title="Permanent link">&para;</a></h3>
+<p><img alt="Figure 9.3" src="../../figures/ch9fig3.png" /></p>
+<p><em>Figure 9.3 — Activity of dopaminergic neurons in the VTA for a monkey performing reaction time tasks, and with and without an expected reward. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Schultz and colleagues recorded dopamine cells in the ventral tegmental area (VTA) of monkeys cued to work for juice reward. Early in training, a cell fires vigorously at reward and barely above baseline at the predictive sound; after training, the same cell fires at the sound and is silent at reward — tracking δ(t) from figure 9.2 almost exactly. The sharper test: withhold an expected reward, and the cell dips below baseline at the exact moment reward would have arrived — a negative δ that a cell merely reporting reward presence could never produce. This is the chapter's central empirical claim, made by one of the people who made it: dopamine firing is a read-out of δ, not of reward itself.</p>
+<h3 id="bees-bandits-and-the-softmax-policy">Bees, bandits, and the softmax policy<a class="headerlink" href="#bees-bandits-and-the-softmax-policy" title="Permanent link">&para;</a></h3>
+<p>Section 9.3 moves to choosing actions when reward follows immediately. A model bee chooses between blue and yellow flowers, each drawing nectar from its own distribution — a two-armed bandit. Choice is stochastic through the softmax rule (equation 9.11): P[b] = exp(βm_b) / (exp(βm_b) + exp(βm_y)), with action values m_b, m_y. Large β pushes the higher-valued action toward probability 1 (exploitation); small β keeps both options live regardless of the value gap (exploration) — the exploration-exploitation dilemma stated concretely.</p>
+<h3 id="learn-values-and-choose-or-climb-the-gradient-directly">Learn values and choose, or climb the gradient directly<a class="headerlink" href="#learn-values-and-choose-or-climb-the-gradient-directly" title="Permanent link">&para;</a></h3>
+<p>The indirect actor sets m_b = ⟨r_b⟩, m_y = ⟨r_y⟩ directly (equation 9.13), updated by the ordinary delta rule on whichever flower was chosen (equation 9.14).</p>
+<p><img alt="Figure 9.4" src="../../figures/ch9fig4.png" /></p>
+<p><em>Figure 9.4 — The indirect actor: weight evolution and cumulative visits to blue and yellow flowers under two values of β. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 9.4 reverses the reward contingencies halfway through 200 visits: at β = 1, learning is slow but reliable; at β = 50, the bee sometimes locks onto the right flower fast and sometimes locks onto the wrong one and stays there, having stopped sampling before enough evidence came in.</p>
+<p><img alt="Figure 9.5" src="../../figures/ch9fig5.png" /></p>
+<p><em>Figure 9.5 — Foraging in bumblebees: real bees' preference switching after flower contingencies are swapped, compared against the model. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 9.5 adds risk: a constant flower against one with equal mean nectar but 0-or-large variance. Real bees avoid the variable flower, which the reward-average model cannot produce since the means are equal. A concave subjective utility over nectar volume fixes this — a 50/50 gamble has lower expected utility than its certain mean — and the model's choices then match the bees' curve.</p>
+<p>The direct actor instead performs gradient ascent directly on ⟨r⟩ = P[b]⟨r_b⟩ + P[y]⟨r_y⟩ (equation 9.15), giving, trial by trial (equations 9.20–9.21):</p>
+<p>m_b → m_b + ε(δ_{ab} − P[b])(r_a − r̄),</p>
+<p>applied for whichever flower a was chosen, δ_{ab} the Kronecker delta and r̄ an arbitrary baseline that changes the update's variance but not its direction.</p>
+<p><img alt="Figure 9.6" src="../../figures/ch9fig6.png" /></p>
+<p><em>Figure 9.6 — The direct actor: weight evolution and cumulative flower visits across two sample sessions of differing quality. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 9.6 runs this on the same reversing task: learning starts slower than the indirect actor and adapts less cleanly after reversal, since action values can drift to scales that compensate for β. Its payoff is structural — no reward-magnitude estimate is needed, only the gradient's sign and relative size — and it generalizes unmodified to the multi-action case (equation 9.22), which is exactly what actor-critic learning reuses next.</p>
+<h3 id="delayed-reward-the-critic-and-the-actor">Delayed reward, the critic, and the actor<a class="headerlink" href="#delayed-reward-the-critic-and-the-actor" title="Permanent link">&para;</a></h3>
+<p><img alt="Figure 9.7" src="../../figures/ch9fig7.png" /></p>
+<p><em>Figure 9.7 — The maze task: decision points A, B, and C, with payoffs at the end branches. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 9.7's maze has reward that does not follow the relevant action immediately: a turn at A pays off only through whatever is chosen later at B or C. From B or C alone the methods above work directly; A is the problem, since neither action there produces an immediate consequence to learn from.</p>
+<p>Policy iteration splits into a critic, estimating v(u) — total future reward from u under the current policy — by temporal difference learning, and an actor, adjusting the policy using the critic's estimates in place of immediate reward. With all action values at 0 (every turn 50/50), the branch structure gives v(C) = ½(0+2) = 1, v(B) = ½(0+5) = 2.5, v(A) = ½(v(B)+v(C)) = 1.75 (equation 9.23), learned by w(u) → w(u) + εδ, δ = r_a(u) + v(u′) − v(u) (equation 9.24).</p>
+<p><img alt="Figure 9.8" src="../../figures/ch9fig8.png" /></p>
+<p><em>Figure 9.8 — Policy evaluation: the weights w(A), w(B), w(C) converging over trials toward the values given by equation 9.23. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 9.8 shows this convergence over about 30 trials under a fixed, unbiased policy — evaluation only; the policy itself does not yet change.</p>
+<p>Policy improvement reuses the same δ as the actor's training signal (equation 9.25): the sampled worth of an action at u is r_a(u) + v(u′), compared against v(u). Plugging in the converged values at A: left (toward B) gives δ = v(B) − v(A) = 0.75; right (toward C) gives δ = v(C) − v(A) = −0.75. The actor raises the probability of the positive-δ action and lowers the other — left becomes more likely at A, driven by the <em>difference in the critic's current value estimates</em> for where each action leads, not by the final payoffs of 5 versus 2 directly.</p>
+<p><img alt="Figure 9.9" src="../../figures/ch9fig9.png" /></p>
+<p><em>Figure 9.9 — Actor-critic learning: P[left] at each of the three decision points converging to its optimal value over trials. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 9.9 interleaves both updates trial by trial — the actor-critic algorithm, rather than fully evaluating before ever improving — converging to left at A, right at B, while C stays slow to learn because the policy quickly stops sending trials there.</p>
+<h3 id="state-vectors-discounting-traces">State vectors, discounting, traces<a class="headerlink" href="#state-vectors-discounting-traces" title="Permanent link">&para;</a></h3>
+<p>Three generalizations extend the maze learner. A state vector u(u) replaces bare locations — the maze's three points become a unary code (1,0,0), (0,1,0), (0,0,1) — generalizing the critic to w → w + εδu(u) (equation 9.26) and the actor's action values to an action matrix M (equations 9.27–9.28): a three-term covariance rule, pre-synaptic state and post-synaptic action gated by the scalar δ. Exponential discounting multiplies reward τ steps ahead by γ^τ, folded into δ = r_a(u) + γv(u′) − v(u) (equation 9.29). TD(λ) replaces the instantaneous state vector with a decaying stimulus trace (equation 9.30), letting one δ assign credit across several recently visited states at once.</p>
+<p><img alt="Figure 9.10" src="../../figures/ch9fig10.png" /></p>
+<p><em>Figure 9.10 — A reinforcement learning model of a rat in the water maze: place-cell inputs, learned value function, and sample paths across early training trials. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The water maze puts all three to work: 493 place-cell inputs as the state vector, eight compass actions, reward only on reaching a hidden platform, discounted at γ = 0.9975. By trial 22 (figure 9.10C) the value surface is still inaccurate, yet the policy it drives already produces short, direct paths — a usable policy does not require a converged value function.</p>
+<p><img alt="Figure 9.11" src="../../figures/ch9fig11.png" /></p>
+<p><em>Figure 9.11 — Comparison of real rats and the model in the water maze task, including performance after the platform is moved (reversal). From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 9.11 checks this against real rats: both improve at a comparable rate over several days, but when the platform moves (reversal, day eight) the model recovers far more slowly, its value function having no efficient way to unlearn the old location. The mismatch marks a real gap between this rule and whatever the animal is doing, not a simulation bug.</p>
+<h3 id="markov-decision-problems-and-the-bellman-equation">Markov decision problems and the Bellman equation<a class="headerlink" href="#markov-decision-problems-and-the-bellman-equation" title="Permanent link">&para;</a></h3>
+<p>The appendix formalizes what policy iteration was doing. A Markov decision problem has states, actions, transition probabilities P[u′|u;a], and rewards r_a(u), with the Markov property that the future depends only on the current state. The best achievable value at u obeys the Bellman equation (equation 9.32): v<em>(u) = max_a {⟨r_a(u)⟩ + Σ_u′ P[u′|u;a]v</em>(u′)}. Temporal difference learning solves the policy-specific version of this (equation 9.33) without ever learning P[u′|u;a] explicitly: r_a(u) + v(u′) is a Monte Carlo sample whose mean matches the right-hand side, and bootstrapping — substituting the current estimate v(u′) for the true value — is what makes a single sample usable at all. That is the formal justification behind every δ in this chapter, from Rescorla-Wagner to the water maze.</p>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
 <p><strong>Goal:</strong> Establish reinforcement learning as a third paradigm distinct from supervised and unsupervised: learning driven by a scalar evaluative signal rather than a target output or input statistics. Derive Rescorla-Wagner from the phenomena it must explain, extend to TD learning for within-trial timing, then to action selection.</p>
 <details class="note">

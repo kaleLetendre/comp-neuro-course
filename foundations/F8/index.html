@@ -750,6 +750,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1118,6 +1129,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1198,6 +1220,7 @@
 <div class="toc">
 <ul>
 <li><a href="#f8-network-models-feedforward-and-recurrent">F8 · Network models: feedforward and recurrent</a><ul>
+<li><a href="#lecture">Lecture</a></li>
 <li><a href="#lesson-spec">Lesson spec</a></li>
 <li><a href="#authors-exercises">Authors' exercises</a></li>
 <li><a href="#coursework">Coursework</a></li>
@@ -1206,6 +1229,102 @@
 </li>
 </ul>
 </div>
+<h2 id="lecture">Lecture<a class="headerlink" href="#lecture" title="Permanent link">&para;</a></h2>
+<p>Reading alongside <strong>Dayan &amp; Abbott chapter 7</strong>, section by section. Figures are the book's own, by number.</p>
+<table>
+<thead>
+<tr>
+<th>Chapter section</th>
+<th>Here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7.2 Firing-rate models</td>
+<td>Replacing spike trains with a rate, and what that buys</td>
+</tr>
+<tr>
+<td>7.2 Feedforward and recurrent networks</td>
+<td>One update equation, two wiring diagrams</td>
+</tr>
+<tr>
+<td>7.3 Feedforward networks</td>
+<td>What a matrix multiply plus a nonlinearity can already do</td>
+</tr>
+<tr>
+<td>7.4 Linear recurrent networks</td>
+<td>Diagonalizing the dynamics with eigenvectors</td>
+</tr>
+<tr>
+<td>7.4 Selective amplification, input integration</td>
+<td>Why one eigenvalue near 1 dominates everything</td>
+</tr>
+<tr>
+<td>7.4 Nonlinear recurrent networks</td>
+<td>Rectification: what saturation adds and what it costs</td>
+</tr>
+<tr>
+<td>7.5 Excitatory-inhibitory networks</td>
+<td>Breaking symmetry: the route to oscillation</td>
+</tr>
+<tr>
+<td>7.6 Stochastic networks</td>
+<td>A one-paragraph pointer</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="replacing-spike-trains-with-a-rate-and-what-that-buys">Replacing spike trains with a rate, and what that buys<a class="headerlink" href="#replacing-spike-trains-with-a-rate-and-what-that-buys" title="Permanent link">&para;</a></h3>
+<p>Chapters 5 and 6 built networks from spiking units — faithful, but expensive to simulate and hard to analyze. Section 7.2 trades the exact spike train ρ(t) for its trial-averaged firing rate r(t), justified whenever a neuron's input sums over many weakly correlated synapses: the sum's mean scales with the number of inputs, its standard deviation only with the square root, so rates barely perturb the total synaptic current driving the next neuron. That current, I_s, becomes an output rate through a response function, either instantaneously (v = F(I)) or through a low-pass filter (τ dv/dt = −v + F(I)) that gives the rate its own time constant τ_r. Everything downstream inherits that time constant and that function F — essentially the only nonlinearity these models allow themselves.</p>
+<h3 id="one-update-equation-two-wiring-diagrams">One update equation, two wiring diagrams<a class="headerlink" href="#one-update-equation-two-wiring-diagrams" title="Permanent link">&para;</a></h3>
+<p><img alt="Figure 7.3" src="../../figures/ch7fig3.png" /></p>
+<p><em>Figure 7.3 — Feedforward network (input u, weights W) versus recurrent network (adds weight matrix M among the outputs). From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>A feedforward network's output is driven only by its input: τ_r dv/dt = −v + F(W·u). A recurrent network adds a second weight matrix M among the output units: τ_r dv/dt = −v + F(h + M·v), with h = W·u folding the feedforward drive into one term. That one substitution — v feeding back into its own equation through M — is essentially all the chapter's added machinery.</p>
+<p>Dale's law constrains M biologically: a neuron's outgoing synapses are all excitatory or all inhibitory, never mixed, which is why excitatory and inhibitory populations later get separate equations with separately signed weight matrices. Most of section 7.4 sidesteps that by simply assuming M symmetric. Symmetry hands the network a clean eigenvector basis; it is also false of real cortex, and the chapter is explicit that it rules out certain dynamics — oscillation chief among them — before a single equation is solved. Section 7.5 is what happens once it is lifted.</p>
+<h3 id="what-a-matrix-multiply-plus-a-nonlinearity-can-already-do">What a matrix multiply plus a nonlinearity can already do<a class="headerlink" href="#what-a-matrix-multiply-plus-a-nonlinearity-can-already-do" title="Permanent link">&para;</a></h3>
+<p>Section 7.3 stays feedforward and shows what a single layer already buys: the coordinate transformation a reaching movement needs, combining retinal stimulus location with gaze angle into a body-centered target. The construction needed is multiplicative — output tuning that shifts with gaze gain rather than retinal position — yet the output unit is still a weighted sum passed through F.</p>
+<p><img alt="Figure 7.6" src="../../figures/ch7fig6.png" /></p>
+<p><em>Figure 7.6 — Gaze-dependent gain modulation in posterior parietal cortex neurons, and the matching model tuning surface. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The resolution is gain modulation: input neurons tuned to retinal position s, with gain scaled by gaze direction g, recombine linearly into a function of s + g only if the synaptic weight depends on the <em>sum</em> of each input's preferred retinal and gaze angle. Multiplication of two signals emerges from addition over a population whose tuning already mixes them — a move every amplification result below repeats: push structure into the weights, and a linear operation produces something that looks, from outside, like it needed more.</p>
+<h3 id="diagonalizing-the-dynamics-with-eigenvectors">Diagonalizing the dynamics with eigenvectors<a class="headerlink" href="#diagonalizing-the-dynamics-with-eigenvectors" title="Permanent link">&para;</a></h3>
+<p>Section 7.4 opens with the linear approximation F(x) = x — unrealistic, since rates can go negative, but exactly solvable, and the solution is the spine of the chapter. With M symmetric, its eigenvectors e_ν (M·e_ν = λ_ν e_ν) are orthogonal and span the space, so any output vector decomposes as v(t) = Σ_ν c_ν(t) e_ν. Substituting into τ_r dv/dt = −v + h + M·v and projecting onto each e_ν turns one coupled N-dimensional system into N <em>independent</em> scalar equations:</p>
+<p>τ_r dc_ν/dt = −(1 − λ_ν) c_ν + e_ν·h.</p>
+<p>Each mode is a leaky integrator driven by how much of the input h lies along its own eigenvector — e_ν·h is "how much this mode is being asked to do," and (1 − λ_ν) is the knob controlling its response. Work through the time constant and the steady state that fall out of solving this scalar equation; both are set entirely by λ_ν, which is where question 1 lives.</p>
+<h3 id="why-one-eigenvalue-near-1-dominates-everything">Why one eigenvalue near 1 dominates everything<a class="headerlink" href="#why-one-eigenvalue-near-1-dominates-everything" title="Permanent link">&para;</a></h3>
+<p>If a single eigenvalue λ_1 sits close to 1 while the rest are comfortably smaller, the 1/(1 − λ_1) factor in that mode's steady state dwarfs every other term in the sum, and the network's output collapses onto a single axis: v_∞ ≈ (e_1·h) e_1 / (1 − λ_1). This is selective amplification — the recurrent weights decide which direction in rate-space gets picked out and magnified, regardless of how the input itself was shaped.</p>
+<p><img alt="Figure 7.8" src="../../figures/ch7fig8.png" /></p>
+<p><em>Figure 7.8 — Selective amplification in a linear recurrent network: noisy tuned input in, a clean amplified mode out. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 7.8's network has recurrent coupling M(θ−θ′) built from a single cosine mode with λ_1 = 0.9: a noisy input with no dominant Fourier component comes out with its first harmonic amplified roughly tenfold and every other component untouched. Two eigenvectors sharing the same eigenvalue near 1 generalizes this to a whole subspace rather than a single axis — the degenerate case the chapter flags in passing.</p>
+<p>The edge case is λ_1 exactly 1: the mode's own equation loses its restoring term and becomes a pure integrator, c_1(t) accumulating the running integral of e_1·h — the network holds whatever it was told even after the input returns to zero.</p>
+<p><img alt="Figure 7.7" src="../../figures/ch7fig7.png" /></p>
+<p><em>Figure 7.7 — Burst and integrator neurons maintaining eye position: persistent firing as a running integral of movement commands. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The brain stem's eye-position system is read as a biological instance: integrator neurons downstream of saccadic burst cells hold a steady rate proportional to accumulated eye movement, matching equation 7.26 for λ_1 = 1 exactly. The catch, stated plainly in the text: this requires λ_1 tuned to 1 with extreme precision, nothing about the mechanism explains how a biological network would arrive at or hold that value, and real systems drift.</p>
+<h3 id="rectification-what-saturation-adds-and-what-it-costs">Rectification: what saturation adds and what it costs<a class="headerlink" href="#rectification-what-saturation-adds-and-what-it-costs" title="Permanent link">&para;</a></h3>
+<p>Linear theory's eigenvalue condition for bounded behavior is unforgiving: push any λ_ν past 1 and that mode's coefficient grows without bound, forever, regardless of what any other part of the network is doing — the clean statement question 2 asks for, true only because linearity lets every mode be solved in isolation.</p>
+<p><img alt="Figure 7.9" src="../../figures/ch7fig9.png" /></p>
+<p><em>Figure 7.9 — Selective amplification with a rectifying nonlinearity, same task as figure 7.8 but λ exceeds 1. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Rectification, F(x) = [x]_+, changes this. Figure 7.9 uses λ_1 = 1.9 — unconditionally unstable under the linear rule — and the network still settles to a steady state, because negative rates clip to zero rather than feeding back and compounding. The output resembles the positive half of the linear response, smoothed, with several harmonics amplified together rather than one cleanly isolated.</p>
+<p><img alt="Figure 7.10" src="../../figures/ch7fig10.png" /></p>
+<p><em>Figure 7.10 — Contrast-invariant orientation tuning: weak input modulation in, sharply tuned output whose width does not grow with contrast. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p><img alt="Figure 7.12" src="../../figures/ch7fig12.png" /></p>
+<p><em>Figure 7.12 — Winner-takes-all selection by a nonlinear recurrent network. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Two further results, worth flagging without full derivation. Figure 7.10's cortical orientation-tuning model takes a feedforward signal only weakly modulated by orientation and returns a sharply tuned response whose <em>width</em> stays fixed as contrast rises — shape set by recurrence, not input, which a feedforward account cannot reproduce. Figure 7.12's winner-take-all network goes further: given several comparable input peaks, it amplifies one and suppresses the rest toward zero. Neither is available to a linear network — superposition means its response to a sum of inputs is exactly the sum of its responses to each one, so it can scale a pattern but cannot choose among the alternatives composing it, and has no floor letting a suppressed competitor actually vanish rather than merely shrink.</p>
+<p>Section 7.4 closes by naming a general tool rather than working every case: for τ_s dI/dt = −I + h + M·F(I), a Lyapunov function L(I) can be built (Cohen-Grossberg) that strictly decreases along any trajectory whenever M is symmetric, F′ &gt; 0, and L is bounded below. A network with that property cannot oscillate or wander — it must settle at a fixed point. Associative memory follows immediately as the first use of that guarantee:</p>
+<p><img alt="Figure 7.16" src="../../figures/ch7fig16.png" /></p>
+<p><em>Figure 7.16 — Associative recall: a network's activity relaxing from a partial cue to one of several stored fixed-point patterns. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>— weights are set so stored patterns become the guaranteed fixed points, and recall is relaxation from a partial cue into the nearest one. Basin size, reliability, and the connection to Hopfield networks and an explicit energy function belong to their own lesson; this one stops at having the Lyapunov machinery in hand.</p>
+<h3 id="breaking-symmetry-the-route-to-oscillation">Breaking symmetry: the route to oscillation<a class="headerlink" href="#breaking-symmetry-the-route-to-oscillation" title="Permanent link">&para;</a></h3>
+<p>Section 7.5 drops the symmetric-M assumption, giving excitatory and inhibitory units separate equations (7.12, 7.13) and, in the simplest case, collapsing each population to one rate, v_E and v_I. This 2D system is small enough for phase-plane analysis: nullclines (where dv_E/dt or dv_I/dt vanishes) are straight lines whose intersection is the fixed point, and linear stability analysis there produces a 2×2 "stability matrix" from MEE, MEI, MIE, MII and the two time constants, whose eigenvalues settle the question.</p>
+<p><img alt="Figure 7.17" src="../../figures/ch7fig17.png" /></p>
+<p><em>Figure 7.17 — Nullclines and fixed point of the E-I model (left), with the stability eigenvalue's real and imaginary parts plotted against τ_I (right). From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figure 7.17's right panel is the one to read slowly: as τ_I varies, the eigenvalue pair is sometimes two real numbers and sometimes a complex-conjugate pair, switching where the imaginary part crosses zero. That switch is governed by the sign of the discriminant inside equation 7.53's square root — work out which sign gives real eigenvalues and which gives complex ones, and what each implies about the trajectory near the fixed point; that is question 3.</p>
+<p><img alt="Figure 7.18" src="../../figures/ch7fig18.png" /></p>
+<p><em>Figure 7.18 — The fixed point is stable: firing rates settling, and the phase-plane trajectory spiraling into the fixed point. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p><img alt="Figure 7.19" src="../../figures/ch7fig19.png" /></p>
+<p><em>Figure 7.19 — The fixed point is unstable: firing rates oscillating persistently, the trajectory spiraling out to a limit cycle. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Figures 7.18 and 7.19 show the two outcomes side by side, same model, τ_I moved past the boundary figure 7.17 identifies. Where the chapter goes next — an olfactory bulb model on the same stability analysis, oscillation frequency, synchrony across coupled E-I pairs — is a second thread left for later rather than compressed here.</p>
+<h3 id="a-one-paragraph-pointer-stochastic-networks">A one-paragraph pointer: stochastic networks<a class="headerlink" href="#a-one-paragraph-pointer-stochastic-networks" title="Permanent link">&para;</a></h3>
+<p>Section 7.6 replaces deterministic F with a stochastic rule: binary units whose probability of being active is a sigmoid of their total input, the Boltzmann machine. It is included here only as a marker — the chapter uses it to reframe network dynamics as sampling from a probability distribution rather than relaxing to a fixed point, a perspective that pays off once learning rules are on the table in chapter 8, and not before.</p>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
 <p><strong>Goal:</strong> Move from single neurons to populations described by firing rates, and show that a linear recurrent network's behaviour is fully characterised by the eigenstructure of its weight matrix. Establish selective amplification, effective time constants and stability as the load-bearing ideas that A2 and A3 each extend in a different direction.</p>
 <details class="note">

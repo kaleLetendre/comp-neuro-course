@@ -610,6 +610,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1118,6 +1129,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1197,6 +1219,7 @@
 <div class="toc">
 <ul>
 <li><a href="#f3-neural-decoding">F3 · Neural decoding</a><ul>
+<li><a href="#lecture">Lecture</a></li>
 <li><a href="#lesson-spec">Lesson spec</a></li>
 <li><a href="#authors-exercises">Authors' exercises</a></li>
 <li><a href="#coursework">Coursework</a></li>
@@ -1205,6 +1228,93 @@
 </li>
 </ul>
 </div>
+<h2 id="lecture">Lecture<a class="headerlink" href="#lecture" title="Permanent link">&para;</a></h2>
+<p>Reading alongside <strong>Dayan &amp; Abbott chapter 3</strong>, section by section. Figures are the book's own, by number, so you can find them on the page in front of you.</p>
+<table>
+<thead>
+<tr>
+<th>Chapter section</th>
+<th>Here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.1 Encoding and Decoding</td>
+<td>Bayes' rule, run backward</td>
+</tr>
+<tr>
+<td>3.2 Discrimination — ROC curves</td>
+<td>Thresholds, hits, and false alarms</td>
+</tr>
+<tr>
+<td>3.2 Discrimination — the likelihood ratio and MT</td>
+<td>One neuron versus the whole monkey</td>
+</tr>
+<tr>
+<td>3.3 Population Decoding — vectors and Bayesian estimates</td>
+<td>From cosine tuning to Bayes-optimal</td>
+</tr>
+<tr>
+<td>3.3 Population Decoding — Fisher information</td>
+<td>How much a slope is worth</td>
+</tr>
+<tr>
+<td>3.4 Spike-Train Decoding</td>
+<td>Reconstructing a moving stimulus from spike times</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bayes-rule-run-backward">Bayes' rule, run backward<a class="headerlink" href="#bayes-rule-run-backward" title="Permanent link">&para;</a></h3>
+<p>Chapters 1 and 2 built <span class="arithmatex">\(P[r|s]\)</span>: given a stimulus, what response distribution does a neuron produce. This chapter asks the question an organism actually has to answer — given a response, what stimulus produced it. Nothing new is needed mathematically; the whole chapter is a tour through one identity.</p>
+<p>Five quantities recur: the prior <span class="arithmatex">\(P[s]\)</span>, the marginal <span class="arithmatex">\(P[r]\)</span>, the joint <span class="arithmatex">\(P[r,s]\)</span>, and the two conditionals <span class="arithmatex">\(P[r|s]\)</span> and <span class="arithmatex">\(P[s|r]\)</span>. The joint factors two ways, <span class="arithmatex">\(P[r,s] = P[r|s]P[s] = P[s|r]P[r]\)</span>, and equating them gives Bayes' theorem,</p>
+<div class="arithmatex">\[P[s|r] = \frac{P[r|s]P[s]}{P[r]}.\]</div>
+<p>Hold this shape in mind, because every decoding method in the chapter — discrimination, population vectors, maximum likelihood, spike-train reconstruction — is this equation specialized to a particular kind of <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(s\)</span>. The chapter is explicit about what an encoding experiment hands you and what it does not: a recording session that presents known stimuli and tabulates responses is a direct measurement of <span class="arithmatex">\(P[r|s]\)</span> — tuning curve plus trial-to-trial variability. It says nothing on its own about <span class="arithmatex">\(P[s|r]\)</span>. Getting there costs two more things: the normalizer <span class="arithmatex">\(P[r]\)</span>, which Bayes' rule computes for you by summing <span class="arithmatex">\(P[r|s]P[s]\)</span> over all stimuli, and the prior <span class="arithmatex">\(P[s]\)</span>, which a tuning-curve experiment never measures at all, because it describes the statistics of stimuli in the world (or in the experimental ensemble), not the statistics of responses to them. This is the sense in which decoding is a strictly harder problem than encoding: it needs an assumption about what stimuli tend to occur that encoding could ignore.</p>
+<h3 id="thresholds-hits-and-false-alarms">Thresholds, hits, and false alarms<a class="headerlink" href="#thresholds-hits-and-false-alarms" title="Permanent link">&para;</a></h3>
+<p>The chapter's running example is Britten et al.'s random-dot motion task: a cloud of dots jumps every 45 ms, and a controllable fraction of them — the coherence — move together in one direction while the rest jump randomly.</p>
+<p><img alt="Figure 3.1" src="../../figures/ch3fig1.png" /></p>
+<p><em>Figure 3.1 — The random-dot stimulus at three coherence levels: chaotic at 0%, directional but noisy at 50%, uniform at 100%. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>A monkey trained to report the direction of coherent motion was recorded from simultaneously in area MT. Figure 3.2 is the data that the rest of the section is built to explain: behavioral accuracy climbing from chance to near-perfect as coherence rises, next to firing-rate histograms for the neuron's preferred and opposite directions that separate cleanly at high coherence and collapse together at low coherence.</p>
+<p><img alt="Figure 3.2" src="../../figures/ch3fig2.png" /></p>
+<p><em>Figure 3.2 — Monkey discrimination accuracy and MT firing-rate histograms, across motion coherence. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Decoding here means comparing a single trial's firing rate <span class="arithmatex">\(r\)</span> to a threshold <span class="arithmatex">\(z\)</span>. Two conditional probabilities summarize everything about how well that works at a given <span class="arithmatex">\(z\)</span>: the false-alarm rate <span class="arithmatex">\(\alpha(z) = P[r \geq z \mid -]\)</span> and the hit rate <span class="arithmatex">\(\beta(z) = P[r \geq z \mid +]\)</span>. Sweeping <span class="arithmatex">\(z\)</span> from large to small traces a curve of <span class="arithmatex">\((\alpha, \beta)\)</span> pairs — the receiver operating characteristic. A useless test sits on the diagonal <span class="arithmatex">\(\alpha = \beta\)</span>; a good one bows toward the upper-left corner, reaching high <span class="arithmatex">\(\beta\)</span> while <span class="arithmatex">\(\alpha\)</span> stays low.</p>
+<p><img alt="Figure 3.3" src="../../figures/ch3fig3.png" /></p>
+<p><em>Figure 3.3 — ROC curves for several coherence levels, bowing further from the diagonal as the task gets easier. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The chapter ties the whole curve to a single number through a slightly different task: present the two directions once each and ask which trial was which. A short argument with a change of integration variable from <span class="arithmatex">\(z\)</span> to <span class="arithmatex">\(\alpha\)</span> shows that the probability of answering correctly in this two-alternative task equals the area under the ROC curve — area <span class="arithmatex">\(1/2\)</span> for the diagonal, approaching <span class="arithmatex">\(1\)</span> for a curve that hugs the axes. Work through that substitution by hand; it is the derivation the chapter flags as worth doing yourself, and it is what licenses treating "area under the curve" as a performance number rather than just a shape.</p>
+<h3 id="one-neuron-versus-the-whole-monkey">One neuron versus the whole monkey<a class="headerlink" href="#one-neuron-versus-the-whole-monkey" title="Permanent link">&para;</a></h3>
+<p>Britten et al. turned a single recorded MT neuron into a two-alternative decision by inventing an "anti-neuron" — a hypothetical cell whose response to the plus direction is defined as the real neuron's response to the minus direction, and vice versa. Scoring the neuron/anti-neuron pair against each other gives an area-under-the-ROC-curve number for that single cell, on the exact two-alternative task the monkey was doing.</p>
+<p>That number, plotted as the open circles in figure 3.2A, tracks the filled circles — the monkey's own behavioral accuracy — closely, across the full range of coherence. A single neuron, paired with its mirror image, performs the task about as well as the entire animal, even though the monkey presumably has access to thousands of MT neurons tuned to the same motion direction. The chapter does not resolve this; it offers a speculation (correlated trial-to-trial variability across neurons could cap the benefit of pooling them) and leaves it as speculation rather than a demonstrated mechanism. Sit with how strange this is before moving on — it is the empirical anchor for everything that follows about why single-neuron and population analyses are both worth doing.</p>
+<p>The formal tool behind choosing a threshold at all is the Neyman-Pearson lemma: no test beats thresholding the likelihood ratio <span class="arithmatex">\(l(r) = p[r|+]/p[r|-]\)</span>. Because this ratio is monotonic in <span class="arithmatex">\(r\)</span> for the Britten data, thresholding <span class="arithmatex">\(r\)</span> directly already is the optimal test. The same ratio reappears as the decision rule that minimizes expected loss once asymmetric costs <span class="arithmatex">\(L_+\)</span>, <span class="arithmatex">\(L_-\)</span> and unequal priors <span class="arithmatex">\(P[+]\)</span>, <span class="arithmatex">\(P[-]\)</span> are introduced — the threshold then has an explicit formula, equation 3.16, with the loss ratio and the prior ratio both built in. For small differences between two stimulus values <span class="arithmatex">\(s\)</span> and <span class="arithmatex">\(s+\Delta s\)</span> rather than two qualitatively different directions, the likelihood-ratio test reduces to comparing the score <span class="arithmatex">\(Z(r) = \partial \ln p[r|s]/\partial s\)</span> to a threshold — the bridge to population decoding of a continuous parameter.</p>
+<h3 id="from-cosine-tuning-to-bayes-optimal">From cosine tuning to Bayes-optimal<a class="headerlink" href="#from-cosine-tuning-to-bayes-optimal" title="Permanent link">&para;</a></h3>
+<p>The cricket cercal system gives the cleanest population example in the chapter: four interneurons, each tuned to wind direction as a half-wave-rectified cosine, with preferred directions 90° apart.</p>
+<p><img alt="Figure 3.4" src="../../figures/ch3fig4.png" /></p>
+<p><em>Figure 3.4 — Tuning curves of the four cricket cercal interneurons, each a half-wave-rectified cosine of wind direction. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Because the preferred directions are orthogonal, the firing rates behave like the Cartesian components of the wind vector, and the wind direction can be read off as a vector sum, <span class="arithmatex">\(\vec{v}_{\text{pop}} = \sum_a (r_a/r_{\max,a})\vec{c}_a\)</span> — the population vector. Reconstructed directions come within about 6° of the true wind direction, with small dips in accuracy right at each neuron's preferred direction rather than, as might be guessed, its best performance there — explained by the tuning curves' <em>slope</em>, not their peak, carrying the sensitivity.</p>
+<p><img alt="Figure 3.5" src="../../figures/ch3fig5.png" /></p>
+<p><em>Figure 3.5 — Preferred directions of the four interneurons as Cartesian axes, and the vector-decoding error as a function of wind direction. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The same construction, generalized to many neurons with preferred directions scattered through all angles rather than confined to an orthogonal set, is used on primate motor cortex data, where it tracks arm-movement direction from population activity during reaching.</p>
+<p><img alt="Figure 3.6" src="../../figures/ch3fig6.png" /></p>
+<p><em>Figure 3.6 — Population vectors reconstructed from motor-cortex firing rates, compared against the actual arm-movement directions. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The vector method is a convenient estimator, not the optimal one, and the chapter sets it against Bayesian, MAP, and ML inference, all read directly off <span class="arithmatex">\(p[s|r]\)</span> via Bayes' rule. A Bayesian estimate minimizes an expected loss — the posterior mean for squared-error loss, the posterior median for absolute-error loss. MAP instead takes the single most probable stimulus value. ML is the special case of MAP with a flat prior, maximizing <span class="arithmatex">\(P[r|s]\)</span> alone. Applied back to the cercal system (figure 3.7), both outperform the vector method, modestly, because the cosine tuning curves and orthogonal preferred directions were already close to the ideal case for the vector method to begin with.</p>
+<h3 id="how-much-a-slope-is-worth">How much a slope is worth<a class="headerlink" href="#how-much-a-slope-is-worth" title="Permanent link">&para;</a></h3>
+<p>Fisher information formalizes what the cercal dips already hinted at. It is defined from the curvature of the log-likelihood,</p>
+<div class="arithmatex">\[I_F(s) = -\left\langle \frac{\partial^2 \ln p[r|s]}{\partial s^2} \right\rangle,\]</div>
+<p>and it bounds, through the Cramér-Rao inequality, the variance any unbiased estimator can achieve: <span class="arithmatex">\(\sigma_{\text{est}}^2(s) \geq 1/I_F(s)\)</span>. The maximum likelihood estimator saturates this bound as the number of neurons grows large — it is asymptotically efficient. For a population with Poisson variability, each neuron's contribution to <span class="arithmatex">\(I_F\)</span> is <span class="arithmatex">\((f_a'(s))^2/f_a(s)\)</span>: squared slope over mean rate. This is the chapter's sharpest reversal of intuition — a neuron firing at its peak rate, where <span class="arithmatex">\(f_a' = 0\)</span>, contributes <em>nothing</em>, while a neuron firing on the steep flank of its tuning curve, often at a modest rate, carries the information.</p>
+<p><img alt="Figure 3.11" src="../../figures/ch3fig11.png" /></p>
+<p><em>Figure 3.11 — Fisher information for one Gaussian-tuned neuron, plotted against its own tuning curve — peaking on the flanks, vanishing at the peak. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Scaling this up to a dense population of identically shaped tuning curves gives a trade-off: narrowing the curves raises each neuron's individual contribution but shrinks the number of neurons that respond to any given stimulus at all. For a stimulus with <span class="arithmatex">\(D\)</span> independent dimensions, these effects exactly cancel at <span class="arithmatex">\(D=2\)</span>; narrower curves help for <span class="arithmatex">\(D=1\)</span> and actively hurt for <span class="arithmatex">\(D&gt;2\)</span>. There is no universally "best" tuning-curve width — it depends on the dimensionality of what is being encoded.</p>
+<p><img alt="Figure 3.12" src="../../figures/ch3fig12.png" /></p>
+<p><em>Figure 3.12 — The Cramér-Rao bound on orientation-discrimination accuracy against the number of neurons, laid over human psychophysical thresholds. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<h3 id="reconstructing-a-moving-stimulus-from-spike-times">Reconstructing a moving stimulus from spike times<a class="headerlink" href="#reconstructing-a-moving-stimulus-from-spike-times" title="Permanent link">&para;</a></h3>
+<p>The last section drops the static-stimulus assumption. A time-varying stimulus cannot be recovered from a spike <em>count</em>; it has to be rebuilt from the individual spike <em>times</em> <span class="arithmatex">\(t_i\)</span>. The estimate is a sum of a fixed kernel placed at each spike, delayed by a chosen prediction lag <span class="arithmatex">\(\tau_0\)</span>,</p>
+<div class="arithmatex">\[s_{\text{est}}(t-\tau_0) = \sum_i K(t-t_i) - \langle r \rangle \int d\tau\, K(\tau),\]</div>
+<p>with the second term only there to zero the estimate's time average. <span class="arithmatex">\(\tau_0\)</span> exists because a spike can only report on the stimulus <em>before</em> it fired — reconstructing without a delay forces the kernel to lean on whatever correlations the stimulus happens to have with its own future, which vanish entirely for white noise.</p>
+<p><img alt="Figure 3.13" src="../../figures/ch3fig13.png" /></p>
+<p><em>Figure 3.13 — How spikes before time t sum, through a shared kernel, into an estimate of the stimulus at an earlier delayed time. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Minimizing mean squared reconstruction error gives an optimal kernel through the same machinery as chapter 2's Wiener filter, now with the spike train's own autocorrelation <span class="arithmatex">\(Q_{\rho\rho}\)</span> standing in for the stimulus autocorrelation. When the spike train itself is uncorrelated, <span class="arithmatex">\(Q_{\rho\rho}(\tau) = \langle r \rangle \delta(\tau)\)</span>, and the kernel collapses to something already familiar: a shifted, reversed copy of the spike-triggered average from chapter 1, scaled by <span class="arithmatex">\(1/\langle r \rangle\)</span>. Where the spike train does carry its own correlations, the general solution needs a full Fourier deconvolution against <span class="arithmatex">\(Q_{\rho\rho}\)</span>, and a causality constraint — <span class="arithmatex">\(K(\tau) = 0\)</span> for <span class="arithmatex">\(\tau &lt; 0\)</span> — has to be imposed afterward, at some cost to optimality, because the unconstrained solution does not respect it automatically.</p>
+<p><img alt="Figure 3.14" src="../../figures/ch3fig14.png" /></p>
+<p><em>Figure 3.14 — Reconstructing motion velocity from a single fly H1 neuron's spike train, against the true stimulus. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The fly's H1 neuron, with only two copies in the whole nervous system (one per side), is decoded here using the same neuron/anti-neuron device as the MT discrimination example — recording one cell against both a stimulus and its negative stand-in for the missing mirror-image neuron. The reconstruction tracks the true time-varying velocity closely, from spike timing alone, with no counting window at all.</p>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
 <p><strong>Goal:</strong> Establish decoding as the inverse of encoding — given a response, infer the stimulus — by Bayes' rule rather than a new formalism. Cover discrimination via ROC, four population estimators, the Fisher-information bound, and linear spike-train reconstruction as instances of one inference problem.</p>
 <details class="note">

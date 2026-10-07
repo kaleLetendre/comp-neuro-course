@@ -666,6 +666,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1118,6 +1129,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lesson-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1197,6 +1219,7 @@
 <div class="toc">
 <ul>
 <li><a href="#f5-membrane-biophysics-and-the-action-potential">F5 · Membrane biophysics and the action potential</a><ul>
+<li><a href="#lecture">Lecture</a></li>
 <li><a href="#lesson-spec">Lesson spec</a></li>
 <li><a href="#authors-exercises">Authors' exercises</a></li>
 <li><a href="#coursework">Coursework</a></li>
@@ -1205,6 +1228,117 @@
 </li>
 </ul>
 </div>
+<h2 id="lecture">Lecture<a class="headerlink" href="#lecture" title="Permanent link">&para;</a></h2>
+<p>Reading alongside <strong>Dayan &amp; Abbott chapter 5</strong>, sections 5.1 to the Hodgkin-Huxley and channel-modelling material. Figures are the book's own, by number.</p>
+<table>
+<thead>
+<tr>
+<th>Chapter section</th>
+<th>Here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.1 Introduction</td>
+<td>Scope note only</td>
+</tr>
+<tr>
+<td>5.2 Electrical Properties of Neurons</td>
+<td>Charge, capacitance, resistance, Nernst equation, membrane current</td>
+</tr>
+<tr>
+<td>5.3 Single-Compartment Models</td>
+<td>The governing ODE and its equivalent circuit</td>
+</tr>
+<tr>
+<td>5.4 Integrate-and-Fire Models</td>
+<td><strong>Not covered here — see F6</strong></td>
+</tr>
+<tr>
+<td>5.5 Voltage-Dependent Conductances</td>
+<td>Gating variables, persistent vs. transient channels</td>
+</tr>
+<tr>
+<td>5.6 The Hodgkin-Huxley Model</td>
+<td>The spike, mechanistically</td>
+</tr>
+<tr>
+<td>5.7 Modeling Channels</td>
+<td>Single-channel state diagrams and the deterministic limit</td>
+</tr>
+<tr>
+<td>5.8–5.9 Synaptic Conductances, Synapses on IF Neurons</td>
+<td><strong>Not covered here — see F6</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="the-membrane-as-a-leaky-capacitor">The membrane as a leaky capacitor<a class="headerlink" href="#the-membrane-as-a-leaky-capacitor" title="Permanent link">&para;</a></h3>
+<p>A neuron's cytoplasm and the extracellular fluid are both good conductors, dense with ions. What separates them is a lipid bilayer 3–4 nm thick, embedded with ion channels about 10 nm long.</p>
+<p><img alt="Figure 5.1" src="../../figures/ch5fig1.png" /></p>
+<p><em>Figure 5.1 — A schematic diagram of a section of the lipid bilayer with two ion channels embedded in it. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The bilayer is almost impermeable to charge, so it behaves like a capacitor: charge of one sign accumulates on the inner face, the opposite sign on the outer face, a few nanometres apart. The channels puncture this insulator and let current leak across it — hence "leaky" membrane, not perfect capacitor.</p>
+<p>Before working through specific currents, note the natural voltage scale. Equating the thermal energy of a mole of ions, <span class="arithmatex">\(RT \approx 2500\)</span> J/mol, to the electrical work of moving a mole of charge across a potential <span class="arithmatex">\(V_T\)</span> gives</p>
+<div class="arithmatex">\[V_T = \frac{RT}{F} = \frac{k_BT}{q} \approx 24\text{–}27\ \text{mV at biological temperatures.}\]</div>
+<p>Membrane potentials span roughly <span class="arithmatex">\(-3V_T\)</span> to <span class="arithmatex">\(+2V_T\)</span> — the observed <span class="arithmatex">\(-90\)</span> to <span class="arithmatex">\(+50\)</span> mV range. Every exponential that follows in this chapter, from gating rate functions to the Nernst equation, has <span class="arithmatex">\(V_T\)</span> in its denominator for this reason.</p>
+<h3 id="resistance-capacitance-and-the-time-constant">Resistance, capacitance, and the time constant<a class="headerlink" href="#resistance-capacitance-and-the-time-constant" title="Permanent link">&para;</a></h3>
+<p>Current flowing along a dendrite or axon meets resistance from the cytoplasm. For a cylindrical segment of length <span class="arithmatex">\(L\)</span> and radius <span class="arithmatex">\(a\)</span>,</p>
+<div class="arithmatex">\[R_L = \frac{r_L L}{\pi a^2}, \qquad r_L \approx 1\text{–}3\ \text{k}\Omega\!\cdot\!\text{mm}.\]</div>
+<p><img alt="Figure 5.2" src="../../figures/ch5fig2.png" /></p>
+<p><em>Figure 5.2 — The longitudinal resistance of a cylindrical segment of neuronal cable with length L and radius a. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>A segment 100 µm long and 2 µm in radius has <span class="arithmatex">\(R_L \approx 8\ \text{M}\Omega\)</span>, a non-trivial drop for small currents — why electrotonic compactness matters once multi-compartment models appear in chapter 6. A compact neuron, one potential, no spatial structure, reduces to a capacitor in parallel with a resistor.</p>
+<p><img alt="Figure 5.3" src="../../figures/ch5fig3.png" /></p>
+<p><em>Figure 5.3 — The capacitance and membrane resistance of a neuron considered as a single compartment. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The specific membrane capacitance is nearly universal, <span class="arithmatex">\(c_m \approx 10\ \text{nF/mm}^2\)</span> — the same number as the more commonly quoted <span class="arithmatex">\(1\ \mu\text{F/cm}^2\)</span>. The specific membrane resistance, by contrast, is highly variable, typically <span class="arithmatex">\(r_m \approx 1\ \text{M}\Omega\!\cdot\!\text{mm}^2\)</span>, shifting with channel state. <span class="arithmatex">\(C_m\)</span> and <span class="arithmatex">\(R_m\)</span> scale with surface area <span class="arithmatex">\(A\)</span> in opposite directions (<span class="arithmatex">\(C_m = c_m A\)</span>, <span class="arithmatex">\(R_m = r_m/A\)</span>), so their product, the membrane time constant,</p>
+<div class="arithmatex">\[\tau_m = R_m C_m = r_m c_m,\]</div>
+<p>is independent of cell size, typically 10–100 ms. This is the first number worth computing by hand: given <span class="arithmatex">\(c_m\)</span> and a leak conductance <span class="arithmatex">\(g_L = 1/r_m\)</span>, <span class="arithmatex">\(\tau_m\)</span> follows directly, and doubling <span class="arithmatex">\(g_L\)</span> halves <span class="arithmatex">\(\tau_m\)</span> — the membrane responds to current faster, but also forgets it faster. Separately, <span class="arithmatex">\(C_m\, dV/dt\)</span> is the current needed to <em>change</em> <span class="arithmatex">\(V\)</span> at a given rate (1 nA moves a 1 nF cell at 1 mV/ms); <span class="arithmatex">\(I_eR_m\)</span> is the current needed to <em>hold</em> <span class="arithmatex">\(V\)</span> away from rest — two different questions, two different circuit elements.</p>
+<h3 id="equilibrium-potentials-and-the-nernst-equation">Equilibrium potentials and the Nernst equation<a class="headerlink" href="#equilibrium-potentials-and-the-nernst-equation" title="Permanent link">&para;</a></h3>
+<p>Ions cross channels under two competing influences: the electric field set up by the membrane potential, and diffusion down a concentration gradient maintained by ion pumps. The equilibrium potential for a single ion species is the voltage at which these cancel — net flux through that channel is zero. Balancing the Boltzmann factor for electrical bias against the concentration ratio gives the Nernst equation,</p>
+<div class="arithmatex">\[E = \frac{V_T}{z}\ln\frac{[\text{outside}]}{[\text{inside}]}.\]</div>
+<p>Note the direction of the ratio — outside over inside — and that <span class="arithmatex">\(z\)</span> carries the sign of the ion's charge. Typical values: <span class="arithmatex">\(E_K\)</span> between <span class="arithmatex">\(-70\)</span> and <span class="arithmatex">\(-90\)</span> mV, <span class="arithmatex">\(E_{Na}\)</span> at <span class="arithmatex">\(+50\)</span> mV or above, <span class="arithmatex">\(E_{Ca}\)</span> near <span class="arithmatex">\(+150\)</span> mV, <span class="arithmatex">\(E_{Cl}\)</span> around <span class="arithmatex">\(-60\)</span> to <span class="arithmatex">\(-65\)</span> mV, close to rest for many cells. A channel's reversal potential sets the direction it pushes <span class="arithmatex">\(V\)</span>: <span class="arithmatex">\(Na^+\)</span> and <span class="arithmatex">\(Ca^{2+}\)</span> conductances depolarize, <span class="arithmatex">\(K^+\)</span> conductances hyperpolarize, and <span class="arithmatex">\(Cl^-\)</span> conductances, sitting near rest, mostly add conductance ("shunting") rather than driving <span class="arithmatex">\(V\)</span> anywhere. The arithmetic for a specific ion and temperature is left as an exercise — run it from scratch rather than trust the typical-value list above.</p>
+<p>When a channel is not perfectly selective, a single Nernst potential no longer applies; the resulting mixed potential is a reversal potential rather than an equilibrium potential, estimated with the Goldman equation, which this course does not derive.</p>
+<h3 id="the-membrane-current-and-single-compartment-models">The membrane current and single-compartment models<a class="headerlink" href="#the-membrane-current-and-single-compartment-models" title="Permanent link">&para;</a></h3>
+<p>Each channel type <span class="arithmatex">\(i\)</span> contributes a current proportional to its own driving force, <span class="arithmatex">\(i_m = \sum_i g_i(V - E_i)\)</span>, where <span class="arithmatex">\(g_i\)</span> is conductance per unit membrane area. Everything <em>not</em> voltage- or ligand-gated — the steady background set by ion pumps — is folded into a single leakage term <span class="arithmatex">\(\bar g_L(V - E_L)\)</span>, with <span class="arithmatex">\(E_L\)</span> a free parameter rather than any one ion's true equilibrium potential.</p>
+<p>Differentiating <span class="arithmatex">\(Q = C_mV\)</span> and dividing through by area turns current balance into the single governing equation for any single-compartment model:</p>
+<div class="arithmatex">\[c_m\frac{dV}{dt} = -i_m + \frac{I_e}{A}.\]</div>
+<p><img alt="Figure 5.4" src="../../figures/ch5fig4.png" /></p>
+<p><em>Figure 5.4 — The equivalent circuit for a one-compartment neuron model. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>This is Kirchhoff's current law as a differential equation: capacitive current plus ionic current equals injected current. Everything from here — a passive leaky cell, a full Hodgkin-Huxley axon — is this one equation with <span class="arithmatex">\(i_m\)</span> written out in more or less detail. The <em>leaky integrate-and-fire</em> simplification, reducing <span class="arithmatex">\(i_m\)</span> to the leak term alone and hand-coding a threshold-and-reset in place of the spike, is the subject of the next lecture. What follows here is the opposite choice: write <span class="arithmatex">\(i_m\)</span> out in full, so the spike falls out of the dynamics on its own.</p>
+<h3 id="from-one-channel-to-a-population-the-open-probability-formalism">From one channel to a population: the open-probability formalism<a class="headerlink" href="#from-one-channel-to-a-population-the-open-probability-formalism" title="Permanent link">&para;</a></h3>
+<p>Current through a single channel does not vary smoothly — it switches between a fixed open-state value and zero, stochastically.</p>
+<p><img alt="Figure 5.7" src="../../figures/ch5fig7.png" /></p>
+<p><em>Figure 5.7 — Recording of the current passing through a single ion channel. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>A patch of membrane, though, contains thousands to millions of channels of a given type. If they gate independently — a good approximation — the law of large numbers converts single-channel stochasticity into a smooth macroscopic conductance: <span class="arithmatex">\(g_i = \bar g_i P_i\)</span>, where <span class="arithmatex">\(\bar g_i\)</span> is the maximal conductance (all channels open) and <span class="arithmatex">\(P_i\)</span> is the fraction open at any instant, numerically equal to one channel's open probability. A deterministic <span class="arithmatex">\(P_i\)</span> standing in for an average over a large population of individually stochastic channels is the hinge the whole Hodgkin-Huxley formalism turns on — worth being explicit about what is averaged over what.</p>
+<p>Two channel architectures recur. A <strong>persistent</strong> conductance has one kind of gate; built from <span class="arithmatex">\(k\)</span> identical, independent subunits that must all open, <span class="arithmatex">\(P = n^k\)</span>, <span class="arithmatex">\(n\)</span> being one subunit's open probability — the <em>activation variable</em>.</p>
+<p><img alt="Figure 5.8" src="../../figures/ch5fig8.png" /></p>
+<p><em>Figure 5.8 — Gating of membrane channels: a persistent conductance (A) and a transient conductance (B). From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>A <strong>transient</strong> conductance adds a second, independent gate that can block the pore even when the first is open: <span class="arithmatex">\(P = m^k h\)</span>, <span class="arithmatex">\(m\)</span> the activation variable, <span class="arithmatex">\(h\)</span> the <em>inactivation</em> variable. Critically, <span class="arithmatex">\(m\)</span> and <span class="arithmatex">\(h\)</span> have opposite voltage dependence — depolarization grows <span class="arithmatex">\(m\)</span> but shrinks <span class="arithmatex">\(h\)</span> — making the conductance transient rather than merely slow.</p>
+<p>Each gating variable obeys first-order kinetics, closed <span class="arithmatex">\(\rightleftharpoons\)</span> open at voltage-dependent rates <span class="arithmatex">\(\alpha(V)\)</span> and <span class="arithmatex">\(\beta(V)\)</span>:</p>
+<div class="arithmatex">\[\frac{dn}{dt} = \alpha_n(V)(1-n) - \beta_n(V)n = \frac{n_\infty(V) - n}{\tau_n(V)}.\]</div>
+<p>Thermodynamic arguments (an energy barrier proportional to charge moved times voltage) predict exponential forms for <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\beta\)</span>, and hence a sigmoidal <span class="arithmatex">\(n_\infty(V)\)</span> — but Hodgkin and Huxley's own fits, obtained by voltage-clamping the squid axon and reading off <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\beta\)</span> at each holding potential, depart from the clean exponential for <span class="arithmatex">\(\alpha_n\)</span> while matching it for <span class="arithmatex">\(\beta_n\)</span>.</p>
+<p><img alt="Figure 5.9" src="../../figures/ch5fig9.png" /></p>
+<p><em>Figure 5.9 — Generic voltage-dependent gating functions compared with Hodgkin-Huxley results for the delayed-rectifier K+ conductance. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p><img alt="Figure 5.10" src="../../figures/ch5fig10.png" /></p>
+<p><em>Figure 5.10 — The voltage-dependent functions of the Hodgkin-Huxley model: steady-state activation/inactivation and their time constants. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>One exception: some channels are gated by inactivation alone and open on <em>hyperpolarization</em> rather than depolarization — hyperpolarization-activated conductances, which "deinactivate" to turn on.</p>
+<h3 id="the-hodgkin-huxley-model">The Hodgkin-Huxley model<a class="headerlink" href="#the-hodgkin-huxley-model" title="Permanent link">&para;</a></h3>
+<p>Writing <span class="arithmatex">\(i_m\)</span> for a squid axon with a leak, a delayed-rectifier <span class="arithmatex">\(K^+\)</span> conductance (<span class="arithmatex">\(n^4\)</span>, persistent), and a fast <span class="arithmatex">\(Na^+\)</span> conductance (<span class="arithmatex">\(m^3h\)</span>, transient) gives the full model:</p>
+<div class="arithmatex">\[i_m = \bar g_L(V-E_L) + \bar g_K n^4(V-E_K) + \bar g_{Na}m^3h(V-E_{Na}),\]</div>
+<p>with standard parameters <span class="arithmatex">\(\bar g_L = 0.003\)</span>, <span class="arithmatex">\(\bar g_K = 0.36\)</span>, <span class="arithmatex">\(\bar g_{Na} = 1.2\)</span> mS/mm², <span class="arithmatex">\(E_L = -54.387\)</span> mV, <span class="arithmatex">\(E_K = -77\)</span> mV, <span class="arithmatex">\(E_{Na} = 50\)</span> mV. Four coupled ODEs — <span class="arithmatex">\(V\)</span> plus three gating variables — reproduce the action potential with no explicit threshold rule.</p>
+<p><img alt="Figure 5.11" src="../../figures/ch5fig11.png" /></p>
+<p><em>Figure 5.11 — The dynamics of V, m, h, and n in the Hodgkin-Huxley model during the firing of an action potential. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>Trace the sequence against figure 5.11. A small depolarizing current nudges <span class="arithmatex">\(V\)</span> toward <span class="arithmatex">\(-50\)</span> mV. Because <span class="arithmatex">\(m\)</span>'s kinetics are fast, it jumps toward 1 almost immediately, while <span class="arithmatex">\(h\)</span>, starting near 0.6, has not yet had time to respond — so for a brief window both gating factors in <span class="arithmatex">\(m^3h\)</span> are substantial, <span class="arithmatex">\(Na^+\)</span> floods in, and <span class="arithmatex">\(V\)</span> rises toward <span class="arithmatex">\(E_{Na}\)</span>. This rise is self-reinforcing: depolarization raises <span class="arithmatex">\(m\)</span>, which raises <span class="arithmatex">\(Na^+\)</span> conductance, which depolarizes further. Two slower processes arrest it. First, the <em>same</em> depolarization that opened <span class="arithmatex">\(m\)</span> is, with a lag, closing the <span class="arithmatex">\(Na^+\)</span> channel from the other end — ask what <span class="arithmatex">\(h\)</span> is doing on the falling side of the rise, and what that does to <span class="arithmatex">\(m^3h\)</span> overall. Second, depolarization has also been driving <span class="arithmatex">\(n\)</span> upward throughout, and <span class="arithmatex">\(K^+\)</span> current grows with a delay relative to <span class="arithmatex">\(Na^+\)</span> current; only once it is large does <span class="arithmatex">\(V\)</span> get driven back down past rest.</p>
+<p>That delay does more work than it looks. Consider why a neuron cannot simply repolarize and fire again on the heels of the first spike: as <span class="arithmatex">\(V\)</span> returns toward rest, <span class="arithmatex">\(n\)</span> is still elevated and <span class="arithmatex">\(h\)</span> has not yet recovered from inactivation, so the conditions needed to retrigger the positive-feedback loop — low <span class="arithmatex">\(n\)</span>, high <span class="arithmatex">\(h\)</span> — are not yet met. The refractory period is not a rule imposed on the model; it is a consequence of how fast each gate recovers relative to how fast <span class="arithmatex">\(V\)</span> moves. The same reasoning explains "all-or-none": below some injected current, <span class="arithmatex">\(m\)</span>'s rise is too slow or small to outrun <span class="arithmatex">\(n\)</span>'s rise, the positive feedback never takes hold, and <span class="arithmatex">\(V\)</span> settles back without a spike. There is no threshold parameter anywhere in equation 5.25 — "threshold" describes where this balance of rates tips, not an ingredient fed into the model.</p>
+<h3 id="channels-as-discrete-state-machines">Channels as discrete state machines<a class="headerlink" href="#channels-as-discrete-state-machines" title="Permanent link">&para;</a></h3>
+<p>The gating-variable formalism is a mean-field description. The chapter also gives the microscopic picture behind it: a channel as a state diagram, carrying current <span class="arithmatex">\(gP(V-E)\)</span> where <span class="arithmatex">\(P\)</span> is 1 in the single open state and 0 elsewhere, with transitions between states happening stochastically at rates read off the diagram.</p>
+<p><img alt="Figure 5.12" src="../../figures/ch5fig12.png" /></p>
+<p><em>Figure 5.12 — A model of the delayed-rectifier K+ channel: state diagram and simulated single-channel, 10-channel, and 100-channel currents. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>For the <span class="arithmatex">\(K^+\)</span> channel, the five states correspond to 0, 1, 2, 3, or 4 open subunit gates, with transition rates built from <span class="arithmatex">\(\alpha_n\)</span>, <span class="arithmatex">\(\beta_n\)</span>, and combinatorial factors (four ways to open the first gate, one way to close the last). Summing 1, 10, and 100 simulated channels shows the deterministic Hodgkin-Huxley prediction emerging as the ensemble grows — the law of large numbers in action, not assumed.</p>
+<p><img alt="Figure 5.13" src="../../figures/ch5fig13.png" /></p>
+<p><em>Figure 5.13 — A model of the fast Na+ channel, with a state-dependent rather than voltage-dependent inactivation step. From Dayan &amp; Abbott, <a href="https://www.gatsby.ucl.ac.uk/~dayan/book/">Theoretical Neuroscience</a>, reproduced from the authors' teaching materials.</em></p>
+<p>The <span class="arithmatex">\(Na^+\)</span> channel model disagrees with Hodgkin-Huxley in a telling way. Its inactivation step is triggered by the channel having already reached an open <em>state</em>, at voltage-independent rates, rather than by voltage directly — matching the biological picture in figure 5.8B, where the inactivating "ball" cannot block the pore until the activation gate has swung open. Summed over many channels, this state-dependent model still reproduces the Hodgkin-Huxley current almost exactly, because <span class="arithmatex">\(m\)</span> relaxes to <span class="arithmatex">\(m_\infty(V)\)</span> so quickly that "ready to inactivate," voltage-based or state-based, is nearly indistinguishable in a real time course. Only sub-millisecond resolution exposes the difference, and the experiments able to see that timescale favor the state-dependent model over Hodgkin and Huxley's original assumption that activation and inactivation act independently.</p>
+<h3 id="where-this-goes-next">Where this goes next<a class="headerlink" href="#where-this-goes-next" title="Permanent link">&para;</a></h3>
+<p>The gating-variable machinery developed here — <span class="arithmatex">\(\alpha\)</span>, <span class="arithmatex">\(\beta\)</span>, <span class="arithmatex">\(n_\infty\)</span>, <span class="arithmatex">\(\tau_n\)</span>, applied equally to <span class="arithmatex">\(m\)</span> and <span class="arithmatex">\(h\)</span> — reappears unchanged in the chapter's synaptic-conductance material, with transmitter concentration in place of membrane voltage as the driving variable. That material, along with the integrate-and-fire simplification deliberately skipped here, belongs to F6.</p>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
 <p><strong>Goal:</strong> Establish the membrane as a physical RC circuit driven by ionic gradients, then show how voltage-dependent sodium and potassium conductances turn that circuit into a spike generator. By the end, "threshold", "all-or-none" and "refractory period" should be facts about channel kinetics rather than modelling conventions.</p>
 <details class="note">
