@@ -13,7 +13,9 @@ import os, re, shutil, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TEACHER = "--teacher" in sys.argv
-OUT = os.path.join(ROOT, "site_src_teacher" if TEACHER else "site_src")
+FIGURES = "--figures" in sys.argv   # embed the book's figures; local builds only
+OUT = os.path.join(ROOT, ("site_src_teacher" if TEACHER else "site_src")
+                   + ("_figs" if FIGURES else ""))
 DOCS = os.path.join(OUT, "docs")
 
 TRACKS = [
@@ -52,6 +54,53 @@ def strip_keys(text):
         keep.append(ln)
     return "\n".join(keep)
 
+FIG_RE = re.compile(r"\{\{fig:(\d+)\.(\d+)\|([^}]*)\}\}")
+
+def figure_source(chapter, number):
+    """Locate the authors' PNG for a figure, extracting the archive if needed."""
+    figdir = os.path.join(ROOT, "exercises", "figures")
+    tar = os.path.join(figdir, f"ch{chapter}fig.tar.gz")
+    target = os.path.join(figdir, f"ch{chapter}")
+    if not os.path.isdir(target) and os.path.exists(tar):
+        os.makedirs(target, exist_ok=True)
+        os.system(f"tar xzf {tar} -C {target} 2>/dev/null")
+    for root, _, files in os.walk(target):
+        for f in files:
+            if f == f"ch{chapter}fig{number}.png":
+                return os.path.join(root, f)
+    return None
+
+def expand_figures(text, outdir):
+    """Embed the figure when building locally; cite it by number when publishing.
+
+    The figures are Dayan & Abbott's, offered for teaching support. Putting them
+    on a public site is redistribution, so the published build references them
+    and the offline build - for the person who owns the book - shows them."""
+    def repl(m):
+        ch, num, cap = m.group(1), m.group(2), m.group(3).strip()
+        if FIGURES:
+            src = figure_source(ch, num)
+            if src:
+                dest_dir = os.path.join(outdir, "figures")
+                os.makedirs(dest_dir, exist_ok=True)
+                fname = f"ch{ch}fig{num}.png"
+                shutil.copy(src, os.path.join(dest_dir, fname))
+                return (f"![Figure {ch}.{num}](../figures/{fname})\n\n"
+                        f"*Figure {ch}.{num} — {cap}.*")
+        return (f"!!! quote \"Figure {ch}.{num}\"\n"
+                f"    {cap}.\n\n"
+                f"    In the book at figure {ch}.{num}; also in the authors' figure "
+                f"archive, which `fetch_book_materials.sh` downloads.")
+    return FIG_RE.sub(repl, text)
+
+def lecture_for(lid, outdir):
+    path = os.path.join(ROOT, "lectures", f"{lid}.md")
+    if not os.path.exists(path):
+        return None
+    body = open(path).read()
+    body = re.sub(r"^# .*\n", "", body, count=1)
+    return expand_figures(body, outdir)
+
 def coursework_for(lid):
     name = "BRIDGE" if lid == "Bridge" else lid
     path = os.path.join(ROOT, "coursework", f"{name}.md")
@@ -75,7 +124,12 @@ for key, label, src, pattern in TRACKS:
     os.makedirs(os.path.join(DOCS, key), exist_ok=True)
     entries = []
     for lid, title, spec in split_specs(src, pattern):
-        page = demote(spec) + "\n\n---\n\n"
+        lec = lecture_for(lid, DOCS)
+        page = f"# {title}\n\n"
+        if lec:
+            page += "## Lecture\n\n" + lec + "\n\n---\n\n"
+        page += "## Lesson spec\n\n" + re.sub(r"^### .*\n", "", demote(spec), count=1, flags=re.M)
+        page += "\n\n---\n\n"
         cw = coursework_for(lid)
         page += cw if cw else "*No coursework written for this lesson yet.*\n"
         fname = f"{lid}.md"
@@ -146,6 +200,6 @@ plugins:
 nav:
 {nav_lines()}
 """)
-print(f"{'teacher' if TEACHER else 'student'} source written to {OUT}")
+print(f"{'teacher' if TEACHER else 'student'}{' +figures' if FIGURES else ''} source written to {OUT}")
 print(f"  foundations: {len(nav_tracks['foundations'])} pages")
 print(f"  advanced:    {len(nav_tracks['advanced'])} pages")

@@ -1,0 +1,1641 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+      
+      
+      
+      
+        <link rel="prev" href="../B5/">
+      
+      
+        <link rel="next" href="../C2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>C1. Predictive coding as energy minimization - Comp Neuro Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#c1-predictive-coding-as-energy-minimization" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Comp Neuro Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              C1. Predictive coding as energy minimization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Comp Neuro Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F1. Spike trains and firing rates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F2. Receptive fields and reverse correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F3. Neural decoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F4. Information theory for neurons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F5. Membrane biophysics and the action potential
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F6. Integrate-and-fire neurons and synaptic input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F7. Cable theory and neuronal morphology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F8. Network models: feedforward and recurrent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F9. Synaptic plasticity and learning rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F10. Classical conditioning and reinforcement learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F11. Representational learning and generative models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/Bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge. Synthesis checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1. Synaptic delays and temporal structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2. Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3. Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4. Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5. State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2. Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3. Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4. Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5. Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1. Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1. Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2. Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3. Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5. Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6. PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="c1-predictive-coding-as-energy-minimization">C1. Predictive coding as energy minimization</h1>
+<h2 id="lesson-spec">Lesson spec</h2>
+<h1 id="c1-predictive-coding-as-energy-minimization_1">C1. Predictive coding as energy minimization</h1>
+<p><strong>Prerequisites:</strong> A2 (energy landscapes, fixed points); working familiarity with the Step 1/2 settling loop</p>
+<p><strong>Size:</strong> two to three sittings — the hand derivation is the point, don't rush it</p>
+<p><strong>Source material:</strong> <strong>D&amp;A ch. 10</strong> <em>Causal Models for Density Estimation</em> — generative models, EM and the Helmholtz machine: the textbook grounding for "a node predicts its input and the residual is the error". PC itself is not in D&amp;A. Primary: Bogacz 2017 (J Math Psychol), <em>A tutorial on the free-energy framework</em> — the best entry point; Rao &amp; Ballard 1999 (Nat Neurosci) for the original.</p>
+<p><strong>Local copies:</strong> <code>papers/C1_bogacz_2017_free_energy_tutorial.txt</code> (full text, no OA PDF). Rao &amp; Ballard 1999 (doi:10.1038/4580) needs institutional access.</p>
+<p><strong>Goal:</strong> Write down the PC energy function for a small layered network, take its gradient with respect to one node's activity by hand, and explain why that gradient depends only on quantities local to the node. Closes the gap between "I have run settling loops" and "settling is gradient descent on a specific scalar function".</p>
+<p><strong>Scope:</strong>
+- Generative-model framing: each node predicts its inputs from its neighbours' activities and the weights on those edges
+- Energy as a sum of squared prediction errors; its relation to negative-log Gaussian free energy at precision 1
+- Hand derivation: write E for a 3-node chain, take ∂E/∂x for the middle node, show which terms survive
+- The error neuron as the physical carrier of one error term in that sum
+- Settling as gradient descent on E with weights fixed, connecting to A2's fixed points as energy minima
+- Not covered: weight updates and schedule (C2), precision ≠ 1 (C3), non-layered graphs (C4)</p>
+<p><strong>You should be able to answer:</strong>
+1. For a 3-node chain x₀ → x₁ → x₂ with prediction x̂₁ = w·x₀, write the full energy E as a sum of two error terms.
+2. Given x₀ = 1, w = 2, x₁ = 1.5, compute the local error e₁ = x₁ − x̂₁.
+3. Take ∂E/∂x₁ by hand for that chain and state which two terms in E contribute, and which do not.
+4. Name the three quantities ∂E/∂x₁ depends on, and say why none of them require information from outside x₁'s immediate neighbours.
+5. If settling is gradient descent on E, what does it mean for a node's activity to be at a fixed point, in terms of ∂E/∂x?</p>
+<p><strong>Project tie-in:</strong> The formal justification for the purely-local constraint — the settling loops in <code>steps/02_pc_graphs/</code> and <code>steps/02b_persistent_state/network.py</code> are running exactly this gradient descent, and the error-neuron-as-energy-term view is what makes the neuron-pair abstraction principled rather than merely convenient.</p>
+<p><strong>Done when:</strong> The learner derives ∂E/∂x₁ for the 3-node example from scratch without being shown the formula, and identifies it as depending only on local pre/post activity and local error.</p>
+<hr />
+<hr />
+<p><strong>Lesson spec:</strong> <code>lessons.md</code> → C1. <strong>Total time:</strong> two to three sittings (~4-6 hours total: ~75 min derivation, ~75 min simulation, ~50 min guided reading, ~50 min written defence). <strong>Prerequisites:</strong> A2 (attractors, energy landscapes, fixed points); working familiarity with the Step 1/2 settling loop.</p>
+<h2 id="running-order">Running order</h2>
+<p>Consume, then apply, then refine:</p>
+<p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
+<p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
+<h2 id="coverage-map">Coverage map</h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Type</th>
+<th>Lesson acceptance criteria addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. The 3-node chain, by hand</td>
+<td>derivation</td>
+<td>1, 2, 3, 4, 5 (primary)</td>
+</tr>
+<tr>
+<td>2. Settling is gradient descent</td>
+<td>simulation</td>
+<td>4 (empirical), 5 (empirical)</td>
+</tr>
+<tr>
+<td>3. Reading Bogacz structurally</td>
+<td>guided reading</td>
+<td>1, 4, 5 (cross-check against a second source)</td>
+</tr>
+<tr>
+<td>4. Why locality isn't a coding convenience</td>
+<td>written defence</td>
+<td>4, 5 (applied to the project)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="piece-1-the-3-node-chain-by-hand">Piece 1 — The 3-node chain, by hand</h2>
+<p><strong>Type:</strong> derivation · <strong>Time:</strong> ~75 min</p>
+<p><strong>Learning goals</strong>
+- Write a layered network's predictive-coding energy as an explicit sum of squared prediction errors.
+- Differentiate that energy by hand with respect to a single node's activity.
+- Identify, term by term, which parts of the energy a given node's gradient touches and which it doesn't.
+- State precisely what "local" means for that gradient, in terms of quantities a real neuron/synapse could access.</p>
+<p><strong>Task</strong></p>
+<p>Consider the 3-node chain x₀ → x₁ → x₂. x₁ predicts... no — x₁ is predicted by x₀, and x₁ in turn predicts x₂. Concretely:</p>
+<ul>
+<li>x₁ is predicted from x₀ by weight w: prediction x̂₁ = w·x₀</li>
+<li>x₂ is predicted from x₁ by weight v: prediction x̂₂ = v·x₁</li>
+<li>Fixed numbers: x₀ = 1, w = 2, v = 0.5, x₂ = 0.9. x₁ = 1.5 for the pointwise questions below.</li>
+</ul>
+<p>Work through, showing every step:</p>
+<ol>
+<li>Define the two local prediction errors e₁ = x₁ − x̂₁ and e₂ = x₂ − x̂₂, and write the full energy E = ½e₁² + ½e₂² as an explicit function of x₀, w, x₁, v, x₂ (no numbers yet).</li>
+<li>Plug in the numbers above and compute e₁ and e₂ at x₁ = 1.5. Compute E at that point.</li>
+<li>Take ∂E/∂x₁ by hand — differentiate ½e₁² and ½e₂² separately with respect to x₁, using the chain rule, then add. State explicitly which of the two terms contribute a nonzero derivative and why (for this specific 3-node chain, check both — don't assume).</li>
+<li>Evaluate ∂E/∂x₁ numerically at x₁ = 1.5.</li>
+<li>Name the three quantities your final expression for ∂E/∂x₁ depends on. For each one, say which physical component (a specific neuron's error output, or a specific synapse's stored weight) it corresponds to, and explain why computing it never requires reading a value from any node other than x₁'s two immediate neighbours.</li>
+<li>Set ∂E/∂x₁ = 0 and solve for the value x₁* at which x₁ would stop moving under gradient descent (keep x₀, x₂, w, v fixed at the values above). State in one sentence what "fixed point" means here in terms of ∂E/∂x.</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>A written derivation (PDF, markdown, or legible photographed handwriting) covering steps 1-6 above, with every algebraic step shown — not just final answers. No formula should appear without the line before it that produced it.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All six steps correct with intermediate algebra shown; step 5's locality argument is stated in terms of physical quantities (error-neuron outputs, synaptic weights), not just "it only has x1 in it"; step 6 fixed point correctly solved and interpreted as zero net force from E.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Steps 1-4 correct with correct numbers; step 5 identifies the three quantities but locality argument is vague ("these are nearby" without saying why nothing further is needed); step 6 attempted, possibly with an algebra slip that's otherwise structurally sound.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>E is written with a sign error, a missing factor of ½, or e1/e2 swapped; ∂E/∂x1 omits one of the two terms without justification; or step 5 lists quantities that include x0 or x2 directly rather than e1/e2/v.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-2-settling-is-gradient-descent">Piece 2 — Settling is gradient descent</h2>
+<p><strong>Type:</strong> simulation · <strong>Time:</strong> ~75 min</p>
+<p><strong>Learning goals</strong>
+- Implement settling (activity updates only, weights frozen) on the same 3-node chain and confirm it performs gradient descent on E.
+- Confirm empirically that the fixed point matches the hand-derived x₁*.
+- Structure the code so that the update for a node is architecturally incapable of reading anything non-local — demonstrating the Piece 1 locality claim in code, not just in prose.</p>
+<p><strong>Task</strong></p>
+<p>Build a self-contained script (PyTorch or plain numpy, under ~100 lines) that:</p>
+<ol>
+<li>Fixes x₀ = 1, x₂ = 0.9 (clamped, as in Piece 1), w = 2, v = 0.5 (fixed weights — no weight learning in this lesson).</li>
+<li>Initializes x₁ at some starting value (e.g. 0.0 or 1.5 — pick one and say so).</li>
+<li>Defines <code>e1(x0, w, x1)</code> and <code>e2(x1, v, x2)</code> and <code>energy(x1) = 0.5*e1**2 + 0.5*e2**2</code> as small separate functions.</li>
+<li>Defines a <code>local_update(e1, e2, v)</code> function whose signature takes <strong>only</strong> <code>e1</code>, <code>e2</code>, <code>v</code> — not <code>x0</code>, <code>x2</code>, or <code>w</code> directly — and returns <code>e1 - v*e2</code> (the gradient) or the resulting activity delta. This is the architectural locality check: if the function signature needed <code>x0</code> or <code>x2</code>, that would already be a violation, independent of what the function body does with them.</li>
+<li>Runs a settling loop: at each iteration compute e1, e2, the gradient via <code>local_update</code>, update x1 by a small step against the gradient (<code>x1 -= lr * grad</code>), and record the energy at each step.</li>
+<li>Cross-checks the hand-computed gradient against autograd: build x1 as a tensor with <code>requires_grad=True</code>, compute <code>energy(x1)</code> and call <code>.backward()</code>, and confirm <code>x1.grad</code> matches your manual <code>e1 - v*e2</code> at that point.</li>
+<li>After the loop, plots or prints the energy trace and confirms two things numerically: (a) energy is non-increasing at every step (with a small numerical tolerance), and (b) the final x1 is within 1e-3 of x1* = 1.96.</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>The script itself, plus a short (5-10 line) printed or written summary reporting: starting energy, final energy, final x1, number of iterations to convergence, and the autograd cross-check result.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Script runs standalone; energy trace is strictly non-increasing (or non-increasing within float tolerance) at every step; final x1 within 1e-3 of 1.96; autograd cross-check passes; <code>local_update</code> signature genuinely excludes x0/x2/w, and the learner's summary explicitly connects this to Piece 1's locality argument.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Script runs and converges to the right x1, but the locality restriction is only asserted in comments/prose rather than enforced by the function signature (e.g. <code>local_update</code> takes the whole state and just doesn't use x0), or the monotonic-decrease check is eyeballed from a plot rather than asserted numerically.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Script diverges or converges to the wrong fixed point (check for a sign error in the update direction — gradient descent needs <code>-=</code>, not <code>+=</code>, or vice versa depending on gradient sign convention); or autograd disagrees with the manual gradient and the discrepancy isn't investigated.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-3-reading-bogacz-structurally">Piece 3 — Reading Bogacz structurally</h2>
+<p><strong>Type:</strong> guided reading (<code>papers/C1_bogacz_2017_free_energy_tutorial.txt</code>) · <strong>Time:</strong> ~50 min</p>
+<p><strong>Learning goals</strong>
+- Recognize the generative-model framing (predict inputs from causes) in a second source, independent of this lesson's own notation.
+- Map Bogacz's error/free-energy formalism onto the e1, e2, E already derived by hand.
+- Correctly place precision=1 as a special case of a more general treatment, without needing precision-weighted errors for this lesson.</p>
+<p><strong>Task</strong> — answer in your own words; equations in the source file may be mangled by text extraction, so answer at the level of argument structure, not by quoting formulas.</p>
+<ol>
+<li>Bogacz sets up perception as inferring a hidden cause from a noisy observation, i.e. a generative model running from causes to predictions. Find where he introduces this setup and state, in your own words, which direction the model runs (cause → prediction, or prediction → cause) and why that direction matters for calling it "generative."</li>
+<li>Locate where Bogacz shows that maximizing the posterior probability of the cause is equivalent to minimizing a sum of two squared error terms. Describe each of his two error terms in words (what each one measures), and say which one plays the role of your e1 and which plays the role of your e2 in the 3-node chain — even though his example may have different dimensionality or symbols.</li>
+<li>Bogacz's general derivation weights each error term by a precision (inverse variance). Does he ever consider the special case where both precisions equal 1? If you can find it, note where. Either way, explain in one or two sentences why your E = ½e1² + ½e2² (unweighted) is the precision=1 special case of his general expression, not a separate formula.</li>
+<li>Bogacz gives an update rule for the node representing the estimate of the hidden cause, structured as "this node's own error term minus a weight-scaled downstream error term" (or the equivalent, in whatever notation the extraction preserved). Compare its shape to your ∂E/∂x1 = e1 − v·e2 term by term, in words — which piece of his rule corresponds to e1, which to v, which to e2?</li>
+<li>Bogacz separates fast dynamics (the estimate settling to a value) from slow dynamics (weights being learned). Find where he makes this two-timescale argument and summarize, in 2-3 sentences, why "settling" — the object you implemented in Piece 2 — is the fast dynamics with weights frozen, and why weight learning being slower is what makes that separation valid rather than an arbitrary implementation choice. Do not describe the weight-update rule itself — that's C2.</li>
+<li>State in one or two sentences why "free energy" (in Bogacz's terms) at precision 1 is the same object as the E you derived by hand in Piece 1, up to the precision factor.</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>Written answers to 1-6, each a few sentences, citing roughly where in the source text (section heading or nearby distinctive phrase) each answer comes from, since page/equation numbers may not survive extraction.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All six answers correct and correctly located; the e1/e2 correspondence in Q2 and Q4 is stated explicitly and correctly (not just "sounds similar"); Q3 and Q6 correctly identify precision=1 as a special case rather than treating precision-weighting as a separate, unrelated mechanism.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Most answers correct; Q4's term-by-term correspondence is present but loose (e.g. correctly identifies "own error minus something" without pinning down that the "something" is v-scaled e2); Q5 correctly identifies the two-timescale claim but doesn't connect it to the learner's own settling-loop code.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Q1 gets the generative direction backwards; Q2/Q4 fail to distinguish which of Bogacz's terms is upstream vs downstream; Q3/Q6 treat precision-weighting as something E is missing rather than as a generalization E is a special case of.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-4-why-locality-isnt-a-coding-convenience">Piece 4 — Why locality isn't a coding convenience</h2>
+<p><strong>Type:</strong> written defence · <strong>Time:</strong> ~50 min · <strong>Length:</strong> 300-600 words</p>
+<p><strong>Learning goals</strong>
+- Argue, from the derivation (not from the codebase's existing structure), that the project's "purely local" learning-rule constraint is a mathematical consequence of what settling is, not an arbitrary implementation choice.
+- Use the neuron-pair / error-neuron vocabulary correctly and specifically, tied to the concrete e1/e2 example.
+- Correctly scope the claim: this lesson only establishes locality for activity settling, not for weight updates.</p>
+<p><strong>Task</strong></p>
+<p>Write 300-600 words defending this claim: <em>"The settling loop already implemented in this project (network.py, the Step 1/2 settling loop, the 100-iteration CartPole settle) is not merely inspired by predictive coding — it IS gradient descent on a specific scalar energy E, and the fact that each node's update only touches local quantities is a direct consequence of E's structure as a sum of pairwise terms, not a design choice that happened to be convenient for neuromorphic hardware."</em></p>
+<p>Your defence must:
+- Use the 3-node chain's ∂E/∂x1 = e1 − v·e2 as your concrete example, explaining what e1 and e2 physically are (outputs of specific error neurons) and what v physically is (a specific synapse's stored weight — connect this explicitly to the "virtual memristor" idea: the synapse stores v and only needs e1/e2-adjacent information to be involved in the update, nothing global).
+- State explicitly why a hypothetical <em>non-local</em> rule (e.g. one where x1's update needed x2's raw activity value directly, bypassing e2, or needed a global loss computed over the whole network) would require information x1 physically cannot have without extra wiring that predictive coding doesn't posit.
+- Connect this to the neuron-pair abstraction: explain why the error neuron is not a bookkeeping convenience but the physical carrier of exactly one term in the energy sum — which is what makes "prediction neuron + error neuron, reasoned about as one unit" a principled abstraction rather than a naming convention.
+- Explicitly scope the claim: state that this argument establishes locality for the <em>activity-settling</em> phase only (weights v, w held fixed); whether the <em>weight-update</em> rule is equally forced to be local, or is merely designed to be local, is a separate question deferred to C2. Do not claim this lesson proves weight-update locality.</p>
+<p><strong>Deliverable</strong></p>
+<p>A 300-600 word written defence meeting the four requirements above.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All four required elements present and correct; the physical-carrier argument for the error neuron is stated precisely (one specific term in the sum, not "represents error" vaguely); the scoping statement explicitly names weight-update locality as open/deferred to C2 rather than silently assuming it.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Three of four elements present; the "why a non-local rule is physically impossible" argument is asserted rather than derived from the concrete e1/e2/v example; scoping to activity-settling vs weight-updates is present but underdeveloped (mentioned in passing, not explained).</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Defence describes locality only in terms of "it's what the code already does" without deriving the claim from E's structure; conflates activity settling with weight learning as though this lesson covers both; error neuron is described generically ("it computes error") without tying it to one specific term in the energy sum.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="completion-bar">Completion bar</h2>
+<p>C1 is complete when: (1) Piece 1's derivation is produced from scratch — the learner is not shown ∂E/∂x1 = e1 − v·e2 before deriving it — with correct e1 = −0.5, correct ∂E/∂x1 = −0.575 at x1=1.5, and a locality argument stated in terms of e1/v/e2 as physical quantities rather than "nearby variables"; (2) Piece 2's simulation empirically confirms monotonic energy decrease and convergence to x1* = 1.96 (±1e-3), with an update function whose signature architecturally excludes non-local inputs; (3) Piece 3's reading answers are structurally correct and don't rely on transcribing garbled equations; (4) Piece 4's defence contains all five required claims from its grader key and explicitly scopes the argument to activity settling, not weight updates. A learner who can do all four without being shown the ∂E/∂x1 formula in advance has closed the gap between "I run a settling loop" and "I know settling is gradient descent on a specific energy" — the stated goal of this lesson.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

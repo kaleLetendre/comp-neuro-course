@@ -1,0 +1,1629 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+      
+      
+      
+      
+        <link rel="prev" href="../../foundations/Bridge/">
+      
+      
+        <link rel="next" href="../A2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>A1. Synaptic delays and temporal structure - Comp Neuro Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a1-synaptic-delays-and-temporal-structure" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Comp Neuro Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              A1. Synaptic delays and temporal structure
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Comp Neuro Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F1. Spike trains and firing rates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F2. Receptive fields and reverse correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F3. Neural decoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F4. Information theory for neurons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F5. Membrane biophysics and the action potential
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F6. Integrate-and-fire neurons and synaptic input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F7. Cable theory and neuronal morphology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F8. Network models: feedforward and recurrent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F9. Synaptic plasticity and learning rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F10. Classical conditioning and reinforcement learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F11. Representational learning and generative models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/Bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge. Synthesis checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1. Synaptic delays and temporal structure
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1. Synaptic delays and temporal structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2. Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3. Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4. Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5. State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2. Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3. Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4. Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5. Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1. Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2. Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3. Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5. Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6. PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="a1-synaptic-delays-and-temporal-structure">A1. Synaptic delays and temporal structure</h1>
+<h2 id="lesson-spec">Lesson spec</h2>
+<h1 id="a1-synaptic-delays-and-temporal-structure_1">A1. Synaptic delays and temporal structure</h1>
+<p><strong>Prerequisites:</strong> the Bridge checkpoint; F1 (spike trains), F6 (integrate-and-fire), F9 (STDP)</p>
+<p><strong>Size:</strong> one to two sittings</p>
+<p><strong>Source material:</strong> Thin in D&amp;A — <strong>ch. 5</strong> <em>Synaptic Conductances</em> and <strong>ch. 6</strong> <em>The Cable Equation</em> give transmission and propagation, but not delay as a computational resource. Primary: Izhikevich 2006, <em>Polychronization: Computation with Spikes</em>. Supporting: Gerstner et al., <em>Neuronal Dynamics</em> (free online) on transmission delays.</p>
+<p><strong>Local copies:</strong> <code>papers/A1_izhikevich_2006_polychronization.pdf</code>. <em>Neuronal Dynamics</em> is free at neuronaldynamics.epfl.ch.</p>
+<p><strong>Goal:</strong> Replace the instantaneous weight-matrix picture — spike in, weighted sum out, same tick — with one where <em>when</em> a spike arrives matters as much as how strong it is. Topology plus delays is a computation over time, not just space. Walks away able to distinguish delay-based mechanisms (coincidence detection, delay lines) from weight-based ones.</p>
+<p><strong>Scope:</strong>
+- Real figures: axonal conduction delay (~0.5–10 ms depending on myelination and distance) vs synaptic transmission delay (~0.3–3 ms), and where these numbers come from physically
+- How delay converts a static weight matrix into a temporal computation: coincidence detection and delay lines
+- Delay as a third learnable or evolvable parameter alongside weight and connectivity — what it means for a virtual-memristor synapse to store a delay as well as a weight
+- Polychronous groups (Izhikevich 2006): memory that lives in the delay structure, requiring no weight change
+- Not covered: network-wide rhythms and synchrony (A3), attractor dynamics (A2)</p>
+<p><strong>You should be able to answer:</strong>
+1. Give typical ms ranges for axonal conduction delay vs synaptic transmission delay, and name one anatomical factor that shortens each.
+2. Describe a concrete 2-input circuit where a delay difference — not a weight difference — is what makes a downstream neuron fire.
+3. If two synapses feeding the same neuron have delays of 3 ms and 7 ms, under a ±20 ms STDP window, does that 4 ms gap meaningfully change which side of the STDP curve a near-simultaneous pre/post pairing lands on?
+4. What does a polychronous group store — weights, delays, or both — and why can one fixed network support many more such groups than it has neurons?
+5. Name one way delay could be treated as a plastic parameter like a weight, and one way it is more naturally treated as fixed structural wiring.</p>
+<p><strong>Project tie-in:</strong> Feeds Step 3 directly — whether the virtual-memristor synapse carries a delay field alongside its weight, and whether the prediction→error neuron link inside a neuron pair should account for transmission lag.</p>
+<p><strong>Done when:</strong> The learner can sketch a coincidence-detection circuit with explicit delay values and state why polychronous-group memory needs no weight update.</p>
+<hr />
+<hr />
+<p><strong>Lesson spec:</strong> <code>lessons.md</code> → A1. <strong>Total time:</strong> ~3.5 hours across one to two sittings (Piece 1: 60 min, Piece 2: 50 min, Piece 3: 50 min, Piece 4: 45 min). <strong>Prerequisites:</strong> the Bridge checkpoint; F1 (spike trains), F6 (integrate-and-fire), F9 (STDP).</p>
+<h2 id="running-order">Running order</h2>
+<p>Consume, then apply, then refine:</p>
+<p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
+<p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
+<h2 id="verified-against-the-source">Verified against the source</h2>
+<p>Checked against <code>papers/A1_izhikevich_2006_polychronization.pdf</code> rather than recalled. The paper's claim is <strong>stronger</strong> than "more groups than neurons": with five neurons the example network has 14 polychronous groups, and "adding a sixth neuron triples the number of groups so that there are more groups than <strong>synapses</strong> in the network". It also states the self-organisation into groups "is a robust phenomenon that occurs despite the experimentalist's efforts to prevent it", and that changing model parameters twofold changes how many groups are supported without eliminating them. Grade the synapse comparison as the correct answer; neurons is the weaker version.</p>
+<h2 id="coverage-map">Coverage map</h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Type</th>
+<th>Lesson acceptance criteria addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — Coincidence and the STDP curve</td>
+<td>derivation</td>
+<td>2 (primary), 3 (primary)</td>
+</tr>
+<tr>
+<td>2 — Delay-only coincidence detector</td>
+<td>simulation</td>
+<td>1 (delay values realistic), 2 (primary, computational confirmation of Piece 1A)</td>
+</tr>
+<tr>
+<td>3 — Reading Izhikevich 2006</td>
+<td>guided reading</td>
+<td>1 (primary), 4 (primary), 5 (primary)</td>
+</tr>
+<tr>
+<td>4 — Should the neuron-pair link learn a delay?</td>
+<td>written defence</td>
+<td>3 (reinforced), 4 (reinforced), 5 (primary)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="piece-1-coincidence-and-the-stdp-curve">Piece 1 — Coincidence and the STDP curve</h2>
+<p><strong>Type:</strong> derivation · <strong>Time:</strong> 60 min</p>
+<p><strong>Learning goals</strong>
+- Compute EPSP arrival times from source spike time + transmission delay, and show algebraically that a downstream neuron's firing outcome can flip when only a delay changes, weights held fixed.
+- Place a delay difference on the STDP timing curve and judge whether it changes which side of the curve (potentiation vs. depression) a pairing lands on, versus merely changing magnitude.</p>
+<p><strong>Task</strong></p>
+<p><em>Part A — delay flips the outcome, weight does not.</em>
+Two presynaptic neurons, A and B, both synapse onto neuron C with identical weight w = 0.6 (dimensionless, same units as threshold) and identical EPSP shape: an alpha function
+EPSP(s) = w · (s/τ) · exp(1 − s/τ) for s ≥ 0, and 0 for s &lt; 0,
+where s is time since the EPSP's arrival at C and τ = 2 ms. (This alpha function peaks at value w when s = τ — check that you get EPSP(τ) = w before going further.) C fires if the summed potential V(t) = EPSP_A(t − t_arr,A) + EPSP_B(t − t_arr,B) reaches threshold θ = 1.0 at any t. Ignore membrane leak and reset for this derivation — you are only checking whether the <em>sum of two EPSP curves</em> clears the bar.</p>
+<p>A fires at t = 0 ms; total transmission delay (axon + synapse) A→C is 5 ms, so its EPSP arrives at t = 5 ms.
+B fires at t = 3 ms. Consider two scenarios for B's transmission delay only — A's delay and both weights are unchanged throughout:
+- <strong>Scenario 1:</strong> delay B→C = 2 ms → EPSP arrives at t = 5 ms (coincident with A's).
+- <strong>Scenario 2:</strong> delay B→C = 6 ms → EPSP arrives at t = 9 ms (4 ms after A's).</p>
+<p>For each scenario, write V(t) as the explicit sum of the two shifted alpha functions, find its maximum value analytically or by evaluating at ≥ 6 well-chosen t values spanning the region where both EPSPs have non-negligible amplitude, and state whether C fires.</p>
+<p><em>Part B — does a 4 ms delay gap matter to STDP?</em>
+Now treat A→C (only) as a plastic synapse under a standard exponential STDP rule with a ±20 ms window:
+Δw = A₊ · exp(−Δt/τ₊) if Δt &gt; 0 (pre-before-post, potentiation), Δw = −A₋ · exp(Δt/τ₋) if Δt &lt; 0 (post-before-pre, depression), with τ₊ = τ₋ = 20 ms and A₊ = A₋ = 1 (normalized units), Δt = t_post − t_pre,arrival.</p>
+<p>A single presynaptic spike at t = 0 reaches C via two candidate synapses with transmission delays 3 ms and 7 ms respectively (so arrivals at t = 3 ms and t = 7 ms). C fires once, at t_post = 10 ms. Compute Δt and Δw for each of the two arrival times. State in one sentence: does the 4 ms delay gap change which side of the STDP curve (potentiation vs. depression) the pairing lands on, or only its magnitude — and by roughly what percentage?</p>
+<p><strong>Deliverable</strong>
+Handwritten or typed: (A) V(t) expressions and evaluated maxima for both scenarios with a fire/no-fire verdict for each; (B) Δt, Δw for both delays and the one-sentence verdict with the percentage.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Part A: correct V(t) construction, correctly locates near-peak by evaluation or calculus, gets both fire/no-fire verdicts right, explicitly states weight was held fixed. Part B: correct Δt and Δw for both delays, correctly identifies both land on the potentiation side, gives a percentage difference within ~5 points of the correct ~22%.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Gets both fire/no-fire verdicts right in Part A by evaluation even if the peak-finding is approximate; Part B gets Δt right and correctly says "same side, different magnitude" without an accurate percentage.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Flips a fire/no-fire verdict in Part A, or claims in Part B that the 4 ms gap flips potentiation to depression (or vice versa), or conflates the two parts' delay values.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-2-delay-only-coincidence-detector-simulation">Piece 2 — Delay-only coincidence detector (simulation)</h2>
+<p><strong>Type:</strong> simulation · <strong>Time:</strong> 50 min</p>
+<p><strong>Learning goals</strong>
+- Build a minimal leaky-integrate-and-fire (LIF) neuron receiving two synaptic inputs and confirm computationally that varying delay alone — weights and everything else fixed — flips the firing outcome.
+- Connect the discrete-time simulation result back to the closed-form alpha-function argument in Piece 1 Part A, and be able to say why the two models don't have to agree numerically to agree qualitatively.</p>
+<p><strong>Task</strong>
+Write a self-contained Python script (numpy or PyTorch, your choice; under 100 lines) implementing:
+- Postsynaptic neuron C, membrane equation dV/dt = −V/τ_m + I(t), τ_m = 10 ms, V(0) = 0, Euler integration with dt = 0.1 ms over T = 20 ms.
+- Two synaptic input currents, each an exponential PSC I_syn(t) = w · exp(−(t − t_arr)/τ_syn) for t ≥ t_arr (0 otherwise), τ_syn = 1 ms, w = 0.65 for <strong>both</strong> synapses, held fixed across every run.
+- Synapse A: arrival always at t_arr,A = 5 ms.
+- Synapse B: run the simulation twice, changing <strong>only</strong> the arrival time: (i) t_arr,B = 5 ms ("coincident" — matches the total delay used in Piece 1 Scenario 1), (ii) t_arr,B = 9 ms ("offset" — matches Piece 1 Scenario 2).
+- Firing threshold V_th = 1.0 (no reset needed — just detect whether V(t) ever reaches V_th and report the peak value and, if fired, the first-crossing time).</p>
+<p>Print, for both runs: peak V, the time of the peak, whether the neuron fired, and (if fired) the crossing time. Your script must produce <strong>one run that fires and one that does not</strong>, using only the two arrival times above and no other parameter changes between runs.</p>
+<p><strong>Deliverable</strong>
+The script, plus a 3–5 line written note: (a) the two printed results, (b) whether the outcome matches the fire/no-fire pattern from Piece 1 Part A, (c) one sentence on why the numeric peak values differ between the alpha-function derivation and this LIF simulation even though the qualitative pattern matches.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Script runs, uses exactly the specified parameters, correctly reproduces fires=True for the coincident case and fires=False for the offset case, note correctly explains the qualitative match and correctly attributes the numeric mismatch to the different PSP/EPSP model (exponential PSC + leaky integration vs. alpha function), not to a bug.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Script runs and gets the right fire/no-fire pattern but the note is thin (just restates the numbers without explaining the model-mismatch point), or minor parameter drift (e.g. dt=1ms) that doesn't change the qualitative result.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Script does not reproduce a clean fire/no-fire split (e.g. both fire, or neither fires) without the learner noticing/investigating, or weights differ between the two runs, or delay values used don't match the two scenarios specified.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-3-reading-izhikevich-2006-guided-reading">Piece 3 — Reading Izhikevich 2006 (guided reading)</h2>
+<p><strong>Type:</strong> guided reading · <strong>Time:</strong> 50 min</p>
+<p><strong>Source:</strong> Izhikevich, E.M. (2006), <em>Polychronization: Computation with Spikes</em>, <code>papers/A1_izhikevich_2006_polychronization.pdf</code>.</p>
+<p><strong>Learning goals</strong>
+- Extract the paper's own numeric range and construction method for conduction delays, and identify one anatomical/positional factor the paper ties to delay magnitude.
+- State precisely, in the paper's own terms, what a polychronous group is defined by (weights, delays, or both) and why a fixed network supports far more such groups than it has neurons.
+- Determine whether the paper treats delays as plastic (co-evolving with STDP) or fixed for the simulation's duration.</p>
+<p><strong>Task</strong> — answer these five questions, citing section/figure/table where you found each answer:
+1. What integer-millisecond range does the paper assign to synaptic conduction delays in its simulated network, and how is each synapse's specific delay value chosen (fixed at construction? drawn randomly? structured by some spatial/anatomical rule)?
+2. In the paper's own words or your close paraphrase, what does it mean for a group of neurons to fire <em>polychronously</em>, as distinct from firing <em>synchronously</em>? Give the distinguishing feature.
+3. According to the paper, what is fixed to define a given polychronous group — the set of synaptic weights, the set of delays, or both? Quote or closely paraphrase the specific passage that answers this.
+4. The paper argues a fixed network of N neurons can support far more than N coexisting polychronous groups. What mechanism does it give for this (what combinatorial structure is being exploited), and what approximate number of coexisting groups does it report for its example network — and how does that compare to the neuron count used?
+5. Does the paper hold conduction delays fixed for the duration of a simulation, or does it let delays change (e.g. via a delay-analogue of STDP) alongside weight changes from STDP? Quote the passage that settles this.</p>
+<p><strong>Deliverable</strong> — five short answers (2–5 sentences each), each with a section/figure/table citation from the paper.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All five answers correct with a specific citation each; Q3 and Q4 correctly identify delays (not weights) as the defining/fixed structure of a PNG and correctly state the combinatorial argument (many distinct delay-compatible subsets exist within one fixed network) rather than just asserting "there are more groups than neurons" without the mechanism.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Four of five correct with citations; Q4's reported group-count is in the right order of magnitude even if not exact; Q3 correctly says "delays" without fully articulating why weights alone aren't sufficient to define a group.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Q3 or Q5 answered backwards (e.g. claims delays are learned via STDP, or that weights alone define a PNG), or no citations given, or Q4 answer just repeats "many more groups than neurons" with no mechanism.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-4-should-the-neuron-pair-link-learn-a-delay-written-defence">Piece 4 — Should the neuron-pair link learn a delay? (written defence)</h2>
+<p><strong>Type:</strong> written defence · <strong>Time:</strong> 45 min</p>
+<p><strong>Learning goals</strong>
+- Synthesize criteria 3, 4, and 5 into a single argued design decision applicable to Step 3 of the project.
+- Take an explicit, falsifiable position and defend it against the strongest counterargument, rather than listing pros and cons neutrally.</p>
+<p><strong>Task</strong>
+Write a 300–600 word position paper answering: <strong>Should the prediction→error neuron link within a neuron pair (Step 3 of this project) carry a learnable delay parameter, in the same way it carries a learnable weight?</strong></p>
+<p>Take an explicit position — learnable delay, fixed delay set at construction, or some third option (e.g., delay fixed but weight-dependent at construction time, never updated afterward) — and defend it using all three of the following, each addressed explicitly:
+(a) Where the intra-pair link sits on the axonal (~0.5–10 ms) vs. synaptic (~0.3–3 ms) delay spectrum, and what that implies about the physical/computational role this delay would play if the architecture is meant to be neuromorphic-hardware-compatible.
+(b) The polychronous-group argument (Piece 3, Izhikevich 2006) for why <em>fixed</em> delays are computationally valuable on their own, without any weight plasticity — and whether that argument transfers to a two-neuron pair, or specifically needs the combinatorics of a larger network to do any work.
+(c) Whether a local STDP-style rule operating within a ±20 ms window (Piece 1 Part B) is even fine-grained enough to distinguish and act on delay differences of the size relevant to a neuron pair (a few ms) — i.e., could a purely local plasticity rule meaningfully learn a delay at all, given what Piece 1 found about a 4 ms gap only producing a ~22% magnitude change, not a sign flip.</p>
+<p>You must address the strongest counterargument to your own position, not just state your view.</p>
+<p><strong>Deliverable</strong> — 300–600 words, plain prose (no bullet-point dumping of (a)/(b)/(c) as a checklist — they should be woven into a single argument).</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Takes an explicit, specific position; correctly uses the fact that Izhikevich's PNG argument depends on network-scale combinatorics of <em>many</em> delay-compatible subsets, and explicitly reasons about whether/how that scales down to (or fails to apply to) a single neuron pair; correctly uses Piece 1B's finding (4ms gap → sign-preserving, ~22% magnitude change) to argue about the feasibility of local delay-learning at pair-relevant delay scales; engages a real counterargument and rebuts or concedes it explicitly; stays in the 300–600 word band.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Takes a position and uses at least two of (a)/(b)/(c) correctly and specifically (not just gesturing at them); counterargument is present but thin (stated, not really engaged); word count close to the band.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>No explicit position taken (lists pros/cons and stops), or misuses the PNG argument (e.g. claims it directly implies pair-level delays must be fixed, without addressing the scale mismatch), or ignores Piece 1B's quantitative finding entirely, or no counterargument addressed.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="completion-bar">Completion bar</h2>
+<p>All four pieces submitted. Piece 1 requires both parts (A and B) with correct fire/no-fire and same-side/magnitude verdicts (Adequate or better). Piece 2's script must reproduce a genuine fire/no-fire split under the specified parameters (Adequate or better) — a script that doesn't split cleanly must be debugged and re-run, not submitted as-is. Piece 3 requires citations for all five answers. Piece 4 requires an explicit position and an engaged counterargument, 300–600 words. Lesson is complete when all four pieces are at Adequate or above; Strong is not required to advance to A2, but any Not-yet piece must be revised once using the hint ladder before moving on.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1677 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+      
+      
+      
+      
+        <link rel="prev" href="../C4/">
+      
+      
+        <link rel="next" href="../C6/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>C5. Clamping and frozen priors - Comp Neuro Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#c5-clamping-and-frozen-priors" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Comp Neuro Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              C5. Clamping and frozen priors
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Comp Neuro Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F1. Spike trains and firing rates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F2. Receptive fields and reverse correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F3. Neural decoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F4. Information theory for neurons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F5. Membrane biophysics and the action potential
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F6. Integrate-and-fire neurons and synaptic input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F7. Cable theory and neuronal morphology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F8. Network models: feedforward and recurrent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F9. Synaptic plasticity and learning rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F10. Classical conditioning and reinforcement learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F11. Representational learning and generative models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/Bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge. Synthesis checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1. Synaptic delays and temporal structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2. Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3. Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4. Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5. State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2. Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3. Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4. Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5. Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1. Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2. Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3. Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5. Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5. Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6. PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="c5-clamping-and-frozen-priors">C5. Clamping and frozen priors</h1>
+<h2 id="lesson-spec">Lesson spec</h2>
+<h1 id="c5-clamping-and-frozen-priors_1">C5. Clamping and frozen priors</h1>
+<p><strong>Prerequisites:</strong> C3 (hard clamp as the infinite-precision limit), C4</p>
+<p><strong>Size:</strong> one to two sittings</p>
+<p><strong>Source material:</strong> <strong>D&amp;A ch. 7</strong> <em>Stochastic Networks</em> — Boltzmann machine learning runs clamped and free phases, which is the same boundary-condition idea one formalism over. Primary: Friston, Daunizeau &amp; Kiebel 2009, <em>Reinforcement Learning or Active Inference?</em> (PMC2713351); Salvatori et al. 2022 for the per-task clamp patterns.</p>
+<p><strong>Local copies:</strong> <code>papers/C5_friston_2009_active_inference.pdf</code>.</p>
+<p><strong>Goal:</strong> State clamping as a boundary condition on the settling dynamics — not a classification-only trick — and explain, for a goal-directed clamp, exactly what stops the network from resolving the error by revising its belief instead of acting. Closes the gap between "clamp = fixed input" and "clamp = frozen prior that redirects error resolution toward action".</p>
+<p><strong>Scope:</strong>
+- Clamping as a boundary condition: fixed nodes vs free nodes minimizing local error; hard clamp as the π→∞ limit of a soft one
+- A comparison table of clamp patterns across the four task types — classification, generation, reconstruction, goal-directed action: what is fixed, what is free, what is read off after settling
+- Active inference and frozen priors (Friston et al. 2009): clamping a desired future state, and the asymmetry — current sensory state also clamped to real data, only the action node free — that forces resolution via action rather than belief revision
+- Failure modes: over-constrained clamps with no settled solution, and clamps satisfied by hallucination
+- Not covered: the precision machinery itself (C3), graph connectivity (C4), online weight updates (C2)</p>
+<p><strong>You should be able to answer:</strong>
+1. For the CartPole online rollout, write out which nodes are clamped, which are free, and which node's settled value is read out as the answer.
+2. A soft clamp on node x contributes π(x − x_clamped)² to the energy. What happens to x's settled value as π→∞, and why does that make a hard clamp a special case rather than a different mechanism?
+3. Fill in the clamp table for reconstruction from a corrupted input (half an MNIST digit) — and contrast it with generation (label clamped, image free).
+4. In a frozen-prior setup with desired future state clamped and current state clamped to the real sensor reading, name the one node type left free and explain why that choice forces the network to act rather than change its belief about the goal.
+5. Give one concrete over-constrained clamp scenario and say what the network does instead of settling; then one scenario where a clamp is satisfied by hallucination rather than a correct answer.</p>
+<p><strong>Project tie-in:</strong> Describes the CartPole clamp pattern in <code>online_rollout.py</code> and <code>train_cartpole.py</code> — observations hard-clamped, desired next state soft-clamped, ACTION free and read off after settling — the mechanism the project plan calls "a running mind that you steer", not an inference API.</p>
+<p><strong>Done when:</strong> The learner reconstructs the four-task clamp table and the CartPole clamp diagram unaided, and can say <em>why</em> each node is fixed or free rather than reciting which.</p>
+<hr />
+<hr />
+<p><strong>Lesson spec:</strong> <code>lessons.md</code> → C5. <strong>Total time:</strong> ~3.5–4.5 hours (one long sitting or two shorter ones). <strong>Prerequisites:</strong> C3 (hard clamp as the infinite-precision limit of a precision-weighted error term), C4 (per-task clamping patterns on a single trained graph).</p>
+<h2 id="running-order">Running order</h2>
+<p>Consume, then apply, then refine:</p>
+<p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
+<p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
+<h2 id="verified-against-the-source">Verified against the source</h2>
+<p>Checked against <code>papers/C5_friston_2009_active_inference.pdf</code>. The mechanism the lesson turns on is the paper's own: predictions "may be proprioceptive and elicit behavioural responses through active inference" — that is, a prediction about body state is resolved by moving the body rather than by revising the belief. The paper also connects this to dopamine, proposing that dopaminergic responses "may signal that predictions are precise", which is a bridge to C3 worth drawing if the learner raises it.</p>
+<h2 id="coverage-map">Coverage map</h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Type</th>
+<th>Lesson acceptance criteria addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — Soft-to-hard clamp derivation and the four-task table</td>
+<td>derivation</td>
+<td>AC2, AC3</td>
+</tr>
+<tr>
+<td>2 — One PC network, four clamp configs (+ failure)</td>
+<td>simulation</td>
+<td>AC1, AC3, AC5 (over-constrained half)</td>
+</tr>
+<tr>
+<td>3 — Guided reading: Friston 2009</td>
+<td>guided reading</td>
+<td>AC4, AC1 (origin of the mechanism)</td>
+</tr>
+<tr>
+<td>4 — Written defence</td>
+<td>written defence</td>
+<td>AC1, AC4, AC5 (both halves)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="piece-1-soft-to-hard-clamp-derivation-and-the-four-task-table">Piece 1 — Soft-to-hard clamp derivation and the four-task table</h2>
+<p><strong>Type:</strong> derivation · <strong>Time:</strong> ~45 min</p>
+<p><strong>Learning goals</strong>
+- Derive the settled value of a node under a soft clamp at finite precision π.
+- Show algebraically that π→∞ reproduces the hard-clamp value, i.e. that hard clamping is a limiting case of the same energy-minimization equation, not a separate mechanism.
+- Explain, in terms of residual local error, why the clamped node's own error term does <em>not</em> blow up as π→∞ even though π does.
+- Reconstruct the four-task clamp table (classification / generation / reconstruction / goal-directed) from the fixed-vs-free principle, not from memory.</p>
+<p><strong>Task</strong></p>
+<p>Part A (algebra). A node <code>x</code> receives one top-down prediction <code>μ</code> with precision <code>π_pred</code>, and is softly clamped toward a target <code>x_clamp</code> with precision <code>π</code>. Its energy is:</p>
+<div class="highlight"><pre><span></span><code>E(x) = π_pred · (x − μ)² + π · (x − x_clamp)²
+</code></pre></div>
+<ol>
+<li>Minimize <code>E</code> with respect to <code>x</code> (set <code>dE/dx = 0</code>) and solve for the settled value <code>x*</code> as a function of <code>π_pred</code>, <code>μ</code>, <code>π</code>, <code>x_clamp</code>.</li>
+<li>Using <code>π_pred = 1</code>, <code>μ = 3</code>, <code>x_clamp = 7</code>, tabulate <code>x*</code> for <code>π ∈ {0, 1, 3, 9, 99}</code> and the limit <code>π → ∞</code>.</li>
+<li>For each row, also compute the two energy <em>terms</em> separately: the prediction-error term <code>π_pred·(x*−μ)²</code> and the clamp term <code>π·(x*−x_clamp)²</code>. Describe what happens to each term as <code>π → ∞</code> — in particular, does the prediction-error term diverge? Does the clamp term?</li>
+<li>State in one sentence why this makes "hard clamp" a special case of "soft clamp at π→∞" rather than a different piece of machinery.</li>
+</ol>
+<p>Part B (table). Using only the fixed-vs-free principle ("clamped nodes are boundary conditions; free nodes minimize local error; the answer is whichever free node you read out after settling"), fill in this table without looking anything up first, then check against C4's per-task patterns:</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Fixed (clamped)</th>
+<th>Free (settles)</th>
+<th>Read out after settling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Generation</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Reconstruction (half an MNIST digit given)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Goal-directed action</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>For the reconstruction row specifically: name exactly which pixels are clamped and which are free, and contrast this with the generation row — both involve an image node, but the clamp is on a different subset (label vs. a known half of the pixels).</p>
+<p><strong>Deliverable:</strong> handwritten or typed derivation (Part A, steps 1–4) plus the completed table (Part B), as a single page or two.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Correct closed-form <code>x*</code>, correct numeric table matching the arithmetic below to within rounding, correctly identifies that the clamp-term goes to 0 and the prediction-error term saturates at <code>(x_clamp−μ)²</code> rather than diverging, states the π→∞ limit as "same equation, one term dominates completely" rather than "a new rule for clamped nodes." Table filled correctly on the first attempt with reconstruction correctly contrasted against generation (different subset of the image node clamped, not a different node).</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Correct <code>x*</code> formula and mostly correct numbers (minor arithmetic slips), gets the qualitative limit right (x*→x_clamp) but is vague on why the residual error doesn't diverge. Table correct after being told to re-derive one or two cells rather than being given the answer.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Cannot set up <code>dE/dx=0</code>, or treats the hard clamp as an unrelated special rule ("clamped nodes just don't have an energy term"), or the table conflates generation and reconstruction (clamps the whole image in both).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-2-one-pc-network-four-clamp-configurations-one-failure">Piece 2 — One PC network, four clamp configurations (+ one failure)</h2>
+<p><strong>Type:</strong> simulation · <strong>Time:</strong> ~90 min</p>
+<p><strong>Learning goals</strong>
+- Implement clamping as a boundary condition on gradient-descent settling, not as a special-cased input.
+- Observe, numerically, that classification, generation, and reconstruction are the <em>same</em> settling loop with different fixed/free node assignments.
+- Implement the CartPole-style goal-directed pattern (hard-clamp current state, soft-clamp desired next state, free action) on a small synthetic dynamics model, and read the settled action off.
+- Produce, in code, an over-constrained clamp and observe energy plateauing above zero instead of settling — the empirical counterpart of Piece 1's residual-error result.</p>
+<p><strong>Task</strong></p>
+<p>Write a single self-contained Python script (numpy or PyTorch, no external data, under ~100 lines) with:</p>
+<ol>
+<li>A small generative subgraph <code>L → Z → X</code>: label node (dim 3, one-hot), latent node (dim 4), observation node (dim 6). Give it some fixed weights or a short pretraining loop so that each label deterministically generates a distinguishable pattern in <code>X</code>. Write one generic "settle" function that takes an energy, a set of free node names, and does gradient descent on only those nodes for N steps, leaving clamped nodes untouched.</li>
+<li>Run it under three configs, using the <em>same</em> settle function each time, only changing which nodes are in <code>free</code>:</li>
+<li><strong>Classification</strong> — clamp <code>X</code> to a (possibly noisy) observation, free <code>L, Z</code>. Read off <code>argmax(L)</code> at the end.</li>
+<li><strong>Generation</strong> — clamp <code>L</code> to a one-hot label, free <code>Z, X</code>. Read off <code>X</code> at the end and compare it to the class's expected pattern.</li>
+<li><strong>Reconstruction</strong> — clamp <em>half</em> of <code>X</code>'s dimensions to a corrupted/partial observation, free the other half of <code>X</code> (and <code>Z</code>, and optionally <code>L</code>). Read off the completed <code>X</code>.</li>
+<li>A second small subgraph for goal-directed action: state node <code>S</code> (dim 2, e.g. position/velocity), action node <code>A</code> (dim 1), predicted-next-state node <code>S'</code> (dim 2), with some simple dynamics prediction <code>S'_pred = f(S, A)</code>. Run one config: hard-clamp <code>S</code> to a "current sensor reading," <strong>soft-clamp</strong> <code>S'</code> toward a desired goal state (i.e. <code>S'</code> stays in <code>free</code>, but its energy gets an extra <code>π_goal·(S'−goal)²</code> term pulling it), leave <code>A</code> free with no clamp term at all. Read off the settled <code>A</code>.</li>
+<li>A fifth, deliberately broken config on the classification/generation subgraph: hard-clamp <code>X</code> to one class's pattern <strong>and</strong> hard-clamp <code>L</code> to a <em>different, incompatible</em> class, both at once. Free only <code>Z</code>. Plot or print the energy trace and show it plateaus well above the near-zero level the three satisfiable configs reach.</li>
+</ol>
+<p><strong>Deliverable:</strong> the script, plus a short (5–10 line) printed or written summary of what settled where in each of the 5 runs, including the energy trajectories.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>One settle function reused across all configs (not five copy-pasted loops); all three L/Z/X configs converge to near-zero energy with correct qualitative results (classification recovers the clamped class, generation reproduces the class pattern, reconstruction fills in the missing half reasonably); goal-directed config correctly frees only <code>A</code> and <code>S'</code> while <code>S</code> never changes; over-constrained config's energy visibly plateaus above the satisfiable configs' floor and the learner states why (two hard clamps making incompatible demands on the same latent path).</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Configs work but with duplicated per-config code instead of one settle function; OR one of the three L/Z/X results is only roughly right; OR the over-constrained config is shown but the explanation for the plateau is missing or wrong.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Clamped nodes are updated by the gradient step anyway (clamping not actually enforced as a boundary condition); or the "goal-directed" config accidentally also clamps <code>A</code> or lets <code>S</code> move; or the over-constrained config also converges to ~0 (meaning the two clamps weren't actually made incompatible).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-3-guided-reading-friston-daunizeau-kiebel-2009-reinforcement-learning-or-active-inference">Piece 3 — Guided reading: Friston, Daunizeau &amp; Kiebel (2009), <em>Reinforcement Learning or Active Inference?</em></h2>
+<p><strong>Type:</strong> guided reading · <strong>Time:</strong> ~45–60 min</p>
+<p><strong>Learning goals</strong>
+- Locate, in a primary source, the distinction between resolving prediction error by changing beliefs (perception) versus changing the world via effectors (action).
+- Identify the specific move that makes a desired/goal state a "frozen prior" — a prior that is not updated by incoming evidence.
+- Connect that move to the CartPole clamp pattern already used in the project.</p>
+<p><strong>Task</strong></p>
+<p>Read the paper (<code>papers/C5_friston_2009_active_inference.pdf</code>) with these questions in hand — answer each with a page/section reference and a 1–3 sentence answer in your own words:</p>
+<ol>
+<li>The paper treats perception and action as two different ways of doing the same thing (minimizing free energy / prediction error). Find where it states this explicitly. What changes in the perception case, and what changes in the action case?</li>
+<li>Find where the paper introduces a prior expectation about a desired or preferred state (a goal), and describe how that prior is treated differently from an ordinary belief about the current hidden state — specifically, is it something the model updates in light of sensory evidence, or something held fixed regardless of evidence?</li>
+<li>Given your answers to 1 and 2: in the paper's scheme, if the current sensory state is <em>also</em> being fed in as data (not free to change), which variable is left with no other way to reduce error except by driving action? Why can't the model instead "give up" on the goal and revise its prior about what it wants?</li>
+<li>One paragraph, in your own words: map the paper's terms onto this project's vocabulary. What does the paper call the thing this course calls a "hard clamp on current sensory state"? What does it call the "soft clamp on desired future state"? What does it call the free node this course calls "ACTION"?</li>
+</ol>
+<p><strong>Deliverable:</strong> four short written answers (a few sentences each), each with a specific reference into the paper (section name, or a paraphrased quote you can point back to).</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All four answers cite a specific, correct location/passage; Q3's answer correctly names the <em>action</em> variable (not a belief variable) as the one left free, and gives the actual reason (the current-state prior is pinned to real sensory data, so revising the current-state belief can't remove the error — only changing the state itself, via action, can) rather than a restated definition. Q4 maps to the paper's own terms without asserting the paper uses the project's clamp vocabulary verbatim.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Three of four answers correctly located and reasoned; Q3 gets the right variable (action) but the "why" is hand-wavy ("because it's the only thing left") rather than grounded in the asymmetry between fixed sensory evidence and revisable belief.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Answers are generic active-inference summary without page/section grounding, or Q3 names a belief/perceptual variable as the one that resolves the error (missing the point that the paper's whole argument is that action, not belief revision, closes that particular loop).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-4-written-defence">Piece 4 — Written defence</h2>
+<p><strong>Type:</strong> written defence · <strong>Time:</strong> ~45 min · <strong>Length:</strong> 300–600 words</p>
+<p><strong>Learning goals</strong>
+- Explain the CartPole clamp pattern in this project's own terms, from the ground up, without reciting a memorized list.
+- Articulate the asymmetry (fixed current state + frozen goal prior + free action) as the mechanism that forces resolution via behaviour rather than belief revision.
+- Distinguish two distinct failure modes of clamping and give one concrete example of each.</p>
+<p><strong>Task</strong></p>
+<p>Write a 300–600 word defence answering all of the following in one coherent piece of prose (not a Q&amp;A list):</p>
+<ol>
+<li>For the CartPole online rollout (<code>online_rollout.py</code>, <code>train_cartpole.py</code>): which nodes are clamped, which are free, and which node's settled value is read out as the answer? State this, then explain <em>why</em> each of those three roles is assigned the way it is — not just what the roles are.</li>
+<li>Explain, referencing Piece 1's derivation, why the frozen-prior/goal-clamp setup forces the network to resolve error by acting rather than by revising its belief about the goal. Your answer should make clear this isn't a rule bolted onto the architecture — it follows from which nodes are allowed to move.</li>
+<li>Give one concrete over-constrained clamp scenario (in this project's domain or in the MNIST classification/generation domain) and describe what the network does instead of settling to a low-energy solution.</li>
+<li>Give one concrete scenario where a clamp is satisfied by hallucination — i.e., the free nodes do settle to a low-energy state, but that state is not a correct or useful answer, only one that happens to be locally consistent. Explain what distinguishes this from the over-constrained case in (3): here the network <em>does</em> settle; the failure is in <em>what</em> it settled to, not in the fact that it settled.</li>
+</ol>
+<p><strong>Deliverable:</strong> 300–600 words of prose.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Correctly identifies the CartPole clamp pattern (sensor observations hard-clamped, desired next state soft-clamped, ACTION free and read out) and explains the <em>why</em> for each role, not just the <em>what</em>. Explicitly ties the "acts rather than revises belief" argument back to which nodes are free/clamped rather than asserting it. Gives a genuinely over-constrained example (two hard clamps in conflict, no free node can reconcile them) distinct from a hallucination example (free nodes settle to a self-consistent but wrong/degenerate state, e.g. a generation config settling to a blurry average-of-classes image, or a reconstruction config completing a corrupted digit as a different, wrong, but visually plausible digit). Clearly states settling-vs-not-settling as the distinguishing line between the two failure modes.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Gets the CartPole roles right but the "why" is thin (restates the roles instead of explaining the forcing mechanism); failure-mode examples are plausible but the distinction between them (settles-vs-doesn't) is not stated explicitly.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Misassigns a CartPole role (e.g. treats the observation as free, or the action as clamped); conflates the two failure modes, or gives the same example for both; describes "acting instead of believing" as an arbitrary rule rather than deriving it from the fixed/free assignment.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="completion-bar">Completion bar</h2>
+<p>The learner is done with C5 when, unaided (no notes, no re-reading Piece 1/2 solutions):
+- They can redraw the four-task clamp table (classification / generation / reconstruction / goal-directed) from the fixed-vs-free principle alone, including the reconstruction-vs-generation contrast.
+- They can redraw the CartPole clamp diagram (observation hard-clamped, desired next state soft-clamped, ACTION free and read out) and explain <em>why</em> each role is assigned that way, not just recite it.
+- They can state the soft-clamp energy term, solve for <code>x*</code>, and explain in one sentence why π→∞ gives the hard clamp as a special case rather than a separate rule.
+- They can distinguish, with an example each, an over-constrained clamp (doesn't settle) from a hallucinated one (settles, but wrong).</p>
+<p>If any of the four fails, route back to the relevant piece above rather than re-teaching from scratch — Piece 1 for the algebra and table, Piece 2 or 4 for the failure-mode distinction, Piece 3/4 for the CartPole "why."</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

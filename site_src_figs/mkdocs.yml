@@ -1,0 +1,65 @@
+site_name: Comp Neuro Course
+site_description: A self-study computational neuroscience curriculum built on Dayan & Abbott
+docs_dir: docs
+site_dir: ../site_offline
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle: {icon: material/weather-night, name: Dark}
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle: {icon: material/weather-sunny, name: Light}
+  features:
+    - navigation.sections
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - content.code.copy
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - tables
+  - attr_list
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+plugins:
+  - search
+nav:
+  - Home: index.md
+  - Plan: plan.md
+  - Materials: materials.md
+  - Foundations:
+      - "F1. Spike trains and firing rates": foundations/F1.md
+      - "F2. Receptive fields and reverse correlation": foundations/F2.md
+      - "F3. Neural decoding": foundations/F3.md
+      - "F4. Information theory for neurons": foundations/F4.md
+      - "F5. Membrane biophysics and the action potential": foundations/F5.md
+      - "F6. Integrate-and-fire neurons and synaptic input": foundations/F6.md
+      - "F7. Cable theory and neuronal morphology": foundations/F7.md
+      - "F8. Network models: feedforward and recurrent": foundations/F8.md
+      - "F9. Synaptic plasticity and learning rules": foundations/F9.md
+      - "F10. Classical conditioning and reinforcement learning": foundations/F10.md
+      - "F11. Representational learning and generative models": foundations/F11.md
+      - "Bridge. Synthesis checkpoint": foundations/Bridge.md
+  - Advanced:
+      - "A1. Synaptic delays and temporal structure": advanced/A1.md
+      - "A2. Attractors and network state": advanced/A2.md
+      - "A3. Oscillations and synchrony": advanced/A3.md
+      - "A4. Short-term plasticity, refractory period, reset modes": advanced/A4.md
+      - "A5. State of the field: why SNNs, where they stand vs ANNs": advanced/A5.md
+      - "B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline": advanced/B1.md
+      - "B2. Cortical microcircuits and laminar structure": advanced/B2.md
+      - "B3. Dendritic computation": advanced/B3.md
+      - "B4. Developmental pruning: how brains choose their own size": advanced/B4.md
+      - "B5. Hippocampal replay and consolidation": advanced/B5.md
+      - "C1. Predictive coding as energy minimization": advanced/C1.md
+      - "C2. Inference vs learning: two nested loops and their schedules": advanced/C2.md
+      - "C3. Precision weighting": advanced/C3.md
+      - "C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)": advanced/C4.md
+      - "C5. Clamping and frozen priors": advanced/C5.md
+      - "C6. PC ≈ backprop: what the equivalence does and does not claim": advanced/C6.md

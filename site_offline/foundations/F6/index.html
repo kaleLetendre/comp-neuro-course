@@ -1,0 +1,1628 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+      
+      
+      
+      
+        <link rel="prev" href="../F5/">
+      
+      
+        <link rel="next" href="../F7/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>F6. Integrate-and-fire neurons and synaptic input - Comp Neuro Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#f6-integrate-and-fire-neurons-and-synaptic-input" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Comp Neuro Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              F6. Integrate-and-fire neurons and synaptic input
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Comp Neuro Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F1. Spike trains and firing rates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F2. Receptive fields and reverse correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F3. Neural decoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F4. Information theory for neurons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F5. Membrane biophysics and the action potential
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F6. Integrate-and-fire neurons and synaptic input
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F6. Integrate-and-fire neurons and synaptic input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F7. Cable theory and neuronal morphology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F8. Network models: feedforward and recurrent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F9. Synaptic plasticity and learning rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F10. Classical conditioning and reinforcement learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F11. Representational learning and generative models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge. Synthesis checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1. Synaptic delays and temporal structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2. Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3. Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4. Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5. State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2. Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3. Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4. Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5. Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1. Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2. Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3. Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5. Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6. PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="f6-integrate-and-fire-neurons-and-synaptic-input">F6. Integrate-and-fire neurons and synaptic input</h1>
+<h2 id="lesson-spec">Lesson spec</h2>
+<h1 id="f6-integrate-and-fire-neurons-and-synaptic-input_1">F6. Integrate-and-fire neurons and synaptic input</h1>
+<p><strong>Prerequisites:</strong> F5</p>
+<p><strong>Size:</strong> two to three sittings — three distinct payloads (the LIF derivation and f-I curve, the Hodgkin-Huxley loss ledger, and conductance-based synapses) rather than one continuous argument</p>
+<p><strong>Source material:</strong> D&amp;A ch. 5 — <em>Integrate-and-Fire Models</em> · <em>Synaptic Conductances</em> · <em>Synapses on Integrate-and-Fire Neurons</em></p>
+<p><strong>Goal:</strong> Derive the leaky integrate-and-fire model as a reduction of the single-compartment model from F5 and work its f-I curve with real numbers. State explicitly, with one concrete cost each, what the reduction discards. Replace current-based synaptic input with conductance-based input and show why the difference is not cosmetic.</p>
+<p><strong>Scope:</strong>
+- LIF derived from the membrane equation, with tau_m, threshold and reset as explicit parameters rather than fitted constants
+- The f-I curve derived from the subthreshold solution and evaluated at two or three real current values; the refractory period added and its effect on saturation shown numerically
+- What LIF discards relative to Hodgkin-Huxley — spike shape, adaptation, bursting — with one named phenomenon lost per omission
+- Synaptic input as a conductance rather than a current: shunting inhibition and the input-dependent effective membrane time constant, derived rather than asserted
+- AMPA, NMDA and GABA-A time courses in milliseconds and their reversal potentials, tabulated
+- Not covered: reset-mode variants and short-term plasticity (A4), wiring these units into networks (F8), learning rules on these synapses (F9)</p>
+<p><strong>You should be able to answer:</strong>
+1. With V_rest = −65 mV, V_threshold = −50 mV, V_reset = −70 mV, tau_m = 10 ms and R = 10 megohm, solve for the interspike interval at an injected current of 2 nA.
+2. Adding a 2 ms refractory period to that interval, what is the firing rate in Hz, and at what input current does the refractory period start to dominate the curve's shape?
+3. Name one spiking phenomenon a real cortical neuron shows that plain LIF cannot produce, and identify which discarded mechanism is responsible.
+4. Derive why a synapse modelled as a conductance times a driving force can shorten the effective membrane time constant even when it delivers no net current at rest, and name the effect.
+5. Order AMPA, NMDA and GABA-A by decay time constant, with a millisecond value for each.</p>
+<p><strong>Feeds:</strong> F8 (networks are built from these units), F9 (plasticity acts on this synaptic machinery), A4 (which extends reset modes and short-term plasticity).</p>
+<p><strong>Done when:</strong> The learner derives the LIF f-I curve with a refractory period from the bare membrane equation, states the Hodgkin-Huxley trade-offs with a named phenomenon per loss, and explains shunting inhibition as a consequence of conductance-based input.</p>
+<hr />
+<hr />
+<p><strong>Lesson spec:</strong> <code>foundations.md</code> → F6. <strong>Total time:</strong> 3–4 hours across two to three sittings. <strong>Prerequisites:</strong> F5 (membrane biophysics, Hodgkin-Huxley — assumed complete).</p>
+<h2 id="running-order">Running order</h2>
+<p>Consume, then apply, then refine: <strong>guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written explanation (Piece 4)</strong>. Pieces are numbered by type, not sequence.</p>
+<h2 id="a-note-on-parameters-before-you-start">A note on parameters before you start</h2>
+<p>F5 worked in Hodgkin-Huxley's numbers — a squid giant axon at 6.3 °C, where the membrane time constant is about 3.3 ms. This lesson uses tau_m = 10 ms, which is a mammalian cortical neuron at body temperature. Neither is wrong and neither is a typo: they are different preparations, and the integrate-and-fire parameters here are chosen to match the cells the rest of the course models. If a number from F5 does not reproduce here, check the preparation before you check your arithmetic.</p>
+<h2 id="assigned-exercises-the-books-own">Assigned exercises — the book's own</h2>
+<p>Dayan &amp; Abbott wrote exercise sets for every chapter and publish them free at gatsby.ucl.ac.uk/~dayan/book. This lesson's are in <code>exercises/c5.pdf</code> (chapter 5), with any code and data under <code>exercises/exercises/c5/</code>. <strong>Work the integrate-and-fire and synapse ones — the biophysics ones belong to F5.</strong></p>
+<p>They are the authors' problems, not this course's, so they take precedence where the two overlap: if an exercise here duplicates one of theirs, do theirs. They are written for MATLAB; translating to numpy is part of the work and is not hard. The teacher agent has no answer key for these — it marks by reading your code and output, and says so rather than pretending to a key it does not have.</p>
+<h2 id="coverage-map">Coverage map</h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Type</th>
+<th>Lesson acceptance criteria addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>derivation</td>
+<td>1 (ISI at 2 nA), 2 (refractory-limited rate and dominance current), 4 (shunting inhibition derived)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>simulation</td>
+<td>3 (LIF vs HH divergence observed), 4 (shunting made visible in a voltage trace)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>guided reading</td>
+<td>3 (HH loss ledger — reading side), 5 (AMPA/NMDA/GABA-A time courses and reversal potentials)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>written explanation</td>
+<td>1, 2, 3, 4, 5 (synthesis)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="piece-1-lif-derivation-f-i-curve-and-shunting-inhibition">Piece 1 — LIF derivation, f-I curve, and shunting inhibition</h2>
+<p><strong>Type:</strong> derivation · <strong>Time:</strong> 70–90 min</p>
+<p><strong>Learning goals</strong>
+- Derive the LIF equation as a reduction of the F5 single-compartment membrane equation, with tau_m, threshold, and reset as explicit parameters.
+- Solve the subthreshold LIF equation and use it to derive the interspike interval (ISI) and firing rate as functions of injected current.
+- Add a refractory period and find the current at which it starts to reshape the f-I curve, with a numeric criterion.
+- Derive, from the membrane equation with a conductance-based synaptic term, why a conductance synapse changes the effective membrane time constant even when it carries no net current at rest — and name the effect.</p>
+<p><strong>Task</strong></p>
+<p><em>Task A — LIF and its f-I curve.</em>
+1. Start from the single-compartment membrane equation from F5: <code>C dV/dt = -g_L(V - E_L) + I_e(t)</code>. Divide through by <code>g_L</code> and define <code>tau_m = C/g_L = R C</code> (R = 1/g_L) to get the standard LIF form: <code>tau_m dV/dt = -(V - V_rest) + R I_e</code>, with <code>V_rest = E_L</code>. State in one sentence why this is a reduction, not a new model: what part of the F5 equation did you just delete?
+2. Solve this linear ODE for constant <code>I_e</code>, starting from <code>V(0) = V_reset</code>. Show the general subthreshold solution <code>V(t)</code>, and identify the steady-state (asymptotic) voltage <code>V_ss = V_rest + R I_e</code>.
+3. Using parameters <code>V_rest = -65 mV</code>, <code>V_threshold = -50 mV</code>, <code>V_reset = -70 mV</code>, <code>tau_m = 10 ms</code>, <code>R = 10 MΩ</code>, and <code>I_e = 2 nA</code>: compute <code>V_ss</code>, then solve for the time <code>t_isi</code> at which <code>V(t)</code> first reaches <code>V_threshold</code>. Give <code>t_isi</code> in ms and the corresponding firing rate <code>1/t_isi</code> in Hz.
+4. Add an absolute refractory period <code>t_ref = 2 ms</code> (after each spike, <code>V</code> is clamped to <code>V_reset</code> for <code>t_ref</code> before the subthreshold equation resumes). Give the new interspike interval and firing rate.
+5. Find the injected current <code>I_e</code> at which <code>t_ref</code> equals <code>t_isi</code> (i.e., the refractory period accounts for exactly half the total ISI at that point). Show your algebra symbolically before plugging in numbers. State in one sentence what happens to the f-I curve's shape above this current, and what value the firing rate approaches as <code>I_e → ∞</code>.</p>
+<p><em>Task B — conductance-based synapse and shunting inhibition.</em>
+6. Extend the membrane equation with one synaptic conductance: <code>C dV/dt = -g_L(V - E_L) - g_syn(t)(V - E_syn) + I_e</code>. Collect terms in <code>V</code> and show that this is still a linear ODE in <code>V</code>, with an effective time constant <code>tau_eff = C / (g_L + g_syn)</code> and a new effective resting point. Do this algebraically — do not just state the result.
+7. Now set <code>E_syn = V_rest</code> (an inhibitory synapse reversing right at rest, e.g. GABA-A near <code>-65 mV</code>) and evaluate the synaptic current <code>-g_syn(V - E_syn)</code> at <code>V = V_rest</code>. What is its numeric value, for any <code>g_syn</code>? Given that answer, explain how <code>tau_eff</code> can still be shorter than <code>tau_m</code> — walk through the algebra of <code>tau_eff</code> versus <code>tau_m</code> explicitly, don't just assert it changes.
+8. Using <code>C = 100 pF</code>, <code>g_L = 10 nS</code> (so <code>tau_m = 10 ms</code>), and an inhibitory conductance <code>g_syn = 10 nS</code> with <code>E_syn = V_rest</code>: compute <code>tau_eff</code> numerically. Name the phenomenon this demonstrates.</p>
+<p><strong>Deliverable</strong></p>
+<p>Handwritten or typed pen-and-paper derivation for Tasks A and B, in order, showing every algebraic step (not just final formulas) and every substitution of numbers with units carried through. Final numeric answers stated on their own line, e.g. <code>t_isi = 16.09 ms</code>.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All 8 steps present with correct algebra and correct final numbers (within rounding); Task A step 5 shown symbolically before the numeric current is computed; Task B step 7 explicitly evaluates the driving force at rest before arguing about <code>tau_eff</code>, not just asserting shunting occurs.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>LIF reduction, subthreshold solution, and Task A criteria 1–2 numbers correct; refractory-dominance current attempted with correct method even if arithmetic slips; Task B derives <code>tau_eff = C/(g_L+g_syn)</code> correctly but the "zero net current, shorter tau anyway" argument is asserted rather than derived from the algebra.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Formulas copied without derivation steps; numeric answers wrong or missing units; Task B treats shunting as "inhibition that also lowers V" rather than a time-constant effect.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-2-simulation-lif-vs-hh-f-i-curves-and-shunting-made-visible">Piece 2 — Simulation: LIF vs. HH f-I curves, and shunting made visible</h2>
+<p><strong>Type:</strong> simulation · <strong>Time:</strong> 60–75 min</p>
+<p><strong>Learning goals</strong>
+- Run LIF and Hodgkin-Huxley side by side on the same injected-current sweep and read off where the LIF abstraction holds and where it breaks.
+- Observe a concrete case of a phenomenon LIF cannot produce, as a simulation result rather than a memorized fact.
+- Watch shunting inhibition directly: a conductance-based inhibitory input that delivers ~zero net current at rest but still visibly shrinks and speeds up an EPSP, compared with a current-based synapse that does nothing when matched to zero current at rest.</p>
+<p><strong>Task</strong></p>
+<p>Write and run a self-contained Python script (numpy only, no downloads) with two parts.</p>
+<p><em>Part A.</em> Implement <code>hh_rate(I)</code>: standard Hodgkin-Huxley (<code>C=1 µF/cm²</code>, <code>g_Na=120</code>, <code>g_K=36</code>, <code>g_L=0.3 mS/cm²</code>, <code>E_Na=50</code>, <code>E_K=-77</code>, <code>E_L=-54.4 mV</code>, standard alpha/beta gating kinetics) with a constant injected current density <code>I</code> (µA/cm²), Euler-integrated at <code>dt=0.01 ms</code> over 300 ms, discarding the first 100 ms as settling time, counting upward threshold crossings through <code>V=0 mV</code>. Implement <code>lif_rate(I)</code>: the LIF from Piece 1 (same parameters, <code>t_ref=2 ms</code>), same integration and counting scheme, with <code>I</code> in nA. Sweep both across a current range that spans each model's rheobase up to several times over, and print firing rate vs. current for each. Identify: (a) the current near which each model's firing rate turns on from zero, and whether that onset is gradual or abrupt; (b) whether either model's rate ever drops back toward zero at high current, and if so, why (inspect the gating variables, not just the voltage, at that current).</p>
+<p><em>Part B.</em> Implement a passive (non-spiking) neuron (<code>C=100 pF</code>, <code>g_L=10 nS</code>, <code>V_rest=-65 mV</code>) receiving an AMPA-like excitatory conductance pulse (<code>E_exc=0 mV</code>, alpha-function shape, peak <code>5 nS</code>, <code>tau=2 ms</code>, onset <code>t=50 ms</code>) and, in a separate condition, a concurrent inhibitory conductance step (<code>g_inh=50 nS</code>, <code>E_inh=-65 mV</code> — exactly at rest — active from <code>t=45</code> to <code>80 ms</code>). Run three conditions: no inhibition, conductance-based inhibition as above, and the "matched" current-based inhibition (a constant current equal to <code>g_inh × (E_inh − V_rest)</code>, computed once at rest). Measure and report the EPSP peak (mV above rest) in each condition.</p>
+<p><strong>Deliverable</strong></p>
+<p>The script (&lt; 100 lines), its printed output, and 4–6 sentences stating: the LIF and HH onset behavior (gradual vs. abrupt, with the currents), what happens to the HH rate at high current and which gating variable is responsible, and the three EPSP peak values from Part B with a one-line explanation of why the current-based condition differs from the conductance-based one.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Both models implemented correctly and swept over a broad enough range to see HH's rheobase and its high-current rollback; the HH rollback is diagnosed by inspecting a gating variable (not just "rate went to zero"); Part B reports three distinct, correctly computed EPSP peaks with the current-based case identified as ~equal to baseline.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>f-I curves computed and roughly match expected shapes; high-current HH behavior noted but not diagnosed mechanistically; Part B run with at least the no-inhibition and conductance-inhibition conditions compared correctly.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Only one model implemented, or integration is unstable (NaN/blow-up) without being caught and fixed; Part B skipped or the current-based "matched" condition not computed from <code>g_inh × (E_inh − V_rest)</code>.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-3-guided-reading-da-ch-5">Piece 3 — Guided reading: D&amp;A ch. 5</h2>
+<p><strong>Type:</strong> guided reading · <strong>Time:</strong> 40–50 min</p>
+<p><strong>Learning goals</strong>
+- Locate, in the text, what the integrate-and-fire reduction is explicitly said to give up relative to conductance-based (HH-type) models.
+- Extract the standard synaptic conductance time courses and reversal potentials the text gives for AMPA, NMDA, and GABA-A.</p>
+<p><strong>Task</strong></p>
+<p>Read D&amp;A ch. 5, sections <em>Integrate-and-Fire Models</em>, <em>Synaptic Conductances</em>, and <em>Synapses on Integrate-and-Fire Neurons</em>. Answer:</p>
+<ol>
+<li>What does <em>Integrate-and-Fire Models</em> say the model omits relative to a full conductance-based (Hodgkin-Huxley-style) description? List at least two specific omissions the text names (not your own guesses).</li>
+<li>What example phenomena does the text associate with the richer conductance-based models that a bare integrate-and-fire neuron cannot reproduce (e.g., adaptation, bursting, or others it names)?</li>
+<li>In <em>Synaptic Conductances</em>, what functional form does the text use for a synaptic conductance's time course (e.g., single-exponential, alpha function, or difference-of-exponentials), and what parameters does it define for it?</li>
+<li>What decay time constant(s) and reversal potential does the text give for AMPA-type synapses? For NMDA-type? For GABA-A-type? (If the text gives a range or a specific worked value, record it exactly as given, with units.)</li>
+<li>In <em>Synapses on Integrate-and-Fire Neurons</em>, how does the text define the total synaptic conductance driving the neuron, and how is it combined with the leak conductance in the membrane equation?</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>Five numbered answers, each 1–4 sentences, with a note of which subsection each answer came from. Direct quotes are welcome but not required; paraphrase in your own words is fine as long as the content is traceable to the named section.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All 5 answered with content specific to the named sections (not generic neuroscience knowledge); Q4 gives numeric values with units for all three synapse types; Q1–2 name concrete omitted phenomena rather than a vague "it's simplified."</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>4 of 5 answered correctly; Q4 has values for at least two of the three synapse types; answers are traceable to the right sections even if brief.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Answers are generic (not clearly drawn from these sections), Q4 has no numeric values, or fewer than 3 questions answered.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-4-written-explanation">Piece 4 — Written explanation</h2>
+<p><strong>Type:</strong> written explanation · <strong>Time:</strong> 30–40 min</p>
+<p><strong>Learning goals</strong>
+- Synthesize the derivation, simulation, and reading into a single coherent account of what LIF is, what it costs, and why conductance-based synapses are not a cosmetic variant of current-based ones.</p>
+<p><strong>Task</strong></p>
+<p>Write 300–600 words covering, in your own words:
+1. How the LIF model is obtained from the full membrane equation, and what <code>tau_m</code>, threshold, and reset represent physically.
+2. The f-I curve you derived and simulated: state the ISI and rate at <code>I_e = 2 nA</code>, the effect of adding a 2 ms refractory period, and the current at which the refractory period starts to dominate the curve's shape.
+3. One named phenomenon (from your simulation observation) that plain LIF cannot produce, and the mechanism HH has that LIF discards to lose it.
+4. Why a conductance-based synapse can shorten the effective membrane time constant while delivering ~zero net current at rest — the shunting inhibition argument, stated in your own words, referencing your Part B numbers.
+5. The AMPA/NMDA/GABA-A ordering by decay time constant, with your recorded values.</p>
+<p><strong>Deliverable</strong></p>
+<p>A single prose document, 300–600 words, no bullet-point dumping of the five numbered points — an integrated explanation a labmate could read without also having your derivation and script in hand.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All 5 points present, correct, and integrated into connected prose (not five disconnected paragraphs answering five questions); the shunting explanation correctly separates "current at rest" (zero) from "conductance's effect on tau_eff" (nonzero); numbers from the learner's own derivation/simulation are used, not generic textbook numbers.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>All 5 points present with correct content but written as a checklist rather than connected prose; minor numeric imprecision.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Missing points, numbers not carried over from the learner's own work, or the shunting explanation conflates "delivers no current" with "has no effect."</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="completion-bar">Completion bar</h2>
+<p>All four pieces at Adequate or better, with every acceptance-criterion number (ISI, refractory rate, dominance current, EPSP peaks, tau_eff, AMPA/NMDA/GABA-A ordering) reproduced correctly in at least one piece and referenced consistently across the others. F6 is done when the learner can, without notes, state the LIF f-I curve from the bare membrane equation, name one HH-only phenomenon LIF cannot produce and why, and explain shunting inhibition as a <code>tau_eff</code> effect rather than a voltage-shift effect.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

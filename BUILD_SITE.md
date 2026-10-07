@@ -11,13 +11,29 @@ The course reads badly as raw markdown on a tablet, which is where most of the r
 
 Reading a lesson with its answers three paragraphs below defeats the point, so the split is not optional.
 
+## Figures
+
+Lectures place the book's own figures by number, written as `{{fig:1.4|caption}}`. The builder expands them two ways:
+
+| Build | What a figure becomes |
+|---|---|
+| `--figures` | The authors' PNG, embedded, with its caption |
+| default | A quoted reference — figure number plus caption, pointing at the book |
+
+The figures are Dayan & Abbott's, published for teaching support. Embedding them on a public website is redistribution, so **the published site cites them and the offline build shows them**. The offline build is for the person who owns the book; keep it off the web.
+
+`fetch_book_materials.sh` downloads the figure archives; the builder extracts whatever chapter it needs.
+
 ## Building
 
 ```sh
 python3 -m venv .venv
 .venv/bin/pip install mkdocs-material
-python3 build_site.py
+python3 build_site.py                 # public: figures cited
 cd site_src && ../.venv/bin/mkdocs build
+
+python3 build_site.py --figures       # offline: figures embedded
+cd site_src_figs && ../.venv/bin/mkdocs build
 ```
 
 The result is static HTML in `site/` — open `site/index.html` directly, or sync that folder to a tablet to read offline.
@@ -32,4 +48,4 @@ Publishes the **student** build to GitHub Pages. Check which build you are in be
 
 ## What the page for a lesson contains
 
-Its spec (goal, scope, acceptance criteria, source material, assigned exercises) followed by its coursework (the four pieces with rubrics). The authors' own exercise sets are linked rather than reproduced — they are Dayan & Abbott's, and `fetch_book_materials.sh` pulls them locally.
+The **lecture** (where one is written), then the **spec** (goal, scope, acceptance criteria, source material, assigned exercises), then the **coursework** (four pieces with rubrics). That order matches the running order: read, then do. The authors' own exercise sets are linked rather than reproduced — they are Dayan & Abbott's, and `fetch_book_materials.sh` pulls them locally.
