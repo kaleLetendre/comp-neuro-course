@@ -8,3 +8,10 @@ __pycache__/
 # Dayan & Abbott exercise sets and data, downloaded from the authors' site.
 # Free and official, but not ours to redistribute — fetch with fetch_exercises.sh
 exercises/
+
+# Generated site sources and builds — rebuild with build_site.py
+site_src/
+site_src_teacher/
+site/
+site_teacher/
+.venv/
