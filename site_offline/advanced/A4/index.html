@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+        <meta name="description" content="A self-study course in computational neuroscience built on Dayan & Abbott">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>A4. Short-term plasticity, refractory period, reset modes - Comp Neuro Course</title>
+        <title>A4 · Short-term plasticity, refractory period, reset modes - Computational Neuroscience</title>
       
     
     
@@ -51,7 +51,7 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/theme.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -69,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-header__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,13 +108,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Comp Neuro Course
+            Computational Neuroscience
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              A4. Short-term plasticity, refractory period, reset modes
+              A4 · Short-term plasticity, refractory period, reset modes
             
           </span>
         </div>
@@ -127,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -137,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -227,17 +227,44 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../plan/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../foundations/" class="md-tabs__link">
+          
   
   
     
   
-  Plan
+  Foundations
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Advanced
+
+        </a>
+      </li>
+    
   
 
       
@@ -265,40 +292,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../foundations/F1/" class="md-tabs__link">
-          
-  
-  
-  Foundations
-
-        </a>
-      </li>
-    
-  
-
-      
+    <li class="md-tabs__item">
+      <a href="../../plan/" class="md-tabs__link">
         
   
   
-  
     
   
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../A1/" class="md-tabs__link">
-          
-  
-  
-  Advanced
+  Plan
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -330,13 +334,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-nav__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Comp Neuro Course
+    Computational Neuroscience
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -374,15 +378,200 @@
   
   
   
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../foundations/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../plan/" class="md-nav__link">
+      <a href="../A1/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Plan
+    A1 · Synaptic delays and temporal structure
   
 
     
@@ -391,6 +580,514 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 · Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3 · Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 · Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 · Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5 · State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1 · Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2 · Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3 · Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4 · Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5 · Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1 · Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2 · Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3 · Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4 · Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5 · Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6 · PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -428,123 +1125,15 @@
   
   
   
-    
-    
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-  
-    <a href="../../foundations/F1/" class="md-nav__link">
-      
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Foundations
-  
-
-    
-  </span>
-  
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Advanced
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../A1/" class="md-nav__link">
+      <a href="../../plan/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    A1. Synaptic delays and temporal structure
+    Plan
   
 
     
@@ -553,492 +1142,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A2. Attractors and network state
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A3. Oscillations and synchrony
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A4. Short-term plasticity, refractory period, reset modes
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A4. Short-term plasticity, refractory period, reset modes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lesson-spec" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Lesson spec
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A5. State of the field: why SNNs, where they stand vs ANNs
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B2. Cortical microcircuits and laminar structure
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B3. Dendritic computation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B4. Developmental pruning: how brains choose their own size
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B5. Hippocampal replay and consolidation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C1. Predictive coding as energy minimization
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C2. Inference vs learning: two nested loops and their schedules
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C3. Precision weighting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C5. Clamping and frozen priors
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C6/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C6. PC ≈ backprop: what the equivalence does and does not claim
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1080,6 +1183,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1097,39 +1222,36 @@
 
 
 
-<h1 id="a4-short-term-plasticity-refractory-period-reset-modes">A4. Short-term plasticity, refractory period, reset modes<a class="headerlink" href="#a4-short-term-plasticity-refractory-period-reset-modes" title="Permanent link">&para;</a></h1>
+<h1 id="a4-short-term-plasticity-refractory-period-reset-modes">A4 · Short-term plasticity, refractory period, reset modes<a class="headerlink" href="#a4-short-term-plasticity-refractory-period-reset-modes" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>Length</strong> — one sitting · about ~3.5 hours (one sitting)
+<strong>Before this</strong> — A1; STDP, LIF dynamics, eligibility traces and three-factor rules
+<strong>Reading</strong> — <strong>D&amp;A ch. 5</strong> <em>Synaptic Conductances</em> (release probability, short-term depression and facilitation) and <em>Integrate-and-Fire Models</em> (refractoriness, reset) — both knobs in one chapter. Supporting: Tsodyks &amp; Markram 1997 (PNAS) for the canonical STP model. Trace-stacking is an implementation choice, not in either.</p>
+</div>
 <div class="toc">
 <ul>
-<li><a href="#a4-short-term-plasticity-refractory-period-reset-modes">A4. Short-term plasticity, refractory period, reset modes</a><ul>
+<li><a href="#a4-short-term-plasticity-refractory-period-reset-modes">A4 · Short-term plasticity, refractory period, reset modes</a><ul>
 <li><a href="#lesson-spec">Lesson spec</a></li>
-</ul>
-</li>
-<li><a href="#a4-short-term-plasticity-refractory-period-reset-modes_1">A4. Short-term plasticity, refractory period, reset modes</a><ul>
-<li><a href="#running-order">Running order</a></li>
-<li><a href="#coverage-map">Coverage map</a></li>
-<li><a href="#piece-1-refractory-ceiling-and-facilitation-arithmetic">Piece 1 — Refractory ceiling and facilitation arithmetic</a></li>
-<li><a href="#piece-2-lif-under-eight-knob-combinations">Piece 2 — LIF under eight knob combinations</a></li>
-<li><a href="#piece-3-da-ch-5-guided-reading">Piece 3 — D&amp;A ch. 5 guided reading</a></li>
-<li><a href="#piece-4-written-defence-does-the-memristor-synapse-need-a-second-variable">Piece 4 — Written defence: does the memristor synapse need a second variable?</a></li>
+<li><a href="#coursework">Coursework</a></li>
 <li><a href="#completion-bar">Completion bar</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
-<h1 id="a4-short-term-plasticity-refractory-period-reset-modes_1">A4. Short-term plasticity, refractory period, reset modes<a class="headerlink" href="#a4-short-term-plasticity-refractory-period-reset-modes_1" title="Permanent link">&para;</a></h1>
-<p><strong>Prerequisites:</strong> A1; STDP, LIF dynamics, eligibility traces and three-factor rules</p>
-<p><strong>Size:</strong> one sitting</p>
-<p><strong>Source material:</strong> <strong>D&amp;A ch. 5</strong> <em>Synaptic Conductances</em> (release probability, short-term depression and facilitation) and <em>Integrate-and-Fire Models</em> (refractoriness, reset) — both knobs in one chapter. Supporting: Tsodyks &amp; Markram 1997 (PNAS) for the canonical STP model. Trace-stacking is an implementation choice, not in either.</p>
-<p><strong>Local copies:</strong> none — Tsodyks &amp; Markram 1997 (doi:10.1073/pnas.94.2.719) needs institutional access. D&amp;A ch. 5 covers short-term plasticity.</p>
 <p><strong>Goal:</strong> Split short-term plasticity off from the single "synaptic change over time" bucket: STP is a separate, self-reversing mechanism that scales transmission without touching the stored weight. Then pin down two implementation knobs — reset mode and trace-stacking rule — that decide what a neuron carries forward tick to tick.</p>
-<p><strong>Scope:</strong>
-- Short-term facilitation (residual calcium) and depression (vesicle depletion): what variable changes — a resource/utilization term, not w — its ~100s-of-ms decay, and why it undoes itself with no input
-- STP vs STDP: the variable each modifies, timescale, permanence
-- Absolute vs relative refractory period and the firing-rate ceiling each imposes
-- Reset-to-zero vs subtract-threshold: the fate of overshoot voltage and its effect on next-spike timing
-- Eligibility-trace stacking on repeated spikes: additive vs saturating accumulation
-- Not covered: neuromodulator dynamics (B1), long-term plasticity rules (already known)</p>
+<details class="note">
+<summary>Scope — what the lesson covers</summary>
+<ul>
+<li>Short-term facilitation (residual calcium) and depression (vesicle depletion): what variable changes — a resource/utilization term, not w — its ~100s-of-ms decay, and why it undoes itself with no input</li>
+<li>STP vs STDP: the variable each modifies, timescale, permanence</li>
+<li>Absolute vs relative refractory period and the firing-rate ceiling each imposes</li>
+<li>Reset-to-zero vs subtract-threshold: the fate of overshoot voltage and its effect on next-spike timing</li>
+<li>Eligibility-trace stacking on repeated spikes: additive vs saturating accumulation</li>
+<li>Not covered: neuromodulator dynamics (B1), long-term plasticity rules (already known)</li>
+</ul>
+</details>
 <p><strong>You should be able to answer:</strong>
 1. A neuron has an absolute refractory period of 2 ms. What is its maximum possible firing rate in Hz?
 2. In a Tsodyks-Markram-style facilitation model with baseline U = 0.2, each spike updating U ← U + 0.2(1 − U), and three spikes 10 ms apart (decay negligible) — what is U just after the third spike?
@@ -1137,15 +1259,14 @@
 4. Three spikes land within an eligibility trace's decay window. Under additive stacking, what happens to the peak trace value? Under saturating stacking, what caps it? Why does this matter for the size of a weight update triggered by a delayed reward signal?
 5. Does short-term depression modify the weight w or a separate resource variable? If the synapse then receives no input for 500 ms, what happens to that variable?</p>
 <p><strong>Project tie-in:</strong> The virtual-memristor synapse currently models one persistent weight; STP needs an additional transient resource variable decaying independently of w — a Step 3 design question, and distinct from the persisted weights in <code>online_rollout.py</code>.</p>
-<p><strong>Done when:</strong> The learner computes a firing-rate ceiling from a refractory period and explains, without conflating them, how STP, reset mode and trace stacking each separately affect what a neuron carries forward.</p>
+<p><strong>Done when:</strong> You computes a firing-rate ceiling from a refractory period and explains, without conflating them, how STP, reset mode and trace stacking each separately affect what a neuron carries forward.</p>
 <hr />
-<hr />
-<p><strong>Lesson spec:</strong> <code>lessons.md</code> → A4. <strong>Total time:</strong> ~3.5 hours (one sitting). <strong>Prerequisites:</strong> A1; STDP, LIF dynamics, eligibility traces and three-factor rules.</p>
-<h2 id="running-order">Running order<a class="headerlink" href="#running-order" title="Permanent link">&para;</a></h2>
+<h2 id="coursework">Coursework<a class="headerlink" href="#coursework" title="Permanent link">&para;</a></h2>
 <p>Consume, then apply, then refine:</p>
 <p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
 <p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
-<h2 id="coverage-map">Coverage map<a class="headerlink" href="#coverage-map" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Coverage map</summary>
 <table>
 <thead>
 <tr>
@@ -1177,7 +1298,10 @@
 </tr>
 </tbody>
 </table>
-<h2 id="piece-1-refractory-ceiling-and-facilitation-arithmetic">Piece 1 — Refractory ceiling and facilitation arithmetic<a class="headerlink" href="#piece-1-refractory-ceiling-and-facilitation-arithmetic" title="Permanent link">&para;</a></h2>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Piece 1 — Refractory ceiling and facilitation arithmetic</label><label for="__tabbed_1_2">Piece 2 — LIF under eight knob combinations</label><label for="__tabbed_1_3">Piece 3 — D&amp;A ch. 5 guided reading</label><label for="__tabbed_1_4">Piece 4 — Written defence: does the memristor synapse need a second variable?</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><strong>Type:</strong> derivation · <strong>Time:</strong> 40 min</p>
 <p><strong>Learning goals</strong>
 - Derive a firing-rate ceiling directly from an absolute refractory period.
@@ -1200,7 +1324,8 @@
 </ol>
 <p><strong>Deliverable</strong></p>
 <p>A single page (markdown, plain text, or a photo of handwritten work) with three clearly labeled sections (1, 2, 3), each showing the arithmetic, not just the final answer.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1223,11 +1348,13 @@
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-2-lif-under-eight-knob-combinations">Piece 2 — LIF under eight knob combinations<a class="headerlink" href="#piece-2-lif-under-eight-knob-combinations" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> simulation · <strong>Time:</strong> 75 min</p>
 <p><strong>Learning goals</strong>
 - Implement short-term plasticity as a transient resource variable that modulates transmission without touching a stored weight.
@@ -1266,7 +1393,8 @@ During the 2 ms refractory window after a spike, V does not integrate
 <p>Report peak <code>e</code> for both rules, for all 4 spike trains (8 numbers).</p>
 <p><strong>Deliverable</strong></p>
 <p>The script, plus a results table: 4 rows (reset mode × STP) × columns {spike count, first 3 spike times, peak_e_additive, peak_e_saturating}. Plus 3–4 sentences: (a) what STP on vs off does to spike count and why, (b) whether reset mode changed spike <em>timing</em>, spike <em>count</em>, or both, in your run, (c) whether additive stacking's peak ever looks unbounded-ish across a busier condition vs. a sparser one, and what that implies for a three-factor update that fires on whichever step the trace happens to be sampled.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1289,11 +1417,13 @@ During the 2 ms refractory window after a spike, V does not integrate
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-3-da-ch-5-guided-reading">Piece 3 — D&amp;A ch. 5 guided reading<a class="headerlink" href="#piece-3-da-ch-5-guided-reading" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> guided reading · <strong>Time:</strong> 45 min</p>
 <p><strong>Learning goals</strong>
 - Ground the STP resource-variable formalism used in Pieces 1–2 in D&amp;A's own treatment of release probability and short-term depression/facilitation.
@@ -1309,7 +1439,8 @@ During the 2 ms refractory window after a spike, V does not integrate
 </ol>
 <p><strong>Deliverable</strong></p>
 <p>Five short written answers (2–5 sentences each), with a page/section reference into D&amp;A for each.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1332,14 +1463,16 @@ During the 2 ms refractory window after a spike, V does not integrate
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-4-written-defence-does-the-memristor-synapse-need-a-second-variable">Piece 4 — Written defence: does the memristor synapse need a second variable?<a class="headerlink" href="#piece-4-written-defence-does-the-memristor-synapse-need-a-second-variable" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> written defence · <strong>Time:</strong> 45 min</p>
 <p><strong>Learning goals</strong>
-- Apply the STP-vs-w distinction from Pieces 1–3 to a concrete architectural decision in the learner's own project.
+- Apply the STP-vs-w distinction from Pieces 1–3 to a concrete architectural decision in your own project.
 - Argue a position with reference to specific downstream consequences (step 02b's persisted per-synapse weights, step 04's stress/pruning), not in the abstract.</p>
 <p><strong>Task</strong></p>
 <p>Write 300–600 words answering: <em>Should the project's virtual-memristor synapse — which currently models one persistent weight <code>w</code> per synapse, updated only by local learning rules — be extended with a second, transient resource variable (an <code>x</code>/<code>u</code>-style pair, decaying independently of <code>w</code> over ~100s-of-ms) to implement short-term plasticity? Or should STP be left out of the design, keeping the synapse single-weight?</em></p>
@@ -1349,7 +1482,8 @@ During the 2 ms refractory window after a spike, V does not integrate
 - Step 04's stress/pruning mechanism prunes connections with "near-zero weights for sustained periods." If a synapse's <em>transmission</em> is being suppressed by short-term depression (a transient x near 0) while its <em>stored weight</em> w is fine, does pruning need to be able to tell those two apart? What breaks if it can't?</p>
 <p><strong>Deliverable</strong></p>
 <p>A single markdown or text file, 300–600 words, taking and defending one position (not a both-sides summary).</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1372,9 +1506,13 @@ During the 2 ms refractory window after a spike, V does not integrate
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
+</div>
+</div>
+</div>
 </div>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
 <p>Lesson A4 is complete when: Piece 1 is at least Adequate (500 Hz and the u-recursion through 0.5904 both correct, reset-mode direction not reversed); Piece 2 is at least Adequate (STP-on spike count visibly and mechanistically lower than STP-off, not just parameter-tuned to look different; trace-stacking computed for at least half the conditions); Piece 3 answers at least 4 of 5 questions with a real D&amp;A reference and does not claim depression modifies w; Piece 4 takes and defends one explicit position engaging the step 04 pruning conflict. All four pieces at Adequate+ with no piece at Not Yet.</p>
@@ -1395,6 +1533,8 @@ During the 2 ms refractory window after a spike, V does not integrate
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1433,7 +1573,7 @@ During the 2 ms refractory window after a spike, V does not integrate
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

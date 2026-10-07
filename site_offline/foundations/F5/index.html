@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+        <meta name="description" content="A self-study course in computational neuroscience built on Dayan & Abbott">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>F5. Membrane biophysics and the action potential - Comp Neuro Course</title>
+        <title>F5 · Membrane biophysics and the action potential - Computational Neuroscience</title>
       
     
     
@@ -51,7 +51,7 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/theme.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -69,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-header__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,13 +108,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Comp Neuro Course
+            Computational Neuroscience
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              F5. Membrane biophysics and the action potential
+              F5 · Membrane biophysics and the action potential
             
           </span>
         </div>
@@ -127,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -137,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -226,18 +226,45 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../../plan/" class="md-tabs__link">
-        
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
   
   
     
   
-  Plan
+  Foundations
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../advanced/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Advanced
+
+        </a>
+      </li>
+    
   
 
       
@@ -264,41 +291,18 @@
   
   
   
-    
   
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../F1/" class="md-tabs__link">
-          
-  
-  
-  Foundations
-
-        </a>
-      </li>
-    
-  
-
-      
+    <li class="md-tabs__item">
+      <a href="../../plan/" class="md-tabs__link">
         
   
   
-  
-  
     
-    
-      <li class="md-tabs__item">
-        <a href="../../advanced/A1/" class="md-tabs__link">
-          
   
-  
-  Advanced
+  Plan
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -330,13 +334,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-nav__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Comp Neuro Course
+    Computational Neuroscience
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -372,65 +376,41 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../plan/" class="md-nav__link">
+  
+    
+    
+      
         
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Plan
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../materials/" class="md-nav__link">
+          
         
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Materials
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
       
+        
       
-  
-  
-    
-  
-  
-  
-    
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -447,11 +427,12 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -465,11 +446,17 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -478,6 +465,8 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -493,7 +482,7 @@
   <span class="md-ellipsis">
     
   
-    F1. Spike trains and firing rates
+    F1 · Spike trains and firing rates
   
 
     
@@ -521,7 +510,7 @@
   <span class="md-ellipsis">
     
   
-    F2. Receptive fields and reverse correlation
+    F2 · Receptive fields and reverse correlation
   
 
     
@@ -549,7 +538,7 @@
   <span class="md-ellipsis">
     
   
-    F3. Neural decoding
+    F3 · Neural decoding
   
 
     
@@ -577,7 +566,7 @@
   <span class="md-ellipsis">
     
   
-    F4. Information theory for neurons
+    F4 · Information theory for neurons
   
 
     
@@ -614,7 +603,7 @@
   <span class="md-ellipsis">
     
   
-    F5. Membrane biophysics and the action potential
+    F5 · Membrane biophysics and the action potential
   
 
     
@@ -632,7 +621,7 @@
   <span class="md-ellipsis">
     
   
-    F5. Membrane biophysics and the action potential
+    F5 · Membrane biophysics and the action potential
   
 
     
@@ -668,6 +657,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#authors-exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authors' exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -691,7 +713,7 @@
   <span class="md-ellipsis">
     
   
-    F6. Integrate-and-fire neurons and synaptic input
+    F6 · Integrate-and-fire neurons and synaptic input
   
 
     
@@ -719,7 +741,7 @@
   <span class="md-ellipsis">
     
   
-    F7. Cable theory and neuronal morphology
+    F7 · Cable theory and neuronal morphology
   
 
     
@@ -747,7 +769,7 @@
   <span class="md-ellipsis">
     
   
-    F8. Network models: feedforward and recurrent
+    F8 · Network models: feedforward and recurrent
   
 
     
@@ -775,7 +797,7 @@
   <span class="md-ellipsis">
     
   
-    F9. Synaptic plasticity and learning rules
+    F9 · Synaptic plasticity and learning rules
   
 
     
@@ -803,7 +825,7 @@
   <span class="md-ellipsis">
     
   
-    F10. Classical conditioning and reinforcement learning
+    F10 · Classical conditioning and reinforcement learning
   
 
     
@@ -831,7 +853,7 @@
   <span class="md-ellipsis">
     
   
-    F11. Representational learning and generative models
+    F11 · Representational learning and generative models
   
 
     
@@ -859,7 +881,7 @@
   <span class="md-ellipsis">
     
   
-    Bridge. Synthesis checkpoint
+    Bridge · Synthesis checkpoint
   
 
     
@@ -888,6 +910,44 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -905,7 +965,7 @@
   
   
   
-    <a href="../../advanced/A1/" class="md-nav__link">
+    <a href="../../advanced/" class="md-nav__link">
       
   
   
@@ -927,6 +987,60 @@
   
 
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -968,6 +1082,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#authors-exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authors' exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -985,39 +1132,37 @@
 
 
 
-<h1 id="f5-membrane-biophysics-and-the-action-potential">F5. Membrane biophysics and the action potential<a class="headerlink" href="#f5-membrane-biophysics-and-the-action-potential" title="Permanent link">&para;</a></h1>
+<h1 id="f5-membrane-biophysics-and-the-action-potential">F5 · Membrane biophysics and the action potential<a class="headerlink" href="#f5-membrane-biophysics-and-the-action-potential" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>Length</strong> — two to three sittings — the Hodgkin-Huxley gating kinetics and the stochastic-channel material each take real time to work through numerically · about two to three sittings (the Hodgkin-Huxley gating kinetics and the stochastic-channel material each take real time to work through numerically)
+<strong>Before this</strong> — F1
+<strong>Reading</strong> — D&amp;A ch. 5 — <em>Introduction</em> · <em>Electrical Properties of Neurons</em> · <em>Single-Compartment Models</em> · <em>Voltage-Dependent Conductances</em> · <em>The Hodgkin-Huxley Model</em> · <em>Modeling Channels</em></p>
+</div>
 <div class="toc">
 <ul>
-<li><a href="#f5-membrane-biophysics-and-the-action-potential">F5. Membrane biophysics and the action potential</a><ul>
+<li><a href="#f5-membrane-biophysics-and-the-action-potential">F5 · Membrane biophysics and the action potential</a><ul>
 <li><a href="#lesson-spec">Lesson spec</a></li>
-</ul>
-</li>
-<li><a href="#f5-membrane-biophysics-and-the-action-potential_1">F5. Membrane biophysics and the action potential</a><ul>
-<li><a href="#running-order">Running order</a></li>
-<li><a href="#assigned-exercises-the-books-own">Assigned exercises — the book's own</a></li>
-<li><a href="#coverage-map">Coverage map</a></li>
-<li><a href="#piece-1-rc-membrane-and-the-nernst-equation">Piece 1 — RC membrane and the Nernst equation</a></li>
-<li><a href="#piece-2-simulation-hodgkinhuxley-spike-generator">Piece 2 — Simulation: Hodgkin–Huxley spike generator</a></li>
-<li><a href="#piece-3-guided-reading">Piece 3 — Guided reading</a></li>
-<li><a href="#piece-4-written-explanation">Piece 4 — Written explanation</a></li>
+<li><a href="#authors-exercises">Authors' exercises</a></li>
+<li><a href="#coursework">Coursework</a></li>
 <li><a href="#completion-bar">Completion bar</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
-<h1 id="f5-membrane-biophysics-and-the-action-potential_1">F5. Membrane biophysics and the action potential<a class="headerlink" href="#f5-membrane-biophysics-and-the-action-potential_1" title="Permanent link">&para;</a></h1>
-<p><strong>Prerequisites:</strong> F1</p>
-<p><strong>Size:</strong> two to three sittings — the Hodgkin-Huxley gating kinetics and the stochastic-channel material each take real time to work through numerically</p>
-<p><strong>Source material:</strong> D&amp;A ch. 5 — <em>Introduction</em> · <em>Electrical Properties of Neurons</em> · <em>Single-Compartment Models</em> · <em>Voltage-Dependent Conductances</em> · <em>The Hodgkin-Huxley Model</em> · <em>Modeling Channels</em></p>
 <p><strong>Goal:</strong> Establish the membrane as a physical RC circuit driven by ionic gradients, then show how voltage-dependent sodium and potassium conductances turn that circuit into a spike generator. By the end, "threshold", "all-or-none" and "refractory period" should be facts about channel kinetics rather than modelling conventions.</p>
-<p><strong>Scope:</strong>
-- Membrane capacitance and leak conductance; the membrane time constant with typical values (C_m about 1 microfarad per square centimetre, tau_m in the 10 to 20 ms range)
-- Nernst equation and reversal potentials for sodium, potassium and chloride; why a synapse's reversal potential relative to rest is what makes it excitatory or inhibitory
-- Gating variables as fractions of open channels, with voltage-dependent rate functions
-- Hodgkin-Huxley: fast sodium activation and inactivation, the delayed-rectifier potassium current, and how their interaction produces a stereotyped spike and a refractory period
-- Stochastic channel models, with the deterministic conductance as the average over many channels
-- Not covered: reducing this to integrate-and-fire (F6), extending it to multiple compartments (F7)</p>
+<details class="note">
+<summary>Scope — what the lesson covers</summary>
+<ul>
+<li>Membrane capacitance and leak conductance; the membrane time constant with typical values (C_m about 1 microfarad per square centimetre, tau_m in the 10 to 20 ms range)</li>
+<li>Nernst equation and reversal potentials for sodium, potassium and chloride; why a synapse's reversal potential relative to rest is what makes it excitatory or inhibitory</li>
+<li>Gating variables as fractions of open channels, with voltage-dependent rate functions</li>
+<li>Hodgkin-Huxley: fast sodium activation and inactivation, the delayed-rectifier potassium current, and how their interaction produces a stereotyped spike and a refractory period</li>
+<li>Stochastic channel models, with the deterministic conductance as the average over many channels</li>
+<li>Not covered: reducing this to integrate-and-fire (F6), extending it to multiple compartments (F7)</li>
+</ul>
+</details>
 <p><strong>You should be able to answer:</strong>
 1. Given C_m = 1 microfarad per square centimetre and a leak conductance g_L, compute tau_m, and say what changes if g_L doubles.
 2. Using the Nernst equation, compute the potassium reversal potential at 37 degrees C for 140 mM inside and 5 mM outside.
@@ -1025,16 +1170,15 @@
 4. Why does the delayed onset of the potassium conductance produce a refractory period, rather than the neuron simply repolarising and firing again immediately?
 5. When channels are modelled stochastically, what does the deterministic conductance represent — what is being averaged over what?</p>
 <p><strong>Feeds:</strong> F6 (integrate-and-fire is the abstraction that discards these dynamics), F7 (compartments extend this circuit spatially), A4 (reset modes and refractoriness stand in for the mechanisms fixed here).</p>
-<p><strong>Done when:</strong> The learner can derive why a spike is all-or-none and why a refractory period follows, from sodium and potassium kinetics alone, without invoking threshold-and-reset.</p>
+<p><strong>Done when:</strong> You can derive why a spike is all-or-none and why a refractory period follows, from sodium and potassium kinetics alone, without invoking threshold-and-reset.</p>
 <hr />
-<hr />
-<p><strong>Lesson spec:</strong> <code>foundations.md</code> → F5. <strong>Total time:</strong> two to three sittings (the Hodgkin-Huxley gating kinetics and the stochastic-channel material each take real time to work through numerically). <strong>Prerequisites:</strong> F1.</p>
-<h2 id="running-order">Running order<a class="headerlink" href="#running-order" title="Permanent link">&para;</a></h2>
-<p>Consume, then apply, then refine: <strong>guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written explanation (Piece 4)</strong>. Pieces are numbered by type, not sequence.</p>
-<h2 id="assigned-exercises-the-books-own">Assigned exercises — the book's own<a class="headerlink" href="#assigned-exercises-the-books-own" title="Permanent link">&para;</a></h2>
+<h2 id="authors-exercises">Authors' exercises<a class="headerlink" href="#authors-exercises" title="Permanent link">&para;</a></h2>
 <p>Dayan &amp; Abbott wrote exercise sets for every chapter and publish them free at gatsby.ucl.ac.uk/~dayan/book. This lesson's are in <code>exercises/c5.pdf</code> (chapter 5), with any code and data under <code>exercises/exercises/c5/</code>. <strong>Work the biophysics and Hodgkin-Huxley ones — skip any that are purely integrate-and-fire, they belong to F6.</strong></p>
 <p>They are the authors' problems, not this course's, so they take precedence where the two overlap: if an exercise here duplicates one of theirs, do theirs. They are written for MATLAB; translating to numpy is part of the work and is not hard. The teacher agent has no answer key for these — it marks by reading your code and output, and says so rather than pretending to a key it does not have.</p>
-<h2 id="coverage-map">Coverage map<a class="headerlink" href="#coverage-map" title="Permanent link">&para;</a></h2>
+<h2 id="coursework">Coursework<a class="headerlink" href="#coursework" title="Permanent link">&para;</a></h2>
+<p>Consume, then apply, then refine: <strong>guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written explanation (Piece 4)</strong>. Pieces are numbered by type, not sequence.</p>
+<details class="note">
+<summary>Coverage map</summary>
 <table>
 <thead>
 <tr>
@@ -1066,7 +1210,10 @@
 </tr>
 </tbody>
 </table>
-<h2 id="piece-1-rc-membrane-and-the-nernst-equation">Piece 1 — RC membrane and the Nernst equation<a class="headerlink" href="#piece-1-rc-membrane-and-the-nernst-equation" title="Permanent link">&para;</a></h2>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Piece 1 — RC membrane and the Nernst equation</label><label for="__tabbed_1_2">Piece 2 — Simulation: Hodgkin–Huxley spike generator</label><label for="__tabbed_1_3">Piece 3 — Guided reading</label><label for="__tabbed_1_4">Piece 4 — Written explanation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><strong>Type:</strong> derivation · <strong>Time:</strong> ~45–60 min</p>
 <p><strong>Learning goals</strong>
 - Derive the membrane time constant from the passive RC circuit and reason about how it scales with conductance.
@@ -1085,7 +1232,8 @@
 4. A hypothetical synaptic channel has reversal potential E_syn = 0 mV. In one sentence, state the general rule (in terms of E_syn vs. V_rest) for when opening a channel is depolarizing (excitatory) vs. hyperpolarizing (inhibitory), and classify this channel.</p>
 <p><strong>Deliverable</strong></p>
 <p>A written (handwritten photo or typed) derivation covering both parts, with every algebraic step shown — not just final numbers — and the one-sentence answers where asked.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1108,11 +1256,13 @@
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-2-simulation-hodgkinhuxley-spike-generator">Piece 2 — Simulation: Hodgkin–Huxley spike generator<a class="headerlink" href="#piece-2-simulation-hodgkinhuxley-spike-generator" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> simulation · <strong>Time:</strong> 90–150 min</p>
 <p><strong>Learning goals</strong>
 - Implement the full conductance-based Hodgkin–Huxley model from its equations, not a library.
@@ -1144,7 +1294,8 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 <p>(c) <strong>Refractory period.</strong> Deliver a first pulse (amplitude comfortably above your threshold from (a)) at t = 5 ms, then a second, separate 1 ms pulse at t = 5+delay ms, for at least 8 delay values spanning roughly 1–20 ms. For each delay, determine (by inspecting V(t) in the window around the second pulse, not just a threshold-crossing counter) whether the second pulse evokes a genuine second spike. Do this once with the second pulse at the same amplitude as the first, and once with a much larger second-pulse amplitude (e.g. ~10× threshold). Report the shortest delay at which even the very strong pulse fails to spike (absolute refractory period) and the shortest delay at which the same-amplitude pulse succeeds (an estimate of the relative refractory period).</p>
 <p><strong>Deliverable</strong></p>
 <p>One self-contained <code>.py</code> file (~60 lines) that prints: the bisected threshold current and the two peak-V values bracketing it; a short printed statement naming which gating variable ends the rising phase; and a table of delay → spike/no-spike outcomes for both second-pulse amplitudes, with your stated absolute and relative refractory period in ms.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1159,7 +1310,7 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 </tr>
 <tr>
 <td>Adequate</td>
-<td>Model spikes and threshold is in a plausible range, but the refractory analysis conflates the short-delay artifact with a real second spike, or reports only one of absolute/relative refractoriness. Gate identification correct but not tied to the learner's own trace values.</td>
+<td>Model spikes and threshold is in a plausible range, but the refractory analysis conflates the short-delay artifact with a real second spike, or reports only one of absolute/relative refractoriness. Gate identification correct but not tied to your own trace values.</td>
 </tr>
 <tr>
 <td>Not yet</td>
@@ -1167,11 +1318,13 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-3-guided-reading">Piece 3 — Guided reading<a class="headerlink" href="#piece-3-guided-reading" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> guided reading · <strong>Time:</strong> ~45 min</p>
 <p><strong>Learning goals</strong>
 - Extract D&amp;A's own definitions of the passive membrane equation, the gating-variable formalism, and the Hodgkin–Huxley current-balance equation.
@@ -1189,7 +1342,8 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 </ol>
 <p><strong>Deliverable</strong></p>
 <p>Six short answers (2–5 sentences each), each tagged with the subsection it draws from.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1200,7 +1354,7 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 <tbody>
 <tr>
 <td>Strong</td>
-<td>All six answers match the expected content below, in the learner's own words, correctly tagged to subsection.</td>
+<td>All six answers match the expected content below, in your own words, correctly tagged to subsection.</td>
 </tr>
 <tr>
 <td>Adequate</td>
@@ -1212,21 +1366,24 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-4-written-explanation">Piece 4 — Written explanation<a class="headerlink" href="#piece-4-written-explanation" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> written explanation · <strong>Time:</strong> ~45–60 min</p>
 <p><strong>Learning goals</strong>
 - Give a causal (kinetics-based) account of why an HH spike is all-or-none, without invoking "threshold" as an assumed model feature.
 - Give a causal account of why a refractory period necessarily follows a spike.
-- Ground both explanations in the learner's own numbers from Piece 2.</p>
+- Ground both explanations in your own numbers from Piece 2.</p>
 <p><strong>Task</strong></p>
 <p>In 300–600 words, explain why a Hodgkin–Huxley spike is all-or-none and why a refractory period follows it, using only the kinetics of m (Na+ activation), h (Na+ inactivation), and n (K+ activation) — do not describe the neuron as having a hardcoded "threshold" that gets "reset". Cite at least two concrete numbers from your own Piece 2 run (e.g. your bisected threshold current, your spike-peak timing, or your measured refractory delays).</p>
 <p><strong>Deliverable</strong></p>
 <p>300–600 words of plain prose (not a bulleted list).</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1237,7 +1394,7 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 <tbody>
 <tr>
 <td>Strong</td>
-<td>Explains all-or-none as the outcome of a positive feedback loop (depolarization → more m open → more Na+ current → more depolarization) racing against h's slower inactivation, so the response is binary rather than graded; explains the refractory period as the joint effect of h being slow to recover and n/K+ conductance still being elevated after the spike; cites ≥2 of the learner's own Piece 2 numbers correctly; never falls back to "because it crosses threshold" as an unexplained primitive.</td>
+<td>Explains all-or-none as the outcome of a positive feedback loop (depolarization → more m open → more Na+ current → more depolarization) racing against h's slower inactivation, so the response is binary rather than graded; explains the refractory period as the joint effect of h being slow to recover and n/K+ conductance still being elevated after the spike; cites ≥2 of your own Piece 2 numbers correctly; never falls back to "because it crosses threshold" as an unexplained primitive.</td>
 </tr>
 <tr>
 <td>Adequate</td>
@@ -1245,16 +1402,20 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
 </tr>
 <tr>
 <td>Not yet</td>
-<td>Explanation is circular (spikes because it crosses threshold; refractory because it's refractory) or doesn't reference the learner's own simulation numbers at all.</td>
+<td>Explanation is circular (spikes because it crosses threshold; refractory because it's refractory) or doesn't reference your own simulation numbers at all.</td>
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
+</div>
+</div>
+</div>
 </div>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
-<p>Done when the learner can state, unprompted and without reaching for "threshold-and-reset" as a primitive: (1) why a spike is all-or-none — as the outcome of Na+ activation (m) racing its own slower inactivation (h), evidenced by their own bisected threshold and the sharp sub-/supra-threshold voltage gap in Piece 2; (2) why a refractory period follows — as the joint effect of h not yet recovered and K+ activation (n) still elevated, evidenced by their own absolute (~7–8 ms) and relative (~12–13 ms) refractory measurements; and can back both claims with the derived numbers from Piece 1 (τ_m, E_K) and the guided-reading answers from Piece 3 (which gate is which, and what the deterministic conductance is an average over).</p>
+<p>Done when you can state, unprompted and without reaching for "threshold-and-reset" as a primitive: (1) why a spike is all-or-none — as the outcome of Na+ activation (m) racing its own slower inactivation (h), evidenced by their own bisected threshold and the sharp sub-/supra-threshold voltage gap in Piece 2; (2) why a refractory period follows — as the joint effect of h not yet recovered and K+ activation (n) still elevated, evidenced by their own absolute (~7–8 ms) and relative (~12–13 ms) refractory measurements; and can back both claims with the derived numbers from Piece 1 (τ_m, E_K) and the guided-reading answers from Piece 3 (which gate is which, and what the deterministic conductance is an average over).</p>
 
 
 
@@ -1272,6 +1433,8 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1310,7 +1473,7 @@ C_m dV/dt = I_ext - gNa*m^3*h*(V-E_Na) - gK*n^4*(V-E_K) - gL*(V-E_L)
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

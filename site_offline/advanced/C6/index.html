@@ -6,13 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+        <meta name="description" content="A self-study course in computational neuroscience built on Dayan & Abbott">
       
       
       
       
         <link rel="prev" href="../C5/">
       
+      
+        <link rel="next" href="../../materials/">
       
       
         
@@ -23,7 +25,7 @@
     
     
       
-        <title>C6. PC ≈ backprop: what the equivalence does and does not claim - Comp Neuro Course</title>
+        <title>C6 · PC ≈ backprop: what the equivalence does and does not claim - Computational Neuroscience</title>
       
     
     
@@ -49,7 +51,7 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/theme.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -92,7 +94,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-header__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,13 +108,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Comp Neuro Course
+            Computational Neuroscience
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              C6. PC ≈ backprop: what the equivalence does and does not claim
+              C6 · PC ≈ backprop: what the equivalence does and does not claim
             
           </span>
         </div>
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -225,17 +227,44 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../plan/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../foundations/" class="md-tabs__link">
+          
   
   
     
   
-  Plan
+  Foundations
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Advanced
+
+        </a>
+      </li>
+    
   
 
       
@@ -263,40 +292,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../foundations/F1/" class="md-tabs__link">
-          
-  
-  
-  Foundations
-
-        </a>
-      </li>
-    
-  
-
-      
+    <li class="md-tabs__item">
+      <a href="../../plan/" class="md-tabs__link">
         
   
   
-  
     
   
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../A1/" class="md-tabs__link">
-          
-  
-  
-  Advanced
+  Plan
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -328,13 +334,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-nav__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Comp Neuro Course
+    Computational Neuroscience
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -372,15 +378,200 @@
   
   
   
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../foundations/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../plan/" class="md-nav__link">
+      <a href="../A1/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Plan
+    A1 · Synaptic delays and temporal structure
   
 
     
@@ -389,6 +580,525 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 · Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3 · Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 · Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5 · State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1 · Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2 · Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3 · Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4 · Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5 · Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1 · Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2 · Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3 · Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4 · Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5 · Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6 · PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6 · PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verified-against-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified against the source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -426,123 +1136,15 @@
   
   
   
-    
-    
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-  
-    <a href="../../foundations/F1/" class="md-nav__link">
-      
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Foundations
-  
-
-    
-  </span>
-  
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Advanced
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../A1/" class="md-nav__link">
+      <a href="../../plan/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    A1. Synaptic delays and temporal structure
+    Plan
   
 
     
@@ -551,492 +1153,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A2. Attractors and network state
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A3. Oscillations and synchrony
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A4. Short-term plasticity, refractory period, reset modes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A5. State of the field: why SNNs, where they stand vs ANNs
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B2. Cortical microcircuits and laminar structure
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B3. Dendritic computation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B4. Developmental pruning: how brains choose their own size
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B5. Hippocampal replay and consolidation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C1. Predictive coding as energy minimization
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C2. Inference vs learning: two nested loops and their schedules
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C3. Precision weighting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C5. Clamping and frozen priors
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C6. PC ≈ backprop: what the equivalence does and does not claim
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C6. PC ≈ backprop: what the equivalence does and does not claim
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lesson-spec" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Lesson spec
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1078,6 +1194,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verified-against-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified against the source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1095,41 +1244,38 @@
 
 
 
-<h1 id="c6-pc-backprop-what-the-equivalence-does-and-does-not-claim">C6. PC ≈ backprop: what the equivalence does and does not claim<a class="headerlink" href="#c6-pc-backprop-what-the-equivalence-does-and-does-not-claim" title="Permanent link">&para;</a></h1>
+<h1 id="c6-pc-backprop-what-the-equivalence-does-and-does-not-claim">C6 · PC ≈ backprop: what the equivalence does and does not claim<a class="headerlink" href="#c6-pc-backprop-what-the-equivalence-does-and-does-not-claim" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>Length</strong> — two sittings · about ~5.5 hours across two sittings (sitting 1: Pieces 1–2, ~3h; sitting 2: Pieces 3–4, ~2.5h)
+<strong>Before this</strong> — C1–C5; standard backprop; the spiking credit-assignment problem. Final lesson — passing it opens fusion design on Steps 3–5.
+<strong>Reading</strong> — <strong>D&amp;A ch. 8</strong> <em>Supervised Learning</em> for the backprop baseline the equivalence is stated against. The equivalence itself is not in D&amp;A: Whittington &amp; Bogacz 2017 (Neural Computation); Song et al. 2020 (NeurIPS), <em>Can the brain do backpropagation?</em> for the exact conditions.</p>
+</div>
 <div class="toc">
 <ul>
-<li><a href="#c6-pc-backprop-what-the-equivalence-does-and-does-not-claim">C6. PC ≈ backprop: what the equivalence does and does not claim</a><ul>
+<li><a href="#c6-pc-backprop-what-the-equivalence-does-and-does-not-claim">C6 · PC ≈ backprop: what the equivalence does and does not claim</a><ul>
 <li><a href="#lesson-spec">Lesson spec</a></li>
-</ul>
-</li>
-<li><a href="#c6-pc-backprop-what-the-equivalence-does-and-does-not-claim_1">C6. PC ≈ backprop: what the equivalence does and does not claim</a><ul>
-<li><a href="#running-order">Running order</a></li>
+<li><a href="#coursework">Coursework</a></li>
 <li><a href="#verified-against-the-source">Verified against the source</a></li>
-<li><a href="#coverage-map">Coverage map</a></li>
-<li><a href="#piece-1-fixed-prediction-derivation-one-weight-two-rules">Piece 1 — Fixed-Prediction Derivation: One Weight, Two Rules</a></li>
-<li><a href="#piece-2-simulation-backprop-vs-pc-update-race">Piece 2 — Simulation: Backprop-vs-PC Update Race</a></li>
-<li><a href="#piece-3-guided-reading-whittington-bogacz-2017-song-et-al-2020">Piece 3 — Guided Reading: Whittington &amp; Bogacz (2017) + Song et al. (2020)</a></li>
-<li><a href="#piece-4-written-defence-does-the-projects-premise-survive-pc-backprop">Piece 4 — Written Defence: Does the Project's Premise Survive PC ≈ Backprop?</a></li>
 <li><a href="#completion-bar">Completion bar</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
-<h1 id="c6-pc-backprop-what-the-equivalence-does-and-does-not-claim_1">C6. PC ≈ backprop: what the equivalence does and does not claim<a class="headerlink" href="#c6-pc-backprop-what-the-equivalence-does-and-does-not-claim_1" title="Permanent link">&para;</a></h1>
-<p><strong>Prerequisites:</strong> C1–C5; standard backprop; the spiking credit-assignment problem. Final lesson — passing it opens fusion design on Steps 3–5.</p>
-<p><strong>Size:</strong> two sittings</p>
-<p><strong>Source material:</strong> <strong>D&amp;A ch. 8</strong> <em>Supervised Learning</em> for the backprop baseline the equivalence is stated against. The equivalence itself is not in D&amp;A: Whittington &amp; Bogacz 2017 (Neural Computation); Song et al. 2020 (NeurIPS), <em>Can the brain do backpropagation?</em> for the exact conditions.</p>
-<p><strong>Local copies:</strong> <code>papers/C6_song_2020_exact_backprop_in_pc.pdf</code> and <code>papers/C6_whittington_bogacz_2017_backprop_approximation.txt</code> (full text, no OA PDF).</p>
 <p><strong>Goal:</strong> State the exact assumption (fixed prediction) under which Whittington &amp; Bogacz's layered-PC gradient matches backprop's, and the timing/initialization conditions Z-IL and Song et al. add to make the match exact. Closes the misconception that "PC = backprop" is an unconditional identity, and names which features of this project's target — arbitrary graphs, spiking dynamics, runtime topology change, online updates — fall outside every version of the proof.</p>
-<p><strong>Scope:</strong>
-- Whittington &amp; Bogacz (2017): the fixed-prediction assumption — what is held fixed during inference, and why that is what makes the layered-PC update converge to the backprop gradient
-- Z-IL and Song et al.: the timing and initialization conditions that make the correspondence exact, and what enforcing them costs
-- The honest reading: evidence that a purely local rule can recover a global gradient — not proof that PC is better, more biological, or the right model of cortex
-- The double-edged argument: if PC reproduces backprop's gradient, what independently motivates PC — locality, no separate backward pass, arbitrary topology, hardware mapping
-- What breaks the equivalence: arbitrary graphs, spiking nonlinearities, structural change at runtime, online updates without settling to convergence
-- Not covered: the fusion design itself (Steps 3–5 work, not a lesson), surrogate gradients (deliberately skipped)
-- Perishable: this literature is still moving. Check for results published since the papers named above when the lesson is taught; the durable part is which assumption each result needs, not the citation list.</p>
+<details class="note">
+<summary>Scope — what the lesson covers</summary>
+<ul>
+<li>Whittington &amp; Bogacz (2017): the fixed-prediction assumption — what is held fixed during inference, and why that is what makes the layered-PC update converge to the backprop gradient</li>
+<li>Z-IL and Song et al.: the timing and initialization conditions that make the correspondence exact, and what enforcing them costs</li>
+<li>The honest reading: evidence that a purely local rule can recover a global gradient — not proof that PC is better, more biological, or the right model of cortex</li>
+<li>The double-edged argument: if PC reproduces backprop's gradient, what independently motivates PC — locality, no separate backward pass, arbitrary topology, hardware mapping</li>
+<li>What breaks the equivalence: arbitrary graphs, spiking nonlinearities, structural change at runtime, online updates without settling to convergence</li>
+<li>Not covered: the fusion design itself (Steps 3–5 work, not a lesson), surrogate gradients (deliberately skipped)</li>
+<li>Perishable: this literature is still moving. Check for results published since the papers named above when the lesson is taught; the durable part is which assumption each result needs, not the citation list.</li>
+</ul>
+</details>
 <p><strong>You should be able to answer:</strong>
 1. State precisely what the fixed-prediction assumption requires — which quantity is held fixed, and at what point in the inference loop.
 2. What timing condition on weight updates does Z-IL impose to make the correspondence exact, and what does enforcing it cost?
@@ -1137,18 +1283,13 @@
 4. If PC exactly recovers backprop's gradient in the layered case, give one argument for using PC anyway that does not reduce to "it computes the same gradient".
 5. True or false, with justification: the equivalence proves PC is a plausible model of cortical learning.</p>
 <p><strong>Project tie-in:</strong> Steps 3–5 deliberately leave the layered case where the equivalence holds, moving to arbitrary graphs, spiking dynamics and stress-triggered structural change — exactly the conditions where no version of the proof applies, so the project cannot lean on the equivalence for justification.</p>
-<p><strong>Done when:</strong> The learner distinguishes W&amp;B's approximate correspondence from the Z-IL/Song exact one, and states unprompted that the equivalence does not cover the project's target architecture.</p>
-<hr />
-<p><strong>Lesson spec:</strong> <code>lessons.md</code> → C6. <strong>Total time:</strong> ~5.5 hours across two sittings (sitting 1: Pieces 1–2, ~3h; sitting 2: Pieces 3–4, ~2.5h). <strong>Prerequisites:</strong> C1–C5; standard backprop; the spiking credit-assignment problem.</p>
-<h2 id="running-order">Running order<a class="headerlink" href="#running-order" title="Permanent link">&para;</a></h2>
+<p><strong>Done when:</strong> You distinguishes W&amp;B's approximate correspondence from the Z-IL/Song exact one, and states unprompted that the equivalence does not cover the project's target architecture.</p>
+<h2 id="coursework">Coursework<a class="headerlink" href="#coursework" title="Permanent link">&para;</a></h2>
 <p>Consume, then apply, then refine:</p>
 <p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
 <p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
-<h2 id="verified-against-the-source">Verified against the source<a class="headerlink" href="#verified-against-the-source" title="Permanent link">&para;</a></h2>
-<p>Checked against both C6 papers. Two corrections to how they are described:</p>
-<p><strong>The name is later terminology.</strong> Whittington &amp; Bogacz (2017) do not use the phrase "fixed-prediction assumption"; that label comes from subsequent literature, including the Millidge review. Their paper sets out the conditions in its own terms. Do not mark a learner wrong for failing to find the phrase in the text, and do not accept a claim that the paper uses it.</p>
-<p><strong>Z-IL's timing condition is concrete.</strong> Song et al. specify weight updates at particular <strong>inference moments</strong> during the inference phase rather than after convergence, which is what makes the correspondence exact rather than approximate. The paper also distinguishes Z-IL from a fully autonomous variant (Fa-Z-IL) that removes the external control signal. A strong answer to the timing question names the per-moment schedule, not merely "update earlier".</p>
-<h2 id="coverage-map">Coverage map<a class="headerlink" href="#coverage-map" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Coverage map</summary>
 <table>
 <thead>
 <tr>
@@ -1181,7 +1322,10 @@
 </tbody>
 </table>
 <hr />
-<h2 id="piece-1-fixed-prediction-derivation-one-weight-two-rules">Piece 1 — Fixed-Prediction Derivation: One Weight, Two Rules<a class="headerlink" href="#piece-1-fixed-prediction-derivation-one-weight-two-rules" title="Permanent link">&para;</a></h2>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Piece 1 — Fixed-Prediction Derivation: One Weight, Two Rules</label><label for="__tabbed_1_2">Piece 2 — Simulation: Backprop-vs-PC Update Race</label><label for="__tabbed_1_3">Piece 3 — Guided Reading: Whittington &amp; Bogacz (2017) + Song et al. (2020)</label><label for="__tabbed_1_4">Piece 4 — Written Defence: Does the Project's Premise Survive PC ≈ Backprop?</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><strong>Type:</strong> derivation · <strong>Time:</strong> 75 min</p>
 <p><strong>Learning goals</strong>
 - Compute a backprop gradient and a PC weight update on the same tiny network from first principles.
@@ -1200,7 +1344,8 @@
 <p><strong>Part C — relax the assumption.</strong> Now run inference for two full (not infinitesimal) Euler steps of size 1 instead of stopping at the first-order limit. Recompute <code>ε1</code> after the second step and the resulting <code>Δw1</code>. Compare this value to the backprop gradient from Part A as a percentage divergence.</p>
 <p><strong>Deliverable</strong></p>
 <p>A single page (handwritten photo, scanned PDF, or typed) with: Part A's four numbers, Part B's derivation and the matched value, Part C's two-step recomputation and a stated percentage divergence, and 2–3 sentences naming which term (<code>ε1</code> starting at exactly zero, versus growing over further inference steps) causes the divergence.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1223,11 +1368,13 @@
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-2-simulation-backprop-vs-pc-update-race">Piece 2 — Simulation: Backprop-vs-PC Update Race<a class="headerlink" href="#piece-2-simulation-backprop-vs-pc-update-race" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> simulation · <strong>Time:</strong> 90 min</p>
 <p><strong>Learning goals</strong>
 - Implement both learning rules on the same network and confirm the fixed-prediction correspondence empirically, not just symbolically.
@@ -1244,7 +1391,8 @@
 </ol>
 <p><strong>Deliverable</strong></p>
 <p>The script (<code>.py</code>, runnable, &lt;100 lines excluding comments/imports) plus a short output (printed table or saved plot) and the 3–5 sentence interpretation, submitted together.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1267,11 +1415,13 @@
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-3-guided-reading-whittington-bogacz-2017-song-et-al-2020">Piece 3 — Guided Reading: Whittington &amp; Bogacz (2017) + Song et al. (2020)<a class="headerlink" href="#piece-3-guided-reading-whittington-bogacz-2017-song-et-al-2020" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> guided reading · <strong>Time:</strong> 75 min</p>
 <p><strong>Learning goals</strong>
 - Extract the fixed-prediction assumption's precise statement from W&amp;B's prose, tolerating mangled equations in the source text.
@@ -1293,7 +1443,8 @@
 <p><strong>Perishability check:</strong> this is an actively moving literature (the exact-equivalence result is only a few years old as of this curriculum's writing). Spend 5 minutes checking whether either paper's claim has been superseded, extended, or disputed since 2020–2022 (e.g. via the review paper <code>C2_millidge_2021_predictive_coding_review.pdf</code>, which situates both). Note anything relevant in one or two sentences — this is a check, not a literature review.</p>
 <p><strong>Deliverable</strong></p>
 <p>Answers to all 9 questions (2–4 sentences each, with a section/paragraph pointer), plus the perishability check note.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1316,11 +1467,13 @@
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-4-written-defence-does-the-projects-premise-survive-pc-backprop">Piece 4 — Written Defence: Does the Project's Premise Survive PC ≈ Backprop?<a class="headerlink" href="#piece-4-written-defence-does-the-projects-premise-survive-pc-backprop" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> written defence · <strong>Time:</strong> 75 min</p>
 <p><strong>Learning goals</strong>
 - Concede precisely what the equivalence results show before arguing past them.
@@ -1328,7 +1481,7 @@
 - Give at least one motivation for local PC-style learning that does not reduce to "it computes the same gradient as backprop."
 - Correctly and explicitly reject the claim that the equivalence establishes cortical plausibility.</p>
 <p><strong>Task</strong></p>
-<p>Write 500–600 words defending (or honestly reappraising) this project's premise, framed as an argument you would need to make in an MSc research proposal: <em>why build a local-learning, spiking, graph-topology PC network at all, given that layered PC has been shown to approximately (Whittington &amp; Bogacz) and, under specific conditions, exactly (Song et al.) recover the backprop gradient?</em></p>
+<p>Write 500–600 words defending (or honestly reappraising) this project's premise, framed as an argument you would need to make in an postgraduate research proposal: <em>why build a local-learning, spiking, graph-topology PC network at all, given that layered PC has been shown to approximately (Whittington &amp; Bogacz) and, under specific conditions, exactly (Song et al.) recover the backprop gradient?</em></p>
 <p>Your answer must, in some order:
 1. State plainly what the equivalence results actually show (concede this before arguing past it — don't bury or soften it).
 2. Name one specific step in the W&amp;B derivation and one specific feature of this project's target architecture (Steps 3–5: arbitrary graphs, spiking nonlinearities, stress-triggered structural change, online updates without settling to convergence) that breaks that step. Be specific — "graphs are different from layers" is not specific; naming <em>which</em> part of the derivation assumes a feedforward layered order, and why a cyclic graph or a structurally-changing network doesn't have that order, is.
@@ -1336,7 +1489,8 @@
 4. Answer the true/false question directly: does the equivalence prove PC is a plausible model of cortical learning? Justify.</p>
 <p><strong>Deliverable</strong></p>
 <p>500–600 words of prose (word count stated at the end). No bullet-point dodge — acceptance criteria 1–4 above must be visible as argued prose, not a checklist copy-paste.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1359,12 +1513,20 @@
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
+</div>
+</div>
+</div>
+<h2 id="verified-against-the-source">Verified against the source<a class="headerlink" href="#verified-against-the-source" title="Permanent link">&para;</a></h2>
+<p>Checked against both C6 papers. Two corrections to how they are described:</p>
+<p><strong>The name is later terminology.</strong> Whittington &amp; Bogacz (2017) do not use the phrase "fixed-prediction assumption"; that label comes from subsequent literature, including the Millidge review. Their paper sets out the conditions in its own terms. Do not mark a learner wrong for failing to find the phrase in the text, and do not accept a claim that the paper uses it.</p>
+<p><strong>Z-IL's timing condition is concrete.</strong> Song et al. specify weight updates at particular <strong>inference moments</strong> during the inference phase rather than after convergence, which is what makes the correspondence exact rather than approximate. The paper also distinguishes Z-IL from a fully autonomous variant (Fa-Z-IL) that removes the external control signal. A strong answer to the timing question names the per-moment schedule, not merely "update earlier".</p>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
-<p>The lesson (and the curriculum) is complete when, across all four pieces, the learner has:</p>
+<p>The lesson (and the curriculum) is complete when, across all four pieces, you has:</p>
 <ul>
 <li>[ ] Correctly and separately stated the fixed-prediction assumption (approximate, W&amp;B) and Z-IL's timing/initialization conditions (exact, Song et al.) — not conflated as one claim.</li>
 <li>[ ] Produced at least one worked numeric example (Piece 1 and/or Piece 2) showing agreement in the fixed-prediction regime and quantified divergence outside it.</li>
@@ -1390,6 +1552,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1428,7 +1592,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

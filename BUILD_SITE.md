@@ -46,6 +46,23 @@ cd site_src && ../.venv/bin/mkdocs gh-deploy --remote-branch gh-pages
 
 Publishes the **student** build to GitHub Pages. Check which build you are in before running it.
 
+## Page structure
+
+A lesson is one page, assembled from three sources and structured rather than concatenated:
+
+| | |
+|---|---|
+| **At a glance** | Length, prerequisites and reading, as an admonition under the title |
+| **Lecture** | The prose, with the book's figures. Its internal headings sit at H3 so they do not compete with the page's own sections |
+| **Lesson spec** | Goal, acceptance criteria, feeds, done-when. Scope bullets collapse |
+| **Authors' exercises** | Lifted out of the coursework file into its own section — it is the most important work on the page |
+| **Coursework** | Running order, a collapsed coverage map, then the four pieces as **tabs**, so one is worked at a time instead of scrolled past |
+| **Completion bar** | What must be true before moving on |
+
+Inside each piece, the rubric collapses (it is consulted after an attempt, not before). The grader key and hint ladder collapse too, and exist only in the teacher build.
+
+Design decisions behind this are in `design/lesson_template.md`; the stylesheet and palette rationale are in `design/theme_notes.md`.
+
 ## What the page for a lesson contains
 
 The **lecture** (where one is written), then the **spec** (goal, scope, acceptance criteria, source material, assigned exercises), then the **coursework** (four pieces with rubrics). That order matches the running order: read, then do. The authors' own exercise sets are linked rather than reproduced — they are Dayan & Abbott's, and `fetch_book_materials.sh` pulls them locally.

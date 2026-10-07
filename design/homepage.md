@@ -16,7 +16,7 @@ Needs linear algebra, calculus, probability, and the ability to write a simulati
 
     The textbook, chapter by chapter. Eleven lessons, about 60 hours, no neuroscience assumed.
 
-    [:octicons-arrow-right-24: Start at F1](foundations/index.md)
+    [:octicons-arrow-right-24: Start at F1](foundations/F1.md)
 
 -   :material-graph:{ .lg .middle } __Advanced tracks__
 
@@ -24,7 +24,7 @@ Needs linear algebra, calculus, probability, and the ability to write a simulati
 
     Sixteen lessons past the textbook: spiking network dynamics, biology for modellers, predictive coding.
 
-    [:octicons-arrow-right-24: Browse the tracks](advanced/index.md)
+    [:octicons-arrow-right-24: Browse the tracks](advanced/A1.md)
 
 -   :material-download:{ .lg .middle } __Materials__
 

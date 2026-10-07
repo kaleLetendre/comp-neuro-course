@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 """Generate the MkDocs source tree from the course markdown.
 
-One page per lesson: its spec followed by its coursework. Two builds come out
-of the same source — a student build with grader keys and teacher hint ladders
-stripped, and a teacher build with everything. Reading a lesson with the answer
-three paragraphs below it defeats the point, hence the split.
+One page per lesson, assembled from three sources: the lecture, the lesson
+spec, and the coursework file. The page is structured rather than concatenated
+— an at-a-glance header, the lecture, the spec, the textbook authors' own
+exercises as their own section, then the coursework with its four pieces in
+tabs so one can be worked at a time.
 
-    python3 build_site.py            # student site into site_src/
-    python3 build_site.py --teacher  # teacher site into site_src_teacher/
+Two builds come out of the same source. The student build hides grader keys
+and hint ladders; the teacher build keeps them. Reading a lesson with its
+answers three paragraphs below defeats the point.
+
+    python3 build_site.py              # student, figures cited by number
+    python3 build_site.py --figures    # student, figures embedded (local only)
+    python3 build_site.py --teacher    # everything
 """
 import os, re, shutil, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TEACHER = "--teacher" in sys.argv
-FIGURES = "--figures" in sys.argv   # embed the book's figures; local builds only
+FIGURES = "--figures" in sys.argv
 OUT = os.path.join(ROOT, ("site_src_teacher" if TEACHER else "site_src")
                    + ("_figs" if FIGURES else ""))
 DOCS = os.path.join(OUT, "docs")
@@ -23,41 +29,29 @@ TRACKS = [
     ("advanced", "Advanced", "lessons.md", r"^### ([ABC]\d+)\."),
 ]
 
-def split_specs(path, pattern):
-    """Return [(id, title, body)] for each lesson spec in a source file."""
-    text = open(os.path.join(ROOT, path)).read()
-    marks = [(m.start(), m.group(1), m.group(0)) for m in re.finditer(pattern, text, re.M)]
-    out = []
-    for i, (pos, lid, heading) in enumerate(marks):
-        end = marks[i + 1][0] if i + 1 < len(marks) else len(text)
-        chunk = text[pos:end].rstrip()
-        title = chunk.splitlines()[0].lstrip("# ").strip()
-        out.append((lid, title, chunk))
-    return out
+# ---------------------------------------------------------------- helpers
 
-def strip_keys(text):
-    """Remove grader keys and teacher constraints: everything from a
-    '**Grader key**' line up to the next '## ' heading."""
-    lines, keep, dropping = text.splitlines(), [], False
-    for ln in lines:
-        if ln.startswith("**Grader key**"):
-            dropping = True
-            keep.append("!!! note \"Grader key hidden\"")
-            keep.append("    The marking criteria and hint ladder for this piece are in the teacher build.")
-            keep.append("")
-            continue
-        if dropping:
-            if ln.startswith("## "):
-                dropping = False
-            else:
-                continue
-        keep.append(ln)
-    return "\n".join(keep)
+def indent(text, n):
+    pad = " " * n
+    return "\n".join(pad + ln if ln.strip() else "" for ln in text.splitlines())
+
+def split_sections(text):
+    """Split markdown on '## ' headings -> [(heading_or_None, body)]."""
+    parts, cur_head, cur = [], None, []
+    for ln in text.splitlines():
+        if ln.startswith("## "):
+            parts.append((cur_head, "\n".join(cur).strip()))
+            cur_head, cur = ln[3:].strip(), []
+        else:
+            cur.append(ln)
+    parts.append((cur_head, "\n".join(cur).strip()))
+    return parts
+
+# ---------------------------------------------------------------- figures
 
 FIG_RE = re.compile(r"\{\{fig:(\d+)\.(\d+)\|([^}]*)\}\}")
 
 def figure_source(chapter, number):
-    """Locate the authors' PNG for a figure, extracting the archive if needed."""
     figdir = os.path.join(ROOT, "exercises", "figures")
     tar = os.path.join(figdir, f"ch{chapter}fig.tar.gz")
     target = os.path.join(figdir, f"ch{chapter}")
@@ -71,168 +65,262 @@ def figure_source(chapter, number):
     return None
 
 def expand_figures(text, outdir):
-    """Embed the figure when building locally; cite it by number when publishing.
+    """Embed the figure locally; cite it by number when publishing.
 
-    The figures are Dayan & Abbott's, offered for teaching support. Putting them
-    on a public site is redistribution, so the published build references them
-    and the offline build - for the person who owns the book - shows them."""
+    The figures are the textbook authors', offered for teaching support.
+    Publishing them would be redistribution, so the public build references
+    them and the offline build — for someone who owns the book — shows them."""
     def repl(m):
         ch, num, cap = m.group(1), m.group(2), m.group(3).strip()
         if FIGURES:
             src = figure_source(ch, num)
             if src:
-                dest_dir = os.path.join(outdir, "figures")
-                os.makedirs(dest_dir, exist_ok=True)
-                fname = f"ch{ch}fig{num}.png"
-                shutil.copy(src, os.path.join(dest_dir, fname))
-                return (f"![Figure {ch}.{num}](../figures/{fname})\n\n"
+                dest = os.path.join(outdir, "figures")
+                os.makedirs(dest, exist_ok=True)
+                shutil.copy(src, os.path.join(dest, f"ch{ch}fig{num}.png"))
+                return (f"![Figure {ch}.{num}](../figures/ch{ch}fig{num}.png)\n\n"
                         f"*Figure {ch}.{num} — {cap}.*")
-        return (f"!!! quote \"Figure {ch}.{num}\"\n"
+        return (f'!!! quote "Figure {ch}.{num}"\n'
                 f"    {cap}.\n\n"
-                f"    In the book at figure {ch}.{num}; also in the authors' figure "
-                f"archive, which `fetch_book_materials.sh` downloads.")
+                f"    In the book at figure {ch}.{num}, and in the authors' figure "
+                f"archive that `fetch_book_materials.sh` downloads.")
     return FIG_RE.sub(repl, text)
+
+# ---------------------------------------------------------------- sources
 
 def lecture_for(lid, outdir):
     path = os.path.join(ROOT, "lectures", f"{lid}.md")
     if not os.path.exists(path):
         return None
-    body = open(path).read()
-    body = re.sub(r"^# .*\n", "", body, count=1)
+    body = re.sub(r"^# .*\n", "", open(path).read(), count=1)
+    body = re.sub(r"^## ", "### ", body, flags=re.M)   # sit below the page's H2s
     return expand_figures(body, outdir)
 
-def coursework_for(lid):
+def parse_spec(chunk):
+    """Pull the at-a-glance fields out of a lesson spec; collapse Scope."""
+    chunk = re.sub(r"^### .*\n", "", chunk, count=1)
+    fields = {}
+    for key in ("Prerequisites", "Size", "Source material", "Local copies"):
+        m = re.search(rf"^\*\*{key}:\*\*\s*(.+)$", chunk, re.M)
+        if m:
+            fields[key] = m.group(1).strip()
+            chunk = chunk.replace(m.group(0) + "\n", "")
+    m = re.search(r"^\*\*Scope:\*\*\s*\n((?:[-*] .*\n?)+)", chunk, re.M)
+    if m:
+        collapsed = '??? note "Scope — what the lesson covers"\n\n' + indent(m.group(1).rstrip(), 4)
+        chunk = chunk.replace(m.group(0), collapsed + "\n")
+    return fields, chunk.strip()
+
+PIECE_RE = re.compile(r"^(Piece \d+)\s*[—-]\s*(.+)$")
+
+def parse_coursework(lid):
     name = "BRIDGE" if lid == "Bridge" else lid
     path = os.path.join(ROOT, "coursework", f"{name}.md")
     if not os.path.exists(path):
         return None
-    body = open(path).read()
-    body = re.sub(r"^# .*\n", "", body, count=1)          # its own H1 duplicates the page title
-    return body if TEACHER else strip_keys(body)
+    text = re.sub(r"^# .*\n", "", open(path).read(), count=1)
+    total_time = None
+    m = re.search(r"\*\*Total time:\*\*\s*([^.]+(?:\.[^*]*)?)", text)
+    if m:
+        total_time = m.group(1).strip().rstrip(".")
+    out = {"time": total_time, "exercises": None, "running": None,
+           "coverage": None, "pieces": [], "completion": None, "extra": []}
+    for head, body in split_sections(text):
+        if head is None:
+            continue
+        h = head.lower()
+        if h.startswith("assigned exercises"):
+            out["exercises"] = body
+        elif h.startswith("running order"):
+            out["running"] = body
+        elif h.startswith("coverage map"):
+            out["coverage"] = body
+        elif h.startswith("completion bar"):
+            out["completion"] = body
+        elif PIECE_RE.match(head):
+            out["pieces"].append((head, body))
+        else:
+            out["extra"].append((head, body))
+    return out
 
-def demote(text):
-    """Lesson spec arrives as H3; make it the page H1 and push the rest down."""
-    text = re.sub(r"^### ", "# ", text, count=1, flags=re.M)
-    return text
+def fold_piece(body):
+    """Collapse rubric, grader key and hint ladder inside a piece."""
+    def grab(label, until):
+        pat = re.compile(rf"(^\*\*{label}\*\*[^\n]*\n.*?)(?=^\*\*(?:{until})\*\*|\Z)",
+                         re.M | re.S)
+        m = pat.search(body)
+        return m.group(1).rstrip() if m else None
+
+    rubric = grab("Rubric", "Grader key|Teacher constraints")
+    key = grab("Grader key", "Teacher constraints")
+    hints = grab("Teacher constraints", "ZZZ")
+    for blk in (rubric, key, hints):
+        if blk:
+            body = body.replace(blk, "").rstrip()
+
+    out = body.rstrip() + "\n"
+    if rubric:
+        rubric = re.sub(r"^\*\*Rubric\*\*[^\n]*\n", "", rubric)
+        out += '\n??? info "Rubric — how this is marked"\n\n' + indent(rubric.strip(), 4) + "\n"
+    if key:
+        if TEACHER:
+            key = re.sub(r"^\*\*Grader key\*\*[^\n]*\n", "", key)
+            out += '\n??? danger "Grader key — teacher build"\n\n' + indent(key.strip(), 4) + "\n"
+        else:
+            out += ('\n!!! note "Grader key hidden"\n\n'
+                    "    The marking criteria for this piece are in the teacher build.\n")
+    if hints and TEACHER:
+        hints = re.sub(r"^\*\*Teacher constraints\*\*[^\n]*\n", "", hints)
+        out += '\n??? tip "Hint ladder — teacher build"\n\n' + indent(hints.strip(), 4) + "\n"
+    return out
+
+# ---------------------------------------------------------------- assembly
+
+def build_page(lid, title, spec_chunk, outdir):
+    fields, spec_body = parse_spec(spec_chunk)
+    cw = parse_coursework(lid)
+    lec = lecture_for(lid, outdir)
+
+    glance = ['!!! abstract "At a glance"', ""]
+    if fields.get("Size"):
+        t = f" · about {cw['time']}" if cw and cw.get("time") else ""
+        glance.append(f"    **Length** — {fields['Size']}{t}")
+    if fields.get("Prerequisites"):
+        glance.append(f"    **Before this** — {fields['Prerequisites']}")
+    if fields.get("Source material"):
+        glance.append(f"    **Reading** — {fields['Source material']}")
+    page = f"# {title}\n\n" + "\n".join(glance) + "\n\n[TOC]\n\n"
+
+    if lec:
+        page += "## Lecture\n\n" + lec + "\n\n"
+    page += "## Lesson spec\n\n" + spec_body + "\n\n"
+
+    if cw:
+        if cw["exercises"]:
+            page += "## Authors' exercises\n\n" + cw["exercises"] + "\n\n"
+        page += "## Coursework\n\n"
+        if cw["running"]:
+            page += cw["running"] + "\n\n"
+        if cw["coverage"]:
+            page += '??? note "Coverage map"\n\n' + indent(cw["coverage"], 4) + "\n\n"
+        for head, body in cw["pieces"]:
+            page += f'=== "{head}"\n\n' + indent(fold_piece(body), 4) + "\n\n"
+        for head, body in cw["extra"]:
+            page += f"## {head}\n\n{body}\n\n"
+        if cw["completion"]:
+            page += "## Completion bar\n\n" + cw["completion"] + "\n"
+    else:
+        page += "*No coursework written for this lesson yet.*\n"
+    return page
+
+def split_specs(path, pattern):
+    text = open(os.path.join(ROOT, path)).read()
+    marks = [(m.start(), m.group(1)) for m in re.finditer(pattern, text, re.M)]
+    out = []
+    for i, (pos, lid) in enumerate(marks):
+        end = marks[i + 1][0] if i + 1 < len(marks) else len(text)
+        chunk = text[pos:end].rstrip()
+        title = chunk.splitlines()[0].lstrip("# ").strip()
+        title = re.sub(r"^(F\d+|Bridge|[ABC]\d+)\.\s*", "", title)
+        out.append((lid, title, chunk))
+    return out
+
+# ---------------------------------------------------------------- build
 
 if os.path.isdir(OUT):
     shutil.rmtree(OUT)
 os.makedirs(DOCS)
+os.makedirs(os.path.join(DOCS, "stylesheets"), exist_ok=True)
+shutil.copy(os.path.join(ROOT, "design", "theme.css"),
+            os.path.join(DOCS, "stylesheets", "theme.css"))
+with open(os.path.join(DOCS, "stylesheets", "theme.css"), "a") as f:
+    f.write("\n/* Four piece-name tabs will not fit unscrolled at tablet width. */\n"
+            ".md-typeset .tabbed-labels { overflow-x: auto; flex-wrap: nowrap; }\n")
 
 nav_tracks = {}
 for key, label, src, pattern in TRACKS:
     os.makedirs(os.path.join(DOCS, key), exist_ok=True)
     entries = []
     for lid, title, spec in split_specs(src, pattern):
-        lec = lecture_for(lid, DOCS)
-        page = f"# {title}\n\n[TOC]\n\n"
-        if lec:
-            page += "## Lecture\n\n" + lec + "\n\n---\n\n"
-        page += "## Lesson spec\n\n" + re.sub(r"^### .*\n", "", demote(spec), count=1, flags=re.M)
-        page += "\n\n---\n\n"
-        cw = coursework_for(lid)
-        page += cw if cw else "*No coursework written for this lesson yet.*\n"
-        fname = f"{lid}.md"
-        open(os.path.join(DOCS, key, fname), "w").write(page)
-        entries.append((title, f"{key}/{fname}"))
+        open(os.path.join(DOCS, key, f"{lid}.md"), "w").write(
+            build_page(lid, f"{lid} · {title}", spec, DOCS))
+        entries.append((f"{lid} · {title}", f"{key}/{lid}.md"))
     nav_tracks[key] = entries
+    index = os.path.join(ROOT, "design", f"{key}_index.md")
+    if os.path.exists(index):
+        shutil.copy(index, os.path.join(DOCS, key, "index.md"))
 
-# stylesheet: fill the screen, and no persistent table of contents
-os.makedirs(os.path.join(DOCS, "stylesheets"), exist_ok=True)
-open(os.path.join(DOCS, "stylesheets", "extra.css"), "w").write("""
-/* Use the whole window rather than Material's narrow default column. */
-.md-grid { max-width: 100%; }
-.md-main__inner { margin-top: 0.5rem; }
-
-/* No persistent right-hand table of contents - each page carries an inline
-   one at the top instead, so reading gets the full panel. */
-.md-sidebar--secondary { display: none !important; }
-@media screen and (min-width: 76.25em) {
-  .md-content { margin-right: 1.5rem; }
-}
-
-/* The inline [TOC] block: compact, boxed, at the top of the page. */
-.md-content .toc, .md-content .toctitle + ul, .md-content div.toc {
-  font-size: 0.75rem;
-  border-left: 3px solid var(--md-primary-fg-color);
-  background: var(--md-code-bg-color);
-  padding: 0.6rem 0.9rem;
-  margin: 0 0 1.5rem 0;
-  border-radius: 2px;
-}
-.md-content div.toc ul { margin: 0.2rem 0; padding-left: 1rem; }
-.md-content div.toc > ul > li > ul { display: none; }  /* top level only */
-
-/* Lecture figures: full width, with breathing room. */
-.md-content img { max-width: 100%; display: block; margin: 1rem auto; }
-
-/* Readable measure for prose even on a wide screen. */
-.md-typeset p, .md-typeset li { max-width: 62rem; }
-""")
-
-# top-level pages
 REPO = "https://github.com/kaleLetendre/comp-neuro-course/blob/main/"
-LINK_FIXES = [
-    ("(foundations.md)", "(foundations/F1.md)"),
-    ("(lessons.md)", "(advanced/A1.md)"),
-    ("(learning_plan.md)", "(plan.md)"),
-    ("(MATERIALS.md)", "(materials.md)"),
-    ("(fetch_papers.py)", f"({REPO}fetch_papers.py)"),
-    ("(fetch_book_materials.sh)", f"({REPO}fetch_book_materials.sh)"),
-    ("(fetch_closed_papers.py)", f"({REPO}fetch_closed_papers.py)"),
-    ("(coursework/README.md)", f"({REPO}coursework/README.md)"),
-]
-for src, dest, title in [("README.md", "index.md", None),
-                         ("learning_plan.md", "plan.md", None),
-                         ("MATERIALS.md", "materials.md", None)]:
-    body = open(os.path.join(ROOT, src)).read()
+LINK_FIXES = [("(foundations.md)", "(foundations/index.md)"),
+              ("(lessons.md)", "(advanced/index.md)"),
+              ("(foundations/F1.md)", "(foundations/index.md)"),
+              ("(advanced/A1.md)", "(advanced/index.md)"),
+              ("(learning_plan.md)", "(plan.md)"),
+              ("(MATERIALS.md)", "(materials.md)"),
+              ("(fetch_papers.py)", f"({REPO}fetch_papers.py)"),
+              ("(fetch_book_materials.sh)", f"({REPO}fetch_book_materials.sh)"),
+              ("(fetch_closed_papers.py)", f"({REPO}fetch_closed_papers.py)"),
+              ("(coursework/README.md)", f"({REPO}coursework/README.md)")]
+
+home = os.path.join(ROOT, "design", "homepage.md")
+for src, dest in [(home if os.path.exists(home) else "README.md", "index.md"),
+                  ("learning_plan.md", "plan.md"),
+                  ("MATERIALS.md", "materials.md")]:
+    body = open(src if os.path.isabs(src) else os.path.join(ROOT, src)).read()
     for a, b in LINK_FIXES:
         body = body.replace(a, b)
     open(os.path.join(DOCS, dest), "w").write(body)
 
 def nav_lines():
-    out = ["  - Home: index.md", "  - Plan: plan.md", "  - Materials: materials.md"]
+    out = ["  - Home: index.md"]
     for key, label, _, _ in TRACKS:
         out.append(f"  - {label}:")
+        out.append(f"      - Overview: {key}/index.md")
         for title, path in nav_tracks[key]:
-            out.append(f"      - \"{title}\": {path}")
+            out.append(f'      - "{title}": {path}')
+    out += ["  - Materials: materials.md", "  - Plan: plan.md"]
     return "\n".join(out)
 
-site_name = "Comp Neuro Course" + (" (teacher)" if TEACHER else "")
+site_name = "Computational Neuroscience" + (" (teacher)" if TEACHER else "")
 open(os.path.join(OUT, "mkdocs.yml"), "w").write(f"""site_name: {site_name}
-site_description: A self-study computational neuroscience curriculum built on Dayan & Abbott
+site_description: A self-study course in computational neuroscience built on Dayan & Abbott
 docs_dir: docs
-site_dir: ../site{'_teacher' if TEACHER else ''}
+site_dir: ../site{'_teacher' if TEACHER else '_offline' if FIGURES else ''}
 theme:
   name: material
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
+      primary: blue grey
+      accent: indigo
       toggle: {{icon: material/weather-night, name: Dark}}
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
+      primary: blue grey
+      accent: indigo
       toggle: {{icon: material/weather-sunny, name: Light}}
   features:
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.indexes
     - navigation.top
     - navigation.prune
     - search.suggest
     - search.highlight
     - content.code.copy
+    - content.tabs.link
 extra_css:
-  - stylesheets/extra.css
+  - stylesheets/theme.css
 markdown_extensions:
-  - toc:
-      permalink: true
-      toc_depth: 2
+  - toc: {{permalink: true, toc_depth: 2}}
   - admonition
+  - attr_list
+  - md_in_html
+  - tables
   - pymdownx.details
   - pymdownx.superfences
-  - pymdownx.arithmatex:
-      generic: true
-  - tables
-  - attr_list
+  - pymdownx.tabbed: {{alternate_style: true}}
+  - pymdownx.arithmatex: {{generic: true}}
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 plugins:
@@ -240,6 +328,6 @@ plugins:
 nav:
 {nav_lines()}
 """)
-print(f"{'teacher' if TEACHER else 'student'}{' +figures' if FIGURES else ''} source written to {OUT}")
-print(f"  foundations: {len(nav_tracks['foundations'])} pages")
-print(f"  advanced:    {len(nav_tracks['advanced'])} pages")
+print(f"{'teacher' if TEACHER else 'student'}{' +figures' if FIGURES else ''} -> {OUT}")
+for k in nav_tracks:
+    print(f"  {k}: {len(nav_tracks[k])} lessons")

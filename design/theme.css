@@ -1,0 +1,488 @@
+/* =========================================================================
+   Comp Neuro Course — theme.css
+   -------------------------------------------------------------------------
+   Extends MkDocs Material. Does not fight its structure: every rule below
+   layers on top of Material's own CSS custom properties so the light/dark
+   toggle keeps working without a second copy of the rules. Replaces the
+   project's existing stylesheets/extra.css wholesale (it already removed
+   the content-width cap and hid the right-hand ToC; those rules are
+   reproduced here, improved, so this file is the single source of truth).
+
+   Read top to bottom: typography -> page skeleton -> navigation (the
+   barren-sidebar fix) -> lesson structure (Lecture / Lesson spec /
+   Coursework) -> inline contents box -> tables -> admonitions -> figures
+   -> code -> narrow-screen tightening.
+   ========================================================================= */
+
+
+/* -------------------------------------------------------------------------
+   1. TYPOGRAPHY
+   A book, not an app. Georgia is a screen-tested serif with real italics
+   and old-style figures, present on every OS Material ships to (Windows,
+   mac, Linux, Android, iOS) with no network fetch and no flash-of-
+   unstyled-text while a web font loads — important on a tablet, which is
+   the primary device here. If a different serif is wanted later, see
+   theme_notes.md for the Google Fonts alternative and what config line it
+   needs.
+   ------------------------------------------------------------------------- */
+
+:root {
+  --cnc-serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+    serif;
+  --cnc-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+/* Body text: serif, comfortable size, generous line height, a measure
+   (character count per line) that stops long paragraphs from becoming
+   hard to track on a wide desktop window. */
+.md-typeset {
+  font-family: var(--cnc-serif);
+  font-size: 0.72rem; /* Material's rem base is larger than it looks; this
+                          lands body text close to 17px actual. */
+  line-height: 1.7;
+}
+
+.md-typeset p,
+.md-typeset li {
+  max-width: 42rem; /* ~70-75 characters per line at this font size */
+}
+
+/* Headings stay on the system sans — it differentiates structure from
+   prose at a glance, the classic "serif body, sans headings" textbook
+   pairing — and get a tightened, weighted hierarchy so H2/H3/H4 are
+   unambiguous even when skimming on a small screen. */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5 {
+  font-family: var(--cnc-sans);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.md-typeset h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.md-typeset h3 {
+  font-size: 1.05rem;
+  margin-top: 2rem;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset h4 {
+  font-size: 0.9rem;
+  color: var(--md-default-fg-color--light);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Links: understated. Material's default is a bright accent underline on
+   everything, which is noisy across 28 long pages of running prose. */
+.md-typeset a {
+  color: var(--md-primary-fg-color);
+  text-decoration-color: var(--md-default-fg-color--lighter);
+  text-underline-offset: 2px;
+}
+.md-typeset a:hover {
+  text-decoration-color: currentColor;
+}
+
+
+/* -------------------------------------------------------------------------
+   2. PAGE SKELETON
+   Full-width content column (Material's default caps it narrow), a
+   trimmed top gap, and the right-hand ToC rail removed — these pages
+   already carry their own inline contents block instead (section 5).
+   ------------------------------------------------------------------------- */
+
+.md-grid {
+  max-width: 100%;
+}
+
+.md-main__inner {
+  margin-top: 0.5rem;
+}
+
+.md-sidebar--secondary {
+  display: none !important;
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-content {
+    margin-right: 2rem;
+    margin-left: 1rem;
+  }
+}
+
+
+/* -------------------------------------------------------------------------
+   3. NAVIGATION — fixing the barren left sidebar
+   The complaint: with navigation.tabs, Foundations/Advanced live in the
+   header, so the left rail only ever shows one section's page list — on a
+   short section that's a handful of lines in a sea of empty space, and
+   on every section the single active page name used to look like the
+   entire left side of the page was "consumed by a single word" because
+   nothing else on the rail had any visual weight.
+
+   Fix: give the rail real typographic presence (a vertical rhythm,
+   consistent left rule, generous click targets) so it reads as a
+   considered nav list at any length, not a stray label; make the active
+   item unmistakable (colour fill + left bar, not just a colour change);
+   and treat the section title the rail starts with as an actual label
+   (small caps, letter-spaced) rather than a lonely heading.
+   ------------------------------------------------------------------------- */
+
+.md-sidebar--primary {
+  font-family: var(--cnc-sans);
+}
+
+/* The section label ("Foundations" / "Advanced") at the top of the rail —
+   make it read as a label, not a stranded page title. */
+.md-nav--primary > .md-nav__title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--md-default-fg-color--light);
+  padding: 0.9rem 0.8rem 0.6rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  margin-bottom: 0.4rem;
+}
+
+/* Give every nav link some body: padding instead of a bare line of text,
+   a left rule that shows up even when the item isn't active, and enough
+   line-height that a short list doesn't look thin. */
+.md-nav__item {
+  margin: 0;
+}
+
+.md-nav__link {
+  padding: 0.38rem 0.8rem 0.38rem 0.95rem;
+  border-left: 2px solid transparent;
+  font-size: 0.68rem;
+  line-height: 1.5;
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+}
+
+.md-nav__link:hover {
+  background: var(--md-code-bg-color);
+  border-left-color: var(--md-default-fg-color--lighter);
+}
+
+/* Active page: filled, bold, with a solid accent rule — unmistakable at
+   a glance, which matters most on a short list where everything else
+   used to look the same. */
+.md-nav__link--active {
+  font-weight: 600;
+  color: var(--md-primary-fg-color);
+  background: var(--md-code-bg-color);
+  border-left-color: var(--md-primary-fg-color);
+}
+
+/* Nested lesson numbers (F1, F2, ...) sit slightly indented so the eye
+   still finds the section rhythm at a glance, without the usual deep
+   Material cascade of indents. */
+.md-nav__item .md-nav__item {
+  padding-left: 0.3rem;
+}
+
+
+/* -------------------------------------------------------------------------
+   4. LESSON PAGE STRUCTURE — Lecture / Lesson spec / Coursework
+   Each lesson is three large parts separated by a Markdown `---` rule.
+   Style H2 as a section banner: full-bleed-feeling block, a top border in
+   the primary colour, generous padding — so a reader scrolling fast finds
+   the three-way division immediately. All second-level headings get this
+   treatment uniformly (the content below still differentiates further
+   with H3/H4), which also means the fix is zero-maintenance: no need to
+   special-case "Lecture" vs "Lesson spec" vs "Coursework" by text match.
+   ------------------------------------------------------------------------- */
+
+.md-typeset h2 {
+  font-size: 1.25rem;
+  margin-top: 2.6rem;
+  margin-bottom: 1.1rem;
+  padding: 0.6rem 0 0.6rem 0.9rem;
+  border-top: 3px solid var(--md-primary-fg-color);
+  border-left: 3px solid var(--md-primary-fg-color);
+  background: var(--md-code-bg-color);
+}
+
+/* The first H2 on the page (normally "Lecture") doesn't need the usual
+   top margin pushing it away from the title/contents box above it. */
+.md-typeset h1 + .toc + h2,
+.md-typeset h1 ~ h2:first-of-type {
+  margin-top: 1.4rem;
+}
+
+/* The `---` rules the source already uses between the three parts: make
+   them a deliberate break rather than Material's thin default line. */
+.md-typeset hr {
+  border: none;
+  border-top: 1px solid var(--md-default-fg-color--lighter);
+  margin: 2.2rem 0;
+}
+
+
+/* -------------------------------------------------------------------------
+   5. INLINE CONTENTS BOX
+   Each page opens with a `[TOC]` block. Make it read as a compact,
+   deliberate index card — not a stray bordered div — using a two-column
+   flow on wide screens so a long lesson's contents list doesn't run the
+   full column height before the Lecture even starts.
+   ------------------------------------------------------------------------- */
+
+.md-content .toc,
+.md-content div.toc {
+  font-family: var(--cnc-sans);
+  font-size: 0.66rem;
+  line-height: 1.6;
+  background: var(--md-code-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-left: 3px solid var(--md-primary-fg-color);
+  border-radius: 0.2rem;
+  padding: 0.7rem 1.1rem;
+  margin: 0.4rem 0 1.8rem 0;
+}
+
+.md-content div.toc > ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  columns: 2;
+  column-gap: 1.5rem;
+}
+
+/* Only the top-level entries are shown — nested sub-lists stay hidden so
+   the box stays compact on a 28-section lesson rather than printing the
+   whole document outline. */
+.md-content div.toc > ul > li > ul {
+  display: none;
+}
+
+.md-content div.toc li {
+  break-inside: avoid;
+  max-width: none; /* overrides the global prose-measure rule in section 1 */
+}
+
+.md-content div.toc a {
+  color: var(--md-default-fg-color--light);
+  text-decoration: none;
+}
+.md-content div.toc a:hover {
+  color: var(--md-primary-fg-color);
+}
+
+
+/* -------------------------------------------------------------------------
+   6. TABLES
+   Several are wide (e.g. chapter-section cross-reference tables). Zebra
+   striping for scanability, calmer padding than Material's default, and
+   a horizontal-scroll wrapper instead of letting a wide table blow out
+   the layout or wrap illegibly on a tablet-split window.
+   ------------------------------------------------------------------------- */
+
+.md-typeset table:not([class]) {
+  font-size: 0.66rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.2rem;
+}
+
+.md-typeset table:not([class]) th {
+  font-family: var(--cnc-sans);
+  font-weight: 600;
+  background: var(--md-code-bg-color);
+  padding: 0.55rem 0.8rem;
+}
+
+.md-typeset table:not([class]) td {
+  padding: 0.5rem 0.8rem;
+  vertical-align: top;
+}
+
+/* Zebra striping, using Material's own faint surface tone so it holds up
+   identically in slate mode with no separate dark-mode override needed. */
+.md-typeset table:not([class]) tr:nth-child(even) {
+  background-color: var(--md-code-bg-color);
+}
+
+/* Material already wraps tables in a scroll container; just make sure it
+   never silently clips rather than scrolling on a narrow viewport. */
+.md-typeset__scrollwrap {
+  overflow-x: auto;
+  margin: 1.2rem 0;
+}
+
+
+/* -------------------------------------------------------------------------
+   7. ADMONITIONS
+   note / quote (figure references) / tip / warning, used heavily.
+   Material's defaults are saturated, icon-heavy, and loud across a page
+   that already has a lot going on. Quiet them: a plain left rule in a
+   muted per-type colour, a subtle fill, small-caps-ish title treatment,
+   no drop shadow. Figure references (`quote`) in particular need to feel
+   like captions, not alerts.
+   ------------------------------------------------------------------------- */
+
+.md-typeset .admonition {
+  font-size: 0.68rem;
+  border: none;
+  border-left: 3px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.15rem;
+  background: var(--md-code-bg-color);
+  box-shadow: none;
+  padding: 0.7rem 1rem;
+  margin: 1.4rem 0;
+}
+
+.md-typeset .admonition-title {
+  font-family: var(--cnc-sans);
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.01em;
+  background: transparent !important;
+  padding-left: 0 !important;
+  margin-bottom: 0.4rem;
+}
+
+/* Drop Material's oversized coloured icon badges in favour of the quiet
+   left rule doing all the differentiation work. */
+.md-typeset .admonition-title::before {
+  display: none;
+}
+
+/* Per-type rule colour only — restrained, not a repaint of the whole
+   box. `quote` (figure captions) gets the gentlest treatment since it's
+   the most frequent type and should read as reference material. */
+.md-typeset .admonition.note {
+  border-left-color: var(--md-primary-fg-color);
+}
+.md-typeset .admonition.quote {
+  border-left-color: var(--md-default-fg-color--light);
+  font-style: italic;
+}
+.md-typeset .admonition.quote .admonition-title {
+  font-style: normal;
+}
+.md-typeset .admonition.tip {
+  border-left-color: var(--md-accent-fg-color);
+}
+.md-typeset .admonition.warning {
+  border-left-color: #a65d2e; /* muted ochre — reads as "caution" without
+                                   Material's default saturated red/orange */
+}
+[data-md-color-scheme="slate"] .md-typeset .admonition.warning {
+  border-left-color: #c48a52;
+}
+
+
+/* -------------------------------------------------------------------------
+   8. FIGURES
+   Greyscale scientific plots, sometimes wide. Centred, height-capped so
+   one figure never fills the viewport on a tall tablet page, and given a
+   thin neutral frame that stays legible against both a white and a dark
+   background (a plain border, not a hard-coded white card, since several
+   source figures have transparent or white backgrounds that would
+   otherwise float against slate mode).
+   ------------------------------------------------------------------------- */
+
+.md-typeset img {
+  display: block;
+  margin: 1.3rem auto;
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.2rem;
+  background: #fff; /* scans/plots are greyscale-on-white; keep that frame
+                         consistent instead of the image going transparent
+                         onto a dark page background in slate mode */
+  padding: 0.3rem;
+}
+
+/* Figure captions, when figures are wrapped in <figure><figcaption>. */
+.md-typeset figcaption {
+  font-family: var(--cnc-sans);
+  font-size: 0.62rem;
+  color: var(--md-default-fg-color--light);
+  text-align: center;
+  margin-top: -0.6rem;
+}
+
+
+/* -------------------------------------------------------------------------
+   9. CODE BLOCKS
+   Python, read on a tablet: a slightly smaller monospace block than
+   Material's default so wide lines wrap less, generous padding, and a
+   border instead of relying purely on a background colour shift (which
+   on some slate-mode variants reads as very low contrast).
+   ------------------------------------------------------------------------- */
+
+.md-typeset pre > code {
+  font-size: 0.64rem;
+  line-height: 1.6;
+}
+
+.md-typeset .highlight {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.2rem;
+}
+
+.md-typeset code {
+  background: var(--md-code-bg-color);
+}
+
+
+/* -------------------------------------------------------------------------
+   10. NARROW SCREENS — the tablet-split case (~500-600px)
+   This is the primary reading mode, not an edge case: half a tablet
+   screen in split view, the other half a handwriting app. Tighten
+   margins, shrink the banner padding, drop the two-column contents box
+   back to one column, and make sure nothing (figures, tables, code)
+   forces horizontal scroll on the page itself.
+   ------------------------------------------------------------------------- */
+
+@media screen and (max-width: 44.9375em) {
+  .md-content__inner {
+    padding: 0.9rem 0.8rem 1.6rem;
+  }
+
+  .md-typeset {
+    font-size: 0.74rem; /* body text stays comfortable even though
+                            everything else tightens */
+  }
+
+  .md-typeset h1 {
+    font-size: 1.35rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.1rem;
+    padding: 0.5rem 0 0.5rem 0.7rem;
+    margin-top: 2rem;
+  }
+
+  .md-content div.toc > ul {
+    columns: 1;
+  }
+
+  .md-typeset .admonition {
+    padding: 0.6rem 0.8rem;
+    margin: 1.1rem 0;
+  }
+
+  .md-typeset img {
+    max-height: 55vh;
+  }
+
+  /* Give the nav drawer the same treatment as the full-width rail so it
+     isn't a regression when it's the only nav the reader sees. */
+  .md-nav--primary > .md-nav__title {
+    padding: 1rem 0.9rem 0.7rem;
+  }
+}

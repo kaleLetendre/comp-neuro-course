@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+        <meta name="description" content="A self-study course in computational neuroscience built on Dayan & Abbott">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>B5. Hippocampal replay and consolidation - Comp Neuro Course</title>
+        <title>B5 · Hippocampal replay and consolidation - Computational Neuroscience</title>
       
     
     
@@ -51,7 +51,7 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/theme.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -69,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-header__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,13 +108,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Comp Neuro Course
+            Computational Neuroscience
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              B5. Hippocampal replay and consolidation
+              B5 · Hippocampal replay and consolidation
             
           </span>
         </div>
@@ -127,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -137,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -227,17 +227,44 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../plan/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../foundations/" class="md-tabs__link">
+          
   
   
     
   
-  Plan
+  Foundations
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Advanced
+
+        </a>
+      </li>
+    
   
 
       
@@ -265,40 +292,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../foundations/F1/" class="md-tabs__link">
-          
-  
-  
-  Foundations
-
-        </a>
-      </li>
-    
-  
-
-      
+    <li class="md-tabs__item">
+      <a href="../../plan/" class="md-tabs__link">
         
   
   
-  
     
   
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../A1/" class="md-tabs__link">
-          
-  
-  
-  Advanced
+  Plan
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -330,13 +334,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-nav__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Comp Neuro Course
+    Computational Neuroscience
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -374,15 +378,200 @@
   
   
   
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../foundations/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../plan/" class="md-nav__link">
+      <a href="../A1/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Plan
+    A1 · Synaptic delays and temporal structure
   
 
     
@@ -391,6 +580,536 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 · Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3 · Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 · Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5 · State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1 · Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2 · Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3 · Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4 · Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5 · Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5 · Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#track-c-predictive-coding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track C — predictive coding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verified-against-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified against the source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1 · Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2 · Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3 · Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4 · Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5 · Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6 · PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -428,123 +1147,15 @@
   
   
   
-    
-    
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-  
-    <a href="../../foundations/F1/" class="md-nav__link">
-      
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Foundations
-  
-
-    
-  </span>
-  
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Advanced
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../A1/" class="md-nav__link">
+      <a href="../../plan/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    A1. Synaptic delays and temporal structure
+    Plan
   
 
     
@@ -553,492 +1164,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A2. Attractors and network state
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A3. Oscillations and synchrony
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A4. Short-term plasticity, refractory period, reset modes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A5. State of the field: why SNNs, where they stand vs ANNs
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B2. Cortical microcircuits and laminar structure
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B3. Dendritic computation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B4. Developmental pruning: how brains choose their own size
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B5. Hippocampal replay and consolidation
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B5. Hippocampal replay and consolidation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lesson-spec" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Lesson spec
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C1. Predictive coding as energy minimization
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C2. Inference vs learning: two nested loops and their schedules
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C3. Precision weighting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C5. Clamping and frozen priors
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C6/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C6. PC ≈ backprop: what the equivalence does and does not claim
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1080,6 +1205,50 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#track-c-predictive-coding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track C — predictive coding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verified-against-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified against the source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1097,41 +1266,38 @@
 
 
 
-<h1 id="b5-hippocampal-replay-and-consolidation">B5. Hippocampal replay and consolidation<a class="headerlink" href="#b5-hippocampal-replay-and-consolidation" title="Permanent link">&para;</a></h1>
+<h1 id="b5-hippocampal-replay-and-consolidation">B5 · Hippocampal replay and consolidation<a class="headerlink" href="#b5-hippocampal-replay-and-consolidation" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>Length</strong> — one to two sittings · about ~3 hours across 4 pieces (one to two sittings)
+<strong>Before this</strong> — A2 (attractors and network state); the Step 2b online-learning results
+<strong>Reading</strong> — <strong>Not in D&amp;A.</strong> McClelland, McNaughton &amp; O'Reilly 1995 (Psych Review) for the CLS argument; Foster &amp; Wilson 2006 (Nature) on reverse replay; Ólafsdóttir, Bush &amp; Barry 2018 for a current review.</p>
+</div>
 <div class="toc">
 <ul>
-<li><a href="#b5-hippocampal-replay-and-consolidation">B5. Hippocampal replay and consolidation</a><ul>
+<li><a href="#b5-hippocampal-replay-and-consolidation">B5 · Hippocampal replay and consolidation</a><ul>
 <li><a href="#lesson-spec">Lesson spec</a></li>
-</ul>
-</li>
-<li><a href="#b5-hippocampal-replay-and-consolidation_1">B5. Hippocampal replay and consolidation</a><ul>
 <li><a href="#track-c-predictive-coding">Track C — predictive coding</a></li>
-<li><a href="#running-order">Running order</a></li>
+<li><a href="#coursework">Coursework</a></li>
 <li><a href="#verified-against-the-source">Verified against the source</a></li>
-<li><a href="#coverage-map">Coverage map</a></li>
-<li><a href="#piece-1-replay-compression-and-interference-arithmetic">Piece 1 — Replay compression and interference arithmetic</a></li>
-<li><a href="#piece-2-catastrophic-forgetting-and-the-cheapest-fix">Piece 2 — Catastrophic forgetting and the cheapest fix</a></li>
-<li><a href="#piece-3-guided-reading-olafsdottir-et-al-2018">Piece 3 — Guided reading: Ólafsdóttir et al. 2018</a></li>
-<li><a href="#piece-4-written-defense-does-step-2b-need-replay">Piece 4 — Written defense: does Step 2b need replay?</a></li>
 <li><a href="#completion-bar">Completion bar</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
-<h1 id="b5-hippocampal-replay-and-consolidation_1">B5. Hippocampal replay and consolidation<a class="headerlink" href="#b5-hippocampal-replay-and-consolidation_1" title="Permanent link">&para;</a></h1>
-<p><strong>Prerequisites:</strong> A2 (attractors and network state); the Step 2b online-learning results</p>
-<p><strong>Size:</strong> one to two sittings</p>
-<p><strong>Source material:</strong> <strong>Not in D&amp;A.</strong> McClelland, McNaughton &amp; O'Reilly 1995 (Psych Review) for the CLS argument; Foster &amp; Wilson 2006 (Nature) on reverse replay; Ólafsdóttir, Bush &amp; Barry 2018 for a current review.</p>
-<p><strong>Local copies:</strong> <code>papers/B5_olafsdottir_2018_replay_memory_planning.txt</code> (full text, no OA PDF). McClelland et al. 1995 (doi:10.1037/0033-295X.102.3.419) and Foster &amp; Wilson 2006 (doi:10.1038/nature04587) need institutional access.</p>
 <p><strong>Goal:</strong> State why a fast one-shot store and a slow interference-free store are in tension (the CLS argument), what sharp-wave ripple replay actually looks like in data, and how both map onto catastrophic forgetting and experience replay in ML. Closes the gap between "replay sounds like a buzzword" and "replay is the specific fix for a specific interference problem the online-learning work has already hit".</p>
-<p><strong>Scope:</strong>
-- Sharp-wave ripple replay as observed: forward and reverse place-cell sequences, ~10-20x temporal compression, in quiet wake and slow-wave sleep rather than during active behaviour
-- Systems consolidation: hippocampus as fast episodic store, neocortex as slow interleaved store, replay as the offline training signal between them
-- Complementary Learning Systems (McClelland, McNaughton &amp; O'Reilly): the explicit argument that one network cannot be both fast-learning and interference-free, stated as a trade-off rather than an assertion
-- Catastrophic forgetting as the ML restatement of the same problem, and RL experience-replay buffers as the engineering answer - what corresponds to hippocampal replay and what does not
-- Preplay of never-experienced trajectories, and what it implies about planning versus pure rehearsal
-- Not covered: the mechanisms generating ripple oscillations (A3), the PC inference/learning schedule (C2)</p>
+<details class="note">
+<summary>Scope — what the lesson covers</summary>
+<ul>
+<li>Sharp-wave ripple replay as observed: forward and reverse place-cell sequences, ~10-20x temporal compression, in quiet wake and slow-wave sleep rather than during active behaviour</li>
+<li>Systems consolidation: hippocampus as fast episodic store, neocortex as slow interleaved store, replay as the offline training signal between them</li>
+<li>Complementary Learning Systems (McClelland, McNaughton &amp; O'Reilly): the explicit argument that one network cannot be both fast-learning and interference-free, stated as a trade-off rather than an assertion</li>
+<li>Catastrophic forgetting as the ML restatement of the same problem, and RL experience-replay buffers as the engineering answer - what corresponds to hippocampal replay and what does not</li>
+<li>Preplay of never-experienced trajectories, and what it implies about planning versus pure rehearsal</li>
+<li>Not covered: the mechanisms generating ripple oscillations (A3), the PC inference/learning schedule (C2)</li>
+</ul>
+</details>
 <p><strong>You should be able to answer:</strong>
 1. Roughly what compression factor does hippocampal replay run at relative to the original behavioural sequence, and in which behavioural states does it occur?
 2. State the CLS argument in one sentence: why can a single network not be both a fast one-shot learner and interference-free?
@@ -1139,18 +1305,15 @@
 4. What does preplay of an unvisited trajectory rule out as an explanation for replay?
 5. Name one concrete difference between a hippocampal replay episode and a sample drawn from an RL experience-replay buffer - ordering, compression, or source of samples.</p>
 <p><strong>Project tie-in:</strong> The Step 2b online rollout updates weights live from a single correlated stream with no buffer and no replay step. This lesson supplies the basis for diagnosing whether the instability seen there is starvation for interleaved replay rather than a learning-rate or optimizer-state problem.</p>
-<p><strong>Done when:</strong> The learner states, unprompted, whether the current Step 2b setup needs a replay mechanism and sketches the cheapest version of one in a sentence or two.</p>
+<p><strong>Done when:</strong> You states, unprompted, whether the current Step 2b setup needs a replay mechanism and sketches the cheapest version of one in a sentence or two.</p>
 <hr />
 <h2 id="track-c-predictive-coding">Track C — predictive coding<a class="headerlink" href="#track-c-predictive-coding" title="Permanent link">&para;</a></h2>
-<hr />
-<p><strong>Lesson spec:</strong> <code>lessons.md</code> → B5. <strong>Total time:</strong> ~3 hours across 4 pieces (one to two sittings). <strong>Prerequisites:</strong> A2 (attractors and network state); the Step 2b online-learning results.</p>
-<h2 id="running-order">Running order<a class="headerlink" href="#running-order" title="Permanent link">&para;</a></h2>
+<h2 id="coursework">Coursework<a class="headerlink" href="#coursework" title="Permanent link">&para;</a></h2>
 <p>Consume, then apply, then refine:</p>
 <p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
 <p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
-<h2 id="verified-against-the-source">Verified against the source<a class="headerlink" href="#verified-against-the-source" title="Permanent link">&para;</a></h2>
-<p>Checked against <code>papers/B5_olafsdottir_2018_replay_memory_planning.txt</code>. Replay events "typically" last <strong>100 to 300 ms</strong>, which the review describes as "a ~20 times increase in speed over the actual experience", and occur in sleep "particularly in close temporal proximity to sharp wave ripples". So the 10-20x figure in the questions is right at its upper end; accept anything in that range, and accept a duration answer of 100-300 ms.</p>
-<h2 id="coverage-map">Coverage map<a class="headerlink" href="#coverage-map" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Coverage map</summary>
 <table>
 <thead>
 <tr>
@@ -1182,7 +1345,10 @@
 </tr>
 </tbody>
 </table>
-<h2 id="piece-1-replay-compression-and-interference-arithmetic">Piece 1 — Replay compression and interference arithmetic<a class="headerlink" href="#piece-1-replay-compression-and-interference-arithmetic" title="Permanent link">&para;</a></h2>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Piece 1 — Replay compression and interference arithmetic</label><label for="__tabbed_1_2">Piece 2 — Catastrophic forgetting and the cheapest fix</label><label for="__tabbed_1_3">Piece 3 — Guided reading: Ólafsdóttir et al. 2018</label><label for="__tabbed_1_4">Piece 4 — Written defense: does Step 2b need replay?</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><strong>Type:</strong> derivation · <strong>Time:</strong> ~35 min</p>
 <p><strong>Learning goals</strong>
 - Convert a stated replay compression factor into concrete event durations and rest-period replay counts.
@@ -1199,7 +1365,8 @@ Model a scalar weight learning online: w_{t+1} = w_t + η(target_t − w_t), η 
 5. Phase 2, <strong>blocked</strong> condition (matches Step 2b's single correlated stream — no task-A samples at all once the switch happens): target = w_B<em> = −3.0 for the next 50 steps. Using w_t = w_B</em> + (w_50 − w_B<em>)(1−η)^t (t counted from the switch): (a) compute w after 50 more steps; (b) find the number of steps t after the switch at which the task-A error |w_t − w_A</em>| first falls to half its maximum possible value (|w_A<em> − w_B</em>| / 2 = 2.5, i.e. w_t = −0.5).
 6. Phase 2, <strong>interleaved</strong> condition: each step draws target = w_B<em> with probability 0.8 and target = w_A</em> with probability 0.2 (a 20% replay ratio). Compute the expected target, the steady-state expected weight (t → ∞, where expected update = 0), and the resulting steady-state task-A error. Compare it numerically to the blocked condition's steady-state error (r = 0).</p>
 <p><strong>Deliverable:</strong> a half-page to one-page writeup with all 6 numeric answers and working shown, plus 2-3 sentences connecting question 6's result to why a modest interleaving fraction — not a huge buffer — already recovers most of the benefit.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1222,11 +1389,13 @@ Model a scalar weight learning online: w_{t+1} = w_t + η(target_t − w_t), η 
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-2-catastrophic-forgetting-and-the-cheapest-fix">Piece 2 — Catastrophic forgetting and the cheapest fix<a class="headerlink" href="#piece-2-catastrophic-forgetting-and-the-cheapest-fix" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> simulation · <strong>Time:</strong> ~70 min</p>
 <p><strong>Learning goals</strong>
 - Build a minimal two-task forgetting setup in plain PyTorch, using only SGD (matching Step 2b's optimizer constraint).
@@ -1244,7 +1413,8 @@ Model a scalar weight learning online: w_{t+1} = w_t + η(target_t − w_t), η 
 <li>Print a 3×2 table: {baseline, blocked, replay} × {task-A MSE, task-B MSE}.</li>
 </ol>
 <p><strong>Deliverable:</strong> the script, plus 4-6 sentences covering: (a) which condition shows forgetting and roughly by what factor; (b) whether replay recovers task-A performance and what it costs task-B performance; (c) one sentence distinguishing this forgetting (a weight change driven by new gradients) from the attractor test's state-dependence (same weights, different carried-forward state producing different settled output).</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1267,11 +1437,13 @@ Model a scalar weight learning online: w_{t+1} = w_t + η(target_t − w_t), η 
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-3-guided-reading-olafsdottir-et-al-2018">Piece 3 — Guided reading: Ólafsdóttir et al. 2018<a class="headerlink" href="#piece-3-guided-reading-olafsdottir-et-al-2018" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> guided reading · <strong>Time:</strong> ~40 min</p>
 <p><strong>Learning goals</strong>
 - Extract specific, prose-only claims about replay's temporal structure and behavioral-state dependence.
@@ -1290,7 +1462,8 @@ Model a scalar weight learning online: w_{t+1} = w_t + η(target_t − w_t), η 
 <li>(Synthesis — not from the paper's text alone.) Based on what you've read about how a replay event is structured — a compressed, temporally ordered place-cell sequence drawn from very recent experience — contrast this with how a single sample is typically drawn from a standard RL experience-replay buffer (i.i.d./uniform sampling over a large stored history). Name one concrete structural difference: ordering, compression, or source of samples.</li>
 </ol>
 <p><strong>Deliverable:</strong> numbered answers (2-5 sentences each), each citing the section/heading it was drawn from.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1313,11 +1486,13 @@ Model a scalar weight learning online: w_{t+1} = w_t + η(target_t − w_t), η 
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-4-written-defense-does-step-2b-need-replay">Piece 4 — Written defense: does Step 2b need replay?<a class="headerlink" href="#piece-4-written-defense-does-step-2b-need-replay" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> written defense · <strong>Time:</strong> ~40 min · 300-600 words</p>
 <p><strong>Learning goals</strong>
 - Convert the quantitative and CLS/replay understanding above into a scoped, falsifiable engineering proposal.
@@ -1329,7 +1504,8 @@ Model a scalar weight learning online: w_{t+1} = w_t + η(target_t − w_t), η 
 <p>(b) If yes: sketch the cheapest version — buffer size (order of magnitude is fine), interleave ratio, and, critically, what gets <em>stored</em> given the network carries persistent activity state across timesteps. Raw (observation, target) pairs replayed later land in whatever state the network happens to be carrying at that later moment, not the state they originally occurred in — say what you'd snapshot instead (or argue explicitly why raw pairs are good enough despite this).</p>
 <p>(c) Name one concrete experiment, using the project's existing tooling (<code>headless_rollout</code> / <code>online_rollout</code> — no code required, just describe the comparison), that would distinguish "the buffer is doing something" from "this run just had a favorable seed or learning rate."</p>
 <p><strong>Deliverable:</strong> one 300-600 word document.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1352,12 +1528,18 @@ Model a scalar weight learning online: w_{t+1} = w_t + η(target_t − w_t), η 
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
+</div>
+</div>
+</div>
+<h2 id="verified-against-the-source">Verified against the source<a class="headerlink" href="#verified-against-the-source" title="Permanent link">&para;</a></h2>
+<p>Checked against <code>papers/B5_olafsdottir_2018_replay_memory_planning.txt</code>. Replay events "typically" last <strong>100 to 300 ms</strong>, which the review describes as "a ~20 times increase in speed over the actual experience", and occur in sleep "particularly in close temporal proximity to sharp wave ripples". So the 10-20x figure in the questions is right at its upper end; accept anything in that range, and accept a duration answer of 100-300 ms.</p>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
-<p>Lesson B5 is complete when the learner, in Piece 4 (or a direct follow-up prompt if Piece 4 is incomplete on this point), states <strong>unprompted</strong> whether Step 2b's online rollout needs a replay mechanism and sketches the cheapest version — buffer size, interleave ratio, and what gets stored given persistent state — in 1-3 sentences, without being told this is the target. The teacher AI should treat Piece 4 as satisfying this bar if it contains: (1) an explicit stance, (2) a buffer size and interleave ratio at least at order-of-magnitude precision, and (3) an answer to the persistent-state storage question that engages with the problem rather than ignoring it. If (3) is missing, the teacher AI should prompt once with Piece 4's Hint 2 and require a revision before marking the lesson complete — it should not supply the answer itself.</p>
+<p>Lesson B5 is complete when you, in Piece 4 (or a direct follow-up prompt if Piece 4 is incomplete on this point), states <strong>unprompted</strong> whether Step 2b's online rollout needs a replay mechanism and sketches the cheapest version — buffer size, interleave ratio, and what gets stored given persistent state — in 1-3 sentences, without being told this is the target. The teacher AI should treat Piece 4 as satisfying this bar if it contains: (1) an explicit stance, (2) a buffer size and interleave ratio at least at order-of-magnitude precision, and (3) an answer to the persistent-state storage question that engages with the problem rather than ignoring it. If (3) is missing, the teacher AI should prompt once with Piece 4's Hint 2 and require a revision before marking the lesson complete — it should not supply the answer itself.</p>
 
 
 
@@ -1375,6 +1557,8 @@ Model a scalar weight learning online: w_{t+1} = w_t + η(target_t − w_t), η 
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1413,7 +1597,7 @@ Model a scalar weight learning online: w_{t+1} = w_t + η(target_t − w_t), η 
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

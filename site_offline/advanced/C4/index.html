@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+        <meta name="description" content="A self-study course in computational neuroscience built on Dayan & Abbott">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022) - Comp Neuro Course</title>
+        <title>C4 · Predictive coding on arbitrary graphs (Salvatori et al. 2022) - Computational Neuroscience</title>
       
     
     
@@ -51,7 +51,7 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/theme.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -69,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-header__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,13 +108,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Comp Neuro Course
+            Computational Neuroscience
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+              C4 · Predictive coding on arbitrary graphs (Salvatori et al. 2022)
             
           </span>
         </div>
@@ -127,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -137,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -227,17 +227,44 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../plan/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../foundations/" class="md-tabs__link">
+          
   
   
     
   
-  Plan
+  Foundations
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Advanced
+
+        </a>
+      </li>
+    
   
 
       
@@ -265,40 +292,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../foundations/F1/" class="md-tabs__link">
-          
-  
-  
-  Foundations
-
-        </a>
-      </li>
-    
-  
-
-      
+    <li class="md-tabs__item">
+      <a href="../../plan/" class="md-tabs__link">
         
   
   
-  
     
   
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../A1/" class="md-tabs__link">
-          
-  
-  
-  Advanced
+  Plan
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -330,13 +334,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-nav__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Comp Neuro Course
+    Computational Neuroscience
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -374,15 +378,200 @@
   
   
   
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../foundations/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../plan/" class="md-nav__link">
+      <a href="../A1/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Plan
+    A1 · Synaptic delays and temporal structure
   
 
     
@@ -391,6 +580,525 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 · Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3 · Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 · Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5 · State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1 · Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2 · Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3 · Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4 · Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5 · Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1 · Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2 · Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3 · Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4 · Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4 · Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verified-against-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified against the source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5 · Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6 · PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -428,123 +1136,15 @@
   
   
   
-    
-    
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-  
-    <a href="../../foundations/F1/" class="md-nav__link">
-      
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Foundations
-  
-
-    
-  </span>
-  
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Advanced
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../A1/" class="md-nav__link">
+      <a href="../../plan/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    A1. Synaptic delays and temporal structure
+    Plan
   
 
     
@@ -553,492 +1153,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A2. Attractors and network state
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A3. Oscillations and synchrony
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A4. Short-term plasticity, refractory period, reset modes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A5. State of the field: why SNNs, where they stand vs ANNs
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B2. Cortical microcircuits and laminar structure
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B3. Dendritic computation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B4. Developmental pruning: how brains choose their own size
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B5. Hippocampal replay and consolidation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C1. Predictive coding as energy minimization
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C2. Inference vs learning: two nested loops and their schedules
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C3. Precision weighting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lesson-spec" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Lesson spec
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C5. Clamping and frozen priors
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C6/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C6. PC ≈ backprop: what the equivalence does and does not claim
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1080,6 +1194,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verified-against-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified against the source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1097,39 +1244,36 @@
 
 
 
-<h1 id="c4-predictive-coding-on-arbitrary-graphs-salvatori-et-al-2022">C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)<a class="headerlink" href="#c4-predictive-coding-on-arbitrary-graphs-salvatori-et-al-2022" title="Permanent link">&para;</a></h1>
+<h1 id="c4-predictive-coding-on-arbitrary-graphs-salvatori-et-al-2022">C4 · Predictive coding on arbitrary graphs (Salvatori et al. 2022)<a class="headerlink" href="#c4-predictive-coding-on-arbitrary-graphs-salvatori-et-al-2022" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>Length</strong> — two to three sittings · about 5–7 hours across 2–3 sittings
+<strong>Before this</strong> — C1–C3; A2 and graph topology with reciprocal connections
+<strong>Reading</strong> — <strong>Not in D&amp;A</strong> — arbitrary-topology PC postdates it by two decades. Salvatori et al. 2022, <em>Learning on Arbitrary Graph Topologies via Predictive Coding</em> (arXiv:2201.13180) — the paper Step 2 reproduces.</p>
+</div>
 <div class="toc">
 <ul>
-<li><a href="#c4-predictive-coding-on-arbitrary-graphs-salvatori-et-al-2022">C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)</a><ul>
+<li><a href="#c4-predictive-coding-on-arbitrary-graphs-salvatori-et-al-2022">C4 · Predictive coding on arbitrary graphs (Salvatori et al. 2022)</a><ul>
 <li><a href="#lesson-spec">Lesson spec</a></li>
-</ul>
-</li>
-<li><a href="#c4-predictive-coding-on-arbitrary-graphs-salvatori-et-al-2022_1">C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)</a><ul>
-<li><a href="#running-order">Running order</a></li>
+<li><a href="#coursework">Coursework</a></li>
 <li><a href="#verified-against-the-source">Verified against the source</a></li>
-<li><a href="#coverage-map">Coverage map</a></li>
-<li><a href="#piece-1-re-indexing-the-energy">Piece 1 — Re-indexing the energy</a></li>
-<li><a href="#piece-2-settling-on-an-adjacency-matrix">Piece 2 — Settling on an adjacency matrix</a></li>
-<li><a href="#piece-3-reading-salvatori-et-al-2022">Piece 3 — Reading Salvatori et al. 2022</a></li>
-<li><a href="#piece-4-what-the-layer-split-was-buying">Piece 4 — What the layer split was buying</a></li>
 <li><a href="#completion-bar">Completion bar</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
-<h1 id="c4-predictive-coding-on-arbitrary-graphs-salvatori-et-al-2022_1">C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)<a class="headerlink" href="#c4-predictive-coding-on-arbitrary-graphs-salvatori-et-al-2022_1" title="Permanent link">&para;</a></h1>
-<p><strong>Prerequisites:</strong> C1–C3; A2 and graph topology with reciprocal connections</p>
-<p><strong>Size:</strong> two to three sittings</p>
-<p><strong>Source material:</strong> <strong>Not in D&amp;A</strong> — arbitrary-topology PC postdates it by two decades. Salvatori et al. 2022, <em>Learning on Arbitrary Graph Topologies via Predictive Coding</em> (arXiv:2201.13180) — the paper Step 2 reproduces.</p>
-<p><strong>Local copies:</strong> <code>papers/C4_salvatori_2022_arbitrary_graph_topologies.pdf</code>.</p>
 <p><strong>Goal:</strong> See that going from layered PC to graph PC is a re-indexing, not a new formalism: "layer above/below" becomes "in-neighbours/out-neighbours" in the energy sum, and every update term stays local. Closes the misconception that arbitrary topology needs new maths or breaks locality, and shows what a fixed input/output split was buying and giving up.</p>
-<p><strong>Scope:</strong>
-- Energy generalization: a per-node error term summed over that node's actual neighbours, replacing the layer-indexed sum — same local rule, different neighbour set
-- Input/output flexibility: any node clampable or free per trial, no reserved input or output layer
-- The paper's results: associative memory, generation and classification from one trained model; the topologies tested
-- Cycles and recurrence: whether settling still converges with loops, and what guarantees or threatens convergence
-- Not covered: spiking neurons on the graph (Step 3 work, not a lesson), clamping patterns in depth (C5), backprop equivalence (C6)</p>
+<details class="note">
+<summary>Scope — what the lesson covers</summary>
+<ul>
+<li>Energy generalization: a per-node error term summed over that node's actual neighbours, replacing the layer-indexed sum — same local rule, different neighbour set</li>
+<li>Input/output flexibility: any node clampable or free per trial, no reserved input or output layer</li>
+<li>The paper's results: associative memory, generation and classification from one trained model; the topologies tested</li>
+<li>Cycles and recurrence: whether settling still converges with loops, and what guarantees or threatens convergence</li>
+<li>Not covered: spiking neurons on the graph (Step 3 work, not a lesson), clamping patterns in depth (C5), backprop equivalence (C6)</li>
+</ul>
+</details>
 <p><strong>You should be able to answer:</strong>
 1. Write the generalized per-node energy term for graph PC and identify exactly which layered-PC term it replaces.
 2. In a 3-node fully connected graph A–B–C with A clamped and C free, what does B's prediction depend on, and how does that differ from a layered network where layer l depends only on l−1?
@@ -1137,17 +1281,14 @@
 4. Does energy minimization on a graph with cycles still converge to a fixed point? What property guarantees it, or under what condition can it fail to settle?
 5. Why does "any node can be input, output, both or neither" matter for a network that later adds and removes nodes at runtime? Name the mechanism it removes the need for.</p>
 <p><strong>Project tie-in:</strong> The theory behind <code>steps/02_pc_graphs/</code>, already built and working, and the direct prerequisite for Steps 3–4 where node roles and topology are not fixed in advance.</p>
-<p><strong>Done when:</strong> The learner writes the generalized energy equation unaided and can say what guarantees or threatens convergence on a cyclic graph.</p>
+<p><strong>Done when:</strong> You writes the generalized energy equation unaided and can say what guarantees or threatens convergence on a cyclic graph.</p>
 <hr />
-<hr />
-<p><strong>Lesson spec:</strong> <code>lessons.md</code> → C4. <strong>Total time:</strong> 5–7 hours across 2–3 sittings. <strong>Prerequisites:</strong> C1–C3; A2 and graph topology with reciprocal connections.</p>
-<h2 id="running-order">Running order<a class="headerlink" href="#running-order" title="Permanent link">&para;</a></h2>
+<h2 id="coursework">Coursework<a class="headerlink" href="#coursework" title="Permanent link">&para;</a></h2>
 <p>Consume, then apply, then refine:</p>
 <p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
 <p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
-<h2 id="verified-against-the-source">Verified against the source<a class="headerlink" href="#verified-against-the-source" title="Permanent link">&para;</a></h2>
-<p>Checked against <code>papers/C4_salvatori_2022_arbitrary_graph_topologies.pdf</code>. One implementation detail worth putting directly to the learner, because a reimplementation almost never matches it by accident: the paper reports that "we have tested different activation functions; the most promising seems to be <strong>HardTanh</strong>", and that value-node learning used a rate of 1.0 with SGD. If the learner's step 02 code uses tanh, ReLU or a different optimiser, that is a real divergence from the published method — which is precisely what the implementation-check questions are for. Neither choice is necessarily wrong; the point is knowing it was a choice.</p>
-<h2 id="coverage-map">Coverage map<a class="headerlink" href="#coverage-map" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Coverage map</summary>
 <table>
 <thead>
 <tr>
@@ -1180,7 +1321,10 @@
 </tbody>
 </table>
 <hr />
-<h2 id="piece-1-re-indexing-the-energy">Piece 1 — Re-indexing the energy<a class="headerlink" href="#piece-1-re-indexing-the-energy" title="Permanent link">&para;</a></h2>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Piece 1 — Re-indexing the energy</label><label for="__tabbed_1_2">Piece 2 — Settling on an adjacency matrix</label><label for="__tabbed_1_3">Piece 3 — Reading Salvatori et al. 2022</label><label for="__tabbed_1_4">Piece 4 — What the layer split was buying</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><strong>Type:</strong> derivation · <strong>Time:</strong> 60–90 min</p>
 <p><strong>Learning goals</strong>
 - Rewrite the layered PC energy as a per-node sum over an explicit neighbour set, and show the two are the same formalism under a relabeling.
@@ -1210,7 +1354,8 @@ Run <strong>Step 3</strong> by hand from your Step 2 outputs (same eta, same cla
 <p><strong>Part D — answer AC2 directly.</strong> In this same A–B–C graph, with A clamped and C free: what does B's prediction depend on? Write it out (the actual expression, not just "A and C"). Then contrast explicitly: in a layered net where layer ℓ's prediction depends only on layer ℓ−1, could a hidden unit's <em>value update</em> ever be driven by the error of a unit that is not adjacent to it in the "next layer up" sense the way B here is driven by both e_A and e_C? Name the specific structural reason (bidirectional edges / no acyclic layer order) that makes this possible on a graph and impossible by construction in the layered case.</p>
 <p><strong>Deliverable</strong>
 A written derivation (LaTeX, Markdown with math, or legible handwritten scan) covering Parts A–D, with Part B/C's numeric steps shown (not just final numbers — show x̂_i, e_i, dx_i at each step).</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1233,11 +1378,13 @@ A written derivation (LaTeX, Markdown with math, or legible handwritten scan) co
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-2-settling-on-an-adjacency-matrix">Piece 2 — Settling on an adjacency matrix<a class="headerlink" href="#piece-2-settling-on-an-adjacency-matrix" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> simulation · <strong>Time:</strong> 2–3 hours</p>
 <p><strong>Learning goals</strong>
 - Implement PC inference (settling) as pure local gradient descent on an arbitrary adjacency matrix, with no notion of "layer."
@@ -1258,7 +1405,8 @@ A written derivation (LaTeX, Markdown with math, or legible handwritten scan) co
 </ol>
 <p><strong>Deliverable</strong>
 The script, plus a short (under one page) results note: final settled vectors and L2 distances to all 4 training patterns for each config (showing the correct one wins), the F-vs-iteration behaviour for a convergent and a non-convergent eta_x, and the observed instability threshold.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1281,14 +1429,16 @@ The script, plus a short (under one page) results note: final settled vectors an
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-3-reading-salvatori-et-al-2022">Piece 3 — Reading Salvatori et al. 2022<a class="headerlink" href="#piece-3-reading-salvatori-et-al-2022" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> guided reading · <strong>Time:</strong> 90–120 min</p>
 <p><strong>Learning goals</strong>
-- Read the paper this project's Step 02 already implements, closely enough to check the implementation against the published method rather than against the learner's own prior assumptions.
+- Read the paper this project's Step 02 already implements, closely enough to check the implementation against the published method rather than against your own prior assumptions.
 - Locate the paper's own statement of the generalized energy, its inference/learning schedule, and its convergence discussion for cyclic topologies.
 - Identify the paper's task types run from a single trained model, and what specifically differs between them (clamping, not weights).</p>
 <p><strong>Task</strong></p>
@@ -1305,7 +1455,8 @@ The script, plus a short (under one page) results note: final settled vectors an
 </ol>
 <p><strong>Deliverable</strong>
 Written answers to Q1–Q8, each with a specific citation (section number, page, figure, or algorithm label) from the PDF — answers without a locatable citation should be treated as unverified.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1316,11 +1467,11 @@ Written answers to Q1–Q8, each with a specific citation (section number, page,
 <tbody>
 <tr>
 <td>Strong</td>
-<td>All 8 answered with correct citations; Q3/Q4 (implementation checks) identify a real, specific divergence (or correctly confirm a real match) between the learner's own implementation and the paper, not a vague "seems similar"; Q7 correctly identifies the energy-decrease/Lyapunov-style argument (or whatever the paper actually argues) and states the failure condition named by the paper if one exists.</td>
+<td>All 8 answered with correct citations; Q3/Q4 (implementation checks) identify a real, specific divergence (or correctly confirm a real match) between your own implementation and the paper, not a vague "seems similar"; Q7 correctly identifies the energy-decrease/Lyapunov-style argument (or whatever the paper actually argues) and states the failure condition named by the paper if one exists.</td>
 </tr>
 <tr>
 <td>Adequate</td>
-<td>6–7 of 8 answered with citations; Q3/Q4 attempted but the comparison to the learner's own code is generic rather than specific (e.g. "probably similar" without naming what was checked); Q7 identifies convergence is claimed but not what it rests on.</td>
+<td>6–7 of 8 answered with citations; Q3/Q4 attempted but the comparison to your own code is generic rather than specific (e.g. "probably similar" without naming what was checked); Q7 identifies convergence is claimed but not what it rests on.</td>
 </tr>
 <tr>
 <td>Not yet</td>
@@ -1328,11 +1479,13 @@ Written answers to Q1–Q8, each with a specific citation (section number, page,
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-4-what-the-layer-split-was-buying">Piece 4 — What the layer split was buying<a class="headerlink" href="#piece-4-what-the-layer-split-was-buying" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> written defence · <strong>Time:</strong> 45–60 min</p>
 <p><strong>Learning goals</strong>
 - Synthesize Pieces 1–3 into a single argument: graph PC is a re-indexing of layered PC, not new maths.
@@ -1349,8 +1502,9 @@ Written answers to Q1–Q8, each with a specific citation (section number, page,
 - Give one concrete reason "any node clampable" matters for Step 04 (stress-triggered growth/pruning): name the specific bookkeeping or mechanism (e.g. a fixed input/output layer index, or a role map that must be updated when topology changes) that this flexibility removes the need for.
 - Take a position on whether the claim as stated is fully correct, or whether it understates/overstates something (e.g., is convergence really the <em>only</em> thing the layer split bought, or does it also simplify weight-update timing, credit assignment, or the C6 backprop-equivalence proof?).</p>
 <p><strong>Deliverable</strong>
-300–600 words, prose (not bullet points), in the learner's own words.</p>
-<p><strong>Rubric</strong></p>
+300–600 words, prose (not bullet points), in your own words.</p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1361,11 +1515,11 @@ Written answers to Q1–Q8, each with a specific citation (section number, page,
 <tbody>
 <tr>
 <td>Strong</td>
-<td>Re-indexing stated precisely and correctly (names the actual index-set change, not just "layers become nodes"); the "what layer order buys for free" example is concrete and drawn from the learner's own derivation/simulation/reading rather than asserted; the Step 04 tie-in names a specific mechanism (e.g. no fixed input/output role map to maintain when pairs are added/pruned) rather than a generic "it's more flexible"; takes and defends a real position on the claim rather than agreeing with it wholesale.</td>
+<td>Re-indexing stated precisely and correctly (names the actual index-set change, not just "layers become nodes"); the "what layer order buys for free" example is concrete and drawn from your own derivation/simulation/reading rather than asserted; the Step 04 tie-in names a specific mechanism (e.g. no fixed input/output role map to maintain when pairs are added/pruned) rather than a generic "it's more flexible"; takes and defends a real position on the claim rather than agreeing with it wholesale.</td>
 </tr>
 <tr>
 <td>Adequate</td>
-<td>Re-indexing stated correctly but generically; the "buys for free" example is plausible but abstract/textbook rather than tied to the learner's own worked numbers or code; Step 04 tie-in is present but vague (e.g. "flexible networks are good for pruning" without naming what bookkeeping is avoided).</td>
+<td>Re-indexing stated correctly but generically; the "buys for free" example is plausible but abstract/textbook rather than tied to your own worked numbers or code; Step 04 tie-in is present but vague (e.g. "flexible networks are good for pruning" without naming what bookkeeping is avoided).</td>
 </tr>
 <tr>
 <td>Not yet</td>
@@ -1373,16 +1527,22 @@ Written answers to Q1–Q8, each with a specific citation (section number, page,
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
+</div>
+</div>
+</div>
+<h2 id="verified-against-the-source">Verified against the source<a class="headerlink" href="#verified-against-the-source" title="Permanent link">&para;</a></h2>
+<p>Checked against <code>papers/C4_salvatori_2022_arbitrary_graph_topologies.pdf</code>. One implementation detail worth putting directly to you, because a reimplementation almost never matches it by accident: the paper reports that "we have tested different activation functions; the most promising seems to be <strong>HardTanh</strong>", and that value-node learning used a rate of 1.0 with SGD. If you's step 02 code uses tanh, ReLU or a different optimiser, that is a real divergence from the published method — which is precisely what the implementation-check questions are for. Neither choice is necessarily wrong; the point is knowing it was a choice.</p>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
 <p>The lesson is done when, without looking anything up:
-1. The learner writes the generalized per-node energy F = (1/2) sum_i (x_i − sum_{j in N_in(i)} w_ij f(x_j))^2 unaided, and states it replaces the layer-indexed error term by replacing the fixed neighbour set with a per-node one (Piece 1).
-2. The learner can state, from memory, what guarantees convergence of settling on a cyclic graph (energy bounded below and non-increasing under small-step gradient descent — a stationary-point guarantee, not a global-optimum one) and under what condition it can fail (step size/weight scale too large relative to the graph's effective loop gain), citing their own Piece 2 divergence run or Piece 3 Q7 finding as evidence (AC4).
+1. You writes the generalized per-node energy F = (1/2) sum_i (x_i − sum_{j in N_in(i)} w_ij f(x_j))^2 unaided, and states it replaces the layer-indexed error term by replacing the fixed neighbour set with a per-node one (Piece 1).
+2. You can state, from memory, what guarantees convergence of settling on a cyclic graph (energy bounded below and non-increasing under small-step gradient descent — a stationary-point guarantee, not a global-optimum one) and under what condition it can fail (step size/weight scale too large relative to the graph's effective loop gain), citing their own Piece 2 divergence run or Piece 3 Q7 finding as evidence (AC4).
 3. All four pieces are submitted and each has scored at least Adequate; any piece scoring Not Yet is redone (with hints, not answers) before the lesson is marked complete.
-4. The learner can state in one or two sentences, unprompted, what a fixed input/output layer split bought and what it cost this project specifically at Step 04 (AC5) — this is the tie-in that makes the lesson "theory behind code already built," not abstract theory.</p>
+4. You can state in one or two sentences, unprompted, what a fixed input/output layer split bought and what it cost this project specifically at Step 04 (AC5) — this is the tie-in that makes the lesson "theory behind code already built," not abstract theory.</p>
 
 
 
@@ -1400,6 +1560,8 @@ Written answers to Q1–Q8, each with a specific citation (section number, page,
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1438,7 +1600,7 @@ Written answers to Q1–Q8, each with a specific citation (section number, page,
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

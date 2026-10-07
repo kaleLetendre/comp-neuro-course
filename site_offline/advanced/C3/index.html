@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+        <meta name="description" content="A self-study course in computational neuroscience built on Dayan & Abbott">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>C3. Precision weighting - Comp Neuro Course</title>
+        <title>C3 · Precision weighting - Computational Neuroscience</title>
       
     
     
@@ -51,7 +51,7 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/theme.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -69,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-header__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,13 +108,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Comp Neuro Course
+            Computational Neuroscience
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              C3. Precision weighting
+              C3 · Precision weighting
             
           </span>
         </div>
@@ -127,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -137,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -227,17 +227,44 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../plan/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../foundations/" class="md-tabs__link">
+          
   
   
     
   
-  Plan
+  Foundations
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Advanced
+
+        </a>
+      </li>
+    
   
 
       
@@ -265,40 +292,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../foundations/F1/" class="md-tabs__link">
-          
-  
-  
-  Foundations
-
-        </a>
-      </li>
-    
-  
-
-      
+    <li class="md-tabs__item">
+      <a href="../../plan/" class="md-tabs__link">
         
   
   
-  
     
   
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../A1/" class="md-tabs__link">
-          
-  
-  
-  Advanced
+  Plan
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -330,13 +334,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+    <a href="../.." title="Computational Neuroscience" class="md-nav__button md-logo" aria-label="Computational Neuroscience" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Comp Neuro Course
+    Computational Neuroscience
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -374,15 +378,200 @@
   
   
   
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../foundations/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../plan/" class="md-nav__link">
+      <a href="../A1/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Plan
+    A1 · Synaptic delays and temporal structure
   
 
     
@@ -391,6 +580,525 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 · Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3 · Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 · Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5 · State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1 · Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2 · Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3 · Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4 · Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5 · Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1 · Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2 · Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3 · Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3 · Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson spec
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verified-against-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified against the source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4 · Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5 · Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6 · PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -428,123 +1136,15 @@
   
   
   
-    
-    
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-  
-    <a href="../../foundations/F1/" class="md-nav__link">
-      
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Foundations
-  
-
-    
-  </span>
-  
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Advanced
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../A1/" class="md-nav__link">
+      <a href="../../plan/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    A1. Synaptic delays and temporal structure
+    Plan
   
 
     
@@ -553,492 +1153,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A2. Attractors and network state
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A3. Oscillations and synchrony
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A4. Short-term plasticity, refractory period, reset modes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../A5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    A5. State of the field: why SNNs, where they stand vs ANNs
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B2. Cortical microcircuits and laminar structure
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B3. Dendritic computation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B4. Developmental pruning: how brains choose their own size
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../B5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B5. Hippocampal replay and consolidation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C1. Predictive coding as energy minimization
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C2. Inference vs learning: two nested loops and their schedules
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C3. Precision weighting
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C3. Precision weighting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lesson-spec" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Lesson spec
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C5. Clamping and frozen priors
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../C6/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C6. PC ≈ backprop: what the equivalence does and does not claim
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1080,6 +1194,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#coursework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coursework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verified-against-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified against the source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1097,40 +1244,37 @@
 
 
 
-<h1 id="c3-precision-weighting">C3. Precision weighting<a class="headerlink" href="#c3-precision-weighting" title="Permanent link">&para;</a></h1>
+<h1 id="c3-precision-weighting">C3 · Precision weighting<a class="headerlink" href="#c3-precision-weighting" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>Length</strong> — one to two sittings · about 4–5.5 hours (one to two sittings)
+<strong>Before this</strong> — C1, C2; the PV/SST/VIP roles from <code>comp_neuro_notes.md</code>
+<strong>Reading</strong> — <strong>Not explicit in D&amp;A</strong>, though <strong>ch. 10</strong> <em>Density Estimation</em> carries the Gaussian variances that precision is the inverse of. Primary: Feldman &amp; Friston 2010 on attention as precision; Bogacz 2017, the precision sections.</p>
+</div>
 <div class="toc">
 <ul>
-<li><a href="#c3-precision-weighting">C3. Precision weighting</a><ul>
+<li><a href="#c3-precision-weighting">C3 · Precision weighting</a><ul>
 <li><a href="#lesson-spec">Lesson spec</a></li>
-</ul>
-</li>
-<li><a href="#c3-precision-weighting_1">C3. Precision weighting</a><ul>
-<li><a href="#running-order">Running order</a></li>
+<li><a href="#coursework">Coursework</a></li>
 <li><a href="#verified-against-the-source">Verified against the source</a></li>
-<li><a href="#coverage-map">Coverage map</a></li>
-<li><a href="#piece-1-balancing-two-error-terms">Piece 1 — Balancing two error terms</a></li>
-<li><a href="#piece-2-sweeping-precision-and-breaking-joint-learning">Piece 2 — Sweeping precision and breaking joint learning</a></li>
-<li><a href="#piece-3-guided-reading-feldman-friston-attention-as-precision">Piece 3 — Guided reading: Feldman &amp; Friston, attention as precision</a></li>
-<li><a href="#piece-4-written-defence-the-stress-variable-and-a-distrusted-channel">Piece 4 — Written defence: the stress variable and a distrusted channel</a></li>
 <li><a href="#completion-bar">Completion bar</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <h2 id="lesson-spec">Lesson spec<a class="headerlink" href="#lesson-spec" title="Permanent link">&para;</a></h2>
-<h1 id="c3-precision-weighting_1">C3. Precision weighting<a class="headerlink" href="#c3-precision-weighting_1" title="Permanent link">&para;</a></h1>
-<p><strong>Prerequisites:</strong> C1, C2; the PV/SST/VIP roles from <code>comp_neuro_notes.md</code></p>
-<p><strong>Size:</strong> one to two sittings</p>
-<p><strong>Source material:</strong> <strong>Not explicit in D&amp;A</strong>, though <strong>ch. 10</strong> <em>Density Estimation</em> carries the Gaussian variances that precision is the inverse of. Primary: Feldman &amp; Friston 2010 on attention as precision; Bogacz 2017, the precision sections.</p>
-<p><strong>Local copies:</strong> <code>papers/C3_feldman_friston_2010_attention_uncertainty.pdf</code>.</p>
 <p><strong>Goal:</strong> See precision as the inverse-variance weight multiplying each squared error term, and recognize that C1's flat energy silently assumed every error channel equally trustworthy. Be able to say why learning precision jointly with weights is unstable, and compute how a node's settled value shifts when one error term's precision changes — not just recite that precision matters.</p>
-<p><strong>Scope:</strong>
-- Precision in the energy function: F = ½·Σ πᵢ·eᵢ², π = 1/σ², and what precision 1 everywhere quietly assumed
-- Precision set by hand vs learned, and the small-error/growing-precision feedback loop that makes joint learning unstable
-- Precision as formal attention (top-down) and formal sensor confidence (bottom-up)
-- The biological mapping made precise: PV scaling precision on feedforward error, VIP scaling precision on top-down prediction error
-- Practical consequence: precision changes both which node moves most during settling and the magnitude of each local weight update
-- Not covered: graph topology (C4), clamping as the precision→∞ limit (C5 owns it), backprop equivalence (C6)</p>
+<details class="note">
+<summary>Scope — what the lesson covers</summary>
+<ul>
+<li>Precision in the energy function: F = ½·Σ πᵢ·eᵢ², π = 1/σ², and what precision 1 everywhere quietly assumed</li>
+<li>Precision set by hand vs learned, and the small-error/growing-precision feedback loop that makes joint learning unstable</li>
+<li>Precision as formal attention (top-down) and formal sensor confidence (bottom-up)</li>
+<li>The biological mapping made precise: PV scaling precision on feedforward error, VIP scaling precision on top-down prediction error</li>
+<li>Practical consequence: precision changes both which node moves most during settling and the magnitude of each local weight update</li>
+<li>Not covered: graph topology (C4), clamping as the precision→∞ limit (C5 owns it), backprop equivalence (C6)</li>
+</ul>
+</details>
 <p><strong>You should be able to answer:</strong>
 1. Write F for two error terms e₁, e₂ with precisions π₁, π₂, and state how π relates to σ².
 2. A node settles by balancing e₁ = (v − 3) with π₁ = 1 against e₂ = (v − 6) with π₂ = 2. Solve dF/dv = 0 for v.
@@ -1138,17 +1282,14 @@
 4. Given Δw = η·π·e·(pre-synaptic activity) and a naive online rule π ← π + η_π(π·e² − 1), describe the runaway when e stays near zero, and why that makes joint precision-and-weight learning unstable.
 5. Which error channel's precision does PV scale, which does VIP scale, and what does high VIP-driven precision imply about confidence in that channel's prediction?</p>
 <p><strong>Project tie-in:</strong> The soft desired-next-state clamp in Step 2b is mechanically a precision choice relative to the sensory clamp's precision. Step 4's stress variable currently tracks unweighted persistent error and will eventually need a precision-aware version.</p>
-<p><strong>Done when:</strong> The learner writes the precision-weighted energy unaided and gets v = 5, then v ≈ 5.67, for questions 2 and 3.</p>
+<p><strong>Done when:</strong> You writes the precision-weighted energy unaided and gets v = 5, then v ≈ 5.67, for questions 2 and 3.</p>
 <hr />
-<hr />
-<p><strong>Lesson spec:</strong> <code>lessons.md</code> → C3. <strong>Total time:</strong> 4–5.5 hours (one to two sittings). <strong>Prerequisites:</strong> C1, C2, the PV/SST/VIP roles.</p>
-<h2 id="running-order">Running order<a class="headerlink" href="#running-order" title="Permanent link">&para;</a></h2>
+<h2 id="coursework">Coursework<a class="headerlink" href="#coursework" title="Permanent link">&para;</a></h2>
 <p>Consume, then apply, then refine:</p>
 <p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
 <p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
-<h2 id="verified-against-the-source">Verified against the source<a class="headerlink" href="#verified-against-the-source" title="Permanent link">&para;</a></h2>
-<p>Question 4's expected answer was checked against the PDF: the paper contains <strong>zero</strong> occurrences of "VIP", "parvalbumin" or "somatostatin". It predates interneuron-subtype accounts of precision, exactly as the key anticipates. Its own framing, quotable: attention "is more concerned with optimizing the uncertainty or precision of probabilistic representations, rather than what is being represented". Question 5 remains the learner's synthesis and must not be graded as though the paper supplied it.</p>
-<h2 id="coverage-map">Coverage map<a class="headerlink" href="#coverage-map" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Coverage map</summary>
 <table>
 <thead>
 <tr>
@@ -1180,7 +1321,10 @@
 </tr>
 </tbody>
 </table>
-<h2 id="piece-1-balancing-two-error-terms">Piece 1 — Balancing two error terms<a class="headerlink" href="#piece-1-balancing-two-error-terms" title="Permanent link">&para;</a></h2>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Piece 1 — Balancing two error terms</label><label for="__tabbed_1_2">Piece 2 — Sweeping precision and breaking joint learning</label><label for="__tabbed_1_3">Piece 3 — Guided reading: Feldman &amp; Friston, attention as precision</label><label for="__tabbed_1_4">Piece 4 — Written defence: the stress variable and a distrusted channel</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><strong>Type:</strong> derivation · <strong>Time:</strong> 60–90 min</p>
 <p><strong>Learning goals</strong>
 - Write the precision-weighted energy for two error terms and state precision's relation to variance.
@@ -1197,7 +1341,8 @@
 <li>Pick a third value of <code>π2</code> yourself (anything other than 2 or 8), compute <code>v*</code> by hand using your closed form, and confirm it falls between 3 and 6, on the correct side of 5.</li>
 </ol>
 <p><strong>Deliverable:</strong> the derivation and arithmetic for steps 1–5, shown in full (not just final numbers), including your chosen third <code>π2</code> and its result.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1220,11 +1365,13 @@
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-2-sweeping-precision-and-breaking-joint-learning">Piece 2 — Sweeping precision and breaking joint learning<a class="headerlink" href="#piece-2-sweeping-precision-and-breaking-joint-learning" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> simulation · <strong>Time:</strong> 90–120 min</p>
 <p><strong>Learning goals</strong>
 - Build a small PC node with two error channels and settle it by iterating <code>dv/dt = -dF/dv</code>, not by jumping to the closed form.
@@ -1234,7 +1381,8 @@
 <p>Part A (required). Same setup as Piece 1: <code>e1 = v-3</code> (<code>π1=1</code> fixed), <code>e2 = v-6</code> (<code>π2</code> swept), pre-synaptic activities <code>x1=x2=1</code>, weight-update learning rate <code>η=1</code>. Sweep <code>π2</code> over at least 20 log-spaced points from 0.1 to 50 (e.g. <code>np.logspace(-1, log10(50), 25)</code>). For each <code>π2</code>: <strong>settle <code>v</code> by iterating the gradient update</strong> <code>v ← v - α·dF/dv</code> (e.g. <code>α=0.05</code>, run until it stops moving, or a fixed 200+ steps) — do not shortcut to Piece 1's closed form for the settling step itself; use the closed form only to sanity-check your settled value. Record settled <code>v(π2)</code>, then compute <code>Δw1 = η·π1·e1·x1</code> and <code>Δw2 = η·π2·e2·x2</code> at that settled point. Plot settled <code>v</code> vs. <code>π2</code> (log x-axis) and <code>|Δw2|</code> vs. <code>π2</code>.</p>
 <p>Part B (required). Hold <code>e</code> fixed at the constant <code>0.05</code> (a channel that is, by construction, always well predicted — do not let this <code>e</code> come from a settling node). Initialize <code>π = 1.0</code>, <code>η_π = 0.05</code>. Iterate the naive rule <code>π ← π + η_π·(π·e² − 1)</code> for at least 2000 steps. At each step also compute <code>Δw = η·π·e·x</code> (<code>η=1, x=1</code>). Plot <code>π(t)</code> and <code>Δw(t)</code> against iteration.</p>
 <p><strong>Deliverable:</strong> one self-contained script (&lt;~100 lines, numpy or PyTorch, no repo imports), the two plots/tables from Parts A and B, and 4–6 sentences: (i) describe how settled <code>v</code> and <code>|Δw2|</code> behave as <code>π2</code> grows in Part A — do they scale the same way? — and connect the direction of the <code>v</code> shift back to Piece 1; (ii) describe what happens to <code>π(t)</code> and <code>Δw(t)</code> in Part B, and explain in terms of the update rule why persistently near-zero <code>e</code> does not stop it.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1245,7 +1393,7 @@
 <tbody>
 <tr>
 <td>Strong</td>
-<td>Part A settles <code>v</code> via iteration (matches closed form within a small tolerance) and correctly reports that <code>v</code> climbs toward 6 while <code>|Δw2|</code> grows but <strong>saturates</strong> rather than tracking <code>v</code>'s shift — i.e. explicitly notes these are not the same curve. Part B shows <code>π(t)</code> crossing zero and continuing to fall (or the mirror-image growth, if the learner's sign convention differs but is applied consistently) with no fixed point reached at this <code>e</code>, and correctly explains that because <code>π·e²</code> stays far below 1 for any precision value reached in a normal run, the rule keeps pushing <code>π</code> in the same direction indefinitely — a small, stable error does not brake the update. Correctly notes <code>|Δw(t)|</code> grows over the run despite <code>e</code> never changing.</td>
+<td>Part A settles <code>v</code> via iteration (matches closed form within a small tolerance) and correctly reports that <code>v</code> climbs toward 6 while <code>|Δw2|</code> grows but <strong>saturates</strong> rather than tracking <code>v</code>'s shift — i.e. explicitly notes these are not the same curve. Part B shows <code>π(t)</code> crossing zero and continuing to fall (or the mirror-image growth, if you's sign convention differs but is applied consistently) with no fixed point reached at this <code>e</code>, and correctly explains that because <code>π·e²</code> stays far below 1 for any precision value reached in a normal run, the rule keeps pushing <code>π</code> in the same direction indefinitely — a small, stable error does not brake the update. Correctly notes <code>|Δw(t)|</code> grows over the run despite <code>e</code> never changing.</td>
 </tr>
 <tr>
 <td>Adequate</td>
@@ -1257,17 +1405,19 @@
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-3-guided-reading-feldman-friston-attention-as-precision">Piece 3 — Guided reading: Feldman &amp; Friston, attention as precision<a class="headerlink" href="#piece-3-guided-reading-feldman-friston-attention-as-precision" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Source:</strong> <code>papers/C3_feldman_friston_2010_attention_uncertainty.pdf</code>.</p>
 <p><strong>Type:</strong> guided reading · <strong>Time:</strong> 45–75 min</p>
 <p><strong>Learning goals</strong>
 - Locate Feldman &amp; Friston's formal treatment of precision within the free-energy framework and confirm it matches <code>π = 1/σ²</code>.
 - Identify the specific empirical phenomenon they use to argue attention <em>is</em> precision-optimization, and the mechanism they propose implements it.
-- Synthesize their abstract claim with the already-known PV/SST/VIP circuit roles — a step the paper itself does not make, so this is the learner's own reasoning, not something to extract from the text.</p>
+- Synthesize their abstract claim with the already-known PV/SST/VIP circuit roles — a step the paper itself does not make, so this is your own reasoning, not something to extract from the text.</p>
 <p><strong>Task</strong></p>
 <p>Read Feldman &amp; Friston (2010) with these questions in hand. For questions 1–4, answer by quoting or closely paraphrasing the specific passage, not by reconstructing from memory of PC theory in general — the point is to verify the paper says what you think it says.</p>
 <ol>
@@ -1278,7 +1428,8 @@
 <li>Synthesis, using what you already know rather than the paper: PV cells scale the precision of feedforward (bottom-up) error; VIP cells scale the precision of top-down predictions. Feldman &amp; Friston frame attention specifically as a top-down, context-dependent optimization of precision. Which of PV or VIP would formally implement "attention" in their sense, and which one implements what you'd instead call "sensor confidence"? Justify from the definitions, not from a guess.</li>
 </ol>
 <p><strong>Deliverable:</strong> written answers to all five questions, with a specific quote or close paraphrase (with enough locating detail — section/heading — to find it in the PDF) for questions 1–4.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1301,11 +1452,13 @@
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
-<h2 id="piece-4-written-defence-the-stress-variable-and-a-distrusted-channel">Piece 4 — Written defence: the stress variable and a distrusted channel<a class="headerlink" href="#piece-4-written-defence-the-stress-variable-and-a-distrusted-channel" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p><strong>Type:</strong> written defence · <strong>Time:</strong> 45–60 min · <strong>Length:</strong> 300–600 words</p>
 <p><strong>Learning goals</strong>
 - Apply precision-weighting to a concrete design question in this project: whether Step 4's stress variable should be precision-weighted.
@@ -1320,7 +1473,8 @@
 </ol>
 <p>You may use the Step 2b soft desired-next-state clamp as a second, brief example (its strength relative to the sensory clamp is already, mechanically, a precision choice) if it strengthens the argument that precision decisions are already implicit in this project's design — but the required content is the stress-variable argument above.</p>
 <p><strong>Deliverable:</strong> 300–600 word written answer.</p>
-<p><strong>Rubric</strong></p>
+<details class="info">
+<summary>Rubric — how this is marked</summary>
 <table>
 <thead>
 <tr>
@@ -1343,12 +1497,18 @@
 </tr>
 </tbody>
 </table>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Grader key hidden</p>
-<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+<p>The marking criteria for this piece are in the teacher build.</p>
 </div>
+</div>
+</div>
+</div>
+<h2 id="verified-against-the-source">Verified against the source<a class="headerlink" href="#verified-against-the-source" title="Permanent link">&para;</a></h2>
+<p>Question 4's expected answer was checked against the PDF: the paper contains <strong>zero</strong> occurrences of "VIP", "parvalbumin" or "somatostatin". It predates interneuron-subtype accounts of precision, exactly as the key anticipates. Its own framing, quotable: attention "is more concerned with optimizing the uncertainty or precision of probabilistic representations, rather than what is being represented". Question 5 remains you's synthesis and must not be graded as though the paper supplied it.</p>
 <h2 id="completion-bar">Completion bar<a class="headerlink" href="#completion-bar" title="Permanent link">&para;</a></h2>
-<p>C3 is complete when: Piece 1's derivation is produced unaided (no formula supplied by the teacher) and lands on <code>v=5</code> then <code>v≈5.667</code> with the direction of the shift correctly explained; Piece 2's script settles <code>v</code> by iteration (not the closed form) and Part B visibly shows <code>π(t)</code> running away with no fixed point reached, correctly explained via the update rule rather than described only as "it blows up"; Piece 3's five answers include verifiable quotes/paraphrases for Q1–4 and correctly map VIP to attention in Q5 with justification; Piece 4's written defence takes a real position on precision-weighting the stress variable, names the specific growth/pruning failure mode for a distrusted channel, and correctly flags that naively learning the weighting precision reintroduces Piece 2's instability. The learner should be able to say, unprompted, that "precision 1 everywhere" is not a simplification but a claim about the world (every channel equally trustworthy), and that this claim is currently implicit — unexamined — in both Step 2b's clamp-strength ratio and Step 4's unweighted stress accumulator.</p>
+<p>C3 is complete when: Piece 1's derivation is produced unaided (no formula supplied by the teacher) and lands on <code>v=5</code> then <code>v≈5.667</code> with the direction of the shift correctly explained; Piece 2's script settles <code>v</code> by iteration (not the closed form) and Part B visibly shows <code>π(t)</code> running away with no fixed point reached, correctly explained via the update rule rather than described only as "it blows up"; Piece 3's five answers include verifiable quotes/paraphrases for Q1–4 and correctly map VIP to attention in Q5 with justification; Piece 4's written defence takes a real position on precision-weighting the stress variable, names the specific growth/pruning failure mode for a distrusted channel, and correctly flags that naively learning the weighting precision reintroduces Piece 2's instability. You should be able to say, unprompted, that "precision 1 everywhere" is not a simplification but a claim about the world (every channel equally trustworthy), and that this claim is currently implicit — unexamined — in both Step 2b's clamp-strength ratio and Step 4's unweighted stress accumulator.</p>
 
 
 
@@ -1366,6 +1526,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1404,7 +1566,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.prune", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

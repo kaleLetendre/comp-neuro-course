@@ -1,6 +1,6 @@
 # Plan and progress
 
-The map over the whole course. [`foundations.md`](foundations/F1.md) and [`lessons.md`](advanced/A1.md) hold the lesson specs; this page is the order they go in and a place to track what is done.
+The map over the whole course. [`foundations.md`](foundations/index.md) and [`lessons.md`](advanced/index.md) hold the lesson specs; this page is the order they go in and a place to track what is done.
 
 ## The two halves
 
