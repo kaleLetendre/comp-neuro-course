@@ -1,0 +1,1781 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+      
+      
+      
+      
+        <link rel="prev" href="../A2/">
+      
+      
+        <link rel="next" href="../A4/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>A3. Oscillations and synchrony - Comp Neuro Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a3-oscillations-and-synchrony" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Comp Neuro Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              A3. Oscillations and synchrony
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Comp Neuro Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F1. Spike trains and firing rates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F2. Receptive fields and reverse correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F3. Neural decoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F4. Information theory for neurons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F5. Membrane biophysics and the action potential
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F6. Integrate-and-fire neurons and synaptic input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F7. Cable theory and neuronal morphology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F8. Network models: feedforward and recurrent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F9. Synaptic plasticity and learning rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F10. Classical conditioning and reinforcement learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F11. Representational learning and generative models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/Bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge. Synthesis checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1. Synaptic delays and temporal structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2. Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3. Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3. Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-ping-loop-timing-and-the-coherence-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — PING loop timing and the coherence window
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-e-i-rate-model-rhythm-and-its-onset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — E-I rate-model rhythm and its onset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-da-ch7-guided-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — D&amp;A ch.7 guided reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-functional-or-epiphenomenal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Functional or epiphenomenal?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4. Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5. State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2. Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3. Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4. Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5. Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1. Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2. Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3. Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5. Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6. PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-ping-loop-timing-and-the-coherence-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — PING loop timing and the coherence window
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-e-i-rate-model-rhythm-and-its-onset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — E-I rate-model rhythm and its onset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-da-ch7-guided-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — D&amp;A ch.7 guided reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-functional-or-epiphenomenal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Functional or epiphenomenal?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="a3-oscillations-and-synchrony">A3. Oscillations and synchrony</h1>
+<p><strong>Prerequisites:</strong> A1, A2; E-I balance, lateral inhibition / WTA, Dale's principle</p>
+<p><strong>Size:</strong> one to two sittings</p>
+<p><strong>Source material:</strong> <strong>D&amp;A ch. 7</strong> <em>Excitatory-Inhibitory Networks</em> — D&amp;A derives oscillation onset from E-I dynamics directly, which is exactly the PING mechanism. Not in D&amp;A: communication-through-coherence and phase coding — Fries 2005; Wang 2010 (Physiol Rev) for a rhythms review; Buzsáki, <em>Rhythms of the Brain</em>, for breadth.</p>
+<p><strong>Local copies:</strong> none — Fries 2005 (doi:10.1016/j.tics.2005.08.011) and Wang 2010 (doi:10.1152/physrev.00035.2008) both need institutional access.</p>
+<p><strong>Goal:</strong> Understand how an E-I feedback loop plus conduction delays produces a population rhythm, why different frequencies map to different circuit time constants and functions, and that relative phase — not just rate — can carry information and gate which inputs get through. Closes the gap between "oscillations are a side effect of recurrent circuits" and "oscillations are a functional routing mechanism", with both positions statable.</p>
+<p><strong>Scope:</strong>
+- PING vs ING: how the E→I→E loop and its time constants set cycle period; why inhibition, not excitation, paces the rhythm
+- Bands with real numbers: theta ~4–8 Hz (long loop, navigation and sequence memory) vs gamma ~30–80 Hz (short local loop, feature binding and attention)
+- Communication-through-coherence: spikes arriving inside vs outside a receiving neuron's excitability window
+- The binding problem and phase alignment across assemblies
+- Phase-of-firing as an information channel additional to rate
+- Not covered: replay and sharp-wave ripples (B5), attractor fixed points (A2)</p>
+<p><strong>You should be able to answer:</strong>
+1. Given excitatory decay ~5 ms, inhibitory decay ~10 ms and a 2 ms loop delay, estimate whether the rhythm lands in gamma or theta, and why.
+2. Why does a short local E-I loop produce gamma while a longer loop produces theta — what specifically about loop delay changes?
+3. In a 25 ms gamma cycle with a 5 ms postsynaptic excitability window, work out whether two inputs 12 ms apart in phase both get through, and what determines the answer.
+4. Give a concrete example of information carried in phase-of-firing that could not be recovered from rate alone.
+5. State the strongest evidence that oscillations are causally functional, and the strongest evidence they are epiphenomenal — one piece each.</p>
+<p><strong>Project tie-in:</strong> Bears on Step 3 — whether coordination across graph nodes needs an explicit phase/synchrony mechanism, or whether the purely-local constraint (no global clock) can achieve equivalent routing without a shared oscillatory reference.</p>
+<p><strong>Done when:</strong> The learner sketches the PING loop timing diagram unprompted, places theta and gamma with their functions, and gives one concrete piece of evidence for each side of the functional-vs-epiphenomenal debate.</p>
+<hr />
+<hr />
+<p><strong>Lesson spec:</strong> <code>lessons.md</code> → A3. <strong>Total time:</strong> ~3.5–4.5 hours, split across 1–2 sittings. <strong>Prerequisites:</strong> A1, A2; E-I balance, lateral inhibition / WTA, Dale's principle.</p>
+<h2 id="running-order">Running order</h2>
+<p>Consume, then apply, then refine:</p>
+<p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
+<p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
+<h2 id="coverage-map">Coverage map</h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Type</th>
+<th>Lesson acceptance criteria addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — PING loop timing and the coherence window</td>
+<td>derivation</td>
+<td>AC1, AC2, AC3</td>
+</tr>
+<tr>
+<td>2 — E-I rate-model rhythm and its onset</td>
+<td>simulation</td>
+<td>AC1, AC2 (validation)</td>
+</tr>
+<tr>
+<td>3 — D&amp;A ch.7 guided reading</td>
+<td>guided reading</td>
+<td>AC2 (primary-source grounding), background for AC5</td>
+</tr>
+<tr>
+<td>4 — Functional or epiphenomenal?</td>
+<td>written defence</td>
+<td>AC4, AC5</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="piece-1-ping-loop-timing-and-the-coherence-window">Piece 1 — PING loop timing and the coherence window</h2>
+<p><strong>Type:</strong> derivation · <strong>Time:</strong> 60–75 min</p>
+<p><strong>Learning goals</strong>
+- Derive an E-I loop's oscillation period from its inhibitory decay and loop delay, and show excitatory decay does not enter.
+- Explain mechanistically why inhibition, not excitation, paces a PING rhythm.
+- Compute whether two phase-separated inputs both fall inside a receiving neuron's excitability window, and identify what that outcome depends on.</p>
+<p><strong>Task</strong></p>
+<p><strong>Part A — period from decay + delay.</strong>
+Model: an excitatory population E and inhibitory population I in a feedback loop. E fires a volley; after one-way conduction delay <code>d</code> it reaches I; I fires and releases inhibition that decays with time constant <code>tau_I</code>; once that inhibition has decayed, and after a further one-way delay <code>d</code> for the inhibitory signal to reach E, E is free to fire the next volley. Use the approximation</p>
+<div class="highlight"><pre><span></span><code>T ≈ tau_I + 2d
+f = 1000 / T      (T in ms, f in Hz)
+</code></pre></div>
+<p>(the <code>2d</code> is the round-trip conduction delay: once E→I, once I→E; <code>tau_I</code> is the time inhibition takes to decay enough for E to escape).</p>
+<p>Given parameters:
+- <code>tau_E</code> = 5 ms (excitatory synaptic/membrane decay)
+- <code>tau_I</code> = 10 ms (inhibitory decay)
+- <code>d</code> = 2 ms (one-way loop delay)</p>
+<ol>
+<li>Compute <code>T</code> and <code>f</code> from the formula. State whether the rhythm lands in theta (~4–8 Hz) or gamma (~30–80 Hz).</li>
+<li><code>tau_E</code> = 5 ms was given but does not appear in the formula. Explain in 2–3 sentences, in terms of the PING mechanism, why the excitatory decay constant does not set the inter-volley interval, while the inhibitory decay constant does.</li>
+<li>Recompute <code>T</code> and <code>f</code> for a "long loop": <code>tau_I</code> = 100 ms, <code>d</code> = 15 ms. State the resulting band.</li>
+<li>Sketch (ASCII is fine) a timing diagram of one full cycle of the case in (1): a time axis in ms from 0 to T, with marks for "E fires," "signal reaches I," "I fires / inhibits," "inhibition reaches E and starts decaying," and "E free to fire again." Every mark must have a real ms value from your computation, not a placeholder.</li>
+</ol>
+<p><strong>Part B — the coherence window.</strong>
+A gamma rhythm has a 25 ms cycle. The receiving neuron has a 5 ms window of postsynaptic excitability once per cycle (the period right after inhibition bottoms out, when the membrane is close enough to threshold for an incoming EPSP to trigger a spike). Two excitatory inputs, A and B, are phase-locked to two different upstream assemblies; B arrives 12 ms later in phase than A on every cycle.</p>
+<ol>
+<li>If A arrives inside the excitability window, work out whether B also arrives inside a window (same cycle or a neighbouring one). Show the arithmetic (12 ms vs. window width 5 ms vs. cycle length 25 ms).</li>
+<li>State explicitly what determined your answer to (5) — is it the number of spikes, the firing rate of A and B, or something else?</li>
+</ol>
+<p><strong>Deliverable:</strong> one page (typed or scanned handwriting) with: Part A steps 1–4 (including the diagram), Part B steps 5–6, one line of computed numbers per step — no unexplained final answers.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Both Part A cases correctly classified (gamma, theta) with correct T/f arithmetic; explanation of why <code>tau_E</code> drops out is mechanistic (references the loop's "brake" being inhibition, not "E is ready to fire" hand-waving); timing diagram has all four marked events with correct ms values; Part B correctly concludes B is filtered out with reasoning tied to phase modulo cycle length, not rate.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Correct band classification in both Part A cases but the "why <code>tau_E</code> drops out" explanation is vague or only restates the formula; diagram present but missing one mark or one value; Part B has the right numeric conclusion but the "what determines the answer" line is hand-wavy or conflates phase with rate.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Either Part A case misclassified (e.g. calls the 5/10/2 case theta or the 100/15 case gamma); no mechanistic account of why <code>tau_E</code> is irrelevant; Part B concludes "both get through" or "neither gets through" without correct 12 vs. 5 vs. 25 arithmetic.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-2-e-i-rate-model-rhythm-and-its-onset">Piece 2 — E-I rate-model rhythm and its onset</h2>
+<p><strong>Type:</strong> simulation · <strong>Time:</strong> 75–100 min</p>
+<p><strong>Learning goals</strong>
+- Build a minimal delayed-feedback E-I rate model and measure its emergent oscillation frequency numerically, without assuming the answer.
+- Empirically confirm the direction of the tau_I → frequency relationship predicted in Piece 1.
+- Observe that oscillation is not guaranteed for every parameter setting — there is an onset/offset boundary (ties to D&amp;A ch.7's treatment of when the E-I system transitions from a stable fixed point to a sustained rhythm).</p>
+<p><strong>Task</strong></p>
+<p>Implement, in Python (numpy or PyTorch, no autograd needed), a two-population rate model with an explicit conduction delay, Euler-integrated:</p>
+<p><div class="highlight"><pre><span></span><code>dE/dt = ( -E + sigmoid( gain * (w_EE*E   - w_EI*I_delayed + I_ext - theta_E) ) ) / tau_E
+dI/dt = ( -I + sigmoid( gain * (w_IE*E_delayed - w_II*I           - theta_I) ) ) / tau_I
+</code></pre></div>
+where <code>E_delayed(t) = E(t - d)</code>, <code>I_delayed(t) = I(t - d)</code> (implement the delay with a ring buffer / array indexing, not an approximation), <code>sigmoid(x) = 1/(1+exp(-x))</code>.</p>
+<p><strong>Exact fixed parameters</strong> (do not change these):
+<code>tau_E = 5 ms</code>, <code>d = 2 ms</code>, <code>w_EE = 2.0</code>, <code>w_EI = 2.0</code>, <code>w_IE = 2.0</code>, <code>w_II = 0.0</code>, <code>I_ext = 1.0</code>, <code>theta_E = 1.0</code>, <code>theta_I = 1.0</code>, <code>gain = 10.0</code>, <code>dt = 0.1 ms</code>, <code>T_total = 1000 ms</code>, initial condition <code>E[0..d] = 0.3</code>, <code>I[0..d] = 0.1</code>.</p>
+<p><strong>Sweep:</strong> run the model once per value of <code>tau_I ∈ {5, 10, 20, 30, 50, 65, 70} ms</code>, all other parameters fixed as above.</p>
+<p><strong>Measurement:</strong> discard the first 400 ms as transient. On the remaining <code>E(t)</code> trace, count rising zero-crossings of <code>E(t) - mean(E(t))</code> and compute the mean inter-crossing interval as the period; frequency = 1000/period (Hz). If fewer than 3 crossings are found in the retained window, report "no sustained oscillation" for that <code>tau_I</code> rather than a spurious frequency.</p>
+<p><strong>Deliverable:</strong>
+1. The script (under ~100 lines).
+2. A table or plot of frequency (Hz) vs. <code>tau_I</code> (ms) for all 7 sweep values.
+3. 3–5 sentences: (a) does frequency increase or decrease with <code>tau_I</code>, matching or contradicting Piece 1's prediction that longer <code>tau_I</code> → lower frequency? (b) what happens at the high end of the sweep, and why is that a real result and not a bug? (c) explicitly note that the exact Hz values will NOT match Piece 1's <code>T ≈ tau_I + 2d</code> formula number-for-number — explain in one sentence why not (different model: saturating/nonlinear feedback vs. the linear round-trip approximation), while the <em>direction</em> of the trend should still agree.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Correct delay-buffer implementation (verified by delay ≠ 0 having an effect); frequency strictly decreases as <code>tau_I</code> increases across the range where oscillation exists; correctly reports "no sustained oscillation" at <code>tau_I = 70</code>ms (or wherever it empirically stops in their run) rather than reporting a fabricated near-zero frequency; the three explanatory sentences are all present and (b) correctly frames the disappearance as a stability transition (fixed point becomes stable / Hopf-type boundary), not a numerical artifact.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Correct qualitative trend and correct script, but the write-up conflates "no oscillation" with "very low frequency," or the explanation in (c) is missing or superficial ("numbers are different because it's a different model" with no reason why).</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Frequency trend is flat, increasing, or noisy/non-monotonic (implementation bug — likely delay not applied, or measurement window too short); no acknowledgment that oscillation can disappear; script silently reports frequency = 0 or NaN without comment.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-3-da-ch7-guided-reading">Piece 3 — D&amp;A ch.7 guided reading</h2>
+<p><strong>Type:</strong> guided reading · <strong>Time:</strong> 45–60 min</p>
+<p><strong>Learning goals</strong>
+- Ground Piece 1's period formula in D&amp;A's own coupled excitatory-inhibitory rate equations.
+- Locate, in a primary source, the actual condition D&amp;A gives for an E-I network to transition from a stable fixed point to sustained oscillation.
+- Identify explicitly what D&amp;A does and does not cover about phase/timing, so the learner knows the boundary of the source material before Piece 4.</p>
+<p><strong>Task</strong></p>
+<p>Read D&amp;A, Chapter 7, the section(s) on excitatory-inhibitory network dynamics (the part that sets up coupled rate equations for an E and an I population and analyzes their stability). Answer:</p>
+<ol>
+<li>Write down D&amp;A's coupled rate equations for the E and I populations (their notation, not Piece 1's). Map each of D&amp;A's coupling terms onto Piece 1's <code>w_EE</code>, <code>w_EI</code>, <code>w_IE</code>, <code>w_II</code>.</li>
+<li>Find the condition D&amp;A states for the coupled system to move from a stable fixed point to a sustained oscillation. Write it in your own words. Does it talk about eigenvalues, a trace/determinant condition, or something else?</li>
+<li>In Piece 1 Part A, <code>w_II = 0</code> yet the loop still oscillated because of the E↔I cross-coupling. Does D&amp;A's stability condition depend on self-inhibition (<code>w_II</code>), or purely on the cross terms (<code>w_EI</code>, <code>w_IE</code>) and the time constants? State which, citing the relevant equation/expression.</li>
+<li>D&amp;A's basic E-I model has no explicit axonal conduction delay term (unlike Piece 1's <code>d</code>). Note one place where D&amp;A comes close to discussing timing/delay between populations, or explicitly note "no such discussion found in this section" if that's the case — do not invent one.</li>
+<li>Find one place where D&amp;A connects the E-I network's dynamics to a concrete phenomenon (e.g., response to a step or ramp input, contrast-invariant tuning, or similar). State it in one sentence.</li>
+</ol>
+<p><strong>Deliverable:</strong> half a page, five numbered short answers, each citing the specific equation number or a clear paraphrase location (e.g. "the paragraph introducing the linearized Jacobian of the coupled rate equations") since page numbers vary by printing.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Equations transcribed correctly with correct term-by-term mapping to Piece 1's notation; stability condition stated correctly in terms of the linearized system's eigenvalues/trace-determinant (or D&amp;A's equivalent framing) and correctly identifies that cross-coupling, not self-inhibition, is what produces the complex (oscillatory) eigenvalues; answer to (4) is honest about what is/isn't there rather than invented; (5) gives one accurate concrete example.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Equations correct but mapping to Piece 1 terms is loose or partially wrong; stability condition described qualitatively correct but without the eigenvalue/trace-determinant machinery; (4) and (5) present but vague.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Equations missing or wrong; stability condition is guessed rather than found in the text; (4) invents a delay discussion that isn't in the cited material; (5) is generic ("oscillations are important in the brain") rather than the specific example D&amp;A gives.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-4-functional-or-epiphenomenal">Piece 4 — Functional or epiphenomenal?</h2>
+<p><strong>Type:</strong> written defence · <strong>Time:</strong> 45–60 min · <strong>300–600 words</strong></p>
+<p><strong>Learning goals</strong>
+- State a concrete example of phase-carried information that rate alone cannot recover.
+- Marshal one piece of evidence each for "oscillations are functionally causal" and "oscillations are an epiphenomenon of recurrent E-I dynamics."
+- Take an explicit, falsifiable position on whether Step 3's purely-local, no-global-clock constraint can substitute for an oscillatory phase reference — and say what evidence would change the learner's mind.</p>
+<p><strong>Task</strong></p>
+<p>Write 300–600 words that do all of the following:</p>
+<ol>
+<li>Give one concrete, specific example of information that is carried in the <em>phase</em> of firing relative to a population rhythm and that could not be recovered from firing rate alone (rate = spike count in a window, with phase information discarded). Use a real quantity (e.g. a phase value in degrees or ms relative to cycle, mapped to something it encodes) — not just "phase carries information."</li>
+<li>State the single strongest piece of evidence you can identify (from D&amp;A ch.7, your Piece 1 derivation, your Piece 2 simulation, or the available papers list — C1–C6, B2, B5) that oscillations are causally functional (the rhythm itself is used downstream, not just a byproduct).</li>
+<li>State the single strongest piece of evidence, from the same source pool, that oscillations can be epiphenomenal (a byproduct of E-I feedback dynamics with no computational role attributed to the rhythm itself). Your own Piece 2 simulation — a toy E-I loop that oscillates purely as a consequence of feedback and delay, without any "use" being defined for the rhythm — is a legitimate example here if you argue it correctly.</li>
+<li>Take a position on the project tie-in: does Step 3's hard constraint (all learning purely local — pre-synaptic activity, post-synaptic activity, local error signal; no global loss; no global clock) rule out relying on an emergent oscillatory phase reference for coordinating graph nodes, make it necessary, or leave it irrelevant? Argue for one of these three, using your Piece 1/2 results as evidence (e.g., is a shared phase reference something that could emerge locally from many small E-I loops without a global clock, or does synchrony of that kind require exactly the kind of global timing signal the constraint forbids?).</li>
+<li>State one specific observation or result that would change your mind on point 4 — not "more evidence" in general, but a stated, checkable thing (e.g. "if two unconnected local E-I loops in a graph topology spontaneously phase-lock without any shared input or connection between them, that would suggest synchrony is achievable without a global clock").</li>
+</ol>
+<p><strong>Deliverable:</strong> 300–600 words, five clearly labeled parts matching 1–5 above (a numbered list or headers is fine — flowing prose is not required to hit all five points explicitly).</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>(1) is a specific, correctly-reasoned example where rate provably loses information that phase retains; (2) and (3) each cite one specific, correctly-described piece of evidence (not a vague appeal); (4) takes one clear position with an argument that actually uses Piece 1/2 results; (5) is concrete and falsifiable, not "more data."</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>All five points addressed but (2)/(3) are generic ("oscillations seem important" / "the sim just did it automatically") rather than a specific named source or result; (4) states a position but doesn't connect to the derivation/sim; (5) is vague ("if I saw more evidence").</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Missing one or more of the five points; (1) restates "phase carries information" without a concrete example; (4) refuses to take a position ("it depends" with no argument); (5) is unfalsifiable or absent.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="completion-bar">Completion bar</h2>
+<p>The lesson is complete when the learner can, unprompted and without notes:
+- Sketch a PING loop timing diagram (E fires → delay → I fires → inhibition decays → delay → E fires again) with plausible real ms values, not just labeled arrows.
+- Place theta (~4–8 Hz, long loop, navigation/sequence memory) and gamma (~30–80 Hz, short loop, feature binding/attention) correctly, and explain the placement in terms of loop delay and inhibitory decay, not just memorized numbers.
+- Give one concrete piece of evidence for oscillations being functionally causal and one for their being epiphenomenal (Piece 4, points 2–3), each specific enough to name a source or a result, not a vague impression.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

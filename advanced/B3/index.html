@@ -1,0 +1,1778 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+      
+      
+      
+      
+        <link rel="prev" href="../B2/">
+      
+      
+        <link rel="next" href="../B4/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>B3. Dendritic computation - Comp Neuro Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#b3-dendritic-computation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Comp Neuro Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              B3. Dendritic computation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Comp Neuro Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F1. Spike trains and firing rates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F2. Receptive fields and reverse correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F3. Neural decoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F4. Information theory for neurons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F5. Membrane biophysics and the action potential
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F6. Integrate-and-fire neurons and synaptic input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F7. Cable theory and neuronal morphology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F8. Network models: feedforward and recurrent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F9. Synaptic plasticity and learning rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F10. Classical conditioning and reinforcement learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F11. Representational learning and generative models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/Bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge. Synthesis checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1. Synaptic delays and temporal structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2. Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3. Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4. Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5. State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2. Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3. Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3. Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-distance-as-an-implicit-weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — Distance as an implicit weight
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-branches-as-a-hidden-layer-a-capacity-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — Branches as a hidden layer: a capacity demo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-da-ch-6-active-dendrite-primer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — D&amp;A ch. 6 + active-dendrite primer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-written-defence-growing-a-pair-vs-adding-dendritic-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Written defence: growing a pair vs. adding dendritic capacity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4. Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5. Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1. Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2. Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3. Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5. Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6. PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-distance-as-an-implicit-weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — Distance as an implicit weight
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-branches-as-a-hidden-layer-a-capacity-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — Branches as a hidden layer: a capacity demo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-da-ch-6-active-dendrite-primer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — D&amp;A ch. 6 + active-dendrite primer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-written-defence-growing-a-pair-vs-adding-dendritic-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Written defence: growing a pair vs. adding dendritic capacity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="b3-dendritic-computation">B3. Dendritic computation</h1>
+<p><strong>Prerequisites:</strong> the point-neuron LIF model; E/I and Dale's principle</p>
+<p><strong>Size:</strong> one to two sittings</p>
+<p><strong>Source material:</strong> <strong>D&amp;A ch. 6</strong> <em>The Cable Equation</em> and <em>Multi-compartment Models</em> — the passive grounding for why location is a weight, and the machinery for compartmental models. Not in D&amp;A: the two-layer and apical-gating accounts — Poirazi, Brannon &amp; Mel 2003 (Neuron); Larkum 2013 (TINS); London &amp; Häusser 2005 for an overview.</p>
+<p><strong>Local copies:</strong> none — all three need institutional access (Poirazi doi:10.1016/S0896-6273(03)00149-1; Larkum doi:10.1016/j.tins.2012.11.006; London &amp; Häusser doi:10.1146/annurev.neuro.28.061604.135703). D&amp;A ch. 6 covers the cable-theory half.</p>
+<p><strong>Goal:</strong> Replace the point neuron — soma sums weighted inputs — with dendrites as active, spatially structured compartments. Why a synapse's location on the tree changes its effective weight, why a branch can spike on its own, and how apical input can gate somatic firing: a top-down prediction mechanism inside a single cell, before any network-level PC machinery.</p>
+<p><strong>Scope:</strong>
+- Passive cable properties: distal current attenuates before reaching the soma, so location is an implicit weight independent of synaptic strength
+- Active dendrites: NMDA and calcium spikes as branch-local thresholded events, distinct from the somatic Na⁺ spike
+- Poirazi &amp; Mel's two-layer-network-in-a-neuron: branches as a hidden layer of nonlinear subunits feeding a somatic output unit, and the rough capacity gain over a linear point neuron
+- Larkum's apical-tuft mechanism: apical (feedback) and basal (feedforward) input on separate compartments, and how coincidence at the tuft gates or amplifies the somatic response
+- Not covered: which cortical layers apical and basal inputs come from (B2), spine pruning (B4)</p>
+<p><strong>You should be able to answer:</strong>
+1. Two synapses deliver the same peak current, one proximal, one 300 μm out on a distal branch — which produces the larger somatic EPSP, and why in terms of cable properties?
+2. What distinguishes an NMDA spike from the somatic Na⁺ spike — what triggers it, and does it stay local to the branch?
+3. In Poirazi &amp; Mel's model, what are the two layers, and roughly how much does capacity rise compared to a linear point neuron?
+4. In Larkum's model, which compartment receives basal input and which apical, and what happens to somatic output when both arrive together vs apical alone?
+5. If basal input alone produces a normal spike but apical input alone produces none, what does that predict about a neuron receiving strong bottom-up drive with no matching top-down signal?</p>
+<p><strong>Project tie-in:</strong> Step 4's stress mechanism currently has one lever when a neuron cannot predict its input — grow a new neuron pair. Active dendrites suggest a second: give the existing prediction neuron more internal capacity instead.</p>
+<p><strong>Done when:</strong> All five answered unprompted, and the learner can state the two-lever design tension (grow a pair vs add dendritic capacity) that B3 hands to Step 4.</p>
+<hr />
+<hr />
+<p><strong>Lesson spec:</strong> <code>lessons.md</code> → B3. <strong>Total time:</strong> one to two sittings (~4.5 hours: 45 min derivation, 90 min simulation, 75 min guided reading, 60 min written defence). <strong>Prerequisites:</strong> the point-neuron LIF model; E/I and Dale's principle.</p>
+<h2 id="running-order">Running order</h2>
+<p>Consume, then apply, then refine:</p>
+<p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
+<p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
+<h2 id="coverage-map">Coverage map</h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Type</th>
+<th>Lesson acceptance criteria addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — Cable attenuation</td>
+<td>derivation</td>
+<td>AC1</td>
+</tr>
+<tr>
+<td>2 — Two-layer dendrite vs. point neuron</td>
+<td>simulation</td>
+<td>AC3 (capacity gain), grounds AC2 (branch nonlinearity as the mechanism)</td>
+</tr>
+<tr>
+<td>3 — D&amp;A ch. 6 + active-dendrite primer</td>
+<td>guided reading</td>
+<td>AC1, AC2, AC3, AC4, AC5</td>
+</tr>
+<tr>
+<td>4 — Step 4 design defence</td>
+<td>written defence</td>
+<td>AC3, AC4, AC5, project tie-in, "done when" clause</td>
+</tr>
+</tbody>
+</table>
+<h2 id="piece-1-distance-as-an-implicit-weight">Piece 1 — Distance as an implicit weight</h2>
+<p><strong>Type:</strong> derivation · <strong>Time:</strong> 45 min</p>
+<p><strong>Learning goals</strong>
+- Compute a passive cable's length constant from membrane/axial parameters.
+- Apply steady-state exponential attenuation to get a numeric somatic-EPSP ratio.
+- State, without hand-waving, why synapse location is a weight independent of synaptic strength.</p>
+<p><strong>Task</strong></p>
+<p>A dendritic branch is modelled as a passive cylindrical cable with:
+- specific membrane resistance R_m = 10,000 Ω·cm²
+- axial resistivity R_L = 200 Ω·cm
+- diameter d = 2 μm</p>
+<ol>
+<li>Compute the length constant λ = √(R_m·d / (4·R_L)). Show units at each step (convert d to cm before plugging in).</li>
+<li>Two synapses deliver <strong>identical peak current</strong>, producing an identical local peak depolarization of 5 mV at their own injection site. Synapse P sits 20 μm from the soma; synapse D sits 300 μm from the soma. Using steady-state attenuation V(soma) = V(local)·exp(−x/λ) for a semi-infinite cable, compute the somatic EPSP for each.</li>
+<li>Compute the ratio EPSP_P / EPSP_D.</li>
+<li>In 3–5 sentences, explain why this ratio exists even though the two synapses are electrically identical at the point of injection — i.e., why "location on the dendrite" is itself a weight, separate from synaptic conductance.</li>
+<li>One sentence: is the steady-state exp(−x/λ) attenuation an over- or under-estimate of attenuation for a fast transient EPSP (as opposed to a sustained current step), and why (hint: capacitive shunting is frequency-dependent).</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>A short written page (typed or a clear photo of handwriting) showing: the λ calculation with units carried through, both attenuation factors to 4 significant figures, both somatic EPSP values in mV, the ratio, and the two short-answer explanations (Q4, Q5).</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>λ correct with units shown; both EPSPs and the ratio correct to ≥3 sig figs; Q4 explanation names axial current leaking across the membrane along the path (not "signal gets weaker" vagueness); Q5 correctly says steady-state underestimates real transient attenuation.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>λ and EPSPs correct but units skipped or ratio rounded early causing drift beyond 3 sig figs; Q4 correct in substance but generic ("distance matters"); Q5 attempted but reasoning thin or absent.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>λ formula misapplied (e.g. wrong factor of 4, or d not converted to cm) causing an order-of-magnitude error; or ratio computed with additive instead of multiplicative attenuation; or Q4 conflates location-dependence with synaptic-strength-dependence.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-2-branches-as-a-hidden-layer-a-capacity-demo">Piece 2 — Branches as a hidden layer: a capacity demo</h2>
+<p><strong>Type:</strong> simulation · <strong>Time:</strong> 90 min</p>
+<p><strong>Learning goals</strong>
+- Implement per-branch nonlinearity as a structural (block-sparse) constraint, not just "add a hidden layer."
+- Observe, with numbers, a task a linear point neuron cannot solve that a branched unit can.
+- Connect the empirical gap back to AC3's "two-layer-network-in-a-neuron" framing.</p>
+<p><strong>Task</strong></p>
+<p>Build a self-contained PyTorch (or numpy, if you implement gradients by hand) script, under ~100 lines, with:</p>
+<ol>
+<li><strong>Data</strong>: N = 4000 samples, x ∈ {0,1}⁸ drawn uniformly at random. Partition the 8 inputs into 4 disjoint pairs: (x₀,x₁), (x₂,x₃), (x₄,x₅), (x₆,x₇). Label y = 1 if <strong>any</strong> pair has both bits = 1 (an OR-of-ANDs / DNF target), else y = 0. Split 80/20 train/test.</li>
+<li><strong>Model A — point neuron</strong>: a single linear unit over all 8 inputs + sigmoid (<code>nn.Linear(8,1)</code> → sigmoid), trained with BCE loss.</li>
+<li><strong>Model B — dendritic unit</strong>: 4 independent "branch" subunits, each a linear+sigmoid over <em>only its own pair</em> of inputs (<code>nn.Linear(2,1)</code> → sigmoid, applied 4 times — this is the block-sparse constraint that makes it a branch, not a fully-connected hidden layer), concatenated and fed into one somatic linear+sigmoid unit (<code>nn.Linear(4,1)</code> → sigmoid).</li>
+<li>Train both models for the same number of epochs with the same optimizer/learning rate. Report final train and test accuracy for both in a printed table.</li>
+<li>Add a 3–5 sentence comment/docstring explaining, in terms of AC3, which "layer" of Model B is the branches and which is the soma, and why Model A's single linear boundary structurally cannot represent an OR-of-ANDs target (a single hyperplane can't carve out this decision region) while Model B can (each branch pre-computes one AND, the soma only needs an OR over already-nonlinear branch outputs).</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>The script (<code>.py</code> file) plus its captured stdout showing the final accuracy table for both models on held-out test data.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Model B's first layer is genuinely block-sparse (each branch only ever sees its own 2 inputs — verified by inspecting the code, not just the docstring); test accuracy gap is clearly demonstrated (Model B ≥ 97%, Model A visibly and reproducibly lower, ideally by ≥5 points); explanation correctly identifies branch layer vs. somatic layer and gives the hyperplane argument for why Model A is structurally capped.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Correct task/data and both models trained and evaluated correctly, gap is present and reported, but the explanation is vague about <em>why</em> (e.g. "the dendrite model has more parameters" without the linear-separability argument).</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Model B is actually fully-connected (4-unit hidden layer with no block-sparsity, i.e. an ordinary MLP) — this is not a dendrite model, it's just a bigger network, and it defeats the point of the exercise; or the label function is accidentally linearly separable (e.g. built from overlapping input pairs) so no capacity gap appears.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-3-da-ch-6-active-dendrite-primer">Piece 3 — D&amp;A ch. 6 + active-dendrite primer</h2>
+<p><strong>Type:</strong> guided reading · <strong>Time:</strong> 75 min</p>
+<p><strong>Learning goals</strong>
+- Read the passive cable equation and multi-compartment formalism precisely enough to explain each term physically.
+- Connect the textbook's passive machinery to the (non-textbook) active-dendrite mechanisms the project actually needs.</p>
+<p><strong>Task</strong></p>
+<p><strong>Part A — D&amp;A ch. 6, <em>The Cable Equation</em> and <em>Multi-compartment Models</em>.</strong> Answer:</p>
+<ol>
+<li>Write the passive cable equation in terms of V(x,t), λ, and τ_m. Identify, in words, which term is the capacitive current, which is the leak current, and which is the axial (longitudinal) current.</li>
+<li>State the steady-state solution to the cable equation for a semi-infinite cable with current injected at x = 0. What role does λ play in this solution, concretely?</li>
+<li>Using λ = √(r_m/r_l), explain why a <strong>thinner</strong> dendrite has a <strong>shorter</strong> length constant than a thicker one with identical membrane properties (connect to how r_l scales with 1/d² and r_m scales with 1/d).</li>
+<li>In the multi-compartment model, each compartment is a lumped RC circuit connected to its neighbors by an axial coupling conductance. Using this circuit picture, explain why adding more compartments between a synapse and the soma reduces the somatic EPSP without changing the synapse's own conductance at all.</li>
+<li>D&amp;A's compartments are passive (linear) by default. What, mechanically, would you need to add to one compartment's differential equation to make it behave as a thresholded nonlinear subunit instead (the branch nonlinearity from Part B)?</li>
+</ol>
+<p><strong>Part B — active-dendrite primer</strong> (not in D&A; short grounding text, read before answering):</p>
+<blockquote>
+<p>Two active nonlinearities live in real dendrites that the passive cable equation doesn't capture. An <strong>NMDA spike</strong> is a local, regenerative depolarization confined to a single branch: it is triggered when enough co-active glutamatergic synapses on that branch push local voltage past the Mg²⁺-block threshold of NMDA receptors, producing calcium/NMDA-receptor-driven current that stays largely local to the branch rather than actively propagating like the somatic Na⁺ spike (which is a single global all-or-nothing event triggered at the axon initial segment once <em>total</em> somatic input crosses threshold). Separately, many pyramidal neurons physically segregate inputs onto two compartments: <strong>basal</strong> dendrites (near the soma) carry feedforward, bottom-up drive, while the <strong>apical</strong> tuft (far from the soma, at the top of the cell) carries feedback/top-down input. Basal input alone can already drive a normal somatic spike. Apical input alone, arriving at the distal tuft, is too attenuated to fire the soma by itself — but if it arrives <em>together with</em> basal input, the resulting <strong>calcium spike at the apical trunk</strong> boosts the somatic response well above what basal input alone would produce. Apical input alone: no somatic effect. Apical + basal together: amplified somatic output.</p>
+</blockquote>
+<ol>
+<li>What distinguishes an NMDA spike from the somatic Na⁺ spike — what triggers each, and does the NMDA spike propagate outside its branch?</li>
+<li>In the apical-gating picture, which compartment carries basal (feedforward) input and which carries apical (feedback) input? What happens to somatic output when both arrive together, versus apical alone?</li>
+<li>If basal input alone produces a normal spike but apical input alone produces none, what does that predict about a neuron receiving strong bottom-up drive with no matching top-down signal?</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>Written answers to all 8 questions, 2–5 sentences each, Q3 and Q4 must name the specific scaling relationship or circuit element (not just "distance matters" or "more compartments = more attenuation").</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All 8 answered correctly and specifically; Q3 explicitly uses r_l ∝ 1/d² and r_m ∝ 1/d to get λ ∝ √d (thinner ⇒ smaller λ); Q6–8 correctly distinguish local/branch-confined (NMDA) from global/regenerative (Na⁺), and correctly state apical-alone gives no somatic effect.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>6–7 of 8 correct; minor imprecision (e.g. Q4 says "attenuation increases" without invoking the RC/coupling-conductance picture); Q8's prediction is directionally right but not clearly connected to a "no top-down confirmation ⇒ suppressed/undistinguished response" statement.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Fewer than 6 correct, or Q6 conflates NMDA spike with the somatic spike (says both are global), or Q7/Q8 swap which compartment is basal vs. apical.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-4-written-defence-growing-a-pair-vs-adding-dendritic-capacity">Piece 4 — Written defence: growing a pair vs. adding dendritic capacity</h2>
+<p><strong>Type:</strong> written defence · <strong>Time:</strong> 60 min · <strong>Length:</strong> 300–600 words</p>
+<p><strong>Learning goals</strong>
+- Turn AC3–AC5 into a concrete design rule for Step 4, not just a restatement of the biology.
+- Identify what the stress variable would have to measure to distinguish the two cases.
+- State the tradeoff (parameter/graph cost vs. representational limit) explicitly.</p>
+<p><strong>Task</strong></p>
+<p>Step 4's stress mechanism currently has exactly one response when a neuron's persistent prediction error (stress) is high: grow a new neuron pair (prediction neuron + error neuron). This lesson has introduced a second lever — give the existing prediction neuron more internal (dendritic-style) capacity instead, e.g. splitting its inputs across nonlinear branch subunits before somatic combination, without changing the graph.</p>
+<p>Write 300–600 words arguing for one of: (a) always grow a pair, (b) always add dendritic capacity, (c) a hybrid rule. Your answer must include:</p>
+<ol>
+<li>A <strong>stated rule</strong> for when each lever applies — not "it depends," a concrete trigger condition.</li>
+<li>What the <strong>stress variable would have to measure</strong> to distinguish the two cases (a single scalar "unresolved error" can't tell them apart — say what additional signal or second scalar would).</li>
+<li>The <strong>cost tradeoff</strong>: what growing a pair costs (new graph edges, more parameters, potential network-wide instability) versus what adding dendritic capacity costs (per-neuron parameters only, no topology change).</li>
+<li>Confirmation that whichever lever is chosen stays consistent with the project's hard constraint that all learning is local (a per-neuron branch-split is still a local change; check that your argument doesn't smuggle in a global signal to decide between the two levers).</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>The 300–600 word written argument, as a single piece of prose (not a bulleted outline standing in for prose — bullets are fine as sub-structure but the core argument must read as an argument).</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Concrete, checkable trigger rule (e.g. "if stress stays high after a branch-capacity increase, only then grow a pair" or equivalent nested-threshold logic); explicitly names a second observable/signal the stress variable lacks today (e.g. residual error <em>after</em> a capacity increase, or a measure of whether the error is separable across input subsets vs. genuinely unrepresentable by any recombination); cost tradeoff stated in concrete terms (edges/parameters/stability vs. per-neuron parameters); explicitly checks the rule against the locality constraint.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Takes a clear position with a rule, but the rule is soft ("usually add capacity first, and grow a pair if that doesn't work" with no operational definition of "doesn't work"); cost tradeoff mentioned but generic; locality check is asserted, not demonstrated.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>No concrete trigger rule (settles for "both have their uses"); doesn't say what the stress variable would need to measure differently; ignores cost tradeoff or locality constraint entirely.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="completion-bar">Completion bar</h2>
+<p>Pass this lesson when:
+- Piece 1: λ, both EPSPs, and the ratio are numerically correct, with the location-as-weight explanation stated in cable-property terms (not vaguely).
+- Piece 2: the dendritic model is genuinely block-sparse and shows a real, run-evidenced accuracy gap over the point neuron, with the gap explained via linear separability.
+- Piece 3: all 8 questions answered correctly and specifically, including the r_m/r_l scaling argument and the correct basal/apical assignment.
+- Piece 4: a concrete, checkable two-tier (or equivalent) trigger rule for grow-a-pair vs. add-capacity, naming the additional signal the stress variable lacks today, with cost tradeoff and locality both addressed.
+- The learner can, unprompted, state all five acceptance-criteria answers (AC1–AC5) and articulate the two-lever design tension this lesson hands to Step 4, in their own words, without re-reading the coursework.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

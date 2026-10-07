@@ -1,0 +1,1782 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+      
+      
+      
+      
+        <link rel="prev" href="../F6/">
+      
+      
+        <link rel="next" href="../F8/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>F7. Cable theory and neuronal morphology - Comp Neuro Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#f7-cable-theory-and-neuronal-morphology" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Comp Neuro Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              F7. Cable theory and neuronal morphology
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Comp Neuro Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F1. Spike trains and firing rates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F2. Receptive fields and reverse correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F3. Neural decoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F4. Information theory for neurons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F5. Membrane biophysics and the action potential
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F6. Integrate-and-fire neurons and synaptic input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F7. Cable theory and neuronal morphology
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F7. Cable theory and neuronal morphology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assigned-exercises-the-books-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assigned exercises — the book's own
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-deriving-the-cable-equation-and-the-length-constant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — Deriving the cable equation and the length constant
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-multi-compartment-cable-attenuation-curve-and-the-discretisation-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — Multi-compartment cable: attenuation curve and the discretisation rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-guided-reading-da-ch-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — Guided reading: D&amp;A ch. 6
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-written-explanation-location-as-an-implicit-weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Written explanation: location as an implicit weight
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F8. Network models: feedforward and recurrent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F9. Synaptic plasticity and learning rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F10. Classical conditioning and reinforcement learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F11. Representational learning and generative models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge. Synthesis checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1. Synaptic delays and temporal structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2. Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3. Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4. Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5. State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2. Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3. Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4. Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5. Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1. Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2. Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3. Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5. Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6. PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assigned-exercises-the-books-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assigned exercises — the book's own
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-deriving-the-cable-equation-and-the-length-constant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — Deriving the cable equation and the length constant
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-multi-compartment-cable-attenuation-curve-and-the-discretisation-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — Multi-compartment cable: attenuation curve and the discretisation rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-guided-reading-da-ch-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — Guided reading: D&amp;A ch. 6
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-written-explanation-location-as-an-implicit-weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Written explanation: location as an implicit weight
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="f7-cable-theory-and-neuronal-morphology">F7. Cable theory and neuronal morphology</h1>
+<p><strong>Prerequisites:</strong> F5</p>
+<p><strong>Size:</strong> two to three sittings — the cable equation derivation and the discretisation step are the parts that run long</p>
+<p><strong>Source material:</strong> D&amp;A ch. 6 — <em>Levels of Neuron Modeling</em> · <em>Conductance-Based Models</em> · <em>The Cable Equation</em> · <em>Multi-compartment Models</em></p>
+<p><strong>Goal:</strong> Move the neuron from a point to a spatially extended structure. Derive the cable equation from current conservation along a leaky cylinder, extract the electrotonic length constant, and use it to show that a synapse's dendritic location sets how much of its current survives to the soma — making location an implicit weight.</p>
+<p><strong>Scope:</strong>
+- The levels-of-modelling spectrum from point neuron to full reconstruction: what each tracks, what it discards, and how to choose
+- Conductance-based models with ionic currents beyond the standard sodium and potassium pair
+- The cable equation derived from axial and membrane current balance, with the electrotonic length constant defined and typical values (hundreds of micrometres up to about a millimetre for dendrites)
+- Steady-state attenuation of a distal EPSP at the soma as a function of distance in units of the length constant
+- Multi-compartment discretisation into coupled ODEs, and the rule for compartment length relative to the length constant
+- Not covered: active dendritic currents, NMDA spikes and the two-layer dendritic model (B3)</p>
+<p><strong>You should be able to answer:</strong>
+1. For a dendritic cylinder with membrane resistivity 20,000 ohm-square-centimetre, axial resistivity 200 ohm-centimetre and diameter 2 micrometres, compute the length constant in micrometres.
+2. A synapse sits two length constants from the soma. What fraction of its steady-state local voltage reaches the soma?
+3. Write the cable equation and identify which term is axial current flow and which is transmembrane leak.
+4. Why must compartment length be chosen relative to the length constant rather than to the neuron's physical size — what breaks in the discretised ODEs otherwise?
+5. Name two ionic currents a conductance-based model might add beyond sodium and potassium, and what each contributes that those two cannot.</p>
+<p><strong>Feeds:</strong> B3 (active dendrites, NMDA spikes and apical gating are nonlinear modifications on top of this passive framework).</p>
+<p><strong>Done when:</strong> Given a cylinder's resistivities and diameter, the learner computes the length constant, uses it to find steady-state attenuation at the soma, and explains why compartment size is chosen relative to it.</p>
+<hr />
+<hr />
+<p><strong>Lesson spec:</strong> <code>foundations.md</code> → F7. <strong>Total time:</strong> ~4-4.5 hours across 2-3 sittings. <strong>Prerequisites:</strong> F5 (membrane biophysics).</p>
+<h2 id="running-order">Running order</h2>
+<p>Consume, then apply, then refine: <strong>guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written explanation (Piece 4)</strong>. Pieces are numbered by type, not sequence.</p>
+<h2 id="assigned-exercises-the-books-own">Assigned exercises — the book's own</h2>
+<p>Dayan &amp; Abbott wrote exercise sets for every chapter and publish them free at gatsby.ucl.ac.uk/~dayan/book. This lesson's are in <code>exercises/c6.pdf</code> (chapter 6), with any code and data under <code>exercises/exercises/c6/</code>. <strong>Work all.</strong></p>
+<p>They are the authors' problems, not this course's, so they take precedence where the two overlap: if an exercise here duplicates one of theirs, do theirs. They are written for MATLAB; translating to numpy is part of the work and is not hard. The teacher agent has no answer key for these — it marks by reading your code and output, and says so rather than pretending to a key it does not have.</p>
+<h2 id="coverage-map">Coverage map</h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Type</th>
+<th>Lesson acceptance criteria addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>derivation</td>
+<td>1 (compute λ), 2 (attenuation fraction), 3 (cable equation terms)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>simulation</td>
+<td>1 (λ from a real cylinder), 2 (attenuation, numerically), 4 (compartment-size rule, demonstrated)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>guided reading</td>
+<td>3 (cable equation as presented in the text), 5 (conductance-based currents), plus the levels-of-modeling scope item</td>
+</tr>
+<tr>
+<td>4</td>
+<td>written explanation</td>
+<td>4 (why compartment size tracks λ), 5 (ionic currents in context)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="piece-1-deriving-the-cable-equation-and-the-length-constant">Piece 1 — Deriving the cable equation and the length constant</h2>
+<p><strong>Type:</strong> derivation · <strong>Time:</strong> ~75 min</p>
+<p><strong>Learning goals</strong>
+- Derive the passive cable equation from Kirchhoff's current law on an infinitesimal cylinder segment.
+- Extract the electrotonic length constant λ from the balance of axial and membrane-leak resistance.
+- Compute λ numerically from given resistivities and diameter, carrying units through.
+- Apply the steady-state exponential-attenuation solution to a concrete synapse-to-soma distance.</p>
+<p><strong>Task</strong></p>
+<p><em>Part A — derive the cable equation.</em> Consider a cylindrical dendrite of diameter <em>d</em>. Take a segment of length Δx and apply Kirchhoff's current law at its boundary: the axial current entering minus the axial current leaving must equal the membrane leak current plus the capacitive charging current, minus any current injected into the segment. Write the axial current via Ohm's law using an axial resistance per unit length <em>r_a</em>, and the leak/capacitive currents using a membrane resistance per unit length <em>r_m</em> and membrane capacitance per unit length <em>c_m</em>. Take Δx → 0 and show the resulting PDE.</p>
+<p><em>Part B — extract λ.</em> Set ∂V/∂t = 0 and the injected current to zero. Express <em>r_m</em> and <em>r_a</em> in terms of the specific membrane resistivity <em>R_m</em> (Ω·cm²), specific axial resistivity <em>R_a</em> (Ω·cm), and diameter <em>d</em>, and show that the steady-state equation reduces to ∂²V/∂x² = V/λ² with λ = √(d·R_m / (4·R_a)).</p>
+<p><em>Part C — compute.</em> Using R_m = 20,000 Ω·cm², R_a = 200 Ω·cm, d = 2 µm = 2×10⁻⁴ cm, compute λ in cm and convert to µm.</p>
+<p><em>Part D — attenuation.</em> Using the steady-state solution for a synapse on an (idealized, semi-infinite) cable, V(soma) = V(local) · e^(−x/λ), compute the fraction of a synapse's local steady-state voltage that reaches the soma when the synapse sits at x = 2λ.</p>
+<p><em>Part E — label the terms.</em> Rewrite the PDE from Part A and label which term is axial (longitudinal) current flow and which is transmembrane leak current.</p>
+<p><strong>Deliverable</strong></p>
+<p>Written pages (handwritten or typed) covering: the Kirchhoff-law setup and the Δx → 0 limit (Part A, shown explicitly, not skipped); the λ formula in terms of R_m, R_a, d (Part B); the numeric λ with units (Part C); the attenuation fraction as both an expression and a decimal (Part D); the labeled cable equation (Part E).</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All five parts correct; the Δx → 0 step is shown explicitly; λ correct to ≥3 significant figures with units carried through; attenuation given as both e^(−2) and its decimal value; axial/leak terms labeled specifically (not "term 1"/"term 2") with one line each on why.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Cable equation and λ formula correct; final numeric λ and attenuation fraction correct even if intermediate unit bookkeeping is sloppy; terms labeled but justification thin.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>A term missing or wrong sign in the PDE; λ formula missing the factor of 4, or diameter dependence inverted; numeric λ off by more than 2× or missing units; attenuation computed as a linear (not exponential) falloff, or with the wrong sign in the exponent.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-2-multi-compartment-cable-attenuation-curve-and-the-discretisation-rule">Piece 2 — Multi-compartment cable: attenuation curve and the discretisation rule</h2>
+<p><strong>Type:</strong> simulation · <strong>Time:</strong> ~90 min</p>
+<p><strong>Learning goals</strong>
+- Translate the continuous cable equation into a discretized system of coupled compartment ODEs with sealed (no-flux) boundaries.
+- Numerically reproduce the analytic exponential attenuation law from Piece 1 when compartments are small relative to λ.
+- Demonstrate, by direct numerical comparison (not assertion), that violating Δx ≪ λ produces a measurably wrong attenuation curve.</p>
+<p><strong>Task</strong></p>
+<p>Work in normalized units: x̃ = x/λ, t̃ = t/τ_m (τ_m = R_m·C_m; assume the standard specific membrane capacitance C_m = 1 µF/cm², giving τ_m = 20,000 Ω·cm² × 1×10⁻⁶ F/cm² = 0.02 s = 20 ms). In these units the cable equation becomes</p>
+<p>∂V/∂t̃ = ∂²V/∂x̃² − V + E(x̃, t̃)</p>
+<p>with E the injected current in normalized units. <strong>Model the soma as an interior compartment, not an end compartment</strong>: extend the cable at least 6λ on either side of the soma with sealed (Neumann) boundaries at the two far ends. (If the soma sits at a sealed boundary instead, its own reflection corrupts the comparison to the semi-infinite exp(−x/λ) law — this is a deliberate design constraint, not a simplification you can skip.)</p>
+<p>Discretize into N compartments of width h = Δx̃. For each interior compartment i:</p>
+<p>dV_i/dt̃ = (V_{i+1} − 2V_i + V_{i-1})/h² − V_i + E_i(t̃)</p>
+<p>with the sealed-end rule at i=0 and i=N−1 (drop the term that would come from outside the cable, i.e. reflect the missing neighbor).</p>
+<p><em>Part A (well-resolved).</em> Choose h = 0.1 (Δx = 0.1λ). Inject a constant unit current, one run at a time, at compartments 1λ, 2λ, and 3λ from the soma. Integrate forward in time with a stable step until the somatic voltage plateaus. Record the ratio V(soma)/V(local injection site) at each distance and compare against e^(−x/λ) from Piece 1.</p>
+<p><em>Part B (violating the rule).</em> Repeat with h = 1.0 (one compartment spans a full length constant) and again with h = 2.0, same physical span. Record the same ratios (where a compartment lands at that distance) and compute percent deviation from e^(−x/λ) at a fixed distance (e.g. x = 2λ) across all three values of h.</p>
+<p><strong>Deliverable</strong></p>
+<p>The script (under ~100 lines), the attenuation curves (fine vs. coarse vs. analytic, plotted or tabulated), and a short error-vs-h/λ table at a fixed distance.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Fine-resolution (h ≪ λ) curve matches analytic e^(−x/λ) to within ~1%; coarse cases show clearly increasing error as h/λ grows, reported as computed percentages; soma correctly placed as an interior compartment with the reason stated; explicit error-vs-h table included.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Fine case matches within a few percent and at least one coarse case is shown to deviate, but error isn't quantified precisely or only one coarse case is tested.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Soma placed at a cable endpoint (breaking the exp(−x/λ) comparison even in the fine case); no quantified comparison to the analytic curve; only one resolution tested, so criterion 4 isn't actually demonstrated; unstable integration (blown-up/NaN voltages) not diagnosed.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-3-guided-reading-da-ch-6">Piece 3 — Guided reading: D&amp;A ch. 6</h2>
+<p><strong>Type:</strong> guided reading · <strong>Time:</strong> ~45 min</p>
+<p><strong>Learning goals</strong>
+- Locate where each level of neuron modeling sits on the abstraction spectrum, and what it keeps versus discards.
+- Identify what conductance-based models add beyond the Hodgkin-Huxley Na⁺/K⁺ pair.
+- State the cable equation's terms and boundary conditions as the text presents them, cross-checked against Piece 1.
+- Extract the text's rule of thumb for multi-compartment discretisation.</p>
+<p><strong>Task</strong></p>
+<p>Read D&amp;A ch. 6, sections <em>Levels of Neuron Modeling</em>, <em>Conductance-Based Models</em>, <em>The Cable Equation</em>, and <em>Multi-compartment Models</em>. Answer in your own words (no verbatim quoting), naming the subsection each answer draws from:</p>
+<ol>
+<li>List the levels of neuron modeling the chapter distinguishes, simplest to most detailed. For each, name one thing it captures and one thing it deliberately discards.</li>
+<li>The conductance-based section goes beyond the Hodgkin-Huxley Na⁺/K⁺ pair. Name at least one additional ionic current it discusses and its functional role.</li>
+<li>In the text's derivation of the cable equation, what physical assumption lets axial current be written via a simple 1-D Ohm's law (what is assumed about intracellular vs. extracellular resistance)?</li>
+<li>What boundary condition does the text use at a sealed dendritic end, and what condition applies at a branch point where two dendrites meet?</li>
+<li>What rule of thumb does the text give for compartment length relative to the electrotonic length constant, and what goes wrong if it's violated?</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>Answers to Q1-Q5, at most one paragraph each, each tagged with the subsection it was drawn from.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All five answered accurately with the correct subsection cited; levels of modeling distinguished by what state each one tracks; sealed-end and branch-point conditions stated distinctly and correctly.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Correct in substance, citations vague, or one answer thin.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Conflates levels of modeling; misses that conductance-based models include currents beyond Na⁺/K⁺; can't state the compartment-length rule, or states it relative to neuron size instead of λ.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-4-written-explanation-location-as-an-implicit-weight">Piece 4 — Written explanation: location as an implicit weight</h2>
+<p><strong>Type:</strong> written explanation · <strong>Time:</strong> ~45 min, 300-600 words</p>
+<p><strong>Learning goals</strong>
+- Synthesize the derivation and simulation results into a coherent account of why dendritic location acts as an implicit synaptic weight.
+- Explain, in the learner's own words and with their own numbers, why compartment size must track λ rather than physical neuron size.
+- Situate the passive-cable result within the levels-of-modeling spectrum and conductance-based extensions.</p>
+<p><strong>Task</strong></p>
+<p>In 300-600 words, explain to a reader who knows Hodgkin-Huxley point neurons but has not seen cable theory:</p>
+<ol>
+<li>Why a synapse's distance from the soma, measured in units of λ, determines how much of its current survives to influence somatic voltage — use your computed λ and attenuation fraction from Piece 1 as a concrete example.</li>
+<li>Why, when simulating this numerically, compartment length must be chosen relative to λ and not the neuron's physical size — reference your Piece 2 fine-vs-coarse comparison and at least one of its error numbers.</li>
+<li>How this passive-cable picture fits into the broader levels-of-modeling spectrum (Piece 3, Q1), and what a conductance-based extension (e.g. adding a calcium current, Piece 3 Q2) would let the model do that a passive cable structurally cannot.</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>300-600 words of prose covering all three points, citing specific numbers from Pieces 1 and 2 (not just symbols).</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Explains attenuation as exponential decay in units of λ with a concrete number (e.g. "at 2λ, only ~13.5% of the local voltage survives to the soma"); explains the discretisation failure mechanistically (why the finite-difference second derivative needs small Δx/λ) with a concrete error number from their own simulation; correctly places the passive cable in the levels spectrum and names a specific, correct consequence of adding an active current; word count in range.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Covers all three points with generally correct reasoning but vaguer mechanism (e.g. asserts the discretisation rule without explaining why) or omits concrete numbers.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Treats synaptic location as a fixed/additive weight without connecting it to distance and exponential decay; says compartment size should just be "small" with no reference to λ; conflates active/passive cable properties or misstates the calcium current's role; well outside word count.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="completion-bar">Completion bar</h2>
+<p>All four pieces at Adequate or better. Piece 2's coarse-vs-fine comparison must show measurable, quantified divergence (not an assertion that coarse compartments are "less accurate"). Piece 4 must cite at least one concrete number each from Piece 1 (λ or the attenuation fraction) and Piece 2 (an error percentage). Piece 3's five answers must each be checked against the physical D&amp;A text, not graded from the teacher's general knowledge.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1805 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+      
+      
+      
+      
+        <link rel="prev" href="../B1/">
+      
+      
+        <link rel="next" href="../B3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>B2. Cortical microcircuits and laminar structure - Comp Neuro Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#b2-cortical-microcircuits-and-laminar-structure" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Comp Neuro Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              B2. Cortical microcircuits and laminar structure
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Comp Neuro Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F1. Spike trains and firing rates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F2. Receptive fields and reverse correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F3. Neural decoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F4. Information theory for neurons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F5. Membrane biophysics and the action potential
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F6. Integrate-and-fire neurons and synaptic input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F7. Cable theory and neuronal morphology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F8. Network models: feedforward and recurrent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F9. Synaptic plasticity and learning rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F10. Classical conditioning and reinforcement learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F11. Representational learning and generative models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/Bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge. Synthesis checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1. Synaptic delays and temporal structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2. Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3. Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4. Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5. State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2. Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2. Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verified-against-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified against the source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-balancing-a-superficial-error-neuron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — Balancing a superficial error neuron
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-fast-error-slow-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — Fast error, slow prediction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-guided-reading-hertag-sprekeler-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — Guided reading: Hertäg &amp; Sprekeler (2020)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-step-5-cluster-wiring-proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Step 5 cluster wiring proposal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3. Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4. Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5. Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1. Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2. Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3. Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5. Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6. PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verified-against-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified against the source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-balancing-a-superficial-error-neuron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — Balancing a superficial error neuron
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-fast-error-slow-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — Fast error, slow prediction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-guided-reading-hertag-sprekeler-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — Guided reading: Hertäg &amp; Sprekeler (2020)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-step-5-cluster-wiring-proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Step 5 cluster wiring proposal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="b2-cortical-microcircuits-and-laminar-structure">B2. Cortical microcircuits and laminar structure</h1>
+<p><strong>Prerequisites:</strong> the PV/SST/VIP-to-PC-quantities mapping and the Dale's principle discussion in <code>comp_neuro_notes.md</code></p>
+<p><strong>Size:</strong> two to three sittings</p>
+<p><strong>Source material:</strong> <strong>Largely absent from D&amp;A</strong> — closest is <strong>ch. 2</strong> <em>Introduction to the Early Visual System</em> and <em>Constructing V1 Receptive Fields</em> for the feedforward story, which is the part this lesson complicates. Primary: Bastos et al. 2012 (Neuron), <em>Canonical microcircuits for predictive coding</em>; Hertäg &amp; Sprekeler 2020 (eLife), the read already flagged in <code>comp_neuro_notes.md</code>.</p>
+<p><strong>Local copies:</strong> <code>papers/B2_hertag_sprekeler_2020_prediction_error_neurons.pdf</code>. Bastos et al. 2012 is open access and readable at <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3777738/">https://pmc.ncbi.nlm.nih.gov/articles/PMC3777738/</a> — PubMed Central blocks scripted downloads but not browsers. Its laminar and frequency-band claims have been checked against the text and hold.</p>
+<p><strong>Goal:</strong> Name which cortical layer does what, and map Bastos et al. (2012)'s canonical microcircuit onto predictive coding: superficial layers carrying error, deep layers carrying predictions, with a feedforward/feedback asymmetry in both wiring and frequency band. Closes the gap between "PV/SST/VIP compute PC quantities" (functional, no wiring) and "those quantities live in a specific six-layer scaffold" (structural), and forces a decision on whether the column is real enough to justify a Step 5 cluster unit.</p>
+<p><strong>Scope:</strong>
+- The six layers and their canonical roles: L4 thalamic input, L2/3 cortico-cortical output, L5 subcortical output, L6 corticothalamic feedback
+- Bastos et al. 2012: superficial pyramidal cells as error units sending driving feedforward connections terminating in L4 of the target area (gamma); deep pyramidal cells as prediction units sending modulatory feedback that avoids L4 (beta/alpha)
+- Where PV, SST and VIP sit in that scaffold (Hertäg &amp; Sprekeler): PV perisomatic inhibition gating feedforward drive, SST dendrite-targeting inhibition onto L1 apical tufts gating predictions, VIP disinhibiting SST — reconciled with the precision / prediction-mean / uncertainty mapping already known
+- Cortical columns: the evidence for (anatomical repetition, Mountcastle) and against (functional heterogeneity across areas and species) treating the column as a real functional unit
+- Not covered: dendritic computation within a pyramidal cell (B3), neuromodulatory gain control of the circuit (B1)</p>
+<p><strong>You should be able to answer:</strong>
+1. Which numbered layer receives thalamic feedforward input, and which projects back to thalamus?
+2. In Bastos et al. 2012, which layers are the error units and which the prediction units, and which frequency band is linked to each direction?
+3. Trace a feedforward error signal from L2/3 of area A — which layer does it terminate in, in area B, and why does that matter for the feedforward/feedback asymmetry?
+4. Where does SST inhibition land anatomically, and how does that location support SST encoding the mean of a top-down prediction rather than precision?
+5. Give one piece of evidence for and one against the cortical column as a real functional unit, then say which way your evidence points.</p>
+<p><strong>Project tie-in:</strong> Step 5 wants cortices as dense clusters with sparse inter-cluster links. This supplies the internal layout — a superficial error sub-population, a deep prediction sub-population, feedforward links terminating on the error layer, feedback links avoiding it — making the cluster a specific circuit rather than an unstructured blob.</p>
+<p><strong>Done when:</strong> The learner sketches a six-layer canonical microcircuit with PV/SST/VIP placement and proposes a specific Step 5 cluster wiring diagram from it, without re-deriving the PC-quantity mapping.</p>
+<hr />
+<hr />
+<p><strong>Lesson spec:</strong> <code>lessons.md</code> → B2. <strong>Total time:</strong> ~6 hours across 3 sittings (derivation ~1h, simulation ~2h, guided reading ~1.5h, written defence ~1.5h). <strong>Prerequisites:</strong> the PV/SST/VIP-to-PC-quantities mapping (SST = mean of top-down prediction, VIP = uncertainty on that prediction, PV = precision of feedforward drive, pyramidal split into representational/error subpopulations) and the Dale's principle discussion already written up.</p>
+<h2 id="running-order">Running order</h2>
+<p>Consume, then apply, then refine:</p>
+<p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
+<p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
+<h2 id="verified-against-the-source">Verified against the source</h2>
+<p>These claims were checked against the text of Bastos et al. 2012 rather than recalled:</p>
+<ul>
+<li>superficial pyramidal cells "encode and broadcast prediction errors" and provide feedforward connections</li>
+<li>deep pyramidal cells "encode conditional expectations... so that they can elaborate feedback predictions", and feedback "terminates outside of L4"</li>
+<li>the spectral asymmetry is the paper's own prediction: "superficial cells should express more gamma relative to beta, and deep cells should express more beta relative to gamma", with feedforward connections using higher frequencies than feedback</li>
+</ul>
+<p>The grader key may be applied to these as sourced fact.</p>
+<h2 id="coverage-map">Coverage map</h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Type</th>
+<th>Lesson acceptance criteria addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — Balancing a superficial error neuron</td>
+<td>derivation</td>
+<td>2 (error vs. prediction units), 4 (SST location → mean, not precision)</td>
+</tr>
+<tr>
+<td>2 — Fast error, slow prediction</td>
+<td>simulation</td>
+<td>2 (superficial=error/deep=prediction, frequency asymmetry)</td>
+</tr>
+<tr>
+<td>3 — Guided reading: Hertäg &amp; Sprekeler (2020)</td>
+<td>guided reading</td>
+<td>1 (layer targets), 2 (error/prediction split), 3 (feedforward termination + asymmetry), 4 (SST location)</td>
+</tr>
+<tr>
+<td>4 — Step 5 cluster wiring proposal</td>
+<td>written defence</td>
+<td>1, 3, 5 (all five criteria synthesized into the project artifact)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="piece-1-balancing-a-superficial-error-neuron">Piece 1 — Balancing a superficial error neuron</h2>
+<p><strong>Type:</strong> derivation · <strong>Time:</strong> ~1 hour</p>
+<p><strong>Learning goals</strong>
+- Derive, with numbers, the condition under which a rate neuron receiving feedforward excitation and top-down inhibition becomes a genuine prediction-error unit (zero output when prediction matches input).
+- Show that a <em>local</em> inhibitory plasticity rule (using only pre- and post-synaptic rates available at that synapse) converges to this balance point, without a global loss.
+- Connect the algebra to acceptance criterion 4: because the inhibitory input in this derivation is playing the role of SST-mediated top-down inhibition, show why that specific subtraction computes the <em>mean</em> of the prediction rather than a precision (gain) term.
+- Notice the model's blind spot: a single rectified unit can only be one sign of error, motivating the "positive/negative PE neuron" pair the reading in Piece 3 will introduce.</p>
+<p><strong>Task</strong></p>
+<p>Model a single superficial-layer (L2/3) error neuron as a threshold-linear rate unit:</p>
+<div class="highlight"><pre><span></span><code>r_E = [ w_ff * x_ff  -  w_SST * x_pred  +  b ]_+        ([.]_+ = rectification, output ≥ 0)
+</code></pre></div>
+<p><code>x_ff</code> is the feedforward drive relayed from L4 (in Hz), <code>x_pred</code> is the rate at which the deep-layer prediction unit is currently firing (in Hz, same units as <code>x_ff</code> by construction — assume a 1:1 SST relay so the inhibitory current SST delivers is <code>w_SST * x_pred</code>), <code>b = 0</code>, <code>w_ff = 1.0</code>.</p>
+<ol>
+<li>At baseline the prediction is correct: <code>x_ff = x_pred = 20 Hz</code>. Solve for the value of <code>w_SST</code> that makes <code>r_E = 0</code> at baseline.</li>
+<li>Using that <code>w_SST</code>, compute <code>r_E</code> when <code>x_ff</code> jumps to 35 Hz with <code>x_pred</code> still at 20 Hz (prediction hasn't caught up yet). Then compute <code>r_E</code> when <code>x_ff</code> drops to 8 Hz with <code>x_pred</code> still at 20 Hz. State in one sentence why the second case is a problem for a single rectified unit, and what a second unit would need to look like to fix it.</li>
+<li>Now derive convergence to the balanced weight from scratch. Start from a mis-set <code>w_SST(0) = 0.6</code> at the baseline input (<code>x_ff = x_pred = 20</code>). Apply the local homeostatic inhibitory plasticity rule
+   <code>Δw_SST = ε · x_SST · (r_E − θ)</code>, with <code>x_SST = x_pred = 20</code>, <code>θ = 0</code>, <code>ε = 0.002</code>.
+   Hand-compute <code>w_SST</code> and <code>r_E</code> for 3 update steps. Note that this rule only ever reads <code>x_SST</code> (presynaptic) and <code>r_E</code> (postsynaptic) — no external error signal is injected — and say explicitly why that satisfies the project's "purely local learning" constraint.</li>
+<li>In 3-4 sentences: why must the inhibitory term be driven by <code>x_pred</code> (the deep unit's <em>rate</em>, i.e. its estimate of the prediction's mean) rather than, say, a term proportional to the <em>variance</em> of recent feedforward input, for this derivation to be consistent with SST encoding the mean and not the precision of the prediction? Contrast with what a precision-coding (PV-like) term would have to multiply instead of subtract.</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>A single typed sheet (prose + algebra, not code) with: the solved <code>w_SST</code>, the two mismatch values of <code>r_E</code>, the 3-row convergence table (<code>w_SST(n)</code>, <code>r_E(n)</code>), and the two short written answers (part 2's one-sentence note, part 4's paragraph).</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Correct <code>w_SST = 1.0</code>; correct mismatch outputs (15 Hz and 0 Hz, with the rectification-to-zero explicitly flagged as a limitation); convergence table numerically correct to 2 decimal places at every step; part 4 correctly distinguishes an additive/subtractive mean term from a multiplicative/divisive precision term and states this in terms of Dale's principle already covered.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Correct <code>w_SST</code> and mismatch values; convergence table has at most one arithmetic slip that doesn't change the qualitative trend (monotonic convergence toward <code>w_SST=1.0</code>); part 4 correctly identifies mean vs. precision as additive vs. multiplicative but doesn't tie it back to SST/PV explicitly.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td><code>w_SST</code> solved incorrectly or via guessing rather than algebra; convergence table missing or non-monotonic without explanation; part 4 conflates mean and precision or skips the rectification issue in part 2 entirely.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-2-fast-error-slow-prediction">Piece 2 — Fast error, slow prediction</h2>
+<p><strong>Type:</strong> simulation · <strong>Time:</strong> ~2 hours</p>
+<p><strong>Learning goals</strong>
+- Build a minimal two-population rate circuit (superficial error population, deep prediction population) and verify by simulation, not assertion, that the error population's activity is faster/noisier and the prediction population's is slower/smoother.
+- Verify numerically that the deep (prediction) population tracks the slow component of a synthetic stimulus while the superficial (error) population's mean collapses toward zero as the prediction converges.
+- Practice treating "frequency band" claims as an empirical, checkable property of time constants rather than folklore — and practice <em>not</em> overclaiming a match to real gamma/beta oscillations from a toy leaky integrator.</p>
+<p><strong>Task</strong></p>
+<p>Write a self-contained PyTorch or NumPy script (&lt;100 lines, synthetic data only, no external datasets). Simulate discrete time steps of <code>dt = 1 ms</code> for <code>T = 5000</code> steps (5 s).</p>
+<ol>
+<li><strong>Synthetic stimulus</strong> <code>s(t)</code>: a slow random-walk mean <code>μ(t)</code> (step ±0.02 every 200 ms) plus fast i.i.d. Gaussian jitter (σ = 1.0) added at every 1 ms step: <code>s(t) = μ(t) + noise(t)</code>.</li>
+<li><strong>Two populations</strong>, <code>N = 20</code> units each, independent noise realizations per unit, shared dynamics:</li>
+<li>Error population <code>E</code>: <code>τ_E dE/dt = -E + relu(s(t) - P)</code>, <code>τ_E = 5 ms</code>.</li>
+<li>Prediction population <code>P</code>: <code>τ_P dP/dt = -P + η·E</code>, <code>τ_P = 50 ms</code>, <code>η = 0.5</code>.
+   (Note: <code>P</code>'s update uses only <code>E</code>, its own local error signal — this is the same locality property as Piece 1's rule, now running as a dynamical system instead of a discrete weight update.)</li>
+<li>Discard the first 500 ms as transient. On the remainder, compute:
+   a. The power spectral density (Welch or plain FFT-of-autocorrelation is fine) of the population-mean-of-<code>E</code> and population-mean-of-<code>P</code> traces. Report the peak/corner frequency of each.
+   b. The mean of <code>E</code> over the last 1 s vs. the mean of <code>P</code> over the last 1 s vs. the true <code>μ(t)</code> over the same window.
+   c. The Pearson correlation between <code>P</code>'s trace and <code>μ(t)</code> (the slow component only, not <code>s(t)</code>).</li>
+<li>Write a 150-300 word comment block in the script (or a short markdown note alongside it) stating: which population's PSD peaks at higher frequency, by roughly what factor, and whether that factor is close to <code>τ_P/τ_E</code>; whether <code>P</code> tracks <code>μ(t)</code> and <code>E</code>'s mean shrinks as expected; and — explicitly — that this toy model is not claiming to reproduce real cortical gamma/beta frequencies (the corner frequencies here are set by arbitrary millisecond time constants), only the qualitative claim that a fast feedforward-driven population and a slow feedback-driven population will occupy different, separable frequency ranges purely as a consequence of their time constants.</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>The script, its console output (numeric PSD peaks, means, correlation), and the written comment block.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Script runs, implements the two-population dynamics correctly with local-only updates; PSD peak of <code>E</code> is measurably higher than <code>P</code>'s (within a factor of 2 of the ~10x predicted by <code>τ_P/τ_E</code>); <code>P</code> correlates with <code>μ(t)</code> at r &gt; 0.6 after transient; comment block correctly states the overclaiming caveat unprompted.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Script runs and dynamics are correct; frequency separation and tracking are qualitatively right but the numeric comparison to <code>τ_P/τ_E</code> is missing or off by a large factor without explanation; caveat about not literally reproducing gamma/beta is present but only after being asked.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Populations don't actually separate by time constant (e.g. same <code>τ</code> used for both, or <code>P</code> updates from something other than <code>E</code>), or the script fits a curve/uses a real dataset instead of synthetic generation, or the write-up claims to have reproduced real gamma/beta oscillations.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-3-guided-reading-hertag-sprekeler-2020">Piece 3 — Guided reading: Hertäg &amp; Sprekeler (2020)</h2>
+<p><strong>Type:</strong> guided reading · <strong>Time:</strong> ~1.5 hours</p>
+<p><strong>Source:</strong> <code>papers/B2_hertag_sprekeler_2020_prediction_error_neurons.pdf</code> (open access). This is the required read before committing Step 5 to a layout. Bastos et al. 2012 (the canonical-microcircuit paper) is <strong>open access and readable in a browser</strong> at <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3777738/">https://pmc.ncbi.nlm.nih.gov/articles/PMC3777738/</a> — PubMed Central blocks scripted downloads, not people. Read it: it is the source for the laminar and frequency-band claims, and the questions below about layers and bands are answerable from it directly rather than by inference. Douglas &amp; Martin remains unavailable. Dayan &amp; Abbott ch. 2 supplies the feedforward baseline this lesson complicates.</p>
+<p><strong>Learning goals</strong>
+- Extract the mechanism by which a local, biologically plausible plasticity rule turns an ordinary pyramidal neuron into a genuine prediction-error unit, without an externally supplied error signal.
+- Identify how the paper's dendrite-targeting vs. soma-targeting interneuron distinction maps onto the SST-vs-PV distinction already learned, and onto anatomical location (distal dendrite/apical tuft vs. perisomatic).
+- Practice explicitly flagging where a source is silent on a question the lesson requires an answer to (layers, frequency bands, columns), rather than inventing a citation for it.</p>
+<p><strong>Task — answer each question with a page/section reference from the PDF plus 2-5 sentences (page/section numbers may differ slightly by PDF version — cite whatever locator you actually have; the grader checks the content, not the exact page number):</strong></p>
+<ol>
+<li>Where in the paper are "positive" and "negative" prediction-error neurons introduced, and what distinguishes them at the level of the circuit (not just the sign of their response)? Relate this to Piece 1 part 2's finding that a single rectified unit could only be a positive-error unit.</li>
+<li>Find the paper's plasticity rule for the dendrite-targeting inhibitory synapses. What two quantities does it depend on, and are they both locally available at that synapse (i.e., does it require anything like a global loss or a teacher signal)? Compare this to the rule you used by hand in Piece 1 part 3 — same shape or different?</li>
+<li>The paper distinguishes soma-targeting from dendrite-targeting inhibition functionally. Which one plays the role that, in this course's PV/SST/VIP mapping, corresponds to gating the feedforward drive, and which plays the role of delivering the top-down expectation? Does the paper's anatomical framing (soma vs. distal dendrite) match the SST→apical-tuft/L1 picture from the lesson scope, or is it silent on layers specifically? Say which.</li>
+<li>The paper does not discuss cortical layers or oscillation frequency bands. Given only what the paper <em>does</em> establish (dendrite-targeting inhibition conveying an expectation, arriving anatomically distal to soma-targeting inhibition), construct your own one-paragraph argument for why it would be <em>consistent</em> with dendrite-targeting/SST-like inhibition landing in layer 1 (where apical tufts of deep and superficial pyramidal cells both arborize) rather than, say, at the soma. Flag explicitly that this paragraph is your inference bridging the paper to the lesson's layer claim, not something the paper itself states.</li>
+<li>Skim the paper's discussion/functional-implications section. Name one stated functional benefit of having both positive and negative PE neuron types (rather than just one), and relate it in one sentence to why a Step 5 cortex cluster might want an analogous pair of error sub-populations rather than a single one.</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>Five answers, each with its locator and inline citation of which sentence/figure/equation in the paper backs the claim.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All five answered with correct, specific paper content; Q2's rule correctly identified as depending only on local pre/post quantities; Q4's layer claim is supported from Bastos et al. directly — superficial pyramidal cells encoding and broadcasting prediction errors, deep pyramidal cells encoding expectations and elaborating feedback predictions that terminate outside L4; Q5 names a real stated benefit (e.g. coding efficiency / covering both signs of mismatch with a shared dynamic range) and connects it to Step 5.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Four of five correct and located; minor imprecision in describing the plasticity rule's dependencies; Q4 attempts the bridge but doesn't clearly separate "paper says" from "I'm inferring."</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Answers are generic paraphrase without a locator, cite content not actually in the paper, or Q4/Q3 assert the paper discusses layers/frequency bands directly (it does not — this is the specific error to watch for).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-4-step-5-cluster-wiring-proposal">Piece 4 — Step 5 cluster wiring proposal</h2>
+<p><strong>Type:</strong> written defence · <strong>Time:</strong> ~1.5 hours · <strong>300-600 words</strong></p>
+<p><strong>Learning goals</strong>
+- Synthesize all three prior pieces plus the prerequisite PV/SST/VIP mapping into one concrete, named wiring diagram for a Step 5 cortex cluster.
+- Practice the discipline of stating what is <em>not</em> being copied from biology and why — a project decision, not a reading-comprehension answer.
+- Take an explicit position on the cortical-column debate (acceptance criterion 5) and let that position visibly shape the proposal (e.g., "one canonical layout per cluster" vs. "layout varies per cluster").</p>
+<p><strong>Task</strong></p>
+<p>Write the actual Step 5 cluster proposal the project currently lacks. It must include:</p>
+<ol>
+<li><strong>An ASCII (or equivalent plain-text) wiring diagram</strong> of one cluster, with named sub-populations — at minimum: an input-relay population (L4-analog), a superficial error population, a deep prediction population, and inhibitory gating populations (PV-analog, SST-analog, VIP-analog) placed consistently with the prerequisite mapping and with Piece 1/3's finding about soma- vs. dendrite-targeting.</li>
+<li><strong>Sparse inter-cluster links drawn explicitly</strong>: feedforward (error-carrying) links must terminate on the <em>input-relay/error</em> side of the target cluster, never on its deep/prediction population; feedback (prediction-carrying) links must terminate on the deep population and explicitly bypass the input-relay/error population. State this as a hard wiring rule, not just a diagram detail.</li>
+<li><strong>One justification per structural choice</strong>, each citing which of the five acceptance criteria (or which piece) it answers.</li>
+<li><strong>An explicit "not copying from cortex" list</strong> — at least three things deliberately left out or simplified relative to real cortex (candidates: six discrete anatomical layers collapsed to two functional sub-populations; literal oscillatory frequency-band routing, since the spiking implementation can route by connectivity rather than by phase/frequency; literal columnar repetition across an entire cortex — state the column position taken in acceptance criterion 5 and how it resolves in favor of a functional, not anatomical, replication of the layout per cluster; any other simplification you choose), each with one sentence on why the simplification is safe for the project's goals.</li>
+<li><strong>One open risk</strong>: name one place where this layout might break the "purely local learning" constraint (e.g. does routing feedforward-vs-feedback by target population require any non-local bookkeeping at connection-formation/pruning time?) and how you'd check for it.</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>300-600 words total (diagram doesn't count against the word limit), structured as: diagram, wiring rule, criterion-by-criterion justification, not-copying list, open risk.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Diagram is concrete and internally consistent with Pieces 1-3 (SST/dendrite-targeting feeds deep→superficial subtraction, not soma); the feedforward/feedback termination rule is stated as an explicit, checkable wiring constraint; every listed choice is tied to a specific acceptance criterion; column position is a clear, argued stance (not "it depends") that visibly drives a specific decision (e.g., one fixed sub-population template reused per cluster, or explicitly heterogeneous templates, with a stated reason); at least 3 well-reasoned not-copying items; the open risk is specific and checkable, not generic ("local learning is hard").</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Diagram present and mostly consistent but one element misplaced relative to Pieces 1-3 (e.g. PV/SST roles swapped, or feedback allowed to touch the error population); justifications present but some are generic rather than tied to a specific criterion; column stance stated but doesn't clearly change any design decision; at least 2 not-copying items.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>No explicit wiring rule for where feedforward vs. feedback terminate (an "unstructured blob" per the lesson's own framing of what this is supposed to fix); column debate skipped; fewer than 2 not-copying items; over word limit by more than ~50% or under 300 words.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="completion-bar">Completion bar</h2>
+<p>The lesson is done when all four pieces clear at least "Adequate," and specifically when:
+- Piece 1's algebra and Piece 3 Q1/Q2 agree with each other (the by-hand plasticity rule and the paper's rule are recognized as the same shape) — a grader should reject a Piece 4 diagram if it contradicts either.
+- Piece 2's simulation actually ran (not hand-waved) and produced the two numbers (PSD peak ratio, <code>P</code>-vs-<code>μ(t)</code> correlation) that Piece 4 is allowed to cite as support for the frequency-asymmetry claim.
+- Piece 4's diagram is committed as the working answer to "does the column deserve a Step 5 cluster layout" — i.e., the learner has taken a stance, not deferred it — and names at least one concrete open risk for the project's "purely local learning" constraint that a future lesson or the project's own STATUS.md should track.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1789 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+      
+      
+      
+      
+        <link rel="prev" href="../F9/">
+      
+      
+        <link rel="next" href="../F11/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>F10. Classical conditioning and reinforcement learning - Comp Neuro Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#f10-classical-conditioning-and-reinforcement-learning" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Comp Neuro Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              F10. Classical conditioning and reinforcement learning
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Comp Neuro Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F1. Spike trains and firing rates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F2. Receptive fields and reverse correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F3. Neural decoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F4. Information theory for neurons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F5. Membrane biophysics and the action potential
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F6. Integrate-and-fire neurons and synaptic input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F7. Cable theory and neuronal morphology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F8. Network models: feedforward and recurrent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F9. Synaptic plasticity and learning rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F10. Classical conditioning and reinforcement learning
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F10. Classical conditioning and reinforcement learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assigned-exercises-the-books-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assigned exercises — the book's own
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-guided-reading-da-ch-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — Guided reading: D&amp;A ch. 9
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-four-formal-machines-worked-by-hand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — Four formal machines, worked by hand
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-simulation-the-td-error-moves-backward-and-blocking-emerges-from-one-shared-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — Simulation: the TD error moves backward, and blocking emerges from one shared term
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-written-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Written explanation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F11. Representational learning and generative models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge. Synthesis checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1. Synaptic delays and temporal structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2. Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3. Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4. Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5. State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2. Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3. Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4. Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5. Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1. Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2. Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3. Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5. Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6. PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assigned-exercises-the-books-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assigned exercises — the book's own
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-guided-reading-da-ch-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — Guided reading: D&amp;A ch. 9
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-four-formal-machines-worked-by-hand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — Four formal machines, worked by hand
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-simulation-the-td-error-moves-backward-and-blocking-emerges-from-one-shared-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — Simulation: the TD error moves backward, and blocking emerges from one shared term
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-written-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Written explanation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="f10-classical-conditioning-and-reinforcement-learning">F10. Classical conditioning and reinforcement learning</h1>
+<p><strong>Prerequisites:</strong> F9</p>
+<p><strong>Size:</strong> two to three sittings — four distinct formal machines (Rescorla-Wagner, TD, indirect actor, actor-critic), each needing worked numbers before the next builds on it</p>
+<p><strong>Source material:</strong> D&amp;A ch. 9 — <em>Introduction</em> · <em>Classical Conditioning</em> · <em>Static Action Choice</em> · <em>Sequential Action Choice</em></p>
+<p><strong>Goal:</strong> Establish reinforcement learning as a third paradigm distinct from supervised and unsupervised: learning driven by a scalar evaluative signal rather than a target output or input statistics. Derive Rescorla-Wagner from the phenomena it must explain, extend to TD learning for within-trial timing, then to action selection.</p>
+<p><strong>Scope:</strong>
+- The behavioural phenomena — acquisition, extinction, blocking, overshadowing, secondary conditioning — and why blocking rules out contiguity as the mechanism
+- The Rescorla-Wagner rule derived, worked trial by trial, and shown to account for blocking, overshadowing and extinction with one equation
+- TD learning: the TD error defined over within-trial time, with its value at cue, at reward and at reward omission derived rather than asserted
+- Static action choice: exploration versus exploitation, and the indirect actor
+- Sequential action choice: the actor-critic architecture, policy evaluation and improvement, and how the critic bootstraps from its own future prediction
+- Not covered: dopamine recordings and where the TD abstraction empirically breaks (B1)</p>
+<p><strong>You should be able to answer:</strong>
+1. For a cue-reward pairing with learning rate 0.2, asymptote 1 and initial value 0, fill in a four-trial table of value and prediction error before and after each trial.
+2. In a blocking experiment — A trained to reward, then AB trained to reward — what associative strength does Rescorla-Wagner assign to B, and which term in the update forces that result?
+3. With a cue at t = 0 and reward at t = 5, at which timesteps is the TD error nonzero before learning converges, and what is it at reward once the value function has converged?
+4. In actor-critic, which equation does the critic use to update its value estimate, and what quantity from that update is handed to the actor?
+5. How does the indirect actor's action-value update differ mechanically from a direct policy update?</p>
+<p><strong>Feeds:</strong> B1, which takes the TD error defined here as the candidate account of dopamine firing and tests it against recorded data, including where the single-scalar abstraction fails.</p>
+<p><strong>Done when:</strong> The learner derives Rescorla-Wagner and TD updates from raw trial data by hand, and attributes blocking, overshadowing and actor-critic bootstrapping to specific terms in those equations.</p>
+<hr />
+<hr />
+<p><strong>Lesson spec:</strong> <code>foundations.md</code> → F10. <strong>Total time:</strong> 4-5.5 hours across two to three sittings. <strong>Prerequisites:</strong> F9.</p>
+<h2 id="running-order">Running order</h2>
+<p>Consume, then apply, then refine: <strong>guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written explanation (Piece 4)</strong>. Pieces are numbered by type, not sequence.</p>
+<h2 id="assigned-exercises-the-books-own">Assigned exercises — the book's own</h2>
+<p>Dayan &amp; Abbott wrote exercise sets for every chapter and publish them free at gatsby.ucl.ac.uk/~dayan/book. This lesson's are in <code>exercises/c9.pdf</code> (chapter 9), with any code and data under <code>exercises/exercises/c9/</code>. <strong>Work all.</strong></p>
+<p>They are the authors' problems, not this course's, so they take precedence where the two overlap: if an exercise here duplicates one of theirs, do theirs. They are written for MATLAB; translating to numpy is part of the work and is not hard. The teacher agent has no answer key for these — it marks by reading your code and output, and says so rather than pretending to a key it does not have.</p>
+<h2 id="coverage-map">Coverage map</h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Type</th>
+<th>Lesson acceptance criteria addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>derivation</td>
+<td>AC1 (RW four-trial table), AC2 (blocking, which term forces it), AC3 (TD error timesteps + converged value at reward), AC4 (critic equation + quantity handed to actor), AC5 (indirect vs. direct actor mechanics)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>simulation</td>
+<td>AC3 (TD error's backward shift and omission dip, shown not described), AC2 (blocking verified numerically: A-alone then AB)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>guided reading</td>
+<td>Conceptual grounding for all five ACs: phenomena vocabulary, why blocking rules out contiguity, exploration/exploitation, actor/critic roles — read before attempting Pieces 1-2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>written explanation</td>
+<td>Synthesis: RL as a third paradigm, and how one equation (the error term) explains phenomena as different as blocking and dopamine-scale timing</td>
+</tr>
+</tbody>
+</table>
+<h2 id="piece-3-guided-reading-da-ch-9">Piece 3 — Guided reading: D&amp;A ch. 9</h2>
+<p><strong>Type:</strong> guided reading · <strong>Time:</strong> 45-60 min</p>
+<p><strong>Learning goals</strong>
+- Acquire the vocabulary of classical conditioning phenomena precisely enough to use it in a derivation.
+- Understand why blocking is the phenomenon that forces prediction-based (not contiguity-based) learning.
+- Distinguish the actor's role from the critic's role before meeting their equations.</p>
+<p><strong>Task</strong></p>
+<p>Read, in order: D&amp;A ch. 9 <em>Introduction</em>, <em>Classical Conditioning</em>, <em>Static Action Choice</em>, <em>Sequential Action Choice</em>. Answer the following, citing the section (not a page number) that supports each answer:</p>
+<ol>
+<li>(<em>Introduction</em>) What distinguishes reinforcement learning from supervised and unsupervised learning as a third paradigm? What is the scalar signal that drives learning, and what does it lack compared to a supervised target?</li>
+<li>(<em>Classical Conditioning</em>) Define, in D&amp;A's terms (CS, US): acquisition, extinction, blocking, overshadowing, secondary conditioning. One to two sentences each.</li>
+<li>(<em>Classical Conditioning</em>) Why does blocking — not acquisition or extinction alone — rule out simple contiguity (mere co-occurrence of CS and US) as the learning mechanism? What must the learning rule be sensitive to instead?</li>
+<li>(<em>Classical Conditioning</em>) What does D&amp;A mean by "prediction error," and how is the Rescorla-Wagner rule stated in terms of the <em>total</em> predicted reward from all stimuli present on a trial (not just one stimulus in isolation)?</li>
+<li>(<em>Static Action Choice</em>) What is the exploration-exploitation trade-off? How does the softmax (Boltzmann) action-selection rule implement a compromise between the two, and what does its temperature-like parameter control?</li>
+<li>(<em>Static Action Choice</em>) What does D&amp;A call the "indirect actor," and indirect <em>with respect to what</em>?</li>
+<li>(<em>Sequential Action Choice</em>) In the actor-critic architecture, which component performs policy evaluation and which performs policy improvement?</li>
+<li>(<em>Sequential Action Choice</em>) What does it mean for the critic's value estimate to "bootstrap" — i.e., to update V(s_t) using V(s_{t+1}) rather than only a final observed reward? Why is this useful before a trial or episode has finished?</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>Numbered answers to all eight questions, each naming its section, 2-5 sentences per answer. No equations required here (Piece 1 does the formal work) — plain-language understanding only.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All eight answered correctly and specifically; Q3 and Q4 correctly identify that RW's error term is computed from the <em>sum</em> of associative strengths of all present stimuli, not per-stimulus contiguity; Q6-Q8 correctly separate actor from critic and value-learning from action-selection.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Six or more correct; minor vagueness in the mechanism of Q3/Q4 (e.g. says "blocking shows contiguity is wrong" without saying what replaces it) or Q7/Q8 (right roles, fuzzy on bootstrapping).</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Fewer than six correct, or any answer that defines a phenomenon (Q2) backwards (e.g. swaps overshadowing and blocking), or misses that the RW error is a <em>summed</em> prediction.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-1-four-formal-machines-worked-by-hand">Piece 1 — Four formal machines, worked by hand</h2>
+<p><strong>Type:</strong> derivation · <strong>Time:</strong> 90-120 min</p>
+<p><strong>Learning goals</strong>
+- Derive Rescorla-Wagner trial dynamics from raw numbers, not from the closed-form solution.
+- Show mechanically, with numbers, which term in the update produces blocking.
+- Derive (not assert) which within-trial timesteps carry nonzero TD error, before and after convergence.
+- State the critic and actor update equations and identify exactly what quantity couples them.</p>
+<p><strong>Task</strong></p>
+<p><strong>Part A — Rescorla-Wagner acquisition (AC1).</strong> A single CS is paired with a US of reward magnitude r = 1 every trial. Initial associative strength V₀ = 0, learning rate α = 0.2. The Rescorla-Wagner rule is:
+δₙ = r − Vₙ (prediction error on trial n, computed <em>before</em> the update)
+Vₙ₊₁ = Vₙ + α·δₙ
+By hand, fill in V (before), δ, and V (after) for trials 1-4.</p>
+<p><strong>Part B — Blocking (AC2).</strong> Stimulus A is trained alone for 4 trials under the same rule (α = 0.2, r = 1) — reuse Part A's numbers, so V_A after 4 trials is known. Then compound AB training begins: V_B starts at 0, and on every AB trial the <em>shared</em> prediction error is computed from the sum:
+δₙ = r − (V_A,ₙ + V_B,ₙ)
+ΔV_A = ΔV_B = α·δₙ (both present stimuli get the identical increment, since both are present and equally salient)
+By hand, compute V_A, V_B, and δ for AB trials 1-4 (i.e., trials 5-8 overall). Then answer: what stays constant across every AB trial, and why does that quantity determine how much blocking occurs? What would V_A and V_B converge to if A had instead been pretrained for 30 trials before AB began (state the limiting logic; you do not need to hand-compute 30 trials)?</p>
+<p><strong>Part C — TD error within a trial (AC3).</strong> A trial has six timesteps, t = 0 (cue onset) through t = 5 (reward delivery, r = 1; r = 0 at all other t). Value is represented as one weight per timestep, wₜ = V(t), all initialized to 0. Terminal value V(6) = 0 (end of trial). Learning rate α = 0.3, discount γ = 1. The TD rule, applied at every timestep within every trial:
+δₜ = rₜ + γ·V(t+1) − V(t)
+V(t) ← V(t) + α·δₜ (only the active timestep's weight updates)
+By hand, compute δ₀...δ₅ and the resulting weights after trial 1, then after trial 2. State in words what happens to the <em>location</em> of the nonzero error as trials 1, 2, 3, ... proceed, and state what δ at t = 5 equals once V has converged (give the exact converged weights, not just "it's zero because it's zero" — show why).</p>
+<p><strong>Part D — Actor-critic and the indirect actor (AC4, AC5).</strong>
+(i) Write the critic's update equation for V(sₜ) in an actor-critic architecture, and state which single quantity from that equation is also handed to the actor.
+(ii) Indirect actor: for a two-action choice with action values m₁ = m₂ = 0, action 1 is chosen and reward r = 1 is received. Using update m_a ← m_a + α(r − m_a) with α = 0.3, compute m₁ after the trial. Using softmax P(a) = exp(β·m_a)/Σ_b exp(β·m_b) with β = 2, compute the resulting P(a₁) and P(a₂) (to 4 decimal places).
+(iii) Direct actor: for the same trial, using a direct probability update p_a ← p_a + α·r·(1 − p_a) for the chosen action and p_b ← p_b − α·r·p_b for the other, with initial p₁ = p₂ = 0.5 and α = 0.3, compute p₁ and p₂ after the trial. Confirm p₁ + p₂ = 1 still holds and explain in one sentence why this update needs no separate softmax step while the indirect actor's does.</p>
+<p><strong>Deliverable</strong></p>
+<p>A single document (handwritten photo, scan, or typed) with all four parts' tables/computations shown in full — every intermediate number, not just final answers — plus the short written answers requested in B, C, and D(iii).</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All four parts arithmetically correct to the values in the grader key (small rounding tolerance ±0.001 acceptable); Part B correctly identifies that V_A − V_B (the gap at the start of AB training) is invariant across AB trials and correctly reasons the full-blocking limit as V_A(pretrain) → 1; Part C correctly states the converged weights are all 1 and shows why δ₅ = 0 there (not just "V is right so error is zero" — ties it to r + γV(6) − V(5) = 1 + 0 − 1); Part D(i) correctly names δₜ as the shared quantity; D(iii) correctly explains the mechanical difference between indirect (value estimate + separate softmax) and direct (probability updated in one step).</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Parts A and C's core arithmetic correct; Part B's numbers correct but the "why constant" reasoning is hand-wavy; Part D done with correct formulas but an arithmetic slip in the softmax or direct-actor computation.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Arithmetic errors compound across trials (e.g. forgot to use the <em>updated</em> V for the next trial's δ); Part B treats blocking as "B just doesn't get trained" without identifying the shared-error mechanism; Part D confuses which quantity the critic hands the actor.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-2-simulation-the-td-error-moves-backward-and-blocking-emerges-from-one-shared-term">Piece 2 — Simulation: the TD error moves backward, and blocking emerges from one shared term</h2>
+<p><strong>Type:</strong> simulation · <strong>Time:</strong> 60-90 min</p>
+<p><strong>Learning goals</strong>
+- Watch, from your own code's output, the TD error's peak shift backward from reward to cue across trials — not read about it.
+- Watch the omission dip appear when an expected reward fails to arrive.
+- Verify blocking numerically: train A alone, then train the AB compound, and confirm B's associative strength stays suppressed relative to an unblocked control.</p>
+<p><strong>Task</strong></p>
+<p>Write one self-contained Python file (standard library + numpy + matplotlib only, no downloads), under 100 lines, in two parts.</p>
+<p><strong>Part A — TD signatures.</strong> Implement the within-trial TD update from Piece 1 Part C exactly: 6 timesteps per trial (t=0 cue, t=5 reward), one weight per timestep (CSC representation), α=0.3, γ=1.0, terminal V=0. Run 200 trials with reward r=1 always delivered at t=5, recording the full δ vector every trial. Then:
+- Plot δₜ (y-axis) vs. t (x-axis) as separate lines/curves for a handful of trials spanning early to late training (e.g. trials 1, 2, 3, 5, 10, 20, 50) on one axes, with a legend — the plot must make the backward shift of the error's peak visually obvious.
+- After the 200 training trials, run one additional trial with the reward <em>omitted</em> (r=0 at t=5) using the converged weights, and print the resulting δ vector, highlighting the value at t=5.</p>
+<p><strong>Part B — Blocking, verified numerically.</strong> Implement Rescorla-Wagner with the shared, summed error exactly as in Piece 1 Part B: two conditions, both α=0.2, r=1.
+- <em>Blocked condition</em>: train stimulus A alone for 30 trials, then train compound AB for 20 further trials (V_B starts at 0; every AB trial computes one shared δ = r − (V_A+V_B) and applies it to both).
+- <em>Control condition</em>: train compound AB from scratch (both at 0) for 20 trials, no pretraining.
+- Print final V_A and V_B for both conditions.</p>
+<p><strong>Deliverable</strong></p>
+<p>The <code>.py</code> file, the plot (saved as PNG or shown), and the four printed final values (blocked V_A, blocked V_B, control V_A, control V_B) with a two-sentence caption stating whether the blocked V_B is meaningfully suppressed relative to the control V_B.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Plot clearly shows the δ peak at t=5 for early trials shifting to earlier t across the listed trial snapshots (visually, not just numerically); omission trial correctly prints a negative δ at t=5 with converged weights; blocking numbers land within ~0.01 of the grader key (V_A≈0.9994, V_B≈0.0006 blocked; V_A≈V_B≈0.50 control) and caption correctly states blocking is essentially complete.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Numbers close to the grader key but plot is present yet cluttered/mislabeled (backward shift technically visible but not "obvious"); omission dip computed correctly but not clearly printed/highlighted.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Weights updated using the <em>pre-update</em> V(t+1) inconsistently (order-of-update bug) producing a δ pattern that doesn't shift backward; blocking implemented with independent (non-shared) error terms per stimulus, producing no blocking at all (V_A≈V_B≈1 in the "blocked" condition) — this is the most common conceptual bug and should be flagged specifically.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-4-written-explanation">Piece 4 — Written explanation</h2>
+<p><strong>Type:</strong> written explanation · <strong>Time:</strong> 30-45 min</p>
+<p><strong>Learning goals</strong>
+- Articulate reinforcement learning as a paradigm distinct from supervised and unsupervised learning, in terms of the information the scalar reward signal carries and lacks.
+- Connect the specific mathematical terms derived in Pieces 1-2 (the summed error in RW, the bootstrapped error in TD) to the specific phenomena they explain (blocking, backward-shifting prediction, actor-critic bootstrapping).</p>
+<p><strong>Task</strong></p>
+<p>In 300-600 words, explain: (a) why reinforcement learning is a third paradigm alongside supervised and unsupervised learning — what the reward signal gives the learner and what it withholds; (b) how one equation, the Rescorla-Wagner update with its <em>summed</em> prediction error, is enough to produce both ordinary acquisition and blocking, and why the same equation without the sum (independent per-stimulus errors) would fail to produce blocking; (c) how TD extends this to <em>within-trial</em> timing by bootstrapping V(t) from V(t+1), and why this bootstrapping is exactly what makes the prediction error's peak shift backward across trials; (d) how the actor-critic architecture reuses the same TD error as the signal for policy improvement, not just value learning.</p>
+<p><strong>Deliverable</strong></p>
+<p>300-600 words of prose (no code, equations allowed inline where they clarify a point but the piece should read as explanation, not as a repeat of Piece 1's derivations).</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>All four parts (a-d) addressed with correct mechanism, not just correct vocabulary; explicitly states that a reward signal alone doesn't say what action <em>should</em> have been taken (distinguishing RL from supervised learning's target/error-vector); explicitly ties the <em>summed</em> prediction term to blocking (not just "A blocks B" without the mechanism); explicitly connects bootstrapping to the backward-shift signature; word count in range.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Three of four parts correct and mechanistic; one part correct but only at the vocabulary level (names the phenomenon without the mechanism, e.g. "TD handles timing" without saying how bootstrapping causes backward shift).</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Any part factually wrong (e.g. describes RL's signal as providing a correct-action label; claims blocking occurs because B is presented "less"; conflates actor and critic roles); word count far outside range; equations copied from Piece 1 without being explained.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="completion-bar">Completion bar</h2>
+<p>F10 is complete when: the guided reading's eight answers are all in the "expected content" band; Piece 1's four parts reproduce the grader key's numbers (±0.001) and correctly state the mechanism behind blocking (Part B) and the converged TD error at reward (Part C); Piece 2's code independently reproduces the backward-shift plot and the blocking numbers within the stated tolerance, with the shared-vs-independent-error bug specifically ruled out; and Piece 4's explanation contains all four mechanism claims (a-d) in the grader key, not just the matching vocabulary. Dopamine recordings and where the TD abstraction breaks empirically are out of scope here — that is B1.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

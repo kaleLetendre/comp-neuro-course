@@ -1,0 +1,1778 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+      
+      
+      
+      
+        <link rel="prev" href="../C1/">
+      
+      
+        <link rel="next" href="../C3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>C2. Inference vs learning: two nested loops and their schedules - Comp Neuro Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#c2-inference-vs-learning-two-nested-loops-and-their-schedules" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Comp Neuro Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              C2. Inference vs learning: two nested loops and their schedules
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Comp Neuro Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F1. Spike trains and firing rates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F2. Receptive fields and reverse correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F3. Neural decoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F4. Information theory for neurons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F5. Membrane biophysics and the action potential
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F6. Integrate-and-fire neurons and synaptic input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F7. Cable theory and neuronal morphology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F8. Network models: feedforward and recurrent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F9. Synaptic plasticity and learning rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F10. Classical conditioning and reinforcement learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F11. Representational learning and generative models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/Bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge. Synthesis checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1. Synaptic delays and temporal structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2. Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3. Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4. Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5. State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2. Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3. Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4. Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5. Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1. Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2. Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2. Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-fixed-point-vs-partial-settle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — Fixed point vs partial settle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-sweeping-the-inner-loop-budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — Sweeping the inner-loop budget
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-guided-reading-dayan-abbott-ch-10-density-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — Guided reading: Dayan &amp; Abbott, ch. 10 (Density Estimation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-written-defence-what-triggers-a-weight-update-when-input-never-stops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Written defence: what triggers a weight update when input never stops
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3. Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5. Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6. PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-fixed-point-vs-partial-settle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — Fixed point vs partial settle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-sweeping-the-inner-loop-budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — Sweeping the inner-loop budget
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-guided-reading-dayan-abbott-ch-10-density-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — Guided reading: Dayan &amp; Abbott, ch. 10 (Density Estimation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-written-defence-what-triggers-a-weight-update-when-input-never-stops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Written defence: what triggers a weight update when input never stops
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="c2-inference-vs-learning-two-nested-loops-and-their-schedules">C2. Inference vs learning: two nested loops and their schedules</h1>
+<p><strong>Prerequisites:</strong> C1</p>
+<p><strong>Size:</strong> one to two sittings</p>
+<p><strong>Source material:</strong> <strong>D&amp;A ch. 10</strong> <em>Density Estimation</em> — the E-step/M-step split of EM is structurally the same two nested loops (infer activity with parameters fixed, then update parameters), and worth reading precisely for that parallel. Primary: Bogacz 2017, the learning sections; Millidge, Seth &amp; Buckley 2021, <em>Predictive Coding: a Theoretical and Experimental Review</em>.</p>
+<p><strong>Local copies:</strong> <code>papers/C2_millidge_2021_predictive_coding_review.pdf</code>.</p>
+<p><strong>Goal:</strong> Name which variable each loop minimizes energy over — activity in the inner loop, weights in the outer — and why the weight update assumes the inner loop already reached a fixed point. Turns "settle 100 iterations, then update" from an arbitrary hyperparameter into a schedule with a reason, and connects it to why carrying state across inputs and running Adam mid-rollout are architectural decisions with real failure modes.</p>
+<p><strong>Scope:</strong>
+- Two loops, one energy: inner descends activity (fast, per input), outer descends weights (slow, per batch); what each holds fixed
+- Why weight updates use the converged error, and what breaks in the gradient when weights update from a partially settled state
+- Batch/offline schedule vs a deployed network with no "done" — where the inner loop's stopping condition comes from when input never stops
+- State persistence as a choice: when carrying settled activity forward speeds re-settling, and when it traps the network in a stale basin
+- Why a momentum-based optimizer's state assumes a stationary training distribution, which a live rollout is not
+- Not covered: precision-weighted errors (C3), clamping patterns (C5), the backprop-equivalence proof (C6)</p>
+<p><strong>You should be able to answer:</strong>
+1. In the CartPole rollout, which loop runs 100 iterations, and which variable does it hold fixed while doing so?
+2. If weights update after only 10 of the 100 settling iterations, what specifically is wrong with the gradient computed?
+3. Name one condition where carrying settled state into the next input's inner loop speeds convergence, and one where it produces a wrong answer.
+4. Why does SGD tolerate a live rollout's shifting distribution better than Adam's carried-over moment estimates?
+5. In a deployed network that never stops receiving input, what replaces the epoch boundary as the trigger to update weights?</p>
+<p><strong>Project tie-in:</strong> Explains the Step 2b finding that SGD works but carried-over Adam state blows up in <code>online_rollout.py</code>, and why the 100-iteration inference settle in <code>train_cartpole.py</code> is not an arbitrary constant.</p>
+<p><strong>Done when:</strong> The learner states the fixed-prediction assumption the outer loop relies on, without notes, and names the specific Step 2b consequence of violating it.</p>
+<hr />
+<hr />
+<p><strong>Lesson spec:</strong> <code>lessons.md</code> → C2. <strong>Total time:</strong> 4.5–6 hours (one to two sittings). <strong>Prerequisites:</strong> C1.</p>
+<h2 id="running-order">Running order</h2>
+<p>Consume, then apply, then refine:</p>
+<p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
+<p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
+<h2 id="coverage-map">Coverage map</h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Type</th>
+<th>Lesson acceptance criteria addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — Fixed point vs partial settle</td>
+<td>derivation</td>
+<td>Q1, Q2</td>
+</tr>
+<tr>
+<td>2 — Sweeping the inner-loop budget</td>
+<td>simulation</td>
+<td>Q2, Q3, Q4</td>
+</tr>
+<tr>
+<td>3 — Guided reading: D&amp;A ch. 10</td>
+<td>guided reading</td>
+<td>Q1 (EM structural parallel)</td>
+</tr>
+<tr>
+<td>4 — The update trigger for a network that never stops</td>
+<td>written defence</td>
+<td>Q3, Q4, Q5</td>
+</tr>
+</tbody>
+</table>
+<h2 id="piece-1-fixed-point-vs-partial-settle">Piece 1 — Fixed point vs partial settle</h2>
+<p><strong>Type:</strong> derivation · <strong>Time:</strong> 60–75 min</p>
+<p><strong>Learning goals</strong>
+- Write the inner-loop (activity) update and outer-loop (weight) gradient for a small PC chain from its energy function.
+- Derive the inner loop's analytic fixed point and show the weight gradient is only correct once the inner loop has reached it.
+- Quantify, with actual numbers, how wrong the weight gradient is after 1, 3, 5, and 10 inner-loop ticks instead of running to convergence.
+- State in one sentence what assumption the outer loop is making about the inner loop's state.</p>
+<p><strong>Task</strong></p>
+<p>Use this 3-node PC chain: <code>x0</code> (input, clamped to 1) → <code>x1</code> (hidden, free) → <code>x2</code> (target, clamped to 1). Predictions run top-down: <code>x1</code> predicts <code>x0</code> through weight <code>w0</code>, and <code>x2</code> predicts <code>x1</code> through weight <code>w1</code>. Errors: <code>e0 = x0 - w0*x1</code>, <code>e1 = x1 - w1*x2</code>. Energy: <code>F(x1) = 0.5*e0^2 + 0.5*e1^2</code>. Fix <code>w0 = 2</code>, <code>w1 = 1</code>, inner-loop step size <code>alpha = 0.1</code>, and start <code>x1</code> at 0.</p>
+<ol>
+<li>Derive <code>dF/dx1</code> symbolically, then write the inner-loop update rule <code>x1 ← x1 - alpha * dF/dx1</code> in the form <code>x1_{t+1} = a*x1_t + b</code> (find <code>a</code> and <code>b</code> as numbers).</li>
+<li>Solve for the analytic fixed point <code>x1*</code> two ways: (a) setting <code>dF/dx1 = 0</code> directly, (b) setting <code>x1_{t+1} = x1_t</code> in your recurrence from step 1. Confirm they agree.</li>
+<li>Derive <code>dF/dw0</code> and <code>dF/dw1</code> as functions of <code>x1</code> (these are the outer-loop gradients).</li>
+<li>Hand-run the inner-loop recurrence for <code>t = 0, 1, 2, 3, 5, 10</code> (tick-by-tick — show each <code>x1_t</code>), then evaluate <code>dF/dw0</code> and <code>dF/dw1</code> at each tick and at the true fixed point. Build a table: tick | <code>x1_t</code> | <code>dF/dw0</code> | <code>dF/dw1</code> | error vs. fixed-point gradient (absolute and %).</li>
+<li>In 2–3 sentences: what is qualitatively different about the <code>dF/dw0</code> error at <code>t=1</code> versus <code>t=10</code>, and what does that say about updating weights before the inner loop has settled?</li>
+</ol>
+<p><strong>Deliverable:</strong> handwritten or typed derivation + the numeric table from step 4, plus the 2–3 sentence answer to step 5.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Correct symbolic <code>dF/dx1</code>, correct recurrence coefficients, both fixed-point derivations agree, table numerically correct within rounding, and the written answer names that the early-tick gradient for <code>w0</code> has the <em>wrong sign</em>, not just "less accurate."</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Symbolic derivation and fixed point correct; table has minor arithmetic slips but the right shape (error shrinking with more ticks); written answer says the gradient is "biased" or "wrong" early on without noting the sign flip.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Fixed point wrong, or table gradients computed from the wrong <code>x1</code> values, or the written answer only restates "more iterations is more accurate" without engaging with what the gradient formula is measuring.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-2-sweeping-the-inner-loop-budget">Piece 2 — Sweeping the inner-loop budget</h2>
+<p><strong>Type:</strong> simulation · <strong>Time:</strong> 90–120 min</p>
+<p><strong>Learning goals</strong>
+- Build a minimal PC network with an explicit inner (activity) loop and outer (weight) loop in PyTorch or numpy.
+- Empirically confirm Piece 1's claim: too few inner-loop steps produce a systematically worse outer loop, and locate where the returns from more inner steps flatten out.
+- Observe, on a non-stationary data stream, that a momentum/second-moment optimizer's carried-over state fails in a way plain SGD doesn't — the mechanism behind the Step 2b finding.</p>
+<p><strong>Task</strong></p>
+<p>Part A (required): implement a 1-hidden-layer PC network (2 free/clamped nodes is enough — reuse the <code>x0/x1/x2</code> structure from Piece 1 or extend it to a small vector) trained on a synthetic linear or mildly nonlinear regression task (e.g. <code>y = 2*x + 0.5*sin(x) + noise</code>, ~200 samples). For each of <code>inner_steps ∈ {1, 5, 20, 100}</code>: run the outer loop for a fixed number of weight updates (e.g. 300), with the inner loop settling activity for exactly <code>inner_steps</code> gradient steps before each weight update. Log final held-out MSE for each <code>inner_steps</code> value. Plot or tabulate MSE vs. <code>inner_steps</code>.</p>
+<p>Part B (optional but recommended): take the <code>inner_steps=100</code> (well-settled) network and continue training on a stream where the input distribution shifts partway through (e.g. <code>x</code> drawn from <code>N(0,1)</code> for the first half of updates, <code>N(4,1)</code> for the second half — no i.i.d. shuffling, sequential). Compare plain SGD against Adam on this stream: log the per-step weight-update magnitude for both optimizers across the shift point and note what Adam's moment estimates do right after the shift.</p>
+<p><strong>Deliverable:</strong> one script (&lt;~100 lines, self-contained, synthetic data, no repo imports), its output (MSE table for Part A; the update-magnitude comparison plot or table for Part B if attempted), and 3–5 sentences interpreting the inner_steps=1 result in light of Piece 1's sign-flip finding.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Script runs standalone, correctly separates inner-loop (activity, no weight grad) from outer-loop (weight update using settled activity, no activity grad) updates, MSE table shows monotonic-ish improvement with more inner steps that visibly flattens by 20–100, and the interpretation explicitly ties <code>inner_steps=1</code> degradation back to the sign/magnitude error from Piece 1 (not just "it's worse"). Bonus credit, not required, for a correct and interpreted Part B.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Script runs and produces the expected qualitative pattern (fewer inner steps → worse MSE), but the inner/outer separation is fuzzy (e.g. gradients leak between them) or the interpretation is generic rather than connected to Piece 1.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Script conflates the two loops (e.g. one gradient step does both activity and weight updates simultaneously), doesn't sweep <code>inner_steps</code> as a controlled variable, or the MSE pattern is flat/reversed with no attempt to explain why.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-3-guided-reading-dayan-abbott-ch-10-density-estimation">Piece 3 — Guided reading: Dayan &amp; Abbott, ch. 10 (Density Estimation)</h2>
+<p><strong>Source chosen:</strong> D&amp;A ch. 10, for the E-step/M-step parallel to the inference/learning split (chosen over the Millidge review because the lesson's core claim — two nested loops, one energy, each holding the other fixed — has an exact structural match in EM, and D&amp;A ch. 10 makes that pairing explicit rather than as one variant among many).</p>
+<p><strong>Type:</strong> guided reading · <strong>Time:</strong> 60–90 min</p>
+<p><strong>Learning goals</strong>
+- Map EM's E-step and M-step onto PC's inner (activity) and outer (weight) loop, term for term.
+- Identify what plays the role of the "hidden variable" in each formalism and why both algorithms hold one set of variables fixed while optimizing the other.
+- Articulate why EM's convergence guarantee (each step doesn't increase the negative log-likelihood) depends on the E-step being run to completion, and connect that to Piece 1's fixed-point requirement.</p>
+<p><strong>Task</strong></p>
+<p>Read D&amp;A ch. 10, focusing on the sections that set up the EM algorithm for a mixture model (skim the specific mixture-of-Gaussians algebra if it's slow going — the structural argument is what matters here, not the mixture-model details). While reading, fill in this correspondence table from memory afterward, without looking back at the chapter or at Piece 1:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>E-step / M-step (D&amp;A ch.10)</th>
+<th>Inner/outer loop (this project)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What varies in this step</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>What's held fixed</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>What quantity is optimized (name the objective)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Stopping condition for this step</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Then write 3–5 sentences: EM alternates "compute the posterior over hidden variables given current parameters" and "update parameters given that posterior." Which of PC's two loops is which, and where does the <em>guarantee</em> that EM's overall objective doesn't get worse depend on the E-step being complete rather than partial (tie this to Piece 1's numbers if useful)?</p>
+<p><strong>Deliverable:</strong> the filled correspondence table plus the 3–5 sentence answer.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Table correctly maps E-step↔inner loop (activity/posterior, held-fixed=parameters) and M-step↔outer loop (weights/parameters, held-fixed=posterior/activity); the written answer correctly identifies that EM's monotonic-improvement guarantee is a property of the <em>exact</em> posterior — a partial E-step breaks the bound the same way a partially settled inner loop makes the outer-loop gradient in Piece 1 wrong.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Table mostly correct but with one swapped row (e.g. confusing which step holds which variable fixed); written answer gestures at the parallel without stating specifically what breaks with a partial E-step.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Table maps E-step and M-step to the wrong loops, or the written answer treats EM and PC as merely "similar" without naming which variable is optimized/fixed in each.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-4-written-defence-what-triggers-a-weight-update-when-input-never-stops">Piece 4 — Written defence: what triggers a weight update when input never stops</h2>
+<p><strong>Type:</strong> written defence · <strong>Time:</strong> 45–60 min · <strong>Length:</strong> 300–600 words</p>
+<p><strong>Learning goals</strong>
+- Explain, without notes, why SGD tolerates a live rollout's shifting distribution better than Adam's carried moment estimates.
+- Propose and defend a concrete replacement for "epoch boundary" as the outer-loop trigger in a network with no natural stopping point — this is an open design question for Steps 3–5, not a settled answer, and should be argued as such.</p>
+<p><strong>Task</strong></p>
+<p>Write 300–600 words answering, as one connected argument (not five disconnected paragraphs):</p>
+<ol>
+<li>Why does plain SGD tolerate CartPole's live, shifting rollout distribution better than Adam, given what Adam's optimizer state actually tracks?</li>
+<li>Propose one concrete, specific trigger for "now update the weights" in a network that receives input continuously and has no epoch boundary. It must be checkable from quantities the network already has access to at runtime (e.g. settling residual, error magnitude, elapsed steps, a stress-like signal) — not "whenever it seems ready."</li>
+<li>State one failure mode of your proposed trigger and how you'd detect it happening.</li>
+</ol>
+<p>This is explicitly a proposal, not a lookup — there is no single correct trigger. The defence is judged on whether the reasoning connects correctly to the settling/gradient mechanics from Pieces 1–2, and whether the proposal is concrete enough to falsify.</p>
+<p><strong>Deliverable:</strong> 300–600 word written answer.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Correctly explains Adam's failure via its carried second-moment estimate being calibrated to a distribution that no longer holds (not just "Adam is more complex"); proposes a specific, checkable trigger (e.g. "update when the inner loop's residual error drops below a threshold and stays there for k ticks" or "update every N environment steps, chosen so N ≫ typical settling time"); names a real failure mode of that specific trigger (e.g. a threshold-based trigger firing on a transient lull) and a way to detect it (e.g. tracking trigger frequency and flagging if it fires too often).</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Correct SGD/Adam explanation; trigger proposal is plausible but vague enough to be hard to falsify (e.g. "update periodically" with no stated relationship to settling time) or the failure mode named doesn't actually apply to the proposed trigger.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Adam/SGD explanation is generic ("Adam overfits") without referencing carried moment state; no concrete trigger proposed, or the proposal restates "when the epoch ends" without addressing that there is no epoch.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="completion-bar">Completion bar</h2>
+<p>Coursework is complete when: Piece 1's derivation and numeric table are correct (or corrected via the hint ladder) and the learner can state, without notes, that the outer-loop weight gradient is only valid once the inner loop has reached its fixed point; Piece 2's simulation runs standalone and shows the expected inner_steps pattern; Piece 3's correspondence table correctly pairs E-step/M-step with inner/outer loop; and Piece 4's written defence proposes a concrete, falsifiable weight-update trigger and correctly explains the SGD/Adam mechanism. The learner should be able to say, unprompted, what specifically goes wrong with the Step 2b gradient/optimizer if either the inner-loop settling budget or the weight-update schedule is treated as an arbitrary hyperparameter rather than a consequence of the fixed-point assumption.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

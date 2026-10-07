@@ -1,0 +1,1790 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A self-study computational neuroscience curriculum built on Dayan & Abbott">
+      
+      
+      
+      
+        <link rel="prev" href="../A4/">
+      
+      
+        <link rel="next" href="../B1/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>A5. State of the field: why SNNs, where they stand vs ANNs - Comp Neuro Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a5-state-of-the-field-why-snns-where-they-stand-vs-anns" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Comp Neuro Course" class="md-header__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Comp Neuro Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              A5. State of the field: why SNNs, where they stand vs ANNs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Comp Neuro Course" class="md-nav__button md-logo" aria-label="Comp Neuro Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Comp Neuro Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F1. Spike trains and firing rates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F2. Receptive fields and reverse correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F3. Neural decoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F4. Information theory for neurons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F5. Membrane biophysics and the action potential
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F6. Integrate-and-fire neurons and synaptic input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F7. Cable theory and neuronal morphology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F8. Network models: feedforward and recurrent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F9. Synaptic plasticity and learning rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F10. Classical conditioning and reinforcement learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/F11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F11. Representational learning and generative models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/Bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge. Synthesis checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1. Synaptic delays and temporal structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2. Attractors and network state
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3. Oscillations and synchrony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4. Short-term plasticity, refractory period, reset modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5. State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A5. State of the field: why SNNs, where they stand vs ANNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#track-b-biology-for-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track B — biology for design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-the-brains-energy-per-synaptic-event-budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — The brain's energy-per-synaptic-event budget
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-sparsityevent-count-simulator-with-an-energy-cost-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — Sparsity/event-count simulator with an energy cost model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-neuromorphic-hardware-find-your-own-source-then-interrogate-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — Neuromorphic hardware: find your own source, then interrogate it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-written-defence-make-or-refuse-the-efficiency-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Written defence: make (or refuse) the efficiency case
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1. Neuromodulation proper: dopamine, acetylcholine, noradrenaline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2. Cortical microcircuits and laminar structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B3. Dendritic computation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B4. Developmental pruning: how brains choose their own size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B5. Hippocampal replay and consolidation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C1. Predictive coding as energy minimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C2. Inference vs learning: two nested loops and their schedules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C3. Precision weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C4. Predictive coding on arbitrary graphs (Salvatori et al. 2022)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C5. Clamping and frozen priors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C6. PC ≈ backprop: what the equivalence does and does not claim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#track-b-biology-for-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track B — biology for design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-1-the-brains-energy-per-synaptic-event-budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 1 — The brain's energy-per-synaptic-event budget
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-2-sparsityevent-count-simulator-with-an-energy-cost-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 2 — Sparsity/event-count simulator with an energy cost model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-3-neuromorphic-hardware-find-your-own-source-then-interrogate-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 3 — Neuromorphic hardware: find your own source, then interrogate it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#piece-4-written-defence-make-or-refuse-the-efficiency-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Piece 4 — Written defence: make (or refuse) the efficiency case
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="a5-state-of-the-field-why-snns-where-they-stand-vs-anns">A5. State of the field: why SNNs, where they stand vs ANNs</h1>
+<p><strong>Prerequisites:</strong> A1–A4. Closing lesson of track A; passing it opens track C.</p>
+<p><strong>Size:</strong> one to two sittings</p>
+<p><strong>Source material:</strong> <strong>Not in D&amp;A</strong> — the book predates the neuromorphic hardware era. Attwell &amp; Laughlin 2001 for the cortical energy budget; Roy, Jaiswal &amp; Panda 2019 (Nature) on spike-based machine intelligence; current vendor documentation at teaching time — see the perishability note in Scope.</p>
+<p><strong>Local copies:</strong> none — Attwell &amp; Laughlin 2001 (doi:10.1097/00004647-200110000-00001) and Roy et al. 2019 (doi:10.1038/s41586-019-1677-2) both need institutional access.</p>
+<p><strong>Goal:</strong> State the brain's energy budget with real numbers and use it to make — or refute — the energy argument for SNNs; classify the major neuromorphic chips by what they actually support; give an honest account of the accuracy and tooling gap. Turns "SNNs are efficient" from a slogan into a claim defensible with figures in front of an examiner.</p>
+<p><strong>Scope:</strong>
+- Brain energy budget: ~20 W, ~86B neurons, ~10¹⁴–10¹⁵ synapses, sparse mean firing rates (~1–5 Hz), and what that implies per synaptic event versus a GPU's per-MAC energy
+- Event-driven vs clocked computation: why "no spike, no computation" changes the equation, and the dense/high-rate regime where it stops applying
+- Real hardware as illustration: Loihi 2, SpiNNaker 2, IBM TrueNorth/NorthPole, memristor crossbars — and the recurring axes they differ on (digital vs analog, on-chip learning or inference-only, topology freedom, weight precision)
+- The honest gap: accuracy on MNIST / CIFAR-10 / ImageNet-scale, tooling maturity (PyTorch vs snnTorch/Norse/vendor SDKs), and the ANN-to-SNN conversion criticism
+- Where SNNs genuinely win: event cameras, always-on sensing, low-latency control — with numbers
+- Not covered: PC-specific efficiency and locality claims (track C), biological energy detail beyond the headline budget
+- Perishable: specific chip capabilities and benchmark numbers date fast. Check them when the lesson is taught. What should survive is the shape of the argument, not the table.</p>
+<p><strong>You should be able to answer:</strong>
+1. From ~20 W across ~10¹⁵ synapses firing at a few Hz, derive the rough energy per synaptic event — and say what has to be true of a workload before that figure is the right thing to compare against a GPU's per-MAC energy.
+2. What are the recurring axes on which neuromorphic chips differ, and which of them actually constrain this project's design? Use two current chips as illustrations rather than as the answer.
+3. What is the ANN-to-SNN conversion criticism, and what does a conversion-based accuracy number hide about the cost of getting it?
+4. How would you establish the current accuracy gap between natively trained SNNs and ANNs — and what would a large gap tell you about where the difficulty sits: the neuron model, the learning rule, or the tooling?
+5. What property must a task have for event-driven hardware to win on latency or power? Name one task that has it and one that plainly does not.</p>
+<p><strong>Project tie-in:</strong> Grounds why the project insists on purely local learning and virtual-memristor synapses — that choice targets the hardware surveyed here, not accuracy parity with backprop-trained ANNs on the Step 1–2 benchmarks.</p>
+<p><strong>Done when:</strong> The learner can derive the per-event energy figure rather than recall it, argue the efficiency case to a skeptic without leaning on a memorized table, and explain why the Step 1–2 benchmark numbers are not an apples-to-apples accuracy contest.</p>
+<hr />
+<h2 id="track-b-biology-for-design">Track B — biology for design</h2>
+<hr />
+<p><strong>Lesson spec:</strong> <code>lessons.md</code> → A5. <strong>Total time:</strong> ~4-5 hours (two sittings). <strong>Prerequisites:</strong> A1-A4 (delays, attractors, oscillations, short-term plasticity), and F4 for the information-per-spike argument.</p>
+<h2 id="running-order">Running order</h2>
+<p>Consume, then apply, then refine:</p>
+<p><strong>audio overview → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4)</strong></p>
+<p>Pieces are numbered by type, not by sequence. The reading front-loads the concepts, the derivation makes them exact, the simulation is where they stick and get refined, and the defence is where you find out whether they did.</p>
+<h2 id="coverage-map">Coverage map</h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Type</th>
+<th>Lesson acceptance criteria addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — Energy budget derivation</td>
+<td>derivation</td>
+<td>AC1 (derive per-event energy; state the workload conditions for a fair GPU comparison)</td>
+</tr>
+<tr>
+<td>2 — Sparsity/energy simulator</td>
+<td>simulation</td>
+<td>AC1 (applies the cost model), AC5 (shows numerically what sparsity a task needs for spiking to win)</td>
+</tr>
+<tr>
+<td>3 — Neuromorphic hardware source hunt</td>
+<td>guided reading</td>
+<td>AC2 (recurring axes, two chips as illustration), AC3 (conversion criticism), AC4 (accuracy-gap methodology)</td>
+</tr>
+<tr>
+<td>4 — Written defence</td>
+<td>written defence</td>
+<td>AC1, AC3, AC4, AC5 (synthesises all four into one argument for a skeptic)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="piece-1-the-brains-energy-per-synaptic-event-budget">Piece 1 — The brain's energy-per-synaptic-event budget</h2>
+<p><strong>Type:</strong> derivation · <strong>Time:</strong> 45-60 min</p>
+<p><strong>Learning goals</strong>
+- Turn population-level numbers (total power, synapse count, mean firing rate) into a per-event energy figure using nothing but unit arithmetic.
+- Identify which of those inputs is doing the real work in the estimate and which is a loose bound.
+- State, precisely, the conditions under which "energy per synaptic event" is the right unit to put next to a GPU's "energy per MAC" — and when it silently compares two different things.</p>
+<p><strong>Task</strong></p>
+<p>Using these inputs — brain power draw ≈ 20 W, synapse count ≈ 10^14–10^15, mean firing rate ≈ 1–5 Hz — do the following on paper (typed or scanned, show every step):</p>
+<ol>
+<li>Estimate total synaptic events per second across the whole brain. State the assumption you're making about how "firing rate" (a per-neuron quantity) turns into "events per second at a synapse" (hint: what do you need to know about fan-out per neuron, and does it cancel out if you work in total synapses rather than per-neuron?).</li>
+<li>Divide power by events/second to get energy per synaptic event, in joules. Convert to femtojoules (fJ) or picojoules (pJ), whichever is the more natural unit for the result.</li>
+<li>Redo steps 1-2 at both ends of the synapse-count range (10^14 and 10^15) and both ends of the firing-rate range (1 Hz and 5 Hz). Report the resulting range, not a single number.</li>
+<li>Find (do not just assert) a modern digital MAC's energy cost. Distinguish <strong>compute-only</strong> cost (the multiply-add itself, on-chip) from <strong>memory-inclusive</strong> cost (fetching the operands from SRAM vs. DRAM/HBM). Cite where each number came from — a datasheet, a paper, a vendor claim — and note which one is closest in spirit to "one synaptic event."</li>
+<li>State explicitly: what has to be true of an artificial workload before your per-event brain figure is a fair number to set against a GPU's per-MAC figure? Cover at least: (a) whether the ANN workload is itself sparse/event-driven or dense, (b) whether the hardware running it actually skips work for inactive units or evaluates everything every cycle regardless, (c) whether you're comparing compute-only or memory-inclusive energy on the artificial side.</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>A worked derivation (1-2 pages, real arithmetic shown, not just final numbers) ending in: a stated energy-per-synaptic-event range, a stated GPU per-MAC range with its source, the ratio between them, and a paragraph answering point 5.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Correct order-of-magnitude range from real arithmetic (steps shown); correctly identifies that fan-out cancels when working in total synapse count rather than per-neuron; cites a real, checkable source for the GPU MAC figure and correctly separates compute-only from memory-inclusive; the "what has to be true" paragraph names sparsity of the <em>workload</em> and skip-on-inactivity of the <em>hardware</em> as separate, both-required conditions.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Correct order of magnitude reached, arithmetic shown, but one of: the fan-out/cancellation reasoning is hand-waved, the GPU figure is asserted without a checkable source, or the "what has to be true" answer names only one of the two required conditions.</td>
+</tr>
+<tr>
+<td>ns Not yet</td>
+<td>Final number given without shown arithmetic; range collapsed to a single point without acknowledging the two input ranges; GPU comparison number invented with no source; no engagement with when the comparison is unfair.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-2-sparsityevent-count-simulator-with-an-energy-cost-model">Piece 2 — Sparsity/event-count simulator with an energy cost model</h2>
+<p><strong>Type:</strong> simulation · <strong>Time:</strong> 60-90 min</p>
+<p><strong>Learning goals</strong>
+- Build a minimal, self-contained comparison between "dense synchronous evaluation" and "sparse event-driven evaluation" of the same computation.
+- Apply an explicit, stated energy cost model (not a black box) to both regimes and read off where the crossover is.
+- Connect the result numerically to acceptance criterion 5: what property a workload needs before event-driven wins.</p>
+<p><strong>Task</strong></p>
+<p>Write a single Python file (PyTorch or plain numpy, no dataset downloads — synthetic data only), under ~100 lines, that:</p>
+<ol>
+<li>Defines a small feedforward network (e.g. 784→128→10 sized, weights random-initialized — this is about counting operations, not training).</li>
+<li>Generates a batch of <strong>synthetic</strong> input patterns without downloading anything — e.g. <code>torch.rand</code> thresholded into a sparse binary image, or a hand-built pattern (a few "on" pixels), so you control the input sparsity directly.</li>
+<li>Runs the network in two modes on the same inputs:</li>
+<li><strong>Dense mode:</strong> one ordinary forward pass; count total MACs (sum of <code>in_features × out_features</code> per layer, independent of input values).</li>
+<li><strong>Event mode:</strong> encode each input unit as a Poisson spike train over <code>T</code> timesteps at a rate proportional to its activation (cap the max rate, e.g. 50-100 Hz equivalent); at each timestep, only units that spike contribute — count total <strong>synaptic events</strong> actually delivered (spikes × fan-out reached), not just spikes.</li>
+<li>Applies a stated cost model: <code>energy_dense = MACs × E_mac</code>, <code>energy_event = synaptic_events × E_event</code>, using constants you justify with a one-line comment citing where they came from (can reuse the ranges from Piece 1, or state your own — just be explicit).</li>
+<li>Sweeps one variable — input sparsity (fraction of "on" pixels) or <code>T</code> (timesteps) — over a small range and prints/plots total energy for both modes side by side, so the crossover point (if any, within the swept range) is visible in the output.</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>The script, plus a 5-10 line written note: at what sparsity level (or T) does event mode stop being cheaper than dense mode, given your chosen constants, and does that threshold move if you change <code>E_event</code>/<code>E_mac</code> by 10x?</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Script runs standalone with no downloads, under ~100 lines; dense MAC count is input-independent (correctly reflects that dense hardware pays regardless of value); event count correctly scales with both spike count and fan-out (not just spike count); cost-model constants are stated and justified, not silently hardcoded; sweep clearly shows a crossover or explains why none exists in range; written note correctly reasons about the sensitivity to the E_event:E_mac ratio.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Script works and produces a sensible energy comparison, but one of: event count conflates "spikes" with "synaptic events" (misses the fan-out multiplication), cost constants are unexplained magic numbers, or the sweep doesn't clearly locate/discuss a crossover.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Script requires a downloaded dataset or external data file; dense/event energy computed without a stated cost model (e.g. just spike count reported as "energy"); no sweep, single-point comparison only; script exceeds scope significantly (full training loop, etc. — this is a counting exercise, not a training exercise).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-3-neuromorphic-hardware-find-your-own-source-then-interrogate-it">Piece 3 — Neuromorphic hardware: find your own source, then interrogate it</h2>
+<p><strong>Type:</strong> guided reading · <strong>Time:</strong> 75-90 min</p>
+<p><strong>Learning goals</strong>
+- Locate a credible, openly-available current source (survey or vendor technical document) on neuromorphic hardware without institutional-access papers.
+- Extract the recurring axes hardware differs on from primary/vendor material rather than from a memorized list.
+- Identify what a vendor or survey claim does <em>not</em> tell you — sparsity assumptions behind an energy number, benchmark methodology, what's on-chip vs. off-chip.</p>
+<p><strong>Task</strong></p>
+<p>This lesson has no assigned reading — Dayan &amp; Abbott predates this hardware entirely, and the two natural papers (Attwell &amp; Laughlin 2001; Roy, Jaiswal &amp; Panda 2019) need institutional access you don't have. Find your own source.</p>
+<ol>
+<li>Find <strong>one current, openly-available</strong> source that is either (a) a survey/review paper on neuromorphic computing (arXiv is fine — search terms like "neuromorphic computing survey," "spiking neural network hardware review"), or (b) a vendor technical brief/whitepaper for a specific chip (Intel Loihi 2, SpiNNaker2, IBM NorthPole, a memristor-crossbar research group's paper). Note the publication/last-update date — prefer 2022 or later given how fast this field moves.</li>
+<li>Read enough of it to answer the questions below. You do not need to read it cover to cover.</li>
+<li>Answer, using your source and citing where in it (section/page/figure) each answer comes from:
+   a. What are the recurring axes this source uses (explicitly or implicitly) to differentiate neuromorphic hardware — at minimum, check for: digital vs. analog, on-chip learning vs. inference-only, fixed topology vs. flexible/reconfigurable, and weight/activation precision.
+   b. Pick <strong>two</strong> chips or architectures your source discusses (or that you look up briefly alongside it) and fill in those same axes for each, side by side.
+   c. Of the axes you found, which ones actually constrain <em>this project's</em> design (purely local learning rules, virtual-memristor synapses, graph topology rather than fixed layers)? Which are irrelevant to this project even though they matter for other use cases?
+   d. Find where your source states or implies an energy-per-operation number. What sparsity or activity-rate assumption is that number conditioned on — is it stated, or do you have to infer it's a best case? If your source reports a benchmark accuracy or throughput number, what methodology detail (dataset, task, whether it's simulated vs. measured on real silicon, whether comparison hardware is contemporaneous) would you need to check before trusting it?</li>
+<li>State your source's title, authors/vendor, and URL or DOI at the top of your answer.</li>
+</ol>
+<p><strong>Deliverable</strong></p>
+<p>A written answer (½-1 page) to 3a-3d, with the source cited at the top, and inline pointers (section/page/figure) for each claim you pull from it.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>Source is genuinely openly accessible (grader can reach it with the given link, no paywall) and reasonably current; all four axes correctly identified and correctly attributed to specific chips with source pointers; correctly separates "matters for this project" from "matters in general" with a concrete reason tied to the project's local-learning/memristor/graph-topology constraints; explicitly identifies what the energy or benchmark number is silent about (sparsity assumption, dataset, simulated-vs-measured) rather than repeating it uncritically.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Source is accessible and used, axes mostly identified correctly, but the project-relevance filter (3c) is superficial (e.g. "all of these matter") or the critique of the energy/benchmark number (3d) restates the number without probing its conditions.</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Source is paywalled/inaccessible to the grader, is not actually about neuromorphic hardware, or answers are given without any source pointers (i.e., recalled from general knowledge rather than extracted from the found source) — this defeats the point of the exercise, which is the search-and-extract skill, not the facts.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="piece-4-written-defence-make-or-refuse-the-efficiency-case">Piece 4 — Written defence: make (or refuse) the efficiency case</h2>
+<p><strong>Type:</strong> written defence · <strong>Time:</strong> 45-60 min</p>
+<p><strong>Learning goals</strong>
+- Synthesize the derivation, simulation, and reading into a single argument addressed to a specific skeptical audience.
+- State the honest accuracy/tooling gap without it undermining the parts of the efficiency argument that do hold.
+- Distinguish "SNNs are efficient" (unsupported slogan) from the narrower, defensible claim this lesson supports.</p>
+<p><strong>Task</strong></p>
+<p>Write 300-600 words addressed to a skeptical examiner who opens with: <em>"Every efficiency number for spiking hardware I've seen assumes the workload is sparse and the comparison hardware is a GPU running dense FP32 at low utilization. Isn't this just a favorable-conditions argument dressed up as a hardware argument? And even if the energy case holds, your accuracy is worse and your tooling is years behind PyTorch — why should anyone care?"</em></p>
+<p>Your answer must:
+1. State the energy claim you can actually defend (using your Piece 1 figures) and the conditions it depends on — not the unconditional "spikes are efficient" slogan.
+2. Concede the accuracy and tooling gap honestly (from Piece 3), including what the ANN-to-SNN conversion criticism is and why a conversion-based accuracy number is a weaker claim than it looks.
+3. Give at least one concrete example (with a number or a stated order of magnitude, from your simulation or reading) of a task where event-driven hardware plausibly wins on latency or power, and one where it plainly does not — using acceptance criterion 5's property (what the task needs to have) explicitly.
+4. Explain, briefly, why <em>this project</em> chooses purely local learning and virtual-memristor synapses anyway — targeting hardware compatibility, not accuracy parity with backprop-trained ANNs on the Step 1-2 benchmarks (MNIST/FashionMNIST/CIFAR-10).</p>
+<p><strong>Deliverable</strong></p>
+<p>300-600 words of prose (not bullet points — this is a defence, it should read as an argument), addressed directly to the examiner's challenge.</p>
+<p><strong>Rubric</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong</td>
+<td>States a conditional, defensible energy claim (references real figures from Piece 1) rather than a slogan; explicitly names the conditions (workload sparsity, hardware's ability to exploit it) as the examiner demanded; honestly states the accuracy/tooling gap and correctly explains why conversion-based accuracy hides training cost/native-training difficulty; gives a concrete win-case and lose-case tied to the sparsity/latency property, not generic examples; ties the project's design choices to hardware-targeting rather than claiming an accuracy or efficiency win the project hasn't earned. All within 300-600 words.</td>
+</tr>
+<tr>
+<td>Adequate</td>
+<td>Covers most of the four required elements but at least one is asserted rather than argued (e.g. states the gap exists without explaining the conversion criticism; gives a win-case example with no number or order of magnitude attached).</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td>Restates "SNNs are efficient" as an unconditional claim; ignores the accuracy/tooling gap or handwaves past it; no concrete win/lose task example; doesn't connect back to why <em>this project specifically</em> makes its design choices; well outside the word count in either direction.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Grader key hidden</p>
+<p>The marking criteria and hint ladder for this piece are in the teacher build.</p>
+</div>
+<h2 id="completion-bar">Completion bar</h2>
+<p>A5 is passed when all four pieces meet at least "Adequate," AND the learner can, without consulting their notes: (1) reproduce the per-event energy order-of-magnitude arithmetic from Piece 1 on request, using different input numbers than the ones given here; (2) name two hardware differentiation axes and say which one actually constrains this project's design, with a reason; (3) explain in one or two sentences why a conversion-based SNN accuracy number is a weaker claim than a native-training number; (4) state, without hedging into the "SNNs are just efficient" slogan, the specific condition under which the energy argument holds. Passing opens track C.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
