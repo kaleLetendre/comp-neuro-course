@@ -1,6 +1,6 @@
-F1. What the learner does after listening.
+F1. What you does after listening.
 
-Context for the generator. This audio is the first step of a lesson, not the whole of it. Afterwards the learner works through Dayan and Abbott chapter one, does a derivation by hand, and writes code. The overview should leave them equipped for that work and mildly impatient to start it, not feeling the topic is closed.
+Context for the generator. This audio is the first step of a lesson, not the whole of it. Afterwards you works through Dayan and Abbott chapter one, does a derivation by hand, and writes code. The overview should leave them equipped for that work and mildly impatient to start it, not feeling the topic is closed.
 
 The derivation. Rate arithmetic on a short spike train, then working out how noisy a rate estimate becomes for a hundred millisecond window compared with a ten millisecond window, on a train at a known average rate.
 

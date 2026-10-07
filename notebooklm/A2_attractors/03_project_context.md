@@ -1,6 +1,6 @@
 # A2 project context — the unresolved experiment this lesson is aimed at
 
-The learner is building a spiking neural network that uses predictive coding on a graph topology, as pre-dissertation research. A hard constraint throughout: every learning rule must be purely local — each synapse updates from pre-synaptic activity, post-synaptic activity and a local error signal only. No backprop, no global loss.
+You is building a spiking neural network that uses predictive coding on a graph topology, as preparation. A hard constraint throughout: every learning rule must be purely local — each synapse updates from pre-synaptic activity, post-synaptic activity and a local error signal only. No backprop, no global loss.
 
 A side investigation (called step 2b) keeps network activity state across environment timesteps rather than resetting it, and learns online during a CartPole control task. Inference settles the network for 100 iterations before reading out an action.
 
@@ -23,4 +23,4 @@ At the iteration count actually used at inference time (100), state dominates ou
 
 ## What the lesson is meant to produce
 
-A protocol the learner can run against the saved model to settle the question — with perturbation magnitudes, repeat counts and a decision rule committed to *before* looking at the result. The material should equip them to design that protocol. It must not pretend to know the outcome.
+A protocol you can run against the saved model to settle the question — with perturbation magnitudes, repeat counts and a decision rule committed to *before* looking at the result. The material should equip them to design that protocol. It must not pretend to know the outcome.

@@ -125,7 +125,7 @@ for key, label, src, pattern in TRACKS:
     entries = []
     for lid, title, spec in split_specs(src, pattern):
         lec = lecture_for(lid, DOCS)
-        page = f"# {title}\n\n"
+        page = f"# {title}\n\n[TOC]\n\n"
         if lec:
             page += "## Lecture\n\n" + lec + "\n\n---\n\n"
         page += "## Lesson spec\n\n" + re.sub(r"^### .*\n", "", demote(spec), count=1, flags=re.M)
@@ -136,6 +136,39 @@ for key, label, src, pattern in TRACKS:
         open(os.path.join(DOCS, key, fname), "w").write(page)
         entries.append((title, f"{key}/{fname}"))
     nav_tracks[key] = entries
+
+# stylesheet: fill the screen, and no persistent table of contents
+os.makedirs(os.path.join(DOCS, "stylesheets"), exist_ok=True)
+open(os.path.join(DOCS, "stylesheets", "extra.css"), "w").write("""
+/* Use the whole window rather than Material's narrow default column. */
+.md-grid { max-width: 100%; }
+.md-main__inner { margin-top: 0.5rem; }
+
+/* No persistent right-hand table of contents - each page carries an inline
+   one at the top instead, so reading gets the full panel. */
+.md-sidebar--secondary { display: none !important; }
+@media screen and (min-width: 76.25em) {
+  .md-content { margin-right: 1.5rem; }
+}
+
+/* The inline [TOC] block: compact, boxed, at the top of the page. */
+.md-content .toc, .md-content .toctitle + ul, .md-content div.toc {
+  font-size: 0.75rem;
+  border-left: 3px solid var(--md-primary-fg-color);
+  background: var(--md-code-bg-color);
+  padding: 0.6rem 0.9rem;
+  margin: 0 0 1.5rem 0;
+  border-radius: 2px;
+}
+.md-content div.toc ul { margin: 0.2rem 0; padding-left: 1rem; }
+.md-content div.toc > ul > li > ul { display: none; }  /* top level only */
+
+/* Lecture figures: full width, with breathing room. */
+.md-content img { max-width: 100%; display: block; margin: 1rem auto; }
+
+/* Readable measure for prose even on a wide screen. */
+.md-typeset p, .md-typeset li { max-width: 62rem; }
+""")
 
 # top-level pages
 REPO = "https://github.com/kaleLetendre/comp-neuro-course/blob/main/"
@@ -180,12 +213,19 @@ theme:
       scheme: slate
       toggle: {{icon: material/weather-sunny, name: Light}}
   features:
-    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
-    - toc.follow
+    - navigation.prune
     - search.suggest
+    - search.highlight
     - content.code.copy
+extra_css:
+  - stylesheets/extra.css
 markdown_extensions:
+  - toc:
+      permalink: true
+      toc_depth: 2
   - admonition
   - pymdownx.details
   - pymdownx.superfences

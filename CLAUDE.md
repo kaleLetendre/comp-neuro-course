@@ -4,7 +4,7 @@
 
 A self-study curriculum in spiking neural networks, computational neuroscience and predictive coding — 17 lessons across three tracks. This repo holds the *plan and the specs*, not lesson content: the coursework itself is written later, lesson by lesson, as each one is taught.
 
-Pre-dissertation groundwork for an MSc Computer Science (University of London / Birkbeck, starts April 2026). It feeds a sibling research project at `~/personal/Adaptive-Web-PC-SNN` — a spiking network using predictive coding on a graph topology. Lessons carry "project tie-in" lines pointing at that project's steps; the biology track's long-form write-ups live there, in `docs/comp_neuro_notes.md`, because each ends in a design decision for it.
+The course stands on its own. A companion research project exists — a spiking network using predictive coding on a graph topology — and the advanced tracks were originally shaped by its questions, but lessons should be written so a reader with no connection to it loses nothing.
 
 ## Files
 
@@ -20,17 +20,17 @@ Pre-dissertation groundwork for an MSc Computer Science (University of London / 
 
 **Foundations (F1-F11) come first** — the textbook end to end, assuming no prior neuroscience. Then raw SNN (track A) → raw predictive coding (track C), with biology (track B) alongside. No fusion design, and no PC≈backprop, until both halves stand on their own. F, A and C are each strictly sequential.
 
-Do not assume the learner already knows a topic because an earlier note says it was covered. An earlier version of this course did that and skipped material as a result.
+Do not assume you already knows a topic because an earlier note says it was covered. An earlier version of this course did that and skipped material as a result.
 
 ## Teaching contract
 
 The formats that land: **concrete worked examples with actual numbers**, tick-by-tick walkthroughs, small ASCII diagrams, comparison tables, and a running "what you know / what's left" checklist. Default to examples-with-numbers over prose.
 
-- The learner reasons out loud and checks their mental model against you. When they say "I don't get X", correct the *specific* misconception — do not re-explain the whole topic.
+- You reasons out loud and checks their mental model against you. When they say "I don't get X", correct the *specific* misconception — do not re-explain the whole topic.
 - Tie concepts back to the sibling project where they map: stress variable ≈ homeostasis, error neuron ≈ third factor, clamping ≈ encode/decode.
 - End a teaching turn by offering the natural next topic rather than dumping it.
 - The five acceptance criteria per lesson are **criteria for the lesson, not a test**. Where one names a figure, the number is the vehicle — the reasoning it forces is the point. A lesson that produces recall without reasoning has missed.
-- After teaching: tick the boxes in `learning_plan.md`, and append any biology write-up to `docs/comp_neuro_notes.md` in the Adaptive-Web-PC-SNN repo with its "relevance to this project" block.
+- After teaching: tick the boxes in `learning_plan.md`, and append any biology write-up to `docs/comp_neuro_notes.md` in a companion research project with its "relevance to this project" block.
 
 ## Core text
 

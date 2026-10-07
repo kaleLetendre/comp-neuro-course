@@ -38,7 +38,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 - The **foundation track (F1-F11) comes first** — see [`foundations.md`](foundations.md) — and the **Bridge** checkpoint at its end gates entry here.
 - Track A is strictly sequential and must finish before track C starts. That rule was set 2026-06-19 and still holds.
-- Track B runs alongside on its own cadence and gates nothing, with three dependencies: B4 assumes B2, B2 assumes the E/I and PV/SST/VIP material already written up in `comp_neuro_notes.md` (Adaptive-Web-PC-SNN repo), and B5 assumes A2 (attractors and state).
+- Track B runs alongside on its own cadence and gates nothing, with three dependencies: B4 assumes B2, B2 assumes the E/I and PV/SST/VIP material already written up in `comp_neuro_notes.md` (the companion project repo), and B5 assumes A2 (attractors and state).
 - Track C is sequential. C1 additionally needs A2 (energy landscapes), which is automatic given the A-before-C rule.
 - C6 is the last lesson. Passing it unlocks fusion design on Steps 3-5.
 
@@ -74,7 +74,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** Feeds Step 3 directly — whether the virtual-memristor synapse carries a delay field alongside its weight, and whether the prediction→error neuron link inside a neuron pair should account for transmission lag.
 
-**Done when:** The learner can sketch a coincidence-detection circuit with explicit delay values and state why polychronous-group memory needs no weight update.
+**Done when:** You can sketch a coincidence-detection circuit with explicit delay values and state why polychronous-group memory needs no weight update.
 
 ---
 
@@ -88,7 +88,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Local copies:** none — Hopfield 1982 (doi:10.1073/pnas.79.8.2554) needs institutional access. D&A ch. 7 carries the lesson without it.
 
-**Goal:** Describe network state as a point moving on an energy landscape, explain why a trained recurrent network settles to discrete fixed points instead of drifting, and separate state (fast, per-trial) from weights (slow, cross-trial) as two memory timescales. Closes the gap exposed by the learner's own CartPole attractor test: they can observe distinct settled states but have no principled way to decide whether those are real basins or an artifact of stopping too early.
+**Goal:** Describe network state as a point moving on an energy landscape, explain why a trained recurrent network settles to discrete fixed points instead of drifting, and separate state (fast, per-trial) from weights (slow, cross-trial) as two memory timescales. Closes the gap exposed by your own CartPole attractor test: they can observe distinct settled states but have no principled way to decide whether those are real basins or an artifact of stopping too early.
 
 **Scope:**
 - Energy/Lyapunov framing: fixed points as local minima, basins of attraction, why symmetric recurrent weights guarantee convergence
@@ -107,7 +107,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** Resolves the open interpretation question left by the 2026-04-15 attractor test in `comp_neuro_notes.md`, and explains why state persists across CartPole timesteps in `network.py` / `online_rollout.py` independently of weight updates.
 
-**Done when:** The learner designs and describes, unprompted, the diagnostic in question 2 and runs it against the saved model — evidence, not intuition.
+**Done when:** You designs and describes, unprompted, the diagnostic in question 2 and runs it against the saved model — evidence, not intuition.
 
 ---
 
@@ -140,7 +140,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** Bears on Step 3 — whether coordination across graph nodes needs an explicit phase/synchrony mechanism, or whether the purely-local constraint (no global clock) can achieve equivalent routing without a shared oscillatory reference.
 
-**Done when:** The learner sketches the PING loop timing diagram unprompted, places theta and gamma with their functions, and gives one concrete piece of evidence for each side of the functional-vs-epiphenomenal debate.
+**Done when:** You sketches the PING loop timing diagram unprompted, places theta and gamma with their functions, and gives one concrete piece of evidence for each side of the functional-vs-epiphenomenal debate.
 
 ---
 
@@ -173,7 +173,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** The virtual-memristor synapse currently models one persistent weight; STP needs an additional transient resource variable decaying independently of w — a Step 3 design question, and distinct from the persisted weights in `online_rollout.py`.
 
-**Done when:** The learner computes a firing-rate ceiling from a refractory period and explains, without conflating them, how STP, reset mode and trace stacking each separately affect what a neuron carries forward.
+**Done when:** You computes a firing-rate ceiling from a refractory period and explains, without conflating them, how STP, reset mode and trace stacking each separately affect what a neuron carries forward.
 
 ---
 
@@ -207,7 +207,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** Grounds why the project insists on purely local learning and virtual-memristor synapses — that choice targets the hardware surveyed here, not accuracy parity with backprop-trained ANNs on the Step 1–2 benchmarks.
 
-**Done when:** The learner can derive the per-event energy figure rather than recall it, argue the efficiency case to a skeptic without leaning on a memorized table, and explain why the Step 1–2 benchmark numbers are not an apples-to-apples accuracy contest.
+**Done when:** You can derive the per-event energy figure rather than recall it, argue the efficiency case to a skeptic without leaning on a memorized table, and explain why the Step 1–2 benchmark numbers are not an apples-to-apples accuracy contest.
 
 ---
 
@@ -273,7 +273,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** Step 5 wants cortices as dense clusters with sparse inter-cluster links. This supplies the internal layout — a superficial error sub-population, a deep prediction sub-population, feedforward links terminating on the error layer, feedback links avoiding it — making the cluster a specific circuit rather than an unstructured blob.
 
-**Done when:** The learner sketches a six-layer canonical microcircuit with PV/SST/VIP placement and proposes a specific Step 5 cluster wiring diagram from it, without re-deriving the PC-quantity mapping.
+**Done when:** You sketches a six-layer canonical microcircuit with PV/SST/VIP placement and proposes a specific Step 5 cluster wiring diagram from it, without re-deriving the PC-quantity mapping.
 
 ---
 
@@ -305,7 +305,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** Step 4's stress mechanism currently has one lever when a neuron cannot predict its input — grow a new neuron pair. Active dendrites suggest a second: give the existing prediction neuron more internal capacity instead.
 
-**Done when:** All five answered unprompted, and the learner can state the two-lever design tension (grow a pair vs add dendritic capacity) that B3 hands to Step 4.
+**Done when:** All five answered unprompted, and you can state the two-lever design tension (grow a pair vs add dendritic capacity) that B3 hands to Step 4.
 
 ---
 
@@ -338,7 +338,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** Directly sets Step 4 policy: the overproduction data argues for seeding excess neuron pairs early and pruning down rather than growing on demand per stress spike, and complement tagging argues for a two-stage mark-then-remove rule rather than a single near-zero-weight threshold.
 
-**Done when:** The learner states a specific growth-rate and pruning-threshold policy for Step 4, citing the elimination fraction and the tag-then-remove principle as justification.
+**Done when:** You states a specific growth-rate and pruning-threshold policy for Step 4, citing the elimination fraction and the tag-then-remove principle as justification.
 
 ---
 
@@ -371,7 +371,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** The Step 2b online rollout updates weights live from a single correlated stream with no buffer and no replay step. This lesson supplies the basis for diagnosing whether the instability seen there is starvation for interleaved replay rather than a learning-rate or optimizer-state problem.
 
-**Done when:** The learner states, unprompted, whether the current Step 2b setup needs a replay mechanism and sketches the cheapest version of one in a sentence or two.
+**Done when:** You states, unprompted, whether the current Step 2b setup needs a replay mechanism and sketches the cheapest version of one in a sentence or two.
 
 ---
 
@@ -406,7 +406,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** The formal justification for the purely-local constraint — the settling loops in `steps/02_pc_graphs/` and `steps/02b_persistent_state/network.py` are running exactly this gradient descent, and the error-neuron-as-energy-term view is what makes the neuron-pair abstraction principled rather than merely convenient.
 
-**Done when:** The learner derives ∂E/∂x₁ for the 3-node example from scratch without being shown the formula, and identifies it as depending only on local pre/post activity and local error.
+**Done when:** You derives ∂E/∂x₁ for the 3-node example from scratch without being shown the formula, and identifies it as depending only on local pre/post activity and local error.
 
 ---
 
@@ -439,7 +439,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** Explains the Step 2b finding that SGD works but carried-over Adam state blows up in `online_rollout.py`, and why the 100-iteration inference settle in `train_cartpole.py` is not an arbitrary constant.
 
-**Done when:** The learner states the fixed-prediction assumption the outer loop relies on, without notes, and names the specific Step 2b consequence of violating it.
+**Done when:** You states the fixed-prediction assumption the outer loop relies on, without notes, and names the specific Step 2b consequence of violating it.
 
 ---
 
@@ -472,7 +472,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** The soft desired-next-state clamp in Step 2b is mechanically a precision choice relative to the sensory clamp's precision. Step 4's stress variable currently tracks unweighted persistent error and will eventually need a precision-aware version.
 
-**Done when:** The learner writes the precision-weighted energy unaided and gets v = 5, then v ≈ 5.67, for questions 2 and 3.
+**Done when:** You writes the precision-weighted energy unaided and gets v = 5, then v ≈ 5.67, for questions 2 and 3.
 
 ---
 
@@ -504,7 +504,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** The theory behind `steps/02_pc_graphs/`, already built and working, and the direct prerequisite for Steps 3–4 where node roles and topology are not fixed in advance.
 
-**Done when:** The learner writes the generalized energy equation unaided and can say what guarantees or threatens convergence on a cyclic graph.
+**Done when:** You writes the generalized energy equation unaided and can say what guarantees or threatens convergence on a cyclic graph.
 
 ---
 
@@ -536,7 +536,7 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** Describes the CartPole clamp pattern in `online_rollout.py` and `train_cartpole.py` — observations hard-clamped, desired next state soft-clamped, ACTION free and read off after settling — the mechanism the project plan calls "a running mind that you steer", not an inference API.
 
-**Done when:** The learner reconstructs the four-task clamp table and the CartPole clamp diagram unaided, and can say *why* each node is fixed or free rather than reciting which.
+**Done when:** You reconstructs the four-task clamp table and the CartPole clamp diagram unaided, and can say *why* each node is fixed or free rather than reciting which.
 
 ---
 
@@ -570,4 +570,4 @@ Track C (PC theory)                    C1 → C2 → C3 → C4 → C5 → C6 →
 
 **Project tie-in:** Steps 3–5 deliberately leave the layered case where the equivalence holds, moving to arbitrary graphs, spiking dynamics and stress-triggered structural change — exactly the conditions where no version of the proof applies, so the project cannot lean on the equivalence for justification.
 
-**Done when:** The learner distinguishes W&B's approximate correspondence from the Z-IL/Song exact one, and states unprompted that the equivalence does not cover the project's target architecture.
+**Done when:** You distinguishes W&B's approximate correspondence from the Z-IL/Song exact one, and states unprompted that the equivalence does not cover the project's target architecture.

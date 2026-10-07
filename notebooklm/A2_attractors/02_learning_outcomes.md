@@ -2,7 +2,7 @@
 
 This document tells the generator what the lesson is *for*. The audio should build toward these capabilities.
 
-By the end the learner should be able to:
+By the end you should be able to:
 
 1. **Explain why symmetric weights guarantee the energy never increases**, in terms of what a single unit's update does to E, and say what changes when weights are asymmetric.
 2. **Design a diagnostic** that distinguishes a genuine multi-basin landscape from unconverged slow modes in a trained network — naming what to perturb, what to measure, and what result supports which conclusion.
@@ -12,4 +12,4 @@ By the end the learner should be able to:
 
 ## Important constraint for generation
 
-These outcomes are also the lesson's assessment questions. **Do not answer them directly, and do not present them as questions with answers attached.** Teach the concepts and mechanisms they depend on, so that a listener who has understood the material can construct the answers themselves. Explaining *how* to tell a basin from a slow mode is correct; announcing what the learner's own experiment shows is not — that result is unknown and is theirs to establish.
+These outcomes are also the lesson's assessment questions. **Do not answer them directly, and do not present them as questions with answers attached.** Teach the concepts and mechanisms they depend on, so that a listener who has understood the material can construct the answers themselves. Explaining *how* to tell a basin from a slow mode is correct; announcing what your own experiment shows is not — that result is unknown and is theirs to establish.

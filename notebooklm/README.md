@@ -20,7 +20,7 @@ A lesson that starts with fifty pages of Dayan & Abbott cold is a lesson that do
 |---|---|
 | `01_concept_brief.md` | The teaching substance — what the overview is generated from |
 | `02_learning_outcomes.md` | What the listener must be able to do afterwards, plus an instruction not to answer the assessment questions outright |
-| `03_project_context.md` | The learner's own open problem, so the overview uses it as the running example |
+| `03_project_context.md` | You's own open problem, so the overview uses it as the running example |
 | `PROMPTS.md` | One prompt per capability — audio, video, mind map, study guide, quiz, flashcards, briefing — plus chat starters |
 
 ## Two rules learned the hard way
@@ -53,7 +53,7 @@ Each pack is also in Google Drive under `comp-neuro-course/`, one subfolder per 
 
 ## Pack contents, and why the third document varies
 
-Foundation packs carry `03_what_you_will_build` — a preview of the derivation, simulation and written work the lesson leads to, so the overview can make those questions feel live without answering them. Advanced packs carry `03_project_context` instead, where the lesson connects to the Adaptive-Web-PC-SNN work. Both do the same job: give the generator something concrete to aim the material at.
+Foundation packs carry `03_what_you_will_build` — a preview of the derivation, simulation and written work the lesson leads to, so the overview can make those questions feel live without answering them. Advanced packs carry `03_project_context` instead, where the lesson connects to the the companion project work. Both do the same job: give the generator something concrete to aim the material at.
 
 ## Status
 

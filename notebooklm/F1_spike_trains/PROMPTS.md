@@ -12,7 +12,7 @@ The three numbered documents in this folder. **Do not add the coursework file** 
 
 Card → **Customize** → *"What should the AI hosts focus on in this episode?"*
 
-> The listener is a strong programmer with no neuroscience background, starting an MSc, and is listening while walking. Assume no prior neuroscience: explain each concept rather than referring to it. They are comfortable with mathematics, so do not condescend — but this is audio, so obey these rules absolutely.
+> The listener is a strong programmer with no neuroscience background, starting postgraduate study, and is listening while walking. Assume no prior neuroscience: explain each concept rather than referring to it. They are comfortable with mathematics, so do not condescend — but this is audio, so obey these rules absolutely.
 >
 > Never speak a formula, an equation, a symbol or a variable name. Not "r of t", not "tau sub m", not "lambda". Say "the firing rate at a given moment" and "the membrane time constant". If a relationship matters, describe how one quantity behaves as another changes, in words, with a worked number: not the formula for the noise in a rate estimate, but "a neuron firing at twenty hertz puts on average one fifth of a spike into a ten millisecond window, so most windows are empty and the occasional one reports a hundred hertz".
 >

@@ -14,7 +14,7 @@ Everything this course needs, and where to get it. One required purchase; everyt
 
 The whole foundation track (F1–F11) is this book, chapter by chapter, and it carries five of the advanced lessons outright. There is no substitute in the course as written.
 
-Check your university library before buying: most institutions with a neuroscience or ML programme hold it, often with electronic access.
+Check a university library before buying: most institutions with a neuroscience or machine-learning programme hold it, often with electronic access.
 
 ### Everything else the authors publish — free
 
@@ -111,7 +111,7 @@ Of the twenty-eight, **twenty-one can be had for nothing** and seven need a libr
 
 Save them into `papers/` using the filenames in `fetch_closed_papers.py` and the scripts will stop asking for them. That closes B2, which was the lesson most damaged by a missing source — Bastos is the canonical-microcircuit paper the Step 5 layout depends on.
 
-**Genuinely needs institutional access (7).** Fries 2005 · Roy, Jaiswal & Panda 2019 · Schultz, Dayan & Montague 1997 · Larkum 2013 · London & Häusser 2005 · Huttenlocher & Dabholkar 1997 · Foster & Wilson 2006. Birkbeck will cover these from April; until then the lessons that use them name a substitute.
+**Genuinely needs institutional access (7).** Fries 2005 · Roy, Jaiswal & Panda 2019 · Schultz, Dayan & Montague 1997 · Larkum 2013 · London & Häusser 2005 · Huttenlocher & Dabholkar 1997 · Foster & Wilson 2006. a university library will cover these; the lessons that use them name a substitute.
 
 DOIs for all twenty-eight are in `fetch_papers.py`, each resolved against Europe PMC.
 

@@ -1,0 +1,29 @@
+
+/* Use the whole window rather than Material's narrow default column. */
+.md-grid { max-width: 100%; }
+.md-main__inner { margin-top: 0.5rem; }
+
+/* No persistent right-hand table of contents - each page carries an inline
+   one at the top instead, so reading gets the full panel. */
+.md-sidebar--secondary { display: none !important; }
+@media screen and (min-width: 76.25em) {
+  .md-content { margin-right: 1.5rem; }
+}
+
+/* The inline [TOC] block: compact, boxed, at the top of the page. */
+.md-content .toc, .md-content .toctitle + ul, .md-content div.toc {
+  font-size: 0.75rem;
+  border-left: 3px solid var(--md-primary-fg-color);
+  background: var(--md-code-bg-color);
+  padding: 0.6rem 0.9rem;
+  margin: 0 0 1.5rem 0;
+  border-radius: 2px;
+}
+.md-content div.toc ul { margin: 0.2rem 0; padding-left: 1rem; }
+.md-content div.toc > ul > li > ul { display: none; }  /* top level only */
+
+/* Lecture figures: full width, with breathing room. */
+.md-content img { max-width: 100%; display: block; margin: 1rem auto; }
+
+/* Readable measure for prose even on a wide screen. */
+.md-typeset p, .md-typeset li { max-width: 62rem; }

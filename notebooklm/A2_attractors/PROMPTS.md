@@ -1,6 +1,6 @@
 # A2 — NotebookLM prompts
 
-Paste these verbatim. They are written against this lesson's five learning outcomes and the learner's own unresolved experiment, which is what keeps the output from drifting into a generic explainer.
+Paste these verbatim. They are written against this lesson's five learning outcomes and your own unresolved experiment, which is what keeps the output from drifting into a generic explainer.
 
 ## Sources to select
 
@@ -25,7 +25,7 @@ If the customisation box truncates your text, use the **compact version** below 
 
 ## Audio Overview — full customisation prompt
 
-> The listener is a strong programmer with no formal neuroscience background, studying before an MSc. Assume no prior neuroscience: whenever a concept is needed — membrane dynamics, firing rates, excitation and inhibition — explain it rather than referring to it. They are comfortable with linear algebra, calculus and code, so do not soften the mathematics; the gap to cover is biological, not technical. Where something was met in an earlier lesson, a one-line recap is welcome rather than an assumption.
+> The listener is a strong programmer with no formal neuroscience background, studying before postgraduate study. Assume no prior neuroscience: whenever a concept is needed — membrane dynamics, firing rates, excitation and inhibition — explain it rather than referring to it. They are comfortable with linear algebra, calculus and code, so do not soften the mathematics; the gap to cover is biological, not technical. Where something was met in an earlier lesson, a one-line recap is welcome rather than an assumption.
 >
 > Spend the episode on four things, in this order. First, why a symmetric weight matrix guarantees the energy function never increases, and what specifically breaks when weights are asymmetric — work through what a single unit's update does to the energy. Second, the difference between state as fast per-trial memory and weights as slow cross-trial memory, and why the same weights can produce different committed answers from different starting states. Third, and at the greatest length: how you would actually tell a genuine multi-basin landscape apart from slow modes that have not converged — the convergence-rate signature, the perturbation-and-return test, and local curvature at the fixed point. Be concrete about what each one measures and what result points which way. Fourth, briefly, bump attractors and how persistent firing implements a fixed point in a spiking network.
 >

@@ -4,9 +4,9 @@ One file per lesson. Each holds four pieces — a derivation, a simulation, a gu
 
 **Running order within a lesson:** audio overview (generate it from the lesson's pack in `../notebooklm/`) → guided reading (Piece 3) → derivation (Piece 1) → simulation (Piece 2) → written defence (Piece 4). Pieces are numbered by type, not sequence. Concepts are consumed first, made exact by the derivation, then applied and refined by building.
 
-**Simulation numbers are targets, not thresholds.** Every grader key that quotes a figure from a run quotes it from an actual execution at a stated seed. Reruns drift: RNG call order, library version and step size all move the digits. Several files say so in their own keys; the rule holds for all of them. The teacher agent marks the *qualitative pattern and its direction* — the Fano factor falling below 1, the biased decoder pulling toward the dense region, the recovered filter matching the planted one — and treats an exact-digit mismatch as a prompt to check the learner's method, never as a wrong answer on its own.
+**Simulation numbers are targets, not thresholds.** Every grader key that quotes a figure from a run quotes it from an actual execution at a stated seed. Reruns drift: RNG call order, library version and step size all move the digits. Several files say so in their own keys; the rule holds for all of them. The teacher agent marks the *qualitative pattern and its direction* — the Fano factor falling below 1, the biased decoder pulling toward the dense region, the recovered filter matching the planted one — and treats an exact-digit mismatch as a prompt to check you's method, never as a wrong answer on its own.
 
-The grading material is written for a constrained **teacher agent**: it marks, it hints, it never does the work. The grader keys are not for the learner to read before attempting a piece.
+The grading material is written for a constrained **teacher agent**: it marks, it hints, it never does the work. The grader keys are not for you to read before attempting a piece.
 
 Each foundation lesson also assigns the authors' own exercises for its chapter (`exercises/cN.pdf`), which take precedence over this course's where they overlap.
 
@@ -47,7 +47,7 @@ Each foundation lesson also assigns the authors' own exercises for its chapter (
 | C3 | 4h45-5h30 | Sweeping precision and breaking joint learning | Whether stress should be precision-weighted |
 | C4 | 5-7h | Settling on an adjacency matrix | The re-indexing claim, tied to Step 4 |
 | C5 | 3h30-4h30 | One PC network, four clamp configurations + one failure | Clamping as boundary condition |
-| C6 | 5h30 | Backprop-vs-PC update race | **The MSc proposal argument** |
+| C6 | 5h30 | Backprop-vs-PC update race | **The argument for the whole approach** |
 
 Roughly 75 hours of work across the 17 lessons.
 

@@ -1,5 +1,7 @@
 # Bridge. Synthesis checkpoint
 
+[TOC]
+
 ## Lesson spec
 
 # Bridge. Synthesis checkpoint

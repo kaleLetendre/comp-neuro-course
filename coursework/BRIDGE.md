@@ -71,9 +71,9 @@ Common wrong turns: Q1 diagrams that list "noise" once instead of naming distinc
 
 **Teacher constraints**
 - Hint 1: For any of the five, ask "which specific lesson gave you the tool you just used — can you point to the equation?" before evaluating content.
-- Hint 2: For Q2/Q3, ask the learner to write out the two things being compared as explicit mathematical objects (an estimator vs. a model quantity; a sign rule vs. a magnitude function) before asking whether they're "the same."
+- Hint 2: For Q2/Q3, ask you to write out the two things being compared as explicit mathematical objects (an estimator vs. a model quantity; a sign rule vs. a magnitude function) before asking whether they're "the same."
 - Hint 3: For Q4, ask what natural-image PCA components actually look like — point them back to running or recalling F9's Oja simulation, not to the sparse-coding result.
-- Never: never supply any of the five grader-key answers, in whole or in paraphrase, before the learner has submitted a first-pass answer; never tell the learner which criterion (1–5) their diagram should cover — the choice of where to put the required diagram is theirs.
+- Never: never supply any of the five grader-key answers, in whole or in paraphrase, before you has submitted a first-pass answer; never tell you which criterion (1–5) their diagram should cover — the choice of where to put the required diagram is theirs.
 
 ## Piece 2 — Integrative simulation
 
@@ -173,7 +173,7 @@ Common wrong turns: computing `r_pre_est` once outside the loop instead of per-w
 - Hint 1: Trace what feeds into `I` inside `lif_spike_count` — does it grow or shrink as `w` grows?
 - Hint 2: Check the exact step at which `w.max()` first equals `2.0` in Condition A, not just whether it eventually does — "exactly 2.0" versus "close to 2.0" tells you whether the ceiling or the dynamics stopped growth.
 - Hint 3: For (c), ask what would have to be true about the 200 ms window for `r_pre_est` to actually equal the "true" rate rather than a noisy estimate of it.
-- Never: never give the printed step-50/150/300 numbers before the learner has run their own script; never rewrite or debug the learner's loop for them — name the specific line or quantity that looks inconsistent with F1/F6/F9 instead.
+- Never: never give the printed step-50/150/300 numbers before you has run their own script; never rewrite or debug you's loop for them — name the specific line or quantity that looks inconsistent with F1/F6/F9 instead.
 
 ## Piece 3 — Gap audit
 
@@ -218,17 +218,17 @@ The completed 11-row table.
 
 **Grader key** (teacher AI only)
 
-There is no correctness key for which lessons the learner should mark "yes" or "no" — this is a self-report, and its content is the learner's own signal, not something to be checked against ground truth. What the teacher checks is *form*: all 11 rows present, "shaky"/"no" rows carrying a named, specific sub-topic rather than a restatement of the lesson title, and (ideally) at least some rows citing what in Pieces 1–2 actually surfaced the issue (e.g. "F5 — shaky — struggled to state which STDP claims need channel kinetics in Piece 1 Q3" is specific and evidence-linked; "F5 — shaky — biophysics" is not specific enough to act on).
+There is no correctness key for which lessons you should mark "yes" or "no" — this is a self-report, and its content is your own signal, not something to be checked against ground truth. What the teacher checks is *form*: all 11 rows present, "shaky"/"no" rows carrying a named, specific sub-topic rather than a restatement of the lesson title, and (ideally) at least some rows citing what in Pieces 1–2 actually surfaced the issue (e.g. "F5 — shaky — struggled to state which STDP claims need channel kinetics in Piece 1 Q3" is specific and evidence-linked; "F5 — shaky — biophysics" is not specific enough to act on).
 
-Examples of specific vs. vague sub-topics, for calibration only (never shown to the learner as a checklist to fill in):
+Examples of specific vs. vague sub-topics, for calibration only (never shown to you as a checklist to fill in):
 - Vague: "F3 — review decoding." Specific: "F3 — review why Fisher information gives a *lower* bound on decoding error (Cramér–Rao), not an achievable target."
 - Vague: "F9 — review Hebbian learning." Specific: "F9 — review why Oja's rule converges to the *first* principal component specifically, not just 'some stable direction.'"
 
 **Teacher constraints**
 - Hint 1: If a sub-topic entry just repeats the lesson's title, ask "what specifically, inside that lesson, would you need to re-derive or re-explain right now if asked cold?"
-- Hint 2: If every row says "yes" with no reference to Pieces 1–2, ask the learner to re-check each "yes" against whichever of the five write-up questions or the simulation actually exercised that lesson's machinery.
-- Hint 3: If the evidence column is empty everywhere, point back to a specific line in the learner's own Piece 1 or Piece 2 answers as a prompt — not to supply the judgment, but to remind them what already happened.
-- Never: never talk the learner out of a self-reported "shaky" or "no" — a learner who reports a gap has produced the exact signal this piece exists to collect, and the teacher's job is to make the follow-up specific, not to argue the gap away, downgrade it to "yes," or reassure them it's probably fine.
+- Hint 2: If every row says "yes" with no reference to Pieces 1–2, ask you to re-check each "yes" against whichever of the five write-up questions or the simulation actually exercised that lesson's machinery.
+- Hint 3: If the evidence column is empty everywhere, point back to a specific line in your own Piece 1 or Piece 2 answers as a prompt — not to supply the judgment, but to remind them what already happened.
+- Never: never talk you out of a self-reported "shaky" or "no" — a learner who reports a gap has produced the exact signal this piece exists to collect, and the teacher's job is to make the follow-up specific, not to argue the gap away, downgrade it to "yes," or reassure them it's probably fine.
 
 ## Completion bar
 

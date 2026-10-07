@@ -30,7 +30,7 @@ F1 ──┬── F2 ── F3 ── F4
 
 Strictly: F1 first. F2 needs F1; F3 needs F1 and F2; F4 needs F1 and F3. F5 needs F1; F6 and F7 both need F5; F8 needs F6; F9 needs F6 and F8; F10 needs F9; F11 needs F3 and F9.
 
-The track ends with the **Bridge** — a synthesis checkpoint, specified at the bottom of this file. It was previously lesson A0, an entry diagnostic for a course that assumed prior knowledge; with F1-F11 in front of it, re-testing single topics would be thin, so it now asks the learner to connect material *across* foundation lessons. Passing it opens track A.
+The track ends with the **Bridge** — a synthesis checkpoint, specified at the bottom of this file. It was previously lesson A0, an entry diagnostic for a course that assumed prior knowledge; with F1-F11 in front of it, re-testing single topics would be thin, so it now asks you to connect material *across* foundation lessons. Passing it opens track A.
 
 ## Size
 
@@ -38,7 +38,7 @@ Roughly 24 sittings, about 60 hours. Nine of the eleven came out as "two to thre
 
 ## What is deliberately not here
 
-Sensory systems beyond the early visual pathway, motor control, and cognitive-level modelling. D&A does not cover them either. If the MSc wants them, they are a second textbook, not a patch to this track.
+
 
 ---
 
@@ -70,7 +70,7 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 
 **Feeds:** F3 (decoding assumes the encoding model given here), F4 (information theory needs these statistics), F6 (integrate-and-fire generates the trains characterised here), and the whole A track.
 
-**Done when:** The learner can take a raw spike train, produce two different rate estimates, defend and critique each, and articulate why "the firing rate" is not a single well-defined number.
+**Done when:** You can take a raw spike train, produce two different rate estimates, defend and critique each, and articulate why "the firing rate" is not a single well-defined number.
 
 ---
 
@@ -101,7 +101,7 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 
 **Feeds:** F3 (decoding inverts the encoding model built here), B2 (which assumes this feedforward story before complicating it).
 
-**Done when:** The learner can derive a spike-triggered average by hand on a short synthetic example, and predict from a filter description whether a cell will behave as simple or complex.
+**Done when:** You can derive a spike-triggered average by hand on a short synthetic example, and predict from a filter description whether a cell will behave as simple or complex.
 
 ---
 
@@ -132,7 +132,7 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 
 **Feeds:** F4 (mutual information formalises how much can be read out), F11 (the same inference machinery moved inside the model).
 
-**Done when:** Given a population of tuning curves and a spike-count vector, the learner computes the maximum-likelihood and population-vector estimates by hand and says which is biased and why.
+**Done when:** Given a population of tuning curves and a spike-count vector, you computes the maximum-likelihood and population-vector estimates by hand and says which is biased and why.
 
 ---
 
@@ -163,7 +163,7 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 
 **Feeds:** A5 (the sparsity and energy argument depends on bits per spike being high while rates are low).
 
-**Done when:** Given a small joint distribution or a binned spike train, the learner computes entropy, mutual information and an information rate by hand, and says which receptive-field property a given infomax constraint predicts.
+**Done when:** Given a small joint distribution or a binned spike train, you computes entropy, mutual information and an information rate by hand, and says which receptive-field property a given infomax constraint predicts.
 
 ---
 
@@ -194,7 +194,7 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 
 **Feeds:** F6 (integrate-and-fire is the abstraction that discards these dynamics), F7 (compartments extend this circuit spatially), A4 (reset modes and refractoriness stand in for the mechanisms fixed here).
 
-**Done when:** The learner can derive why a spike is all-or-none and why a refractory period follows, from sodium and potassium kinetics alone, without invoking threshold-and-reset.
+**Done when:** You can derive why a spike is all-or-none and why a refractory period follows, from sodium and potassium kinetics alone, without invoking threshold-and-reset.
 
 ---
 
@@ -225,7 +225,7 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 
 **Feeds:** F8 (networks are built from these units), F9 (plasticity acts on this synaptic machinery), A4 (which extends reset modes and short-term plasticity).
 
-**Done when:** The learner derives the LIF f-I curve with a refractory period from the bare membrane equation, states the Hodgkin-Huxley trade-offs with a named phenomenon per loss, and explains shunting inhibition as a consequence of conductance-based input.
+**Done when:** You derives the LIF f-I curve with a refractory period from the bare membrane equation, states the Hodgkin-Huxley trade-offs with a named phenomenon per loss, and explains shunting inhibition as a consequence of conductance-based input.
 
 ---
 
@@ -256,7 +256,7 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 
 **Feeds:** B3 (active dendrites, NMDA spikes and apical gating are nonlinear modifications on top of this passive framework).
 
-**Done when:** Given a cylinder's resistivities and diameter, the learner computes the length constant, uses it to find steady-state attenuation at the soma, and explains why compartment size is chosen relative to it.
+**Done when:** Given a cylinder's resistivities and diameter, you computes the length constant, uses it to find steady-state attenuation at the soma, and explains why compartment size is chosen relative to it.
 
 ---
 
@@ -288,7 +288,7 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 
 **Feeds:** A2 (energy functions and recurrent dynamics), A3 (E-I dynamics), F9 (plasticity acts on these architectures).
 
-**Done when:** From a given recurrent weight matrix the learner computes eigenvalues and predicts which input components are amplified, how fast each mode relaxes, and whether the network is stable — without reaching for attractor or oscillation vocabulary.
+**Done when:** From a given recurrent weight matrix you computes eigenvalues and predicts which input components are amplified, how fast each mode relaxes, and whether the network is stable — without reaching for attractor or oscillation vocabulary.
 
 ---
 
@@ -319,7 +319,7 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 
 **Feeds:** the Bridge checkpoint, A4 (short-term plasticity and eligibility traces), B4 (developmental pruning builds on the competition material), F10 (reward-based learning as the third regime).
 
-**Done when:** For any rule in this lesson the learner states its update equation, what it converges to or diverges toward, and whether it needs a teacher signal — without consulting the chapter.
+**Done when:** For any rule in this lesson you states its update equation, what it converges to or diverges toward, and whether it needs a teacher signal — without consulting the chapter.
 
 ---
 
@@ -350,7 +350,7 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 
 **Feeds:** B1, which takes the TD error defined here as the candidate account of dopamine firing and tests it against recorded data, including where the single-scalar abstraction fails.
 
-**Done when:** The learner derives Rescorla-Wagner and TD updates from raw trial data by hand, and attributes blocking, overshadowing and actor-critic bootstrapping to specific terms in those equations.
+**Done when:** You derives Rescorla-Wagner and TD updates from raw trial data by hand, and attributes blocking, overshadowing and actor-critic bootstrapping to specific terms in those equations.
 
 ---
 
@@ -380,7 +380,7 @@ Sensory systems beyond the early visual pathway, motor control, and cognitive-le
 
 **Feeds:** C1 (the generative model's prediction error becomes the energy function), C2 (the E-step/M-step split is the template for the two nested loops), and C4 to C6 generally.
 
-**Done when:** The learner works an EM step by hand on a toy causal model and states, without notes, why sparse coding on natural images yields V1-like filters.
+**Done when:** You works an EM step by hand on a toy causal model and states, without notes, why sparse coding on natural images yields V1-like filters.
 
 ---
 
