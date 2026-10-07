@@ -486,3 +486,39 @@
     padding: 1rem 0.9rem 0.7rem;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Single-row header.
+
+   Material stacks a title/search row and a separate tabs row, which costs
+   about 5rem of vertical space before any content. Below 76.25em the tabs row
+   is hidden anyway and navigation moves into the drawer, so this only applies
+   to wide screens: lift the tabs bar into the header row, right-aligned, and
+   strip its background so it reads as part of the header rather than a second
+   band.
+   --------------------------------------------------------------------------- */
+@media screen and (min-width: 76.25em) {
+  .md-header { position: sticky; top: 0; z-index: 10; }
+
+  .md-tabs {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: auto;
+    background: transparent;
+    box-shadow: none;
+    z-index: 11;
+  }
+
+  /* Match the header's own height so the two align on one baseline. */
+  .md-tabs__list { height: 2.4rem; display: flex; align-items: center; margin: 0; padding: 0 0.6rem 0 0; }
+  .md-tabs__item { height: 2.4rem; display: flex; align-items: center; padding: 0 0.7rem; }
+  .md-tabs__link { margin: 0; font-size: 0.72rem; opacity: 0.82; }
+  .md-tabs__link--active, .md-tabs__link:hover { opacity: 1; }
+
+  /* Keep the search box clear of the tabs. */
+  .md-header__option, .md-search { margin-right: 11rem; }
+
+  /* The content starts higher now that the second band is gone. */
+  .md-main__inner { margin-top: 0.4rem; }
+}
