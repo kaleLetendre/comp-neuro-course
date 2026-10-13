@@ -12,6 +12,10 @@ exercises/
 # Generated site sources and builds — rebuild with build_site.py
 site_src/
 site_src_teacher/
+site_src_var_*/
 site/
 site_teacher/
+
+# Style-variant preview builds: throwaway, one per candidate stylesheet.
+site_preview/
 .venv/

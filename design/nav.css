@@ -1,0 +1,159 @@
+/* =========================================================================
+   nav.css — header / tabs / sidebar GEOMETRY only.
+   -------------------------------------------------------------------------
+   Loaded before whichever visual-style sheet is active (theme.css, or a
+   design/styles/<variant>.css). This file owns position, flex, width,
+   height, spacing and breakpoints for the header/tabs/sidebar region.
+   Colour, fonts and decorative borders belong in the style layer, not
+   here — even where it would be convenient to set them alongside a
+   layout fix.
+
+   Replaces the earlier "Single-row header" hack that lived at the end of
+   theme.css (position:absolute tabs + a hardcoded margin-right guess at
+   their rendered width). That hack is superseded by everything below;
+   once this file is wired into extra_css (build_site.py already does
+   this automatically — see nav_notes.md), the old block should be
+   deleted from theme.css so the two don't fight over the same selectors.
+
+   Facts this file leans on, verified against the compiled stylesheet
+   (site/assets/stylesheets/main.ec1eaa64.min.css) and Material's source
+   template (.venv/.../material/templates/partials/header.html) rather
+   than assumed — see nav_notes.md for the specific greps:
+
+   - `.md-tabs` is a DOM sibling of `.md-header__inner`, both children of
+     `<header class="md-header">`. `.md-header` is already
+     `position: sticky; top: 0` in Material's own CSS — nothing to add.
+   - `.md-tabs` only renders at all for `min-width: 76.25em` (Material's
+     own breakpoint is technically 76.234375em; see notes). Below that,
+     navigation moves into the drawer and none of this file's rules
+     should run, so everything is scoped to that same min-width query —
+     exactly where the old hack already drew the line.
+   - `.md-header__title` and `.md-tabs__item` are BOTH already `height:
+     2.4rem` in Material's own CSS. That's not a number this file
+     invented — it's Material's own header-row height, so the tabs
+     already line up with the title row with zero height rules added
+     here.
+   - Because `navigation.tabs.sticky` is enabled (see bug note below),
+     Material's header template statically renders `md-header--lifted`
+     on `<header>` (partials/header.html), which in turn makes Material's
+     *own* CSS apply a 4.8rem sidebar offset and a 6rem anchor-scroll
+     offset — both sized for the two-row header this file removes. Those
+     need counter-overrides, below.
+   ========================================================================= */
+
+@media screen and (min-width: 76.25em) {
+
+  /* -----------------------------------------------------------------------
+     BUG: tabs reserved a hardcoded 11rem via `margin-right` on the search
+     box and header options, guessing at the rendered width of "Foundations"
+     / "Advanced". Add a third tab, or rename one, and the guess is wrong —
+     either a collision with search or a dead gap.
+
+     Fix: make `.md-header` itself a flex row. `.md-header__inner`
+     (flex: 1 1 auto) takes the leftover space after `.md-tabs` (flex: 0 0
+     auto) claims exactly its own rendered width — no number to guess, no
+     number to maintain. `min-width: 0` on `.md-header__inner` is required
+     because a flex item's default min-width is `auto` (= its content's
+     intrinsic width), which would otherwise refuse to shrink below the
+     logo+title+search's natural width and force `.md-tabs` to wrap or
+     overflow instead of sharing the row.
+
+     `.md-tabs` needs `width: auto` to cancel Material's own
+     `.md-tabs { width: 100% }` (sized for when tabs were their own
+     full-width band) — without it, `flex: 0 0 auto`'s flex-basis would
+     resolve to that 100%, not to the tabs' own content width, and
+     `.md-tabs` would claim the whole row. No `position` override is
+     needed (Material never sets `position` on `.md-tabs`; default
+     `static` is exactly what a normal flex child wants) — the old hack's
+     `position: absolute` is dropped along with it.
+     ----------------------------------------------------------------------- */
+  .md-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .md-header__inner {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .md-tabs {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  /* No `.md-header__option, .md-search { margin-right: ... }` here —
+     that whole rule is what the flex split above replaces. The search
+     box's own expand-on-focus behaviour (Material sets
+     `.md-search__inner` to a fixed 34.4rem at this breakpoint while
+     active) now competes for space with `.md-tabs` inside the same row
+     instead of having the full header width to itself; see nav_notes.md
+     — this is a real trade-off of one row vs two, not a bug fixable by
+     a CSS number here.
+
+     No z-index escalation on `.md-header`/`.md-tabs` either. The old
+     hack bumped both (10/11) because pulling `.md-tabs` out of flow with
+     `position: absolute` put its stacking order in question. A normal
+     in-flow flex child has no such problem — it stacks exactly where a
+     DOM child of `.md-header` (z-index: 4 already, from Material) would.
+
+     No `.md-tabs__list` / `.md-tabs__item` / `.md-tabs__link` height
+     rules either — seeded above: Material's own `.md-tabs__item` is
+     already `height: 2.4rem`, same as `.md-header__title`, so the two
+     rows already share a baseline without copying that number here.
+     Font-size/opacity tweaks for the tab links belong in the style layer
+     (typography), not this file. */
+
+
+  /* -----------------------------------------------------------------------
+     BUG (sidebar): Material positions `.md-sidebar--primary` with
+     `top: 2.4rem` by default, but bumps it to `top: 4.8rem` whenever
+     `.md-header` carries the `md-header--lifted` class — sized for the
+     two-row header (2.4rem title row + 2.4rem tabs row). That class is
+     applied statically (not scroll-driven) because `navigation.tabs.sticky`
+     is enabled in mkdocs.yml (see partials/header.html: the class is only
+     added "if navigation.tabs.sticky in features"). With tabs folded into
+     one row, the real header height is 2.4rem again, so the 4.8rem offset
+     leaves a 2.4rem gap between the header and the sidebar.
+
+     Established by reading the compiled CSS directly
+     (`.md-header--lifted~.md-container .md-sidebar{top:4.8rem}` inside
+     this same min-width:76.25em query) and the header partial template
+     that decides when `--lifted` gets added.
+     ----------------------------------------------------------------------- */
+  .md-header--lifted ~ .md-container .md-sidebar {
+    top: 2.4rem;
+  }
+
+  /* -----------------------------------------------------------------------
+     BUG (anchor offset): same root cause. Material widens the TOC/heading
+     anchor scroll offset from 3.6rem to 6rem under `--lifted`, again sized
+     for the two-row header's 4.8rem height plus breathing room. Left as-is,
+     clicking a heading permalink or TOC entry scrolls the target 2.4rem too
+     far down, leaving dead space above it under the now one-row header.
+
+     Established the same way: `.md-header--lifted~.md-container
+     .md-typeset :target{--md-scroll-margin:6rem}` inside this query,
+     against the unconditional base of `--md-scroll-margin: 3.6rem` (the
+     value that already matches a single 2.4rem header + buffer, used as-is
+     below 76.25em where tabs — and `.md-tabs`'s height — don't enter into
+     it at all).
+     ----------------------------------------------------------------------- */
+  .md-header--lifted ~ .md-container .md-typeset :target {
+    --md-scroll-margin: 3.6rem;
+  }
+
+  /* If `navigation.tabs.sticky` is ever removed from mkdocs.yml (see
+     nav_notes.md — not done here), `--lifted` stops being added at all and
+     Material's own unscoped defaults (2.4rem / 3.6rem) apply on their own;
+     the two overrides above simply stop matching anything, harmlessly. */
+}
+
+/* ---------------------------------------------------------------------------
+   Narrow widths / drawer path (below 76.25em): deliberately untouched.
+   `.md-tabs` is already `display: none` there (Material, not this file),
+   the drawer takes over navigation, and `.md-search__inner` overlays
+   full-screen via `position: fixed` rather than sharing header row space —
+   none of the rules above are scoped to run there, so none of this
+   changes that path. See nav_notes.md for what's still unverified.
+   --------------------------------------------------------------------------- */

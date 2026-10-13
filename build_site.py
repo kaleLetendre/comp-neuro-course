@@ -14,14 +14,29 @@ answers three paragraphs below defeats the point.
     python3 build_site.py              # student, figures cited by number
     python3 build_site.py --figures    # student, figures embedded (local only)
     python3 build_site.py --teacher    # everything
+    python3 build_site.py --variant=editorial   # same pages, alternative style
 """
 import os, re, shutil, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TEACHER = "--teacher" in sys.argv
 FIGURES = "--no-figures" not in sys.argv
-OUT = os.path.join(ROOT, ("site_src_teacher" if TEACHER else "site_src")
-                   + ("" if FIGURES else "_nofigs"))
+
+# --variant=<name> builds the same pages against an alternative visual style:
+# design/nav.css (shared header/nav geometry) followed by
+# design/styles/<name>.css in place of design/theme.css. Each variant gets its
+# own source and output directory so several can be served side by side and
+# compared without rebuilding.
+VARIANT = next((a.split("=", 1)[1] for a in sys.argv
+                if a.startswith("--variant=")), None)
+if VARIANT:
+    OUT = os.path.join(ROOT, "site_src_var_" + VARIANT)
+    SITE_DIR = "../site_preview/" + VARIANT
+else:
+    OUT = os.path.join(ROOT, ("site_src_teacher" if TEACHER else "site_src")
+                       + ("" if FIGURES else "_nofigs"))
+    SITE_DIR = "../site" + ("_teacher" if TEACHER else
+                            "" if FIGURES else "_nofigs")
 DOCS = os.path.join(OUT, "docs")
 
 TRACKS = [
@@ -245,7 +260,7 @@ def build_page(lid, title, spec_chunk, outdir):
     cw = parse_coursework(lid)
     lec = lecture_for(lid, outdir)
 
-    glance = ['!!! abstract "At a glance"', ""]
+    glance = []
     if fields.get("Size"):
         t = f" · about {cw['time']}" if cw and cw.get("time") else ""
         glance.append(f"    **Length** — {fields['Size']}{t}")
@@ -253,7 +268,11 @@ def build_page(lid, title, spec_chunk, outdir):
         glance.append(f"    **Before this** — {fields['Prerequisites']}")
     if fields.get("Source material"):
         glance.append(f"    **Reading** — {fields['Source material']}")
-    page = f"# {title}\n\n" + "\n".join(glance) + "\n\n"
+    # Blank line between entries, so each becomes its own paragraph. Joined by
+    # single newlines they are one Markdown soft-wrapped paragraph and the
+    # browser runs Length / Before this / Reading together on one line.
+    page = (f"# {title}\n\n" + '!!! abstract "At a glance"\n\n'
+            + "\n\n".join(glance) + "\n\n")
     fb = files_block(lid)
     if fb:
         page += fb + "\n"
@@ -299,8 +318,31 @@ if os.path.isdir(OUT):
     shutil.rmtree(OUT)
 os.makedirs(DOCS)
 os.makedirs(os.path.join(DOCS, "stylesheets"), exist_ok=True)
-shutil.copy(os.path.join(ROOT, "design", "theme.css"),
-            os.path.join(DOCS, "stylesheets", "theme.css"))
+
+# nav.css owns header/tabs/sidebar geometry and is shared by every style, so it
+# loads first and the style sheet layers colour and typography on top.
+SHEETS = []
+nav_css = os.path.join(ROOT, "design", "nav.css")
+if os.path.exists(nav_css):
+    shutil.copy(nav_css, os.path.join(DOCS, "stylesheets", "nav.css"))
+    SHEETS.append("stylesheets/nav.css")
+style_css = (os.path.join(ROOT, "design", "styles", VARIANT + ".css")
+             if VARIANT else os.path.join(ROOT, "design", "theme.css"))
+
+# A style may need a stylesheet fetched from elsewhere — a web font, in
+# practice. It declares those in a sidecar <name>.links file, one URL per
+# line, so the build stays generic instead of special-casing each design.
+links = os.path.splitext(style_css)[0] + ".links"
+if os.path.exists(links):
+    for line in open(links):
+        line = line.strip()
+        if line and not line.startswith("#"):
+            SHEETS.append(line)
+if not os.path.exists(style_css):
+    sys.exit("no such stylesheet: " + style_css)
+shutil.copy(style_css, os.path.join(DOCS, "stylesheets", "theme.css"))
+SHEETS.append("stylesheets/theme.css")
+
 with open(os.path.join(DOCS, "stylesheets", "theme.css"), "a") as f:
     f.write("\n/* Four piece-name tabs will not fit unscrolled at tablet width. */\n"
             ".md-typeset .tabbed-labels { overflow-x: auto; flex-wrap: nowrap; }\n")
@@ -350,11 +392,14 @@ def nav_lines():
     out += ["  - Materials: materials.md", "  - Downloads: downloads.md", "  - Plan: plan.md"]
     return "\n".join(out)
 
-site_name = "Computational Neuroscience" + (" (teacher)" if TEACHER else "")
+site_name = ("Computational Neuroscience"
+             + (" (teacher)" if TEACHER else "")
+             + (f" \u2014 {VARIANT}" if VARIANT else ""))
+extra_css_lines = "\n".join("  - " + sheet for sheet in SHEETS)
 open(os.path.join(OUT, "mkdocs.yml"), "w").write(f"""site_name: {site_name}
 site_description: A self-study course in computational neuroscience built on Dayan & Abbott
 docs_dir: docs
-site_dir: ../site{'_teacher' if TEACHER else '' if FIGURES else '_nofigs'}
+site_dir: {SITE_DIR}
 theme:
   name: material
   palette:
@@ -379,7 +424,7 @@ theme:
     - content.code.copy
     - content.tabs.link
 extra_css:
-  - stylesheets/theme.css
+{extra_css_lines}
 markdown_extensions:
   - toc: {{permalink: true, toc_depth: 2}}
   - admonition
@@ -400,6 +445,9 @@ plugins:
 nav:
 {nav_lines()}
 """)
-print(f"{'teacher' if TEACHER else 'student'}{' +figures' if FIGURES else ''} -> {OUT}")
+print(f"{'teacher' if TEACHER else 'student'}"
+      f"{' +figures' if FIGURES else ''}"
+      f"{' variant=' + VARIANT if VARIANT else ''} -> {OUT}")
+print("  css: " + ", ".join(SHEETS))
 for k in nav_tracks:
     print(f"  {k}: {len(nav_tracks[k])} lessons")
