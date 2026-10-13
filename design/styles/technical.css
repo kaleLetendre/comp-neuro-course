@@ -1,0 +1,637 @@
+/* =========================================================================
+   Comp Neuro Course — technical.css
+   -------------------------------------------------------------------------
+   One of four competing looks. Brief: an engineering reference, not a
+   book — sans throughout, tight rhythm, rule-lines instead of boxes,
+   monospace carrying structure (numbers, identifiers, symbols), dense but
+   not cramped on a tablet-split window (~500-600 CSS px, the primary
+   reading device).
+
+   Loads AFTER design/nav.css, which owns header/tabs/sidebar geometry.
+   Nothing here sets position/top/right/left/bottom/width/flex/margin on
+   .md-header*, .md-tabs* or .md-search* — only colour/font/border, as the
+   brief requires. Everything else on the page is this file's.
+
+   Read top to bottom: fonts -> base typography -> numeric section
+   hierarchy (counters) -> page skeleton -> sidebar nav -> inline contents
+   box -> rule-lines (hr) -> tables -> admonitions/details -> tabbed
+   coursework -> figures -> code -> grid cards (home/index) -> narrow
+   screens.
+   ========================================================================= */
+
+
+/* -------------------------------------------------------------------------
+   0. FONTS
+   System stacks only — no network fetch, no flash of unstyled text on the
+   tablet. One sans stack for everything (the brief wants sans throughout,
+   not a serif/sans split), one mono stack used structurally wherever the
+   brief calls for it: equation labels, figure numbers, lesson IDs, section
+   numbers, inline symbols/variable names, and — as a deliberate choice for
+   this density-first style — table bodies and nav identifiers too.
+   ------------------------------------------------------------------------- */
+
+:root {
+  --cnc-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --cnc-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono",
+    "Consolas", "Liberation Mono", monospace;
+}
+
+
+/* -------------------------------------------------------------------------
+   1. BASE TYPOGRAPHY
+   Sans everywhere, tight line-height (density is the point), no prose
+   measure cap on paragraphs — a reference page is scanned in short bursts,
+   not read start to end, so the usual "70 characters per line" rule for
+   long-form reading matters less than letting a definition or a table row
+   breathe at full content width.
+   ------------------------------------------------------------------------- */
+
+.md-typeset {
+  font-family: var(--cnc-sans);
+  font-size: 0.72rem; /* comfortable at tablet-split width; see section 11
+                          for the floor this must not go below */
+  line-height: 1.55;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5 {
+  font-family: var(--cnc-sans);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+}
+
+.md-typeset h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--md-primary-fg-color);
+}
+
+.md-typeset h4 {
+  font-size: 0.78rem;
+  color: var(--md-default-fg-color--light);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 1.6rem;
+}
+
+/* Links: a dotted underline reads as "reference" rather than "prose link"
+   — closer to how a spec cross-references another identifier — and stays
+   quiet across pages that already carry a lot of visual information. */
+.md-typeset a {
+  color: var(--md-primary-fg-color);
+  text-decoration-style: dotted;
+  text-decoration-color: var(--md-default-fg-color--light);
+  text-underline-offset: 2px;
+}
+.md-typeset a:hover {
+  text-decoration-style: solid;
+  text-decoration-color: currentColor;
+}
+
+/* Inline code/variable names: the brief's "monospace used structurally"
+   extends to every inline code span — slightly smaller than body text (a
+   reference convention), flat, no pill shape. */
+.md-typeset code {
+  font-family: var(--cnc-mono);
+  font-size: 0.92em;
+  background: var(--md-code-bg-color);
+  border-radius: 0.1rem;
+  padding: 0.05em 0.3em;
+}
+
+
+/* -------------------------------------------------------------------------
+   2. NUMERIC SECTION HIERARCHY
+   The brief's core ask: "the reader should always know which section of
+   which lesson they are in." The lesson ID is already in H1 and the nav
+   ("F1 · ..."); what is missing is a section/subsection number on H2/H3.
+   Rather than hand-number 28 lesson pages, generate it: a CSS counter
+   restarting on every page, rendered in monospace ahead of the heading
+   text. Zero-maintenance — new H2/H3s just fall into the sequence.
+   ------------------------------------------------------------------------- */
+
+.md-content__inner {
+  counter-reset: cnc-h2;
+}
+
+.md-typeset h2 {
+  counter-increment: cnc-h2;
+  counter-reset: cnc-h3;
+  font-size: 1.15rem;
+  margin-top: 2.4rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lighter);
+}
+
+.md-typeset h2::before {
+  content: counter(cnc-h2, decimal-leading-zero) " ";
+  font-family: var(--cnc-mono);
+  font-weight: 400;
+  font-size: 0.85em;
+  color: var(--md-primary-fg-color);
+  margin-right: 0.35em;
+}
+
+/* First H2 on the page sits right under the title/contents box, no need
+   for the full section gap above it. */
+.md-typeset h1 + .toc + h2,
+.md-typeset h1 ~ h2:first-of-type {
+  margin-top: 1.2rem;
+}
+
+.md-typeset h3 {
+  counter-increment: cnc-h3;
+  font-size: 0.95rem;
+  margin-top: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.md-typeset h3::before {
+  content: counter(cnc-h2) "." counter(cnc-h3) " ";
+  font-family: var(--cnc-mono);
+  font-weight: 400;
+  font-size: 0.85em;
+  color: var(--md-default-fg-color--light);
+  margin-right: 0.3em;
+}
+
+
+/* -------------------------------------------------------------------------
+   3. PAGE SKELETON
+   Full-width content (Material's default caps it narrow), no right-hand
+   ToC rail — the inline contents box (section 5) does that job — and a
+   trimmed top gap so density starts immediately under the header.
+   ------------------------------------------------------------------------- */
+
+.md-grid {
+  max-width: 100%;
+}
+
+.md-main__inner {
+  margin-top: 0.3rem;
+}
+
+.md-sidebar--secondary {
+  display: none !important;
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-content {
+    margin-right: 2rem;
+    margin-left: 1rem;
+  }
+}
+
+.md-content__inner {
+  padding-top: 0.6rem;
+}
+
+/* Material puts a margin under the last element before the "back to top"
+   button area; tighten it so the page doesn't end on dead whitespace. */
+.md-content__inner::before {
+  height: 0.4rem;
+}
+
+
+/* -------------------------------------------------------------------------
+   4. SIDEBAR NAV
+   Rendered as a flat monospace index — closer to a directory listing or a
+   man-page TOC than a book's chapter list, which suits identifiers like
+   "F1 · Spike trains ...". Active item marked by a solid left rule and
+   weight change only — no fill colour, keeping with "rule-lines over
+   boxes."  No position/width rules here: geometry stays in nav.css.
+   ------------------------------------------------------------------------- */
+
+.md-nav--primary,
+.md-nav {
+  font-family: var(--cnc-mono);
+}
+
+.md-nav--primary > .md-nav__title {
+  font-family: var(--cnc-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--md-default-fg-color--light);
+  border-bottom: 1px solid var(--md-default-fg-color--lighter);
+  padding: 0.8rem 0.8rem 0.55rem;
+}
+
+.md-nav__link {
+  font-size: 0.66rem;
+  line-height: 1.5;
+  padding: 0.3rem 0.8rem 0.3rem 0.85rem;
+  border-left: 2px solid transparent;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.md-nav__link:hover {
+  color: var(--md-primary-fg-color);
+}
+
+.md-nav__link--active {
+  font-weight: 700;
+  color: var(--md-primary-fg-color);
+  border-left-color: var(--md-primary-fg-color);
+}
+
+.md-nav__item .md-nav__item {
+  padding-left: 0.2rem;
+}
+
+
+/* -------------------------------------------------------------------------
+   5. INLINE CONTENTS BOX
+   A `[TOC]` block near the top of every page. No border box, no tint —
+   two horizontal rules framing a compact, two-column (desktop), monospace
+   index. It should read as part of the page's rule-line system, not as a
+   callout competing with the admonitions below it.
+   ------------------------------------------------------------------------- */
+
+.md-content .toc,
+.md-content div.toc {
+  font-family: var(--cnc-mono);
+  font-size: 0.64rem;
+  line-height: 1.6;
+  border-top: 1px solid var(--md-default-fg-color--lighter);
+  border-bottom: 1px solid var(--md-default-fg-color--lighter);
+  padding: 0.6rem 0;
+  margin: 0.3rem 0 1.6rem 0;
+}
+
+.md-content div.toc > ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  columns: 2;
+  column-gap: 1.5rem;
+}
+
+/* Only top-level entries — nested sub-lists stay hidden so this stays a
+   compact index rather than the full document outline. */
+.md-content div.toc > ul > li > ul {
+  display: none;
+}
+
+.md-content div.toc li {
+  break-inside: avoid;
+  max-width: none;
+}
+
+.md-content div.toc a {
+  color: var(--md-default-fg-color--light);
+  text-decoration: none;
+}
+.md-content div.toc a:hover {
+  color: var(--md-primary-fg-color);
+}
+
+
+/* -------------------------------------------------------------------------
+   6. RULE-LINES (hr)
+   The source's `---` dividers between Lecture / Lesson spec / Coursework.
+   A single hairline, generous gap either side — this is the style's main
+   structural device, so it should look deliberate, not like a leftover
+   Markdown artifact.
+   ------------------------------------------------------------------------- */
+
+.md-typeset hr {
+  border: none;
+  border-top: 1px solid var(--md-default-fg-color--lighter);
+  margin: 2rem 0;
+}
+
+
+/* -------------------------------------------------------------------------
+   7. TABLES
+   Compact and data-dense: small text, tight padding, monospace body cells
+   (numbers and short labels align better in mono, and it reads as data
+   rather than prose), rule-lines between rows instead of zebra fill —
+   the "rule-lines over tinted panels" preference applied directly to the
+   element that needs scanability most.
+   ------------------------------------------------------------------------- */
+
+.md-typeset table:not([class]) {
+  font-size: 0.64rem;
+  border: none;
+  border-top: 2px solid var(--md-default-fg-color);
+  border-radius: 0;
+}
+
+.md-typeset table:not([class]) th {
+  font-family: var(--cnc-sans);
+  font-weight: 700;
+  text-align: left;
+  padding: 0.45rem 0.7rem;
+  border-bottom: 1px solid var(--md-default-fg-color);
+}
+
+.md-typeset table:not([class]) td {
+  font-family: var(--cnc-mono);
+  font-size: 0.95em;
+  padding: 0.4rem 0.7rem;
+  vertical-align: top;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset table:not([class]) tr:last-child td {
+  border-bottom: 1px solid var(--md-default-fg-color);
+}
+
+/* No zebra striping by design — rule-lines between rows carry the
+   scanability work instead of alternating background tint. */
+
+.md-typeset__scrollwrap {
+  overflow-x: auto;
+  margin: 1.1rem 0;
+}
+
+
+/* -------------------------------------------------------------------------
+   8. ADMONITIONS & FOLDED SECTIONS (pymdownx.details)
+   Both render as <div class="admonition TYPE"> or <details class="TYPE">
+   with a <p class="admonition-title">/<summary>. Material's default is a
+   saturated icon-badged card; this style drops the badge, the background
+   tint and the box entirely in favour of a left rule plus a monospace
+   uppercase label — a footnote/callout convention from technical docs,
+   not an alert.
+   ------------------------------------------------------------------------- */
+
+.md-typeset .admonition,
+.md-typeset details {
+  font-size: 0.68rem;
+  background: transparent;
+  border: none;
+  border-left: 2px solid var(--md-default-fg-color--lighter);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0.6rem 0 0.6rem 0.9rem;
+  margin: 1.3rem 0;
+}
+
+.md-typeset details {
+  padding-left: 0; /* summary carries its own left rule below so the
+                       collapsed state doesn't show an empty rule hanging
+                       off nothing */
+  border-left: none;
+  border-top: 1px solid var(--md-default-fg-color--lighter);
+  border-bottom: 1px solid var(--md-default-fg-color--lighter);
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  font-family: var(--cnc-mono);
+  font-weight: 700;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: transparent !important;
+  padding: 0.5rem 0 !important;
+  margin: 0 0 0.3rem 0;
+}
+
+/* Drop Material's coloured icon badges — the mono uppercase label already
+   differentiates the type; a badge on top of it is decoration the brief
+   explicitly asks to avoid. */
+.md-typeset .admonition-title::before,
+.md-typeset summary::before {
+  display: none;
+}
+
+/* Keep the native expand/collapse chevron (it carries real information —
+   state — so it stays) but make it match the mono/flat treatment. */
+.md-typeset summary {
+  padding-left: 0.9rem !important;
+}
+
+/* Per-type colour is text-only, via Material's own semantic variables —
+   no hardcoded hex, so both colour schemes stay legible. */
+.md-typeset .admonition.note .admonition-title,
+.md-typeset .admonition.abstract .admonition-title,
+.md-typeset details.note summary,
+.md-typeset details.abstract summary {
+  color: var(--md-primary-fg-color);
+}
+.md-typeset .admonition.tip .admonition-title,
+.md-typeset .admonition.success .admonition-title,
+.md-typeset details.tip summary,
+.md-typeset details.success summary {
+  color: var(--md-accent-fg-color);
+}
+.md-typeset .admonition.warning .admonition-title,
+.md-typeset .admonition.danger .admonition-title,
+.md-typeset .admonition.failure .admonition-title,
+.md-typeset details.warning summary,
+.md-typeset details.danger summary,
+.md-typeset details.failure summary {
+  color: var(--md-warning-fg-color);
+}
+.md-typeset .admonition.quote .admonition-title,
+.md-typeset details.quote summary,
+.md-typeset details.info summary,
+.md-typeset .admonition.info .admonition-title {
+  color: var(--md-default-fg-color--light);
+}
+
+
+/* -------------------------------------------------------------------------
+   9. TABBED COURSEWORK (pymdownx.tabbed)
+   Four coursework pieces per lesson, in tabs. Flatten Material's pill-ish
+   label padding, set the labels in mono/uppercase (they are effectively
+   identifiers — "Piece 1", "Piece 2" — not prose), and recolour the
+   sliding active-tab indicator to the accent instead of plain foreground.
+   Only colour/font changes: the indicator's position is driven by JS via
+   --md-indicator-x and must not be touched here.
+   ------------------------------------------------------------------------- */
+
+.md-typeset .tabbed-labels > label {
+  font-family: var(--cnc-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.md-typeset .tabbed-labels:before {
+  background-color: var(--md-accent-fg-color);
+}
+
+.md-typeset .tabbed-content {
+  font-size: 0.68rem;
+}
+
+.md-typeset .tabbed-block > :first-child {
+  margin-top: 0.8rem;
+}
+
+
+/* -------------------------------------------------------------------------
+   10. FIGURES
+   Reproduced book plots, greyscale on white. No frame/box/padding — a
+   figure in this style is just an image and a rule-line, not a card.
+   Left-aligned, non-italic, monospace captions (the brief calls out
+   "figure numbers" explicitly for mono treatment, and these captions open
+   with one — "Figure 1.2 — ..."), with the rule-line living under the
+   caption rather than around the image.
+   ------------------------------------------------------------------------- */
+
+.md-typeset img {
+  display: block;
+  margin: 1.2rem auto 0.5rem;
+  max-width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  background: #fff; /* plots are greyscale-on-white; a fixed white backing
+                        keeps them legible in slate mode regardless of
+                        colour scheme, same reasoning as the other three
+                        stylesheets face here */
+}
+
+/* Captions are a plain paragraph whose only content is an <em> — the
+   source always writes them that way for figures and never for anything
+   else, so this selector reaches captions without new markup. */
+.md-typeset p > em:only-child {
+  display: block;
+  font-family: var(--cnc-mono);
+  font-style: normal;
+  font-size: 0.6rem;
+  color: var(--md-default-fg-color--light);
+  text-align: left;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lighter);
+  margin-top: -0.2rem;
+  margin-bottom: 1.2rem;
+}
+
+
+/* -------------------------------------------------------------------------
+   11. CODE BLOCKS
+   Fenced by hairlines top and bottom instead of a bordered, radiused box
+   — the same "rule-line, not panel" treatment as everything else, applied
+   to the element where it matters most for density (Piece 2's simulation
+   scripts run long).
+   ------------------------------------------------------------------------- */
+
+.md-typeset .highlight {
+  border: none;
+  border-top: 1px solid var(--md-default-fg-color--lighter);
+  border-bottom: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0;
+}
+
+.md-typeset pre > code {
+  font-size: 0.62rem;
+  line-height: 1.55;
+}
+
+/* MathJax can render wider than the column on a narrow screen; let it
+   scroll inside its own box instead of forcing the page wider. */
+.md-typeset .arithmatex {
+  overflow-x: auto;
+}
+
+
+/* -------------------------------------------------------------------------
+   12. GRID CARDS (home / track-index pages)
+   Material's default card: radiused border, shadow-on-hover. Flattened to
+   sharp corners and a weight/colour change on hover instead of a shadow —
+   a card here is a navigation entry in a reference, not a product tile.
+   ------------------------------------------------------------------------- */
+
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid > .card {
+  border-radius: 0;
+  border-color: var(--md-default-fg-color--lighter);
+  transition: border-color 0.15s;
+}
+
+.md-typeset .grid.cards > ul > li:hover,
+.md-typeset .grid > .card:hover {
+  border-color: var(--md-primary-fg-color);
+  box-shadow: none;
+}
+
+.md-typeset .grid.cards > ul > li strong {
+  font-family: var(--cnc-sans);
+  font-weight: 700;
+}
+
+
+/* -------------------------------------------------------------------------
+   13. NARROW SCREENS — tablet-split (~500-600px), the primary device
+   This is the main reading mode, not a fallback: half a Galaxy Tab S10
+   Lite screen, a handwriting app on the other half. Tighten paddings,
+   drop the contents box to one column, scale headings down a notch — but
+   body text holds its size; density comes from spacing, not from shrinking
+   the one thing that must stay comfortable to read.
+   ------------------------------------------------------------------------- */
+
+@media screen and (max-width: 44.9375em) {
+  .md-content__inner {
+    padding: 0.8rem 0.75rem 1.4rem;
+  }
+
+  .md-typeset {
+    font-size: 0.74rem; /* slightly up from desktop's 0.72rem: a narrow
+                            viewport is where comfort matters most, and
+                            this build has the least competing width
+                            pressure to justify shrinking it further */
+  }
+
+  .md-typeset h1 {
+    font-size: 1.3rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.05rem;
+    margin-top: 1.9rem;
+  }
+
+  .md-typeset h3 {
+    font-size: 0.9rem;
+  }
+
+  .md-content div.toc > ul {
+    columns: 1;
+  }
+
+  .md-typeset .admonition,
+  .md-typeset details {
+    padding: 0.5rem 0 0.5rem 0.7rem;
+    margin: 1.1rem 0;
+  }
+
+  .md-typeset img {
+    max-height: 50vh;
+  }
+
+  .md-nav--primary > .md-nav__title {
+    padding: 0.9rem 0.85rem 0.6rem;
+  }
+}
+
+
+/* -------------------------------------------------------------------------
+   14. DARK-MODE CONTRAST ADJUSTMENT
+   The rule-line system (section 6-11) leans on
+   --md-default-fg-color--lighter for hairlines. That token is tuned
+   against a light background; on slate it reads fainter than intended
+   because the same alpha sits over a dark ground. Bump it to the
+   next-darker-in-light-mode-terms token so hairlines stay visible without
+   hardcoding a colour that would fight the light scheme.
+   ------------------------------------------------------------------------- */
+
+[data-md-color-scheme="slate"] .md-typeset h2,
+[data-md-color-scheme="slate"] .md-content .toc,
+[data-md-color-scheme="slate"] .md-content div.toc,
+[data-md-color-scheme="slate"] .md-typeset .highlight,
+[data-md-color-scheme="slate"] .md-typeset p > em:only-child {
+  border-color: var(--md-default-fg-color--light);
+}

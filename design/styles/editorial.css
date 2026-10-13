@@ -1,0 +1,689 @@
+/* =========================================================================
+   Comp Neuro Course — editorial.css
+   -------------------------------------------------------------------------
+   One of four competing visual styles. Brief: "Editorial" — confident
+   magazine typography, a feature-article hero on every lesson page,
+   card-driven landing pages, figures with real weight, pull-quotes for
+   key claims. Loads after the shared design/nav.css, which owns header/
+   tabs/sidebar geometry — this file only ever touches colour, font and
+   border on .md-header*/.md-tabs*/.md-search*, never position, width,
+   flex or margin on them. Everything else on the page is this file's.
+
+   Read top to bottom: fonts -> colour (the ink masthead + one accent,
+   both colour schemes) -> masthead colouring -> page skeleton -> sidebar
+   type -> base typography -> lesson hero -> home/track-index ledes ->
+   numbered section banners -> inline contents box -> pull-quotes and
+   figures -> card grids -> coursework tabs/admonitions/tables/code ->
+   narrow-screen (~500-600px) scaling.
+   ========================================================================= */
+
+
+/* -------------------------------------------------------------------------
+   1. FONTS
+   The brief wants strong contrast between a display face and a body face.
+   Body stays on a system sans stack — crisp at small sizes on a tablet,
+   no network dependency, no FOUT risk for the text that carries the
+   actual reading load. Display (H1, H2 banners, card titles, pull-quotes,
+   the metadata strip) uses Fraunces — a high-contrast serif built for
+   headline sizes, which a system stack cannot fake. If the Google Fonts
+   request is slow or blocked, every display rule below still holds at
+   its stated size/line-height with the Georgia-led fallback; nothing is
+   sized or positioned against Fraunces' exact metrics, so there is no
+   layout break on fallback, only a quieter headline.
+
+   mkdocs.yml needs (see editorial.md for the exact line):
+     extra_css:
+       - https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&display=swap
+       - stylesheets/editorial.css
+   ------------------------------------------------------------------------- */
+
+:root {
+  --ed-display: "Fraunces", Georgia, "Iowan Old Style", "Palatino Linotype",
+    "Book Antiqua", serif;
+  --ed-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  --ed-ink: #1b1816; /* constant masthead ink, independent of light/dark */
+  --ed-paper: #f4efe7; /* constant masthead text, independent of light/dark */
+}
+
+
+/* -------------------------------------------------------------------------
+   2. COLOUR — the one deliberate accent, in both schemes
+   A single warm, editorial red (oxblood in light mode, a lighter coral in
+   dark mode so it still clears contrast against a near-black ground) is
+   the only strong colour in the design. It is set through Material's own
+   custom properties, scheme-scoped, so every built-in use of
+   --md-accent-fg-color (links, focus rings, highlighted search terms)
+   picks it up for free, and this file's own rules below just reference
+   the same variables rather than hard-coding colour twice.
+   ------------------------------------------------------------------------- */
+
+[data-md-color-scheme="default"] {
+  --ed-accent: #9c2b1a;
+  --ed-accent-strong: #7a2012;
+  --md-primary-fg-color: var(--ed-ink);
+  --md-primary-bg-color: var(--ed-paper);
+  --md-accent-fg-color: var(--ed-accent);
+  --md-accent-fg-color--transparent: rgba(156, 43, 26, 0.1);
+  --md-typeset-a-color: var(--ed-accent);
+}
+
+[data-md-color-scheme="slate"] {
+  --ed-accent: #ff8a65;
+  --ed-accent-strong: #ffab8a;
+  --md-primary-fg-color: var(--ed-ink);
+  --md-primary-bg-color: var(--ed-paper);
+  --md-accent-fg-color: var(--ed-accent);
+  --md-accent-fg-color--transparent: rgba(255, 138, 101, 0.16);
+  --md-typeset-a-color: var(--ed-accent);
+}
+
+.md-typeset a {
+  text-decoration-color: var(--md-accent-fg-color--transparent);
+  text-underline-offset: 2px;
+}
+.md-typeset a:hover {
+  text-decoration-color: var(--md-accent-fg-color);
+}
+
+
+/* -------------------------------------------------------------------------
+   3. MASTHEAD — header and tabs, colour only
+   Redefining --md-primary-fg-color/--md-primary-bg-color above already
+   recolours .md-header and .md-tabs (both read those two custom
+   properties for background/text in Material's own CSS), so the masthead
+   stays a constant dark band in both colour schemes, like a magazine
+   nameplate, while the page body still follows the light/dark toggle.
+   Everything here is colour, font or letter-spacing — no position, width,
+   flex or margin on any .md-header*/.md-tabs*/.md-search* selector.
+   ------------------------------------------------------------------------- */
+
+.md-header__title {
+  font-family: var(--ed-display);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.md-tabs__link {
+  font-family: var(--ed-sans);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.md-tabs__link--active {
+  color: var(--md-accent-fg-color);
+  opacity: 1;
+}
+
+.md-search__input {
+  font-family: var(--ed-sans);
+}
+
+
+/* -------------------------------------------------------------------------
+   4. PAGE SKELETON
+   Full-width content column (Material's default caps it at 61rem) and the
+   right-hand ToC rail removed — each lesson's own inline [TOC] block does
+   that job (section 10). Side gutters use clamp() so they scale down
+   continuously with viewport width instead of jumping at a breakpoint —
+   generous on desktop, tight on the tablet-split case, never zero.
+   ------------------------------------------------------------------------- */
+
+.md-grid {
+  max-width: 100%;
+}
+
+.md-main__inner {
+  margin-top: 0.6rem;
+}
+
+.md-sidebar--secondary {
+  display: none !important;
+}
+
+.md-content__inner {
+  margin: 0 clamp(1rem, 4vw, 3.2rem) 2.6rem;
+  padding-top: 0.5rem;
+}
+
+
+/* -------------------------------------------------------------------------
+   5. SIDEBAR NAVIGATION — type only, not geometry
+   nav.css owns the rail's position/width; this only sets the type inside
+   it so it reads as considered rather than a default file-tree list.
+   ------------------------------------------------------------------------- */
+
+.md-nav--primary > .md-nav__title {
+  font-family: var(--ed-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--md-default-fg-color--light);
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  padding-bottom: 0.6rem;
+}
+
+.md-nav__link {
+  font-family: var(--ed-sans);
+  font-size: 0.68rem;
+  border-left: 2px solid transparent;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.md-nav__link--active {
+  font-weight: 700;
+  color: var(--ed-accent);
+  border-left-color: var(--ed-accent);
+}
+
+
+/* -------------------------------------------------------------------------
+   6. BASE TYPOGRAPHY
+   Deliberate reversal of the usual "serif body" pairing: body copy is a
+   clean system sans (comfortable at small sizes on a tablet half-screen,
+   where every lesson's prose actually gets read), and the display face
+   (Fraunces) is reserved for headlines, banners, card titles and
+   pull-quotes — so the two faces never compete at body size, only
+   contrast at the moments the brief wants presence.
+   ------------------------------------------------------------------------- */
+
+.md-typeset {
+  font-family: var(--ed-sans);
+  font-size: 0.72rem;
+  line-height: 1.7;
+}
+
+/* Reading measure applies to prose paragraphs and list items only — not
+   to a paragraph that is purely a figure (an <img> alone) or its caption
+   (an <em> alone), which need to run the full content width to carry the
+   "real presentational weight" the brief asks for. Material wraps every
+   image in its own <p>, so without this exclusion the measure rule below
+   would quietly cap every figure to paragraph width — the bug this file
+   fixes rather than repeats. */
+.md-typeset p:not(:has(img)),
+.md-typeset li {
+  max-width: 46rem;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-family: var(--ed-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.md-typeset h4,
+.md-typeset h5 {
+  font-family: var(--ed-sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset hr {
+  border: none;
+  border-top: 1px solid var(--md-default-fg-color--lighter);
+  margin: 2.4rem 0;
+}
+
+
+/* -------------------------------------------------------------------------
+   7. LESSON HERO — headline + metadata strip
+   Every lesson page opens H1 -> "At a glance" admonition -> [TOC] (fixed
+   markup; see lesson_template.md). There is no separate standfirst
+   paragraph in the source, so the at-a-glance block does double duty as
+   the magazine standfirst/byline: the three bold labels it already
+   contains (Length / Before this / Reading) become small accent-coloured
+   tags inline in one confident metadata line, stripped of the default
+   admonition box so it reads as a dateline under the headline, not a
+   callout. This only matches the admonition directly after the page H1
+   (`h1 + .admonition.abstract`), so the differently-shaped "Files for
+   this lesson" <details> block elsewhere on the page is untouched.
+   ------------------------------------------------------------------------- */
+
+.md-typeset h1 {
+  font-size: clamp(2.1rem, 1.5rem + 2.5vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0.2rem 0 1.1rem;
+  max-width: 54rem;
+}
+
+.md-typeset > h1 + .admonition.abstract {
+  all: unset;
+  display: block;
+  font-family: var(--ed-sans);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--md-default-fg-color--light);
+  border-top: 2px solid var(--ed-accent);
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  padding: 0.7rem 0 0.9rem;
+  margin: 0 0 1.6rem;
+  max-width: none;
+}
+.md-typeset > h1 + .admonition.abstract .admonition-title {
+  display: none; /* "At a glance" label is redundant once this reads as
+                     a dateline rather than a boxed note */
+}
+.md-typeset > h1 + .admonition.abstract p {
+  max-width: none;
+  margin: 0;
+}
+.md-typeset > h1 + .admonition.abstract strong {
+  font-family: var(--ed-sans);
+  color: var(--ed-accent);
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+
+/* -------------------------------------------------------------------------
+   8. HOME / TRACK-INDEX LEDE
+   The home page and the two track-index pages open H1 directly followed
+   by a plain intro paragraph (no admonition between) — lesson pages never
+   match this shape, since their H1 is followed by the at-a-glance block
+   above. That structural difference is the hook: give exactly this
+   paragraph standfirst treatment, no markup change required.
+   ------------------------------------------------------------------------- */
+
+.md-typeset > h1 + p {
+  font-family: var(--ed-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--md-default-fg-color--light);
+  max-width: 46rem;
+  margin-bottom: 1.8rem;
+}
+
+
+/* -------------------------------------------------------------------------
+   9. SECTION BANNERS — numbered H2s, H3 subheads
+   H2 marks a lesson's three (or five, counting Authors' exercises and
+   Completion bar) top-level parts. A small accent-coloured running number
+   — generated, not hand-maintained in the markdown — gives every banner
+   the confident "section 01 / 02 / 03" feel of a print feature without
+   touching source files. H3 (the lecture's own named subsections) stays
+   on the display face but at body-adjacent weight, so the hierarchy reads
+   display -> display-lighter -> sans-caps (h4) without a jarring jump.
+   ------------------------------------------------------------------------- */
+
+.md-typeset {
+  counter-reset: ed-section;
+}
+
+.md-typeset h2 {
+  counter-increment: ed-section;
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 3rem 0 1.2rem;
+  padding-top: 1.1rem;
+  border-top: 3px solid var(--ed-accent);
+}
+
+.md-typeset h1 + .admonition.abstract + .toc + h2:first-of-type,
+.md-typeset h1 + .admonition.abstract ~ h2:first-of-type {
+  margin-top: 1.6rem;
+}
+
+.md-typeset h2::before {
+  content: counter(ed-section, decimal-leading-zero);
+  display: inline-block;
+  font-family: var(--ed-sans);
+  font-weight: 700;
+  font-size: 0.6em;
+  letter-spacing: 0.04em;
+  color: var(--ed-accent);
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+
+.md-typeset h3 {
+  font-size: 1.15rem;
+  font-weight: 500;
+  font-style: italic;
+  margin-top: 2.2rem;
+  color: var(--md-default-fg-color);
+}
+
+
+/* -------------------------------------------------------------------------
+   10. INLINE CONTENTS BOX
+   Deliberately kept — it replaces the hidden right-hand ToC (section 4).
+   Styled as a compact index card with a small accent kicker label rather
+   than a plain bordered div, two columns on wide screens so a long
+   lesson's five-to-six entries do not run tall before the Lecture starts.
+   ------------------------------------------------------------------------- */
+
+.md-content div.toc {
+  position: relative;
+  font-family: var(--ed-sans);
+  font-size: 0.66rem;
+  line-height: 1.7;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  padding: 0.9rem 0 1rem;
+  margin: 0 0 1.6rem;
+}
+
+.md-content div.toc::before {
+  content: "In this lesson";
+  display: block;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.58rem;
+  color: var(--ed-accent);
+  margin-bottom: 0.5rem;
+}
+
+.md-content div.toc > ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  columns: 2;
+  column-gap: 1.6rem;
+}
+
+.md-content div.toc > ul > li > ul {
+  display: none; /* top-level entries only — see section 9's five-H2 map */
+}
+
+.md-content div.toc li {
+  break-inside: avoid;
+  max-width: none;
+}
+
+.md-content div.toc a {
+  color: var(--md-default-fg-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+.md-content div.toc a:hover {
+  color: var(--ed-accent);
+}
+
+
+/* -------------------------------------------------------------------------
+   11. PULL-QUOTES AND FIGURES
+   Native Markdown blockquotes (> ...) get full pull-quote treatment —
+   oversized display serif, an accent rule, a generated opening mark — for
+   the "key claim or definition" the brief asks to lift out of a section.
+   No lesson currently uses a bare blockquote (checked across site_src),
+   so this is a capability this file provides rather than a rule already
+   exercised; editorial.md flags it.
+
+   Figures (an <img> alone in its own <p>, which is how every lesson
+   embeds one — see lesson_template.md) get real size and a frame; the
+   caption that follows (an <em> alone in the next <p>) gets a thin accent
+   rule and is set in italic display type so it reads as a plate caption,
+   not a stray note.
+   ------------------------------------------------------------------------- */
+
+.md-typeset blockquote {
+  all: unset;
+  display: block;
+  font-family: var(--ed-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.45;
+  color: var(--md-default-fg-color);
+  border-left: 3px solid var(--ed-accent);
+  padding: 0.2rem 0 0.2rem 1.4rem;
+  margin: 2rem 0 2rem 0.2rem;
+  max-width: 42rem;
+}
+.md-typeset blockquote::before {
+  content: "\201C";
+  color: var(--ed-accent);
+  font-weight: 700;
+  margin-right: 0.15em;
+}
+
+.md-typeset p:has(> img:only-child) {
+  margin: 1.8rem 0;
+  max-width: none;
+}
+
+.md-typeset img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  background: #fff; /* scans/plots are greyscale-on-white; keep that frame
+                        rather than letting the image float transparent
+                        onto a dark page background in slate mode */
+  border: 1px solid var(--md-default-fg-color--lightest);
+  padding: 0.4rem;
+}
+
+.md-typeset p:has(> img:only-child) + p:has(> em:only-child) {
+  max-width: none;
+  text-align: center;
+  margin-top: -1rem;
+}
+.md-typeset p:has(> img:only-child) + p:has(> em:only-child) em {
+  display: inline-block;
+  font-family: var(--ed-display);
+  font-style: italic;
+  font-size: 0.72rem;
+  color: var(--md-default-fg-color--light);
+  border-top: 1px solid var(--ed-accent);
+  padding-top: 0.4rem;
+}
+
+
+/* -------------------------------------------------------------------------
+   12. CARD GRIDS — home and track-index pages
+   Material's `grid cards` extension renders each card as <li><p><span
+   class="twemoji">icon</span> <strong>Title</strong></p><hr><p>text</p>
+   <p><a>link</a></p></li>. These are the pages the brief weights most —
+   "someone landing on this site should immediately want to start
+   reading" — so cards get a bigger icon, a display-face title, and an
+   accent-coloured call-to-action with a small hover nudge, inside more
+   generous grid spacing than Material's cramped 0.4rem default.
+   ------------------------------------------------------------------------- */
+
+.md-typeset .grid {
+  grid-gap: 1.1rem;
+  margin: 1.6rem 0;
+}
+
+.md-typeset .grid.cards > ul > li {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-top: 3px solid var(--ed-accent);
+  border-radius: 0.15rem;
+  padding: 1.1rem 1.1rem 1.2rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--ed-accent);
+}
+
+.md-typeset .grid.cards > ul > li > p:first-child {
+  --md-icon-size: 1.8em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+.md-typeset .grid.cards > ul > li > p:first-child .twemoji {
+  color: var(--ed-accent);
+}
+.md-typeset .grid.cards > ul > li > p:first-child strong {
+  font-family: var(--ed-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset .grid.cards > ul > li > hr {
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .grid.cards > ul > li > p:last-child a {
+  font-family: var(--ed-sans);
+  font-weight: 700;
+  font-size: 0.66rem;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.15s;
+}
+.md-typeset .grid.cards > ul > li > p:last-child a:hover {
+  transform: translateX(2px);
+}
+
+
+/* -------------------------------------------------------------------------
+   13. COURSEWORK TABS, ADMONITIONS, TABLES, CODE
+   Lower-key than the hero/section/card treatments above — this is where
+   a reader does close work, so legibility wins over drama. The tab-label
+   row is also given permission to scroll rather than compress, since
+   four piece names will not fit unscrolled at tablet-split width.
+   ------------------------------------------------------------------------- */
+
+.md-typeset .tabbed-labels {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+.md-typeset .tabbed-labels > label {
+  font-family: var(--ed-sans);
+}
+.md-typeset .tabbed-labels::before {
+  background: var(--ed-accent);
+}
+
+.md-typeset .admonition {
+  font-size: 0.68rem;
+  border: none;
+  border-left: 3px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.15rem;
+  background: var(--md-code-bg-color);
+  box-shadow: none;
+  padding: 0.7rem 1rem;
+  margin: 1.4rem 0;
+}
+.md-typeset .admonition-title {
+  font-family: var(--ed-sans);
+  font-weight: 700;
+  background: transparent !important;
+  padding-left: 0 !important;
+}
+.md-typeset .admonition.abstract,
+.md-typeset .admonition.note {
+  border-left-color: var(--ed-accent);
+}
+.md-typeset .admonition.tip {
+  border-left-color: var(--md-accent-fg-color);
+}
+.md-typeset .admonition.warning {
+  border-left-color: #a65d2e;
+}
+[data-md-color-scheme="slate"] .md-typeset .admonition.warning {
+  border-left-color: #c48a52;
+}
+
+.md-typeset table:not([class]) {
+  font-size: 0.66rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+}
+.md-typeset table:not([class]) th {
+  font-family: var(--ed-sans);
+  font-weight: 700;
+  background: var(--md-code-bg-color);
+}
+.md-typeset table:not([class]) tr:nth-child(even) {
+  background-color: var(--md-code-bg-color);
+}
+.md-typeset__scrollwrap {
+  overflow-x: auto;
+  margin: 1.2rem 0;
+}
+
+.md-typeset pre > code {
+  font-size: 0.64rem;
+  line-height: 1.6;
+}
+.md-typeset .highlight {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.15rem;
+}
+.md-typeset code {
+  background: var(--md-code-bg-color);
+}
+
+
+/* -------------------------------------------------------------------------
+   14. NARROW SCREENS — the tablet-split case (~500-600px)
+   This is the primary reading mode, not an edge case. The clamp()s in
+   sections 4, 7 and 8 already shrink continuously as width drops, but a
+   few rules need a hard cut at this width: drop the display heading
+   another notch so it cannot "eat the whole screen," collapse the
+   contents box and the card grid gap further, and shrink figures so one
+   plot never fills the entire visible column next to the handwriting app.
+   ------------------------------------------------------------------------- */
+
+@media screen and (max-width: 44.9375em) {
+  .md-content__inner {
+    margin: 0 0.9rem 1.8rem;
+  }
+
+  .md-typeset {
+    font-size: 0.74rem;
+  }
+
+  .md-typeset h1 {
+    font-size: clamp(1.7rem, 1.2rem + 4vw, 2.1rem);
+    line-height: 1.1;
+  }
+
+  .md-typeset > h1 + .admonition.abstract {
+    font-size: 0.72rem;
+    padding: 0.55rem 0 0.7rem;
+  }
+
+  .md-typeset > h1 + p {
+    font-size: 0.95rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.3rem;
+    margin: 2.2rem 0 1rem;
+  }
+
+  .md-typeset h3 {
+    font-size: 1rem;
+  }
+
+  .md-content div.toc > ul {
+    columns: 1;
+  }
+
+  .md-typeset img {
+    max-height: 48vh;
+  }
+
+  .md-typeset blockquote {
+    font-size: 1.05rem;
+    padding-left: 1rem;
+  }
+
+  .md-typeset .grid {
+    grid-gap: 0.7rem;
+  }
+
+  .md-nav--primary > .md-nav__title {
+    padding-top: 0.2rem;
+  }
+}

@@ -1,0 +1,3 @@
+# Fraunces — the display face the editorial style is built on. It degrades to
+# a Georgia-led fallback stack if this request is blocked or slow.
+https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&display=swap

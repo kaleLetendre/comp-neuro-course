@@ -1,0 +1,776 @@
+/* =========================================================================
+   Comp Neuro Course — notebook.css  ("Lab notebook", dark-first)
+   -------------------------------------------------------------------------
+   A working scientist's notebook, not a published document: squared-paper
+   texture used sparingly, monospace for metadata and marginalia, two inks
+   (a structural blue-black and an annotation red) instead of one accent
+   colour doing every job. Designed dark-first, because this is read for
+   long stretches at night next to a handwriting app — the light scheme is
+   a genuine second reading, not slate-with-the-knob-flipped.
+
+   Loaded after design/nav.css, which owns header/tabs/sidebar geometry.
+   Nothing here sets position/top/right/left/bottom/width/flex/margin on
+   .md-header*, .md-tabs*, .md-search*, .md-nav* or .md-sidebar* — only
+   colour, font, border and padding on those.
+
+   Read top to bottom: tokens & fonts -> dark palette -> light palette ->
+   shared ink/paper/texture tokens -> typography -> page skeleton ->
+   navigation colour -> lesson structure -> inline contents box -> key
+   terms & acceptance criteria -> tables -> admonitions -> figures (the
+   white-plate problem) -> display maths -> code -> card grids -> footer
+   -> narrow screens.
+   ========================================================================= */
+
+
+/* -------------------------------------------------------------------------
+   0. FONTS
+   System stacks only — no network font, no flash of unstyled text on the
+   tablet. Three voices instead of the usual two: serif for the running
+   lecture prose (the "writing"), sans for headings and navigation (the
+   structure), monospace for metadata and marginalia — at-a-glance stats,
+   figure captions, the contents box, table headers — the stuff a real
+   notebook would letter in a different hand than the prose.
+   ------------------------------------------------------------------------- */
+
+:root {
+  --nb-serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+    serif;
+  --nb-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  --nb-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Segoe UI Mono",
+    Consolas, "Liberation Mono", Menlo, monospace;
+
+  --nb-radius: 0.15rem;       /* square-ish corners — a page, not a card */
+  --nb-grid-size: 20px;       /* graph-paper cell, wherever it's used */
+
+  /* The book's figures are black line art on a white or transparent
+     background. Rather than fight that, give every figure a fixed warm
+     "paper" tone that is the same in both colour schemes — a mat the
+     plate sits on — so it reads as a pasted-in print, never as a raw
+     white rectangle glaring out of a dark page. See section 12. */
+  --nb-paper: hsl(42, 44%, 94%);
+  --nb-paper-edge: hsl(40, 22%, 72%);
+}
+
+
+/* -------------------------------------------------------------------------
+   1. DARK SCHEME — the primary experience
+   Material's own custom properties, overridden directly (not via the
+   theme.palette primary/accent name list), so this works regardless of
+   whatever primary/accent preset mkdocs.yml already names.
+
+   The ground is a warm near-black — espresso, not slate — because the
+   default Material dark palette is a cool blue-grey that reads as
+   generic-app-chrome rather than notebook-at-night. Warming the hue and
+   keeping lightness low (11-16%) gives a "desk lamp over a dark cover"
+   feel without going to pure black, which would crush the greyscale
+   figures' own contrast range (see section 12).
+
+   Text is a warm parchment off-white, not stark white — 86% lightness
+   with a warm hue reads as ink-on-paper under lamp light and is easier
+   on the eyes across a long reading session than Material's cooler,
+   slightly brighter default.
+
+   Two inks: --md-primary-fg-color is a blue-black fountain-pen ink used
+   for the document's own structure (headings, nav, section dividers).
+   --md-accent-fg-color is a red-pen ink reserved for the reader's own
+   landmarks (contents box, key terms, acceptance criteria) — see
+   section 9. Keeping these semantically separate is the point: the
+   notebook's own structure and the reader's annotations on top of it
+   should never be the same colour.
+   ------------------------------------------------------------------------- */
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: hsl(28, 15%, 11%);
+  --md-default-bg-color--light: hsl(28, 14%, 15%);
+  --md-default-bg-color--lighter: hsl(28, 12%, 19%);
+  --md-default-bg-color--lightest: hsl(28, 10%, 25%);
+
+  --md-default-fg-color: hsl(38, 26%, 86%);
+  --md-default-fg-color--light: hsl(38, 15%, 66%);
+  --md-default-fg-color--lighter: hsl(38, 11%, 45%);
+  --md-default-fg-color--lightest: hsl(38, 10%, 28%);
+
+  --md-typeset-color: var(--md-default-fg-color);
+
+  --md-code-fg-color: hsl(38, 20%, 82%);
+  --md-code-bg-color: hsl(28, 13%, 16%);
+  --md-code-bg-color--light: hsl(28, 13%, 18%);
+  --md-code-bg-color--lighter: hsl(28, 12%, 22%);
+
+  --md-primary-fg-color: hsl(212, 32%, 68%);
+  --md-primary-fg-color--light: hsl(212, 32%, 76%);
+  --md-primary-fg-color--dark: hsl(212, 36%, 52%);
+  --md-primary-bg-color: hsl(28, 15%, 11%);
+
+  --md-accent-fg-color: hsl(8, 64%, 61%);
+  --md-accent-fg-color--transparent: hsl(8 64% 61% / 0.16);
+  --md-accent-bg-color: hsl(28, 15%, 11%);
+
+  --md-typeset-a-color: var(--md-primary-fg-color);
+  --md-typeset-mark-color: hsl(8 64% 61% / 0.3);
+
+  --md-footer-bg-color: hsl(28, 16%, 8%);
+  --md-footer-bg-color--dark: hsl(28, 18%, 6%);
+
+  /* recessed "specimen tray" behind a pasted figure, and the grid ruling
+     drawn on it — both slightly lighter than the page so the plate reads
+     as sitting in a shallow well, not stuck straight on the page ink */
+  --nb-figure-well: hsl(28, 13%, 14%);
+  --nb-grid-line: hsl(38 22% 86% / 0.055);
+
+  color-scheme: dark;
+}
+
+
+/* -------------------------------------------------------------------------
+   2. LIGHT SCHEME — a genuine second option
+   Not an inverted dark scheme: its own warm cream ground (a notebook
+   page, not printer paper) and a near-black warm ink for text, so
+   contrast and character both carry over rather than defaulting back to
+   Material's stock white-and-grey.
+   ------------------------------------------------------------------------- */
+
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: hsl(40, 36%, 95%);
+  --md-default-bg-color--light: hsl(40, 30%, 92%);
+  --md-default-bg-color--lighter: hsl(40, 25%, 88%);
+  --md-default-bg-color--lightest: hsl(40, 22%, 83%);
+
+  --md-default-fg-color: hsl(28, 32%, 14%);
+  --md-default-fg-color--light: hsl(28, 18%, 35%);
+  --md-default-fg-color--lighter: hsl(28, 12%, 58%);
+  --md-default-fg-color--lightest: hsl(28, 10%, 80%);
+
+  --md-typeset-color: var(--md-default-fg-color);
+
+  --md-code-fg-color: hsl(28, 24%, 20%);
+  --md-code-bg-color: hsl(40, 28%, 90%);
+  --md-code-bg-color--light: hsl(40, 28%, 92%);
+  --md-code-bg-color--lighter: hsl(40, 24%, 95%);
+
+  --md-primary-fg-color: hsl(212, 48%, 32%);
+  --md-primary-fg-color--light: hsl(212, 40%, 44%);
+  --md-primary-fg-color--dark: hsl(212, 52%, 22%);
+  --md-primary-bg-color: hsl(40, 36%, 95%);
+
+  --md-accent-fg-color: hsl(8, 68%, 42%);
+  --md-accent-fg-color--transparent: hsl(8 68% 42% / 0.12);
+  --md-accent-bg-color: hsl(40, 36%, 95%);
+
+  --md-typeset-a-color: var(--md-primary-fg-color);
+  --md-typeset-mark-color: hsl(8 68% 42% / 0.2);
+
+  --md-footer-bg-color: hsl(40, 20%, 88%);
+  --md-footer-bg-color--dark: hsl(28, 30%, 16%);
+
+  --nb-figure-well: hsl(40, 30%, 90%);
+  --nb-grid-line: hsl(212 44% 30% / 0.07);
+
+  color-scheme: light;
+}
+
+/* A red-pen text selection in both schemes — small, but it is the one
+   piece of UI the reader's own hand actually drives. */
+::selection {
+  background: var(--md-accent-fg-color--transparent);
+  color: inherit;
+}
+[data-md-color-scheme="slate"] ::selection {
+  background: hsl(8 64% 61% / 0.35);
+}
+[data-md-color-scheme="default"] ::selection {
+  background: hsl(8 68% 42% / 0.25);
+}
+
+
+/* -------------------------------------------------------------------------
+   3. TYPOGRAPHY
+   Serif prose, sans structure, mono marginalia (section 0). Sizes as in
+   the previous theme — they were already tuned for this tablet — kept
+   here rather than reinvented.
+   ------------------------------------------------------------------------- */
+
+.md-typeset {
+  font-family: var(--nb-serif);
+  font-size: 0.72rem;
+  line-height: 1.7;
+}
+
+.md-typeset p,
+.md-typeset li {
+  max-width: 42rem;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5 {
+  font-family: var(--nb-sans);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.md-typeset h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: var(--md-primary-fg-color);
+}
+
+.md-typeset h3 {
+  font-size: 1.05rem;
+  margin-top: 2rem;
+}
+
+.md-typeset h4 {
+  font-size: 0.9rem;
+  font-family: var(--nb-mono);
+  color: var(--md-default-fg-color--light);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.md-typeset a {
+  color: var(--md-typeset-a-color);
+  text-decoration-color: var(--md-default-fg-color--lighter);
+  text-underline-offset: 2px;
+}
+.md-typeset a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Hand-written-note bullets instead of round dots. */
+.md-typeset ul > li::marker {
+  color: var(--md-default-fg-color--light);
+}
+
+/* Numbered lists carry most of this course's acceptance criteria and
+   coursework steps — the red-pen ink on the numeral marks them as the
+   reader's checklist, without needing a class the markdown doesn't have. */
+.md-typeset ol > li::marker {
+  font-family: var(--nb-mono);
+  font-weight: 600;
+  color: var(--md-accent-fg-color);
+}
+
+/* Key terms are bolded exactly where the lecture prose first defines
+   them ("the **spike-count rate** is...") — strong is already, in this
+   corpus, the marker for a definition. Tint it with the annotation ink
+   instead of just weight, so a skim catches every term the lecture
+   considers load-bearing. */
+.md-typeset strong {
+  color: var(--md-accent-fg-color);
+  font-weight: 700;
+}
+
+
+/* -------------------------------------------------------------------------
+   4. PAGE SKELETON
+   Full-width content column and no right-hand ToC rail (the inline
+   contents box in section 8 does that job instead). Scoped to
+   .md-main__inner specifically, not the generic .md-grid class, because
+   .md-grid is also the class on .md-header__inner and the footer grid —
+   widening those is header geometry, which belongs to nav.css.
+   ------------------------------------------------------------------------- */
+
+.md-main__inner.md-grid {
+  max-width: 100%;
+}
+
+.md-sidebar--secondary {
+  display: none !important;
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-content {
+    margin-right: 2.4rem;
+    margin-left: 1.2rem;
+  }
+}
+
+body {
+  background: var(--md-default-bg-color);
+}
+
+
+/* -------------------------------------------------------------------------
+   5. NAVIGATION — colour and texture only
+   Geometry (position/width/flex/margin) for .md-nav*/.md-sidebar* is
+   nav.css's job. What's left here is palette and type: the structural
+   (blue-black) ink for the active item, since the nav is the site's own
+   structure, not a reader annotation — the red ink stays reserved for
+   section 9.
+   ------------------------------------------------------------------------- */
+
+.md-sidebar--primary {
+  font-family: var(--nb-sans);
+}
+
+.md-nav--primary > .md-nav__title {
+  font-family: var(--nb-mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--md-default-fg-color--light);
+  padding: 0.9rem 0.8rem 0.6rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-nav__link {
+  padding: 0.38rem 0.8rem 0.38rem 0.95rem;
+  border-left: 2px solid transparent;
+  font-size: 0.68rem;
+  line-height: 1.5;
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+}
+
+.md-nav__link:hover {
+  background: var(--md-code-bg-color);
+  border-left-color: var(--md-default-fg-color--lighter);
+}
+
+.md-nav__link--active {
+  font-weight: 600;
+  color: var(--md-primary-fg-color);
+  background: var(--md-code-bg-color);
+  border-left-color: var(--md-primary-fg-color);
+}
+
+
+/* -------------------------------------------------------------------------
+   6. LESSON STRUCTURE — Lecture / Lesson spec / Coursework
+   Each H2 is a divider between the three parts of a lesson. Treated as a
+   torn-off tab: a heavy top rule in the structural ink, a small-caps
+   sans label, and a dashed underline that reads as a perforation rather
+   than a plain rule.
+   ------------------------------------------------------------------------- */
+
+.md-typeset h2 {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 2.6rem;
+  margin-bottom: 1.2rem;
+  padding: 0.7rem 0 0.6rem;
+  border-top: 3px solid var(--md-primary-fg-color);
+  border-bottom: 1px dashed var(--md-default-fg-color--lighter);
+}
+
+.md-typeset h1 ~ h2:first-of-type {
+  margin-top: 1.4rem;
+}
+
+.md-typeset hr {
+  border: none;
+  border-top: 1px solid var(--md-default-fg-color--lighter);
+  margin: 2.2rem 0;
+}
+
+
+/* -------------------------------------------------------------------------
+   7. INLINE CONTENTS BOX — landmark #1
+   The reader's own index card: monospace, a faint graph-paper fill (the
+   one place on the page texture is load-bearing rather than seasoning,
+   because the box is small, short-lived to read, and never carries
+   maths), and a heavy red-ink left rule marking it as something the
+   reader refers back to rather than reads once.
+   ------------------------------------------------------------------------- */
+
+.md-content .toc,
+.md-content div.toc {
+  font-family: var(--nb-mono);
+  font-size: 0.62rem;
+  line-height: 1.75;
+  background-color: var(--md-code-bg-color);
+  background-image: repeating-linear-gradient(
+      var(--nb-grid-line) 0 1px,
+      transparent 1px var(--nb-grid-size)
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--nb-grid-line) 0 1px,
+      transparent 1px var(--nb-grid-size)
+    );
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-left: 4px solid var(--md-accent-fg-color);
+  border-radius: var(--nb-radius);
+  padding: 0.8rem 1.1rem;
+  margin: 0.5rem 0 1.8rem;
+}
+
+.md-content div.toc::before {
+  content: "Contents";
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--md-accent-fg-color);
+  margin-bottom: 0.5rem;
+}
+
+.md-content div.toc > ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  columns: 2;
+  column-gap: 1.5rem;
+}
+
+.md-content div.toc > ul > li > ul {
+  display: none;
+}
+
+.md-content div.toc li {
+  break-inside: avoid;
+  max-width: none;
+}
+
+.md-content div.toc a {
+  color: var(--md-default-fg-color--light);
+  text-decoration: none;
+}
+.md-content div.toc a:hover,
+.md-content div.toc a:focus {
+  color: var(--md-accent-fg-color);
+}
+
+
+/* -------------------------------------------------------------------------
+   8. "AT A GLANCE" METADATA BOX
+   Every lesson opens with !!! abstract "At a glance" — three stats
+   (Length / Before this / Reading) written as three physical lines in
+   the markdown source but, with no explicit <br>, collapsed by the
+   browser into one run-on paragraph. white-space:pre-line restores the
+   author's line breaks; scoped to .admonition.abstract specifically
+   (not the "Files for this lesson" ??? abstract, which is a <details>
+   and untouched by this rule) so no other admonition's soft-wrapped
+   source lines are affected.
+   ------------------------------------------------------------------------- */
+
+.md-typeset .admonition.abstract p:last-of-type {
+  white-space: pre-line;
+  font-family: var(--nb-mono);
+  font-size: 0.6rem;
+  line-height: 1.9;
+}
+
+
+/* -------------------------------------------------------------------------
+   9. TABLES
+   ------------------------------------------------------------------------- */
+
+.md-typeset table:not([class]) {
+  font-size: 0.66rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: var(--nb-radius);
+}
+
+.md-typeset table:not([class]) th {
+  font-family: var(--nb-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  background: var(--md-code-bg-color);
+  padding: 0.55rem 0.8rem;
+}
+
+.md-typeset table:not([class]) td {
+  padding: 0.5rem 0.8rem;
+  vertical-align: top;
+}
+
+.md-typeset table:not([class]) tr:nth-child(even) {
+  background-color: var(--md-code-bg-color);
+}
+
+.md-typeset__scrollwrap {
+  overflow-x: auto;
+  margin: 1.2rem 0;
+}
+
+
+/* -------------------------------------------------------------------------
+   10. ADMONITIONS
+   Quiet left-rule treatment. note/tip keep the structural ink (they are
+   the document's own asides); the per-type colours below are restrained
+   on purpose — texture and the two inks already carry the page's
+   character, admonitions don't need to compete.
+   ------------------------------------------------------------------------- */
+
+.md-typeset .admonition,
+.md-typeset details {
+  font-size: 0.68rem;
+  border: none;
+  border-left: 3px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.15rem;
+  background: var(--md-code-bg-color);
+  box-shadow: none;
+  padding: 0.7rem 1rem;
+  margin: 1.4rem 0;
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  font-family: var(--nb-sans);
+  font-weight: 600;
+  font-size: 0.68rem;
+  background: transparent !important;
+  margin-bottom: 0.4rem;
+}
+
+/* .admonition-title sits inside the admonition's own padding box, so its
+   reserved icon space can just go to zero. summary is full-bleed (Material
+   gives it `margin:0 -.6rem` to escape the details element's padding), so
+   zeroing it the same way would pull the heading past the left border;
+   0.6rem instead lines its text back up with the body text below it.
+   padding-right is left alone on both — summary's expand chevron (a
+   separate ::after, untouched below) still needs that reserved space. */
+.md-typeset .admonition-title {
+  padding-left: 0 !important;
+}
+.md-typeset summary {
+  padding-left: 0.6rem !important;
+}
+
+.md-typeset .admonition-title::before,
+.md-typeset summary::before {
+  display: none;
+}
+
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-left-color: var(--md-primary-fg-color);
+}
+.md-typeset .admonition.abstract,
+.md-typeset details.abstract {
+  border-left-color: var(--md-primary-fg-color);
+}
+.md-typeset .admonition.quote {
+  border-left-color: var(--md-default-fg-color--light);
+  font-style: italic;
+}
+.md-typeset .admonition.quote .admonition-title {
+  font-style: normal;
+}
+.md-typeset .admonition.tip,
+.md-typeset details.tip,
+.md-typeset details.info {
+  border-left-color: var(--md-accent-fg-color);
+}
+.md-typeset .admonition.warning {
+  border-left-color: #a65d2e;
+}
+[data-md-color-scheme="slate"] .md-typeset .admonition.warning {
+  border-left-color: #c48a52;
+}
+
+
+/* -------------------------------------------------------------------------
+   11. FIGURES — the white-plate-on-dark-ground problem
+   The book's figures are black line art on a white or transparent
+   background. Three moves solve the clash:
+
+   (a) Every <img> gets a fixed, scheme-independent "paper" background
+       (--nb-paper, section 0) instead of pure white or the page's own
+       background colour. It is warm and slightly off-white in both
+       schemes, so in slate mode the figure reads as a deliberately
+       pasted-in print sitting on its own mat, not a raw white rectangle
+       the page forgot to theme — and in default mode it barely differs
+       from the page at all, which is correct, since there the clash
+       doesn't exist.
+   (b) A lifted-plate shadow (not just a border) gives that mat physical
+       presence, reinforcing "pasted in" over "UI card."
+   (c) The paragraph wrapping the image (:has support — Chromium, so the
+       tablet's own browser) gets a shallow recessed "specimen tray"
+       behind the plate, with the one other confined use of the
+       graph-paper texture in this file. If :has() isn't supported the
+       page still works: the image's own mat (a) and shadow (b) already
+       solve the glare problem on their own; the tray is a bonus, not
+       the fix.
+   ------------------------------------------------------------------------- */
+
+.md-typeset img {
+  display: block;
+  margin: 1.3rem auto 0.4rem;
+  max-width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  background: var(--nb-paper);
+  border: 1px solid var(--nb-paper-edge);
+  border-radius: var(--nb-radius);
+  padding: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.md-typeset p:has(> img:only-child) {
+  text-align: center;
+  background-color: var(--nb-figure-well);
+  background-image: repeating-linear-gradient(
+      var(--nb-grid-line) 0 1px,
+      transparent 1px var(--nb-grid-size)
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--nb-grid-line) 0 1px,
+      transparent 1px var(--nb-grid-size)
+    );
+  padding: 1rem 0.6rem 0.2rem;
+  border-radius: var(--nb-radius);
+}
+
+/* The caption is the very next paragraph, a lone <em> — styled as a
+   typed label stuck under the plate rather than a sentence of prose. */
+.md-typeset p:has(> img:only-child) + p {
+  font-family: var(--nb-mono);
+  font-size: 0.6rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--md-default-fg-color--light);
+  margin-top: -0.3rem;
+  padding: 0 0.8rem 0.9rem;
+}
+
+.md-typeset figcaption {
+  font-family: var(--nb-mono);
+  font-size: 0.6rem;
+  color: var(--md-default-fg-color--light);
+  text-align: center;
+  margin-top: -0.6rem;
+}
+
+
+/* -------------------------------------------------------------------------
+   12. DISPLAY MATHS
+   Block equations (<div class="arithmatex">; inline maths is a <span>
+   and stays untouched, running in the prose) get a left rule in the
+   annotation ink and a panel background — a boxed worked step, the way
+   a derivation sits in its own indented block on a physical page.
+   Overrides Material's own horizontal -.8rem margin on .arithmatex so
+   the panel's padding isn't fighting a negative margin.
+   ------------------------------------------------------------------------- */
+
+.md-typeset div.arithmatex {
+  margin: 1.3rem 0;
+  padding: 0.7rem 1rem;
+  border-left: 3px solid var(--md-accent-fg-color);
+  background: var(--md-code-bg-color);
+  border-radius: 0.1rem;
+}
+
+
+/* -------------------------------------------------------------------------
+   13. CODE BLOCKS
+   ------------------------------------------------------------------------- */
+
+.md-typeset pre > code {
+  font-size: 0.64rem;
+  line-height: 1.6;
+}
+
+.md-typeset .highlight {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: var(--nb-radius);
+}
+
+.md-typeset code {
+  background: var(--md-code-bg-color);
+}
+
+
+/* -------------------------------------------------------------------------
+   14. CARD GRIDS — home and track-index pages
+   Faint graph-paper fill behind each card: these are short nav tiles,
+   not prose, so the texture is confined the same way it is everywhere
+   else — never behind running text or maths.
+   ------------------------------------------------------------------------- */
+
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid.cards > ol > li,
+.md-typeset .grid > .card {
+  background-color: var(--md-code-bg-color);
+  background-image: repeating-linear-gradient(
+      var(--nb-grid-line) 0 1px,
+      transparent 1px var(--nb-grid-size)
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--nb-grid-line) 0 1px,
+      transparent 1px var(--nb-grid-size)
+    );
+  border-color: var(--md-default-fg-color--lightest);
+  border-radius: var(--nb-radius);
+}
+
+.md-typeset .grid.cards > ul > li:hover,
+.md-typeset .grid.cards > ol > li:hover,
+.md-typeset .grid > .card:hover {
+  border-color: var(--md-accent-fg-color);
+}
+
+
+/* -------------------------------------------------------------------------
+   15. FOOTER
+   Colour only — the footer carries no layout rules here.
+   ------------------------------------------------------------------------- */
+
+.md-footer-meta {
+  background-color: var(--md-footer-bg-color--dark);
+}
+
+
+/* -------------------------------------------------------------------------
+   16. NARROW SCREENS — the tablet-split case (~500-600px), primary device
+   Tighten padding and sizes; drop the contents box to one column; back
+   the graph-paper fills off further (smaller cell, lower line opacity)
+   so texture never competes with a cramped viewport; and shrink the
+   figure plate's shadow so it doesn't read as heavier than the content
+   around it.
+   ------------------------------------------------------------------------- */
+
+@media screen and (max-width: 44.9375em) {
+  :root {
+    --nb-grid-size: 14px;
+  }
+
+  .md-content__inner {
+    padding: 0.9rem 0.8rem 1.6rem;
+  }
+
+  .md-typeset {
+    font-size: 0.74rem;
+  }
+
+  .md-typeset h1 {
+    font-size: 1.3rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.05rem;
+    padding: 0.55rem 0 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .md-content div.toc > ul {
+    columns: 1;
+  }
+
+  .md-typeset .admonition,
+  .md-typeset details {
+    padding: 0.6rem 0.8rem;
+    margin: 1.1rem 0;
+  }
+
+  .md-typeset img {
+    max-height: 50vh;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  }
+
+  .md-nav--primary > .md-nav__title {
+    padding: 1rem 0.9rem 0.7rem;
+  }
+}
